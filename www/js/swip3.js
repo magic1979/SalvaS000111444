@@ -44,7 +44,7 @@ function onDeviceReady() {
 					 .css( { "width" : 0, "height" : 0 } );
 					 $( "#popupMap" ).on({
 										 popupbeforeposition: function() {
-										 var size = scale( 680, 400, 0, 1 ),
+										 var size = scale( 600, 400, 0, 1 ),
 										 w = size.width,
 										 h = size.height;
 										 $( "#popupMap iframe" )

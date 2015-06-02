@@ -32,6 +32,7 @@ Salvatore sas
 		<preference name="android-minSdkVersion" value="11" />
 		<preference name="android-targetSdkVersion" value="11" />
 		<preference name="android-installLocation" value="auto" />
+		<preference name="splashscreen" value="splash" />
 		<preference name="SplashScreenDelay" value="10000" />
 		<preference name="ErrorUrl" value="http://www.mistertod.it"/>
 		<preference name="BackgroundColor" value="#707070"/>

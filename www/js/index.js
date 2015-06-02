@@ -339,13 +339,15 @@ function LogOut() {
 }
 
 function VerificaLogin(){
-	if (localStorage.getItem("email")!=0){
-		//alert("in");
-		window.location.href = "swip.html";
+	//alert(localStorage.getItem("email"));@
+	if (localStorage.getItem("email") === null || typeof(localStorage.getItem("email")) == 'undefined' || localStorage.getItem("email")==0) {
+		
+		$(".spinner").hide();
 	}
 	else{
+		
 		//alert("no");
-		 $(".spinner").hide();
+		window.location.href = "swip.html";
 	}
 }
 
