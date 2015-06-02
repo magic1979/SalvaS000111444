@@ -7,7 +7,7 @@
 		<name>StoryMatch</name>
 		<description>StoryMatch per ora</description>
 		<author href="http://www.storymatch.co" email="info@storymatch.co">
-Salvatore sas
+			GameAnswer
 		</author>
 		<preference name="phonegap-version" value="3.5.0" />
 		<preference name="orientation" value="portrait" />
@@ -47,6 +47,9 @@ Salvatore sas
 		<feature name="http://api.phonegap.com/1.0/media"/>
 		<feature name="http://api.phonegap.com/1.0/network"/>
 		<feature name="http://api.phonegap.com/1.0/notification"/>
+		<feature name="http://api.phonegap.com/1.0/geolocation"/>
+		<feature name="http://api.phonegap.com/1.0/media"/>
+		<feature name="http://api.phonegap.com/1.0/network"/>
 		<gap:plugin name="org.apache.cordova.battery-status"  />
 		<gap:plugin name="org.apache.cordova.camera"  />
 		<gap:plugin name="org.apache.cordova.console"  />
@@ -55,7 +58,7 @@ Salvatore sas
 		<gap:plugin name="org.apache.cordova.device-orientation"  />
 		<gap:plugin name="org.apache.cordova.device-motion"  />
 		<gap:plugin name="org.apache.cordova.dialogs"  />
-		<gap:plugin name="org.apache.cordova.file"  />
+		<gap:plugin name="org.apache.cordova.file.FileUtils"  />
 		<gap:plugin name="org.apache.cordova.file-transfer"  />
 		<gap:plugin name="org.apache.cordova.geolocation"  />
 		<gap:plugin name="org.apache.cordova.globalization"  />
@@ -79,7 +82,7 @@ Salvatore sas
 		<icon src="res/icon/windows-phone/icon-173.png" gap:platform="winphone" gap:role="background" />
 		<icon src="res/icon/blackberry/icon-80.png" gap:platform="blackberry" />
 		<icon src="res/icon/webos/icon-64.png" gap:platform="webos" />
-		<icon src="64x64.png" />
+		<icon src="icon.png" />
 		<gap:splash src="res/screen/ios/screen-iphone-portrait.png" gap:platform="ios" width="320" height="480" />
 		<gap:splash src="res/screen/ios/screen-iphone-portrait-2x.png" gap:platform="ios" width="640" height="960" />
 		<gap:splash src="res/screen/ios/screen-iphone-portrait-568h-2x.png" gap:platform="ios" width="640" height="1136" />
