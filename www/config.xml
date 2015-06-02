@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 	<widget xmlns = "http://www.w3.org/ns/widgets"
 		xmlns:gap = "http://phonegap.com/ns/1.0"
-		id        = "it.BetaAndroid.it"
+		id        = "co.storymatch.tv"
 		versionCode="1.0"
 		version   = "1.0">
-		<name>BetaAndroid</name>
-		<description>MisterTod, e sei un cliente di serie A</description>
-		<author href="http://www.betaandroid.it" email="info@betaandroid.it">
+		<name>StoryMatch</name>
+		<description>StoryMatch per ora</description>
+		<author href="http://www.storymatch.co" email="info@storymatch.co">
 Salvatore sas
 		</author>
 		<preference name="phonegap-version" value="3.5.0" />
 		<preference name="orientation" value="portrait" />
 		<preference name="fullscreen" value="true" />
-		<preference name="target-device" value="universal" />
+		<preference name="target-device" value="tablet" />
 		<preference name="webviewbounce" value="true" />
 		<preference name="prerendered-icon" value="true" />
 		<preference name="stay-in-webview" value="true" />
@@ -32,12 +32,13 @@ Salvatore sas
 		<preference name="android-minSdkVersion" value="11" />
 		<preference name="android-targetSdkVersion" value="11" />
 		<preference name="android-installLocation" value="auto" />
+		<preference name="SplashScreen" value="screen" />
 		<preference name="SplashScreenDelay" value="10000" />
 		<preference name="ErrorUrl" value="http://www.mistertod.it"/>
 		<preference name="BackgroundColor" value="#707070"/>
 		<preference name="KeepRunning" value="true"/>
 		<preference name="DisallowOverscroll" value="true"/>
-		<preference name="LoadingDialog" value="MisterTod,Loading"/> 
+		<preference name="LoadingDialog" value="StoryMatch,Loading"/> 
 		<preference name="LoadUrlTimeoutValue" value="20000" />
 		<preference name="disable-cursor" value="true" />
 		<gap:platform name="android" />

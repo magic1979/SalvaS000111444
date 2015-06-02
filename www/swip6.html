@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link type="text/css" rel="stylesheet" href="jquery.dropdown.min.css" />
+		<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.2.min.css" />
+		<link rel="stylesheet" href="themes/BetaApp.css" />
+		<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+		<link rel="stylesheet" href="css/spinner.css" />
+		<link rel="stylesheet" href="css/main.css" />
+		
+		
+		<script src="jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="jquery.dropdown.min.js"></script>
+		
+		<script src="js/jquery.mobile-1.4.2.min.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
+		
+		<script src="jquery.raty.js"></script>
+
+		
+<script>
+$(document).on("pagecreate","#article1",function(){
+  $("p").on("swipe",function(){
+    $(this).hide();
+  });                   
+
+  $("li").on("swipe",function(){
+    alert();
+  });
+  
+});
+</script>
+
+<style>
+	.div1 {
+		background-color: #ececec;
+		height: 52px;
+		border: none;
+		
+		vertical-align: middle;
+	}
+	
+	.trtabella{
+		font-family:Roboto, sans-serif;
+		background-color:#ececec;
+		height: 130px;
+		text-decoration: none;
+	}
+.trtabella2{
+	font-family:Roboto, sans-serif;
+	background-color:#ececec;
+	text-decoration: none;
+
+}
+.trtabella3{
+	font-family:Roboto, sans-serif;
+	background-color:#ececec;
+	height: 90px;
+	text-decoration: none;
+
+}
+
+.div2 {
+background-color: #ececec;
+
+}
+
+.btn {
+  -webkit-border-radius: 40;
+  -moz-border-radius: 40;
+  border-radius: 40px;
+  font-family: Arial;
+  color: #fff;
+  font-size: 14px;
+  padding: 10px 20px 10px 20px;
+  border: solid #fff 2px;
+  text-decoration: none;
+  text-shadow:0 0 0;
+}
+
+.btn:active {
+  background: #ffffff;
+  background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+  background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+  text-decoration: none;
+  text-shadow:0 0 0;
+}
+
+.table {
+  background: #ffffff;
+  background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+  background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+  text-decoration: none;
+}
+
+.myTableStyle
+{
+	
+	width: 300px;
+	height: 240px;
+	
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	bottom: 50%;
+	margin-top: -240px;
+	margin-left: -150px;
+	
+	z-index:2999;
+	
+}
+
+.myTableStyle2
+{
+	
+	width: 300px;
+	height: 140px;
+	background-color: #FFFFFF;
+	
+	position: fixed;
+	left: 50%;
+	bottom: 60px;
+	margin-top: -70px;
+	margin-left: -150px;
+	
+	
+	z-index:1999;
+	
+}
+
+body .ui-body-c, body .ui-overlay-c
+{
+	text-shadow:0 0 0;
+}
+
+.home1 {
+	background-color: #634c56;
+	background-image: url(img/Home2.png);
+	background-size: 38px 38px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:38px;
+	width:38px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #FFF;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #FFF;
+	box-shadow: 0px 0px 0.5px 1.5px #FFF;
+}
+
+.home1:active {
+	background-color:#000000;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+
+.home2 {
+	background-color: #ebd8dc;
+	background-image: url(img/Home2.png);
+	background-size: 38px 38px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:38px;
+	width:38px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #FFF;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #FFF;
+	box-shadow: 0px 0px 0.5px 1.5px #FFF;
+}
+
+.home2:active {
+	background-color:#000000;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+
+
+.testo
+{
+	text-shadow:0 0 0;
+}
+
+.badge1 {
+	position:relative;
+}
+.badge1[data-badge]:after {
+	content:attr(data-badge);
+	position:absolute;
+	top:-40px;
+	right:-50px;
+	font-size:.7em;
+	background:red;
+	color:white;
+	width:18px;height:18px;
+	text-align:center;
+	line-height:18px;
+	border-radius:50%;
+	box-shadow:0 0 1px #333;
+	border: 1px solid #fff;
+}
+.badge2 {
+	
+}
+.badge2[data-badge]:after {
+	
+}
+
+.btn {
+	-webkit-border-radius: 40;
+	-moz-border-radius: 40;
+	border-radius: 40px;
+	font-family: Arial;
+	color: #000000;
+	font-size: 14px;
+	padding: 5px 20px 5px 20px;
+	border: solid #000000 2px;
+	text-decoration: none;
+}
+
+.btn:active {
+	background: #ffffff;
+	background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+	background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+	background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+	background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+	background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+	text-decoration: none;
+}
+
+.edita {
+	background-color: #ebd8dc;
+	background-image: url(img/Penna2.png);
+	background-size: 50px 50px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:50px;
+	width:50px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #000;
+	box-shadow: 0px 0px 0.5px 1.5px #000;
+}
+
+.edita:active {
+	background-color:#000;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+
+.idea {
+	background-color: #ececec;
+	background-image: url(img/Lente2.png);
+	background-size: 50px 50px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:50px;
+	width:50px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #000;
+	box-shadow: 0px 0px 0.5px 1.5px #000;
+}
+
+.idea:active {
+	background-color:#FFF;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+
+.messaggio {
+	background-color: #634c56;
+	background-image: url(img/Mess2.png);
+	background-size: 38px 38px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:38px;
+	width:38px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #FFF;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #FFF;
+	box-shadow: 0px 0px 0.5px 1.5px #FFF;
+}
+
+.messaggio:active {
+	background-color:#000000;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+
+.altro{
+	background-color: #634c56;
+	background-image: url(img/Altro2.png);
+	background-size: 38px 38px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:38px;
+	width:38px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #FFF;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #FFF;
+	box-shadow: 0px 0px 0.5px 1.5px #FFF;
+}
+
+.altro:active {
+	background-color:#000000;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+
+.sinistra {
+	background-color: #ececec;
+	background-image: url(img/Sinistra2.png);
+	background-size: 50px 50px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:50px;
+	width:50px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #000;
+	box-shadow: 0px 0px 0.5px 1.5px #000;
+}
+
+.sinistra:active {
+	background-color:#FFF;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+
+.destra {
+	background-color: #ececec;
+	background-image: url(img/Destra2.png);
+	background-size: 50px 50px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:50px;
+	width:50px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #000;
+	box-shadow: 0px 0px 0.5px 1.5px #000;
+}
+
+.destra:active {
+	background-color:#FFF;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+
+</style>
+
+
+</head>
+
+<body>
+
+<div data-role="page" id="article1" class="div2">
+
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+	  <tr>
+		  <td class="trtabella3" width="70%">
+			  <table width="90%"><tr><td width="10%"></td><td width="90%" align="left">
+				  <font size="4">Undo</font></td></tr>
+			  </table>
+		  </td>
+		  <td class="trtabella3" width="30%">
+			  <table width="90%"><tr><td width="90%" align="right">
+				  <font size="4">next</font></td><td width="10%"></td></tr>
+			  </table>
+		  </td>
+	 </tr>
+	  
+	  <tr><td colspan="2"><hr></td></tr>
+	  
+	  <tr>
+		  <td class="trtabella3" width="70%" colspan="2">
+			  <table width="100%" border="0"><tr><td width="5%"></td><td width="95%" align="left">
+				  <table width="90%" align="left"><tr><td>
+				 <font size="4"><br><b>Title</b></font><br><br><font size="3">Ehendebi squamus tionseq uaspici ipid quad esed mo conseque doloreferum unt essi rent recerib eaquas ex expla ipit magnimendus, occatiam nobit audante.<br></font>
+				  </td></tr></table>
+			  </td></tr>
+			  </table>
+		  </td>
+
+	  </tr>
+	  
+	  <tr>
+		  <td class="trtabella3" width="70%" colspan="2">
+			  <table width="100%" border="0"><tr><td width="5%"></td><td width="95%" align="left">
+				  <table border="0">
+					  <tr>
+						  <td width="60" align="center"><a href="#" rel="external"><div width="52px" class="sinistra"></td>
+						  <td width="60" align="center"><a href="#" rel="external"><div width="52px" class="destra"></div></a></td>
+					  </tr>
+				  </table>
+			  </td></tr>
+			  </table>
+		  </td>
+	  </tr>
+	  
+	<tr><td colspan="2"><hr></td></tr>
+		
+	<tr>
+		<td class="trtabella3" width="70%">
+			<table width="90%"><tr><td width="10%"></td><td width="60px" align="left">
+				<a href="#" rel="external"><div width="52px" class="idea"></div></a></td>
+				<td width="100%" align="left">Need some inspiration?</td>
+			</tr>
+			</table>
+		</td>
+		<td class="trtabella3" width="30%">
+			<table width="90%"><tr><td width="90%" align="right">
+				<font size="4">29C | 5W</font></td><td width="10%"></td></tr>
+			</table>
+		</td>
+	</tr>
+  </table>
+
+</div> 
+
+
+	
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/swip6.js"></script>
+	
+</body>
+</html>

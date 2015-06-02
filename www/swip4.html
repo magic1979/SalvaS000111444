@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link type="text/css" rel="stylesheet" href="jquery.dropdown.min.css" />
+		<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.2.min.css" />
+		<link rel="stylesheet" href="themes/BetaApp.css" />
+		<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+		<link rel="stylesheet" href="css/spinner.css" />
+		<link rel="stylesheet" href="css/main.css" />
+		
+		
+		<script src="jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="jquery.dropdown.min.js"></script>
+		
+		<script src="js/jquery.mobile-1.4.2.min.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
+
+<script>
+$(document).on("pagecreate","#article1",function(){
+  $("p").on("swipe",function(){
+    $(this).hide();
+  });                   
+
+  $("li").on("swipe",function(){
+    alert();
+  });
+  
+});
+</script>
+
+<style>
+	.div1 {
+		background-color: #000;
+		height: 52px;
+		border: none;
+		
+		vertical-align: middle;
+	}
+	
+	.trtabella{
+		font-family:Roboto, sans-serif;
+		background-color:#ebd8dc;
+		height: 130px;
+		text-decoration: none;
+	}
+.trtabella2{
+	font-family:Roboto, sans-serif;
+	background-color:#ebd8dc;
+	text-decoration: none;
+
+}
+.trtabella3{
+	font-family:Roboto, sans-serif;
+	background-color:#ebd8dc;
+	height: 90px;
+	text-decoration: none;
+
+}
+
+.div2 {
+
+/* Note: This gradient may render differently in browsers that don't support the unprefixed gradient syntax */
+
+/* IE10 Consumer Preview */
+background-image: -ms-linear-gradient(top left, #BD8699 0%, #A390A4 50%, #C6A886 100%);
+
+/* Mozilla Firefox */
+background-image: -moz-linear-gradient(top left, #BD8699 0%, #A390A4 50%, #C6A886 100%);
+
+/* Opera */
+background-image: -o-linear-gradient(top left, #BD8699 0%, #A390A4 50%, #C6A886 100%);
+
+/* Webkit (Safari/Chrome 10) */
+background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #BD8699), color-stop(0.5, #A390A4), color-stop(1, #C6A886));
+
+/* Webkit (Chrome 11+) */
+background-image: -webkit-linear-gradient(top left, #BD8699 0%, #A390A4 50%, #C6A886 100%);
+
+/* W3C Markup, IE10 Release Preview */
+background-image: linear-gradient(to bottom right, #BD8699 0%, #A390A4 50%, #C6A886 100%);
+			}
+
+.btn {
+  -webkit-border-radius: 40;
+  -moz-border-radius: 40;
+  border-radius: 40px;
+  font-family: Arial;
+  color: #fff;
+  font-size: 14px;
+  padding: 10px 20px 10px 20px;
+  border: solid #fff 2px;
+  text-decoration: none;
+  text-shadow:0 0 0;
+}
+
+.btn:active {
+  background: #ffffff;
+  background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+  background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+  text-decoration: none;
+  text-shadow:0 0 0;
+}
+
+.table {
+  background: #ffffff;
+  background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+  background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+  text-decoration: none;
+}
+
+.myTableStyle
+{
+	
+	width: 300px;
+	height: 240px;
+	
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	bottom: 50%;
+	margin-top: -240px;
+	margin-left: -150px;
+	
+	z-index:2999;
+	
+}
+
+.myTableStyle2
+{
+	
+	width: 300px;
+	height: 140px;
+	background-color: #FFFFFF;
+	
+	position: fixed;
+	left: 50%;
+	bottom: 60px;
+	margin-top: -70px;
+	margin-left: -150px;
+	
+	
+	z-index:1999;
+	
+}
+
+body .ui-body-c, body .ui-overlay-c
+{
+	text-shadow:0 0 0;
+}
+
+.home1 {
+	background-color: #634c56;
+	background-image: url(img/Home2.png);
+	background-size: 38px 38px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:38px;
+	width:38px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #FFF;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #FFF;
+	box-shadow: 0px 0px 0.5px 1.5px #FFF;
+}
+
+.home1:active {
+	background-color:#000000;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+
+.home2 {
+	background-color: #ebd8dc;
+	background-image: url(img/Home2.png);
+	background-size: 38px 38px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:38px;
+	width:38px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #FFF;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #FFF;
+	box-shadow: 0px 0px 0.5px 1.5px #FFF;
+}
+
+.home2:active {
+	background-color:#000000;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+
+
+.testo
+{
+	text-shadow:0 0 0;
+}
+
+.badge1 {
+	position:relative;
+}
+.badge1[data-badge]:after {
+	content:attr(data-badge);
+	position:absolute;
+	top:-40px;
+	right:-50px;
+	font-size:.7em;
+	background:red;
+	color:white;
+	width:18px;height:18px;
+	text-align:center;
+	line-height:18px;
+	border-radius:50%;
+	box-shadow:0 0 1px #333;
+	border: 1px solid #fff;
+}
+.badge2 {
+	
+}
+.badge2[data-badge]:after {
+	
+}
+
+.btn {
+	-webkit-border-radius: 40;
+	-moz-border-radius: 40;
+	border-radius: 40px;
+	font-family: Arial;
+	color: #000000;
+	font-size: 14px;
+	padding: 5px 20px 5px 20px;
+	border: solid #000000 2px;
+	text-decoration: none;
+}
+
+.btn:active {
+	background: #ffffff;
+	background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+	background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+	background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+	background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+	background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+	text-decoration: none;
+}
+
+.edita {
+	background-color: #ebd8dc;
+	background-image: url(img/Penna2.png);
+	background-size: 50px 50px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:50px;
+	width:50px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #000;
+	box-shadow: 0px 0px 0.5px 1.5px #000;
+}
+
+.edita:active {
+	background-color:#FFF;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+
+.idea {
+	background-color: #000;
+	background-image: url(img/Lampadina2.png);
+	background-size: 50px 50px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:50px;
+	width:50px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #fff;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #fff;
+	box-shadow: 0px 0px 0.5px 1.5px #fff;
+}
+
+.idea:active {
+	background-color:#634c56;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+
+.messaggio {
+	background-color: #634c56;
+	background-image: url(img/Mess2.png);
+	background-size: 38px 38px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:38px;
+	width:38px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #FFF;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #FFF;
+	box-shadow: 0px 0px 0.5px 1.5px #FFF;
+}
+
+.messaggio:active {
+	background-color:#000000;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+
+.altro{
+	background-color: #634c56;
+	background-image: url(img/Altro2.png);
+	background-size: 38px 38px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:38px;
+	width:38px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #FFF;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #FFF;
+	box-shadow: 0px 0px 0.5px 1.5px #FFF;
+}
+
+.altro:active {
+	background-color:#000000;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+
+.sinistra {
+	background-color: #ebd8dc;
+	background-image: url(img/Sinistra2.png);
+	background-size: 50px 50px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:50px;
+	width:50px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #000;
+	box-shadow: 0px 0px 0.5px 1.5px #000;
+}
+
+.sinistra:active {
+	background-color:#FFF;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+
+.destra {
+	background-color: #ebd8dc;
+	background-image: url(img/Destra2.png);
+	background-size: 50px 50px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:50px;
+	width:50px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #000;
+	box-shadow: 0px 0px 0.5px 1.5px #000;
+}
+
+.destra:active {
+	background-color:#FFF;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+
+.lucchetto {
+	background-color: #ebd8dc;
+	background-image: url(img/Lock2.png);
+	background-size: 50px 50px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:50px;
+	width:50px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #000;
+	box-shadow: 0px 0px 0.5px 1.5px #000;
+}
+
+.lucchetto:active {
+	background-color:#FFF;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+
+.infinito {
+	background-color: #ebd8dc;
+	background-image: url(img/Infinito2.png);
+	background-size: 50px 50px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:50px;
+	width:50px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #000;
+	box-shadow: 0px 0px 0.5px 1.5px #000;
+}
+
+.infinito:active {
+	background-color:#FFF;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+.infinito2 {
+	background-color: #000;
+	background-image: url(img/Infinito3.png);
+	background-size: 50px 50px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:50px;
+	width:50px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #e93a31;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #e93a31;
+	box-shadow: 0px 0px 0.5px 1.5px #e93a31;
+}
+
+.infinito2:active {
+	background-color:#FFF;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #fff;
+	-moz-box-shadow: 0px 0px 0.5px 1px #fff;
+	box-shadow: 0px 0px 0.5px 1px #fff;
+}
+</style>
+
+
+</head>
+
+<body>
+<div id="menu" style="display: none;">
+	<table height="60px" border="0"><tr><td>&nbsp;</td></tr></table>
+	<table width="50px" border="0">
+		<tr><td width="10px">&nbsp;</td>
+			<td>
+				<table>
+					<tr><td><br></td></tr>
+					<tr><td><a href="swip.html" rel="external"><div width="38px" class="home1"></div></a></td></tr>
+					<tr><td><br></td></tr>
+					<tr><td><a id="badde" class="badge1" data-badge="1"><div width="38px" class="messaggio"></div></a></td></tr>
+					<tr><td><br></td></tr>
+					<tr><td><a href="javascript:LogOut()"><div width="38px" class="altro"></div></a></td></tr>
+					<tr><td><br></td></tr>
+				</table>
+			</td></tr>
+	</table>
+</div>
+
+
+<div data-role="page" id="article1" class="div2">
+  <div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div1">
+    <a href="swip3.html" rel="external" data-icon="back" data-iconpos="notext">></a>
+	<center>
+	<p><font color="#fff">12 Step</font></p></center>
+  </div>
+
+  
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+	  <tr><td class="trtabella2" colspan="4"><br><br></td></tr>
+	  <tr>
+		  <td class="trtabella" width="90%">
+			  <table width="90%"><tr><td width="10%"></td><td width="90%" align="left">
+				  <b>Hollow Hill</b></td></tr>
+			      <tr><td width="10%"></td><td width="90%" align="left">
+				  Ehendebi squamus tionseq uaspici ipid quad esed mo conseque doloreferum unt essi rent recerib eaquas ex expla ipit magnimendus, occatiam nobit audante.Ehendebi squamus tionseq uaspici ipid quad esed mo conseque doloreferum unt essi rent recerib eaquas ex expla ipit magnimendus, occatiam nobit audante.</td></tr>
+			  </table>
+		  </td>
+		  <td class="trtabella" width="15%" align="center"></td>
+	  </tr>
+	  <tr><td class="trtabella2" colspan="4"><hr></td></tr>
+	  <tr><td class="trtabella2" colspan="4"><br><br></td></tr>
+	  <tr>
+		  <td class="trtabella" width="90%">
+			  <table width="90%"><tr><td width="10%"></td><td width="90%" align="left">
+				  <b>1</b></td></tr>
+			  <tr><td width="10%"></td><td width="90%" align="left">
+				 Ehendebi squamus tionseq uaspici ipid quad esed mo conseque doloreferum unt essi rent recerib eaquas ex expla ipit magnimendus, occatiam nobit audante. Ehendebi squamus tionseq uaspici ipid quad esed mo conseque doloreferum unt essi rent recerib eaquas ex expla ipit magnimendus, occatiam nobit audante.</td></tr>
+			  <tr><td width="10%"></td><td width="90%" align="left"><br></td></tr>
+			  <tr>
+				  <td width="10%"></td><td width="90%" align="left">
+					  <table width="100%"><tr>
+						  <td width="55px">
+							  <a href="swip4.html" rel="external"><div width="52px" class="sinistra"></div></a>
+						  </td>
+						   <td width="55px">
+							  <a href="swip4.html" rel="external"><div width="52px" class="destra"></div></a>
+						   </td>
+						   <td width="55px">
+							   <a href="swip4.html" rel="external"><div width="52px" class="edita"></div></a>
+						   </td>
+							<td width="55px">
+									<a href="swip4.html" rel="external"><div width="52px" class="lucchetto"></div></a>
+							</td>
+
+							<td width="55px">
+									<a href="swip4.html" rel="external"><div width="52px" class="infinito"></div></a>
+							</td>
+					  </tr>
+					  </table>
+				  </td>
+			  </tr>
+			  </table>
+		  </td>
+		  <td class="trtabella" width="15%" align="center"></td>
+	  </tr>
+	  <tr><td class="trtabella2" colspan="4"><hr></td></tr>
+
+  </table>
+  
+  <div data-role="footer" data-theme="c" data-position="fixed" data-tap-toggle="false">
+	  <center>
+		  <table width="100%">
+			  <tr>
+				  <td width="10%"></td>
+				  <td width="8px" align="left"><a href="#" rel="external"><div width="52px" class="idea"></div></a></td>
+				  <td width="22%" align="left">Inspirations?</td>
+				  <td width="15%" align="right"><a href="#" rel="external"><div width="52px" class="infinito2"></div></a></td>
+				  <td width="15%" align="left">&nbsp;Shuffle</td>
+				  <td width="20%" align="right">29c | 5W</td>
+				  <td width="10%"></td>
+			 </tr>
+			</table>
+	  </center>
+  </div>
+
+
+</div> 
+
+
+<div id="jq-dropdown-1" class="jq-dropdown jq-dropdown-tip" >
+        <ul class="jq-dropdown-menu">
+            <li><a href="quill/examples/advanced.html" rel="external">Drafts</a></li>
+			 <li class="jq-dropdown-divider"></li>
+			<li><a href="swip2.html" rel="external">Finisched</a></li>
+			 <li class="jq-dropdown-divider"></li>
+			<li><a href="#1">Trash</a></li>
+        </ul>
+    </div>
+    
+    <div id="jq-dropdown-2" class="jq-dropdown jq-dropdown-tip jq-dropdown-tip">
+    	<div class="jq-dropdown-panel">
+        	You can put whatever HTML you want in a panel!
+    	</div>
+	</div>
+	
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/swip3.js"></script>
+	
+	<script>
+		$('#rati1').raty({
+						 score: 3,
+						 click: function(score, evt) {
+						 //alert('ID: ' + this.id + "\nscore: " + score + "\nevent: " + evt);
+						 }
+						 });
+
+	</script>
+</body>
+</html>
