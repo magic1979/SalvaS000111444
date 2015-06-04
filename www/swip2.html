@@ -5,7 +5,7 @@
 		
 		<link type="text/css" rel="stylesheet" href="jquery.dropdown.min.css" />
 		<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.2.min.css" />
-		<link rel="stylesheet" href="themes/BetaApp.css" />
+		<link rel="stylesheet" href="themes/Story.css" />
 		<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
 		<link rel="stylesheet" href="css/spinner.css" />
 		<link rel="stylesheet" href="css/main.css" />
@@ -228,6 +228,30 @@ body .ui-body-c, body .ui-overlay-c
 	text-decoration: none;
 }
 
+.btn2 {
+	-webkit-border-radius: 40;
+	-moz-border-radius: 40;
+	border-radius: 40px;
+	font-family: Arial;
+	color: #fff;
+	font-size: 18px;
+	padding: 25px 25px 25px 25px;
+	border: solid #fff 2px;
+	text-decoration: none;
+	text-shadow:0 0 0;
+}
+
+.btn2:active {
+	background: #000000;
+	background-image: -webkit-linear-gradient(top, #000000, #000000);
+	background-image: -moz-linear-gradient(top, #000000, #000000);
+	background-image: -ms-linear-gradient(top, #000000, #000000);
+	background-image: -o-linear-gradient(top, #000000, #000000);
+	background-image: linear-gradient(to bottom, #000000, #000000);
+	text-decoration: none;
+	text-shadow:0 0 0;
+}
+
 .messaggio {
 	background-color: #634c56;
 	background-image: url(img/Mess2.png);
@@ -298,7 +322,7 @@ body .ui-body-c, body .ui-overlay-c
 <div id="menu" style="display: none;">
 	<table height="60px" border="0"><tr><td>&nbsp;</td></tr></table>
 	<table width="50px" border="0">
-		<tr><td width="10px">&nbsp;</td>
+		<tr><td width="10px">&nbsp;&nbsp;</td>
 			<td>
 				<table>
 					<tr><td><br></td></tr>
@@ -316,12 +340,13 @@ body .ui-body-c, body .ui-overlay-c
 
 <div data-role="page" id="article1" class="div2">
   <div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div1">
-    <a href="#" class="showMenu" data-icon="home" data-iconpos="notext">>Menu</a>
+    <a href="#" class="showMenu"><img src="img/list.png" width="20"></a>
 	<center>
-	<p><a href="#" data-jq-dropdown="#jq-dropdown-1" style="text-decoration: none"><font color="#fff">Drafts</font></a></p></center>
+	<p><a href="swip4.html" data-jq-dropdown="#jq-dropdown-1" style="text-decoration: none"><font color="#fff">Drafts</font></a></p></center>
   </div>
 
-  
+  <center>
+
   <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	  <tr>
 		  <td class="trtabella" width="20%">
@@ -339,7 +364,7 @@ body .ui-body-c, body .ui-overlay-c
 						  <a href="#" class="btn"><font color="#000000">Duplicate</font></a>
 					  </td>
 					  <td width="30%" align="center">
-						  <a href="#" class="btn"><font color="#000000">Share</font></a>
+						  <a href="javascript:forgot()" class="btn"><font color="#000000">Share</font></a>
 					  </td>
 					  <td width="30%" align="center">
 						  <a href="#" class="btn"><font color="#000000">Trash</font></a>
@@ -366,7 +391,7 @@ body .ui-body-c, body .ui-overlay-c
 						  <a href="#" class="btn"><font color="#000000">Duplicate</font></a>
 					  </td>
 					  <td width="30%" align="center">
-						  <a href="#" class="btn"><font color="#000000">Share</font></a>
+						  <a href="javascript:forgot()" class="btn"><font color="#000000">Share</font></a>
 					  </td>
 					  <td width="30%" align="center">
 						  <a href="#" class="btn"><font color="#000000">Trash</font></a>
@@ -378,15 +403,17 @@ body .ui-body-c, body .ui-overlay-c
 	  </tr>
 	  <tr><td class="trtabella2" colspan="3"><hr></td></tr>
   </table>
-
-		
+  
+  <br><br><br><br>
+  <a href="swip4.html" rel="external" class="btn2"><font color="#FFF">Start your story</font></a>
+  </center>
 
 </div> 
 
 
 <div id="jq-dropdown-1" class="jq-dropdown jq-dropdown-tip" >
         <ul class="jq-dropdown-menu">
-            <li><a href="swip2.html" rel="external">Drafts</a></li>
+            <li><a href="#" rel="external">Drafts</a></li>
 			 <li class="jq-dropdown-divider"></li>
 			<li><a href="#" rel="external">Finisched</a></li>
 			 <li class="jq-dropdown-divider"></li>

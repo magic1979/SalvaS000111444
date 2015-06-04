@@ -548,6 +548,19 @@ body .ui-body-c, body .ui-overlay-c
 	-moz-box-shadow: 0px 0px 0.5px 1px #fff;
 	box-shadow: 0px 0px 0.5px 1px #fff;
 }
+
+.collegamento {
+	text-decoration: none;
+}
+
+
+.textarea1 {
+	border-style: none;
+	border-color: Transparent;
+	background-color: inherit;
+	overflow: auto;
+	outline: none;
+}
 </style>
 
 
@@ -557,7 +570,7 @@ body .ui-body-c, body .ui-overlay-c
 <div id="menu" style="display: none;">
 	<table height="60px" border="0"><tr><td>&nbsp;</td></tr></table>
 	<table width="50px" border="0">
-		<tr><td width="10px">&nbsp;</td>
+		<tr><td width="10px">&nbsp;&nbsp;</td>
 			<td>
 				<table>
 					<tr><td><br></td></tr>
@@ -575,11 +588,16 @@ body .ui-body-c, body .ui-overlay-c
 
 <div data-role="page" id="article1" class="div2">
   <div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div1">
-    <a href="swip3.html" rel="external" data-icon="back" data-iconpos="notext">></a>
-	<center>
-	<p><font color="#fff">12 Step</font></p></center>
+	  <table width="100%" height="52px" border="0" valign="center">
+				<tr>
+					<td width="33%" align="left"><a href="swip2.html" rel="external" class="collegamento"><font color="#FFF"><img src="img/arrowS.png" width="18">&nbsp;Back</font></a></td>
+					<td width="33%" align="center"><font color="#FFF">12 Step</font></td>
+					<td width="33%" align="right"><a href="swip5.html" rel="external" class="collegamento"><font color="#FFF">Next&nbsp;<img src="img/arrowD.png" width="18"></font></td>
+				</tr>
+	  </table>
   </div>
 
+  <div id="contenuto"></div>
   
   <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	  <tr><td class="trtabella2" colspan="4"><br><br></td></tr>
@@ -597,34 +615,89 @@ body .ui-body-c, body .ui-overlay-c
 	  <tr><td class="trtabella2" colspan="4"><br><br></td></tr>
 	  <tr>
 		  <td class="trtabella" width="90%">
-			  <table width="90%"><tr><td width="10%"></td><td width="90%" align="left">
-				  <b>1</b></td></tr>
-			  <tr><td width="10%"></td><td width="90%" align="left">
-				 Ehendebi squamus tionseq uaspici ipid quad esed mo conseque doloreferum unt essi rent recerib eaquas ex expla ipit magnimendus, occatiam nobit audante. Ehendebi squamus tionseq uaspici ipid quad esed mo conseque doloreferum unt essi rent recerib eaquas ex expla ipit magnimendus, occatiam nobit audante.</td></tr>
-			  <tr><td width="10%"></td><td width="90%" align="left"><br></td></tr>
+			  <table width="90%">
+				  <tr>
+					  <td width="10%"></td>
+					  <td width="90%" align="left">
+						  <b>1</b>
+					  </td>
+				  </tr>
+			  <tr>
+				  <td width="10%"></td>
+				  <td width="90%" align="left">
+					<textarea name="myTextarea" id="myTextarea" rows="4" cols="30" class="textarea1" style="background-color: transparent;">Ehendebi squamus tionseq uaspici ipid quad esed mo conseque doloreferum unt essi rent recerib eaquas ex expla ipit magnimendus, occatiam nobit audante. Ehendebi squamus tionseq uaspici ipid quad esed mo conseque doloreferum unt essi rent recerib eaquas ex expla ipit magnimendus, occatiam nobit audante.</textarea></td></tr>
+			  <tr>
+				  <td width="10%"></td>
+				  <td width="90%" align="left"><br></td></tr>
 			  <tr>
 				  <td width="10%"></td><td width="90%" align="left">
 					  <table width="100%"><tr>
 						  <td width="55px">
-							  <a href="swip4.html" rel="external"><div width="52px" class="sinistra"></div></a>
+							  <a id="sin" href="#" rel="external"><div width="52px" class="sinistra"></div></a>
 						  </td>
 						   <td width="55px">
-							  <a href="swip4.html" rel="external"><div width="52px" class="destra"></div></a>
+							  <a id="des" href="#" rel="external"><div width="52px" class="destra"></div></a>
 						   </td>
 						   <td width="55px">
-							   <a href="swip4.html" rel="external"><div width="52px" class="edita"></div></a>
+							   <a href="javascript:abilita()" rel="external"><div width="52px" class="edita"></div></a>
 						   </td>
 							<td width="55px">
-									<a href="swip4.html" rel="external"><div width="52px" class="lucchetto"></div></a>
+									<a href="#" rel="external"><div width="52px" class="lucchetto"></div></a>
 							</td>
 
 							<td width="55px">
-									<a href="swip4.html" rel="external"><div width="52px" class="infinito"></div></a>
+									<a href="#" rel="external"><div width="52px" class="infinito"></div></a>
 							</td>
 					  </tr>
 					  </table>
 				  </td>
 			  </tr>
+			  </table>
+		  </td>
+		  <td class="trtabella" width="15%" align="center"></td>
+	  </tr>
+	  <tr><td class="trtabella2" colspan="4"><hr></td></tr>
+	  
+	  <!-- SECONSA -->
+	  <tr>
+		  <td class="trtabella" width="90%">
+			  <table width="90%">
+				  <tr>
+					  <td width="10%"></td>
+					  <td width="90%" align="left">
+						  <b>2</b>
+					  </td>
+				  </tr>
+				  <tr>
+					  <td width="10%"></td>
+					  <td width="90%" align="left">
+						  <textarea name="myTextarea2" id="myTextarea2" rows="4" cols="30" class="textarea1" style="background-color: transparent;">secon da modifica secon da modifica secon da modifica secon da modificasecon da modificasecon da modifica secon da modifica secon da modifica secon da modifica secon da modifica secon da modifica secon da modifica secon da modifica  </textarea></td></tr>
+				  <tr>
+					  <td width="10%"></td>
+					  <td width="90%" align="left"><br></td></tr>
+				  <tr>
+					  <td width="10%"></td><td width="90%" align="left">
+						  <table width="100%"><tr>
+							  <td width="55px">
+								  <a id="sin2" href="#" rel="external"><div width="52px" class="sinistra"></div></a>
+							  </td>
+						   <td width="55px">
+							   <a id="des2" href="#" rel="external"><div width="52px" class="destra"></div></a>
+						   </td>
+						   <td width="55px">
+							   <a id="abi2" href="javascript:abilita2()" rel="external"><div width="52px" class="edita"></div></a>
+						   </td>
+						   <td width="55px">
+							   <a href="#" rel="external"><div width="52px" class="lucchetto"></div></a>
+						   </td>
+						   
+						   <td width="55px">
+							   <a href="#" rel="external"><div width="52px" class="infinito"></div></a>
+						   </td>
+						  </tr>
+						  </table>
+					  </td>
+				  </tr>
 			  </table>
 		  </td>
 		  <td class="trtabella" width="15%" align="center"></td>
@@ -638,7 +711,7 @@ body .ui-body-c, body .ui-overlay-c
 		  <table width="100%">
 			  <tr>
 				  <td width="10%"></td>
-				  <td width="8px" align="left"><a href="#" rel="external"><div width="52px" class="idea"></div></a></td>
+				  <td width="8px" align="left"><a href="swip3.html" rel="external"><div width="52px" class="idea"></div></a></td>
 				  <td width="22%" align="left">Inspirations?</td>
 				  <td width="15%" align="right"><a href="#" rel="external"><div width="52px" class="infinito2"></div></a></td>
 				  <td width="15%" align="left">&nbsp;Shuffle</td>
@@ -670,7 +743,7 @@ body .ui-body-c, body .ui-overlay-c
 	</div>
 	
 	<script type="text/javascript" src="cordova.js"></script>
-	<script type="text/javascript" src="js/swip3.js"></script>
+	<script type="text/javascript" src="js/swip4.js"></script>
 	
 	<script>
 		$('#rati1').raty({

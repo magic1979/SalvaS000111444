@@ -5,6 +5,9 @@ function onDeviceReady() {
 
     $(".spinner").hide();
 	
+	setTimeout (function(){
+		document.getElementById('test1').click();
+	}, 500);
 	
 	iframme();
 }

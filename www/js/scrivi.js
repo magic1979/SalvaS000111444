@@ -6,7 +6,7 @@ function onDeviceReady() {
 	document.addEventListener("showkeyboard", function(){ $("[data-role=footer]").hide();}, false);
 	document.addEventListener("hidekeyboard", function(){ $("[data-role=footer]").show();}, false);
 	
-	advancedEditor.setHTML('<div><b>Hello</b>&euro;</div>');
+	advancedEditor.setHTML('Write Story');
 	
 }
 
@@ -39,4 +39,18 @@ function leggere() {
 								 'Errore',            // title
 								 'OK'                  // buttonName
 								 );
+}
+
+
+
+function undor() {
+	
+	document.execCommand('undo', false, null);
+	
+}
+
+function redor() {
+	
+	document.execCommand('redo', false, null);
+	
 }
