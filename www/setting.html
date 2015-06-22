@@ -429,7 +429,20 @@ body .ui-body-c, body .ui-overlay-c
 	box-shadow: 0px 0px 0.5px 1px #000;
 }
 
+.collegamento {
+	text-decoration: none;
+}
+
 </style>
+
+
+<script>
+	
+	function prendiemail() {
+	  alert(localStorage.getItem("email"))
+	  $("#emailutente").html("<font size='3'>" + localStorage.getItem("email") + "</font>");
+	}
+ </script>
 
 
 </head>
@@ -505,13 +518,13 @@ body .ui-body-c, body .ui-overlay-c
 	  <tr>
 		  <td class="trtabella3" width="33%">
 			  <table width="100%"><tr><td width="25%"></td><td width="85%" align="left">
-				  Email
+				  <a id="eml" href="javascript:prendiemail()" class="collegamento"><font size="2" color="#000">Show Email</a>
 			  </td></tr>
 			  </table>
 		  </td>
 		  <td class="trtabella3" width="33%">
 			  <table width="100%"><tr><td width="90%" align="left">
-				  <font size="3">luca.fontana#gmail.com</font></td><td width="10%"></td></tr>
+				  <span id="emailutente"></span></td><td width="10%"></td></tr>
 			  </table>
 		  </td>
 		  <td class="trtabella3" width="33%">
@@ -619,7 +632,7 @@ body .ui-body-c, body .ui-overlay-c
 	  <tr>
 		  <td class="trtabella3" width="33%">
 			  <table width="100%"><tr><td width="25%"></td><td width="85%" align="left">
-				  <font color="red">About></font>
+				  <a href="#popupMap2" data-rel="popup" data-position-to="window" class="collegamento"><font color="red">About</font></a>
 			  </td></tr>
 			  </table>
 		  </td>
@@ -740,7 +753,7 @@ body .ui-body-c, body .ui-overlay-c
 		  </td>
 		  <td class="trtabella3" width="33%">
 			  <table width="100%"><tr><td width="90%" align="center">
-				  <a href="javascript:LogOut2()" class="btn"><font color="#000000">logout</font></a></td><td width="10%"></td></tr>
+				  <a href="javascript:LogOut()" class="btn"><font color="#000000">logout</font></a></td><td width="10%"></td></tr>
 			  </table>
 		  </td>
 		  <td class="trtabella3" width="33%">
@@ -753,6 +766,11 @@ body .ui-body-c, body .ui-overlay-c
 	 <tr><td colspan="3"><br></td></tr>
 	
   </table>
+  
+  <div data-role="popup" id="popupMap2" data-overlay-theme="d" data-theme="c" data-corners="false" data-tolerance="15,15">
+	<a href="#" data-rel="back" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	<iframe src="credit.html" width="300px" height="300px" seamless=""></iframe>
+  </div>
 
 </div> 
 	

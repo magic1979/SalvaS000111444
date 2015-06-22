@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		<link type="text/css" rel="stylesheet" href="jquery.dropdown.min.css" />
 		<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.2.min.css" />
-		<link rel="stylesheet" href="themes/Story.css" />
+		<link rel="stylesheet" href="themes/BetaApp.css" />
 		<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
 		<link rel="stylesheet" href="css/spinner.css" />
 		<link rel="stylesheet" href="css/main.css" />
+		
 		
 		<script src="jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="jquery.dropdown.min.js"></script>
@@ -18,23 +19,10 @@
 		
 		<script src="jquery.raty.js"></script>
 
-		
-<script>
-$(document).on("pagecreate","#article1",function(){
-  $("p").on("swipe",function(){
-    $(this).hide();
-  });                   
-
-  $("li").on("swipe",function(){
-    alert();
-  });
-  
-});
-</script>
 
 <style>
 	.div1 {
-		background-color: #000;
+		background-color: #ececec;
 		height: 52px;
 		border: none;
 		
@@ -43,46 +31,28 @@ $(document).on("pagecreate","#article1",function(){
 	
 	.trtabella{
 		font-family:Roboto, sans-serif;
-		background-color:#ebd8dc;
+		background-color:#ececec;
 		height: 130px;
 		text-decoration: none;
 	}
 .trtabella2{
 	font-family:Roboto, sans-serif;
-	background-color:#ebd8dc;
+	background-color:#ececec;
 	text-decoration: none;
 
 }
 .trtabella3{
 	font-family:Roboto, sans-serif;
-	background-color:#ebd8dc;
-	height: 90px;
+	background-color:#ececec;
+	height: 40px;
 	text-decoration: none;
-
+	vertical-align: middle;
 }
 
 .div2 {
+background-color: #ececec;
 
-/* Note: This gradient may render differently in browsers that don't support the unprefixed gradient syntax */
-
-/* IE10 Consumer Preview */
-background-image: -ms-linear-gradient(top left, #BD8699 0%, #A390A4 50%, #C6A886 100%);
-
-/* Mozilla Firefox */
-background-image: -moz-linear-gradient(top left, #BD8699 0%, #A390A4 50%, #C6A886 100%);
-
-/* Opera */
-background-image: -o-linear-gradient(top left, #BD8699 0%, #A390A4 50%, #C6A886 100%);
-
-/* Webkit (Safari/Chrome 10) */
-background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #BD8699), color-stop(0.5, #A390A4), color-stop(1, #C6A886));
-
-/* Webkit (Chrome 11+) */
-background-image: -webkit-linear-gradient(top left, #BD8699 0%, #A390A4 50%, #C6A886 100%);
-
-/* W3C Markup, IE10 Release Preview */
-background-image: linear-gradient(to bottom right, #BD8699 0%, #A390A4 50%, #C6A886 100%);
-			}
+}
 
 .btn {
   -webkit-border-radius: 40;
@@ -90,7 +60,7 @@ background-image: linear-gradient(to bottom right, #BD8699 0%, #A390A4 50%, #C6A
   border-radius: 40px;
   font-family: Arial;
   color: #fff;
-  font-size: 14px;
+  font-size: 16px;
   padding: 10px 20px 10px 20px;
   border: solid #fff 2px;
   text-decoration: none;
@@ -293,7 +263,7 @@ body .ui-body-c, body .ui-overlay-c
 }
 
 .edita:active {
-	background-color:#FFF;
+	background-color:#000;
 	border-radius:999em;
 	-moz-border-radius:999em;
 	-webkit-border-radius:999em;
@@ -305,7 +275,7 @@ body .ui-body-c, body .ui-overlay-c
 }
 
 .idea {
-	background-color: #ebd8dc;
+	background-color: #ececec;
 	background-image: url(img/Lente2.png);
 	background-size: 50px 50px;
 	background-repeat: no-repeat;
@@ -397,130 +367,113 @@ body .ui-body-c, body .ui-overlay-c
 	box-shadow: 0px 0px 0.5px 1px #000;
 }
 
-iframe {
-	border: none;
+.sinistra {
+	background-color: #ececec;
+	background-image: url(img/Sinistra2.png);
+	background-size: 50px 50px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:50px;
+	width:50px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #000;
+	box-shadow: 0px 0px 0.5px 1.5px #000;
 }
 
-.collegamento {
-	text-decoration: none;
+.sinistra:active {
+	background-color:#FFF;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
 }
+
+.destra {
+	background-color: #ececec;
+	background-image: url(img/Destra2.png);
+	background-size: 50px 50px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:50px;
+	width:50px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #000;
+	box-shadow: 0px 0px 0.5px 1.5px #000;
+}
+
+.destra:active {
+	background-color:#FFF;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+
 </style>
 
 
 </head>
 
 <body>
-<div id="menu" style="display: none;">
-	<table height="60px" border="0"><tr><td>&nbsp;</td></tr></table>
-	<table width="50px" border="0">
-		<tr><td width="10px">&nbsp;</td>
-			<td>
-				<table>
-					<tr><td><br></td></tr>
-					<tr><td><a href="swip.html" rel="external"><div width="38px" class="home1"></div></a></td></tr>
-					<tr><td><br></td></tr>
-					<tr><td><a id="badde" class="badge1" data-badge="1"><div width="38px" class="messaggio"></div></a></td></tr>
-					<tr><td><br></td></tr>
-					<tr><td><a href="javascript:LogOut()"><div width="38px" class="altro"></div></a></td></tr>
-					<tr><td><br></td></tr>
-				</table>
-			</td></tr>
-	</table>
-</div>
 
-
-<div data-role="page" id="article1" class="div2">
-  <div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div1">
-	  <table width="100%" height="52px" border="0" valign="center">
-				<tr>
-					<td width="33%" align="left"><a id="indietro" href="swip4.html" rel="external" class="collegamento"><font color="#FFF"><img src="img/arrowS.png" width="18">&nbsp;Back</font></a></td>
-					<td width="33%" align="center"><font color="#FFF">Pitch</font></td>
-					<td width="33%" align="right"><font color="#FFF">&nbsp;&nbsp;</font></td>
-				</tr></table>
-  </div>
-  
+<div data-role="page" id="article1" >
+	
   <div class="spinner" id="spinner"></div>
   
-  <div id="contenuto"></div>
+  <h2>Credits</h2><br>
+
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr>
+	  <td width="50%">
+		  <img src="img/Regione.png" width="100px">
+	  </td>
+	   <td width="50%">
+		  <img src="img/Cid.png" width="100px">
+	  </td>
+  </tr>
+  <tr>
+	  <td width="50%">
+		  <img src="img/Por.png" width="100px">
+	  </td>
+	  <td width="50%">
+		  <img src="img/Europa.png" width="100px">
+	  </td>
+  </tr>
+  </table>
   
-  <div id="selector" class="trtabella"></div>
-
-  <!-- Pitch
-  <table width="100%" border="0" cellpadding="0" cellspacing="0">
-	  <tr>
-		  <td class="trtabella" width="70%">
-			  <table width="90%"><tr><td width="10%"></td><td width="90%" align="left">
-				  <font size="4">Need some inspiratiopns?<br>Trey with thrse ideas or start from scatch</font></td></tr>
-			  </table>
-		  </td>
-		  <td class="trtabella" width="5%" align="center"></td>
-		  <td class="trtabella" width="10%" align="left"><a href="swip5.html" rel="external"><div width="52px" class="idea"></div></a></td>
-		  <td class="trtabella" width="15%" align="center"></td>
-	  </tr>
-	  <tr><td class="trtabella2" colspan="4"><hr></td></tr>
-	  <tr><td class="trtabella3" colspan="4" align="center"> <a href="#" class="btn"><font color="#000000">All Pitches</font></a>&nbsp;&nbsp;&nbsp;<a href="#" class="btn"><font color="#000000">All Generes</font></a>&nbsp;&nbsp;&nbsp;<a href="#popupMap" data-rel="popup" data-position-to="window" class="btn"><font color="#000000">Best Rated</font></a></td></tr>
-	  <tr><td class="trtabella2" colspan="4"><hr></td></tr>
-	  <tr>
-		  <td class="trtabella" colspan="4" align="left">
-				<table width="90%"><tr><td width="10%"></td><td width="90%" align="left">
-				<font size="3"><b>INCEPTION</b>&nbsp;(2010)<br>Ehendebi squamus tionseq uaspici ipid quad esed mo conseque doloreferum unt essi rent recerib eaquas ex expla ipit magnimendus, occatiam nobit audante.</font></td></tr>
-				<tr><td width="10%"></td><td width="90%" align="left">
-				<font size="3"><b><br>action, mistery,sci-fy,consecteur adipiscing, cupidatat non proident</b></font></td>
-				</tr>
-				</table>
-		  </td>
-	  </tr>
-	<tr>
-			  <td class="trtabella" width="70%">
-				  <table width="90%" border="0"><tr><td width="10%"></td><td align="left">
-					   <img src="img/Ratio.png" width="16"></td><td width="200"><div id="rati1"></div></td><td align="left">(79)</td></tr>
-				  </table>
-			  </td>
-			  <td class="trtabella" width="5%" align="right">Edit &nbsp;</td>
-			  <td class="trtabella" width="10%" align="left"><a href="swip4.html" rel="external"><div width="52px" class="edita"></div></a></td>
-			  <td class="trtabella" width="15%" align="center"></td>
-		  </tr>
-
-		<tr><td class="trtabella2" colspan="4"><hr></td></tr>
-  </table>-->
-  
-	<!--<a href="#popupMap" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Open Map</a>-->
-	<div data-role="popup" id="popupMap" data-overlay-theme="d" data-theme="c" data-corners="false" data-tolerance="15,15">
-		<!--<a href="#" data-rel="back" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>-->
-		<iframe src="swip6.html" width="600px" height="400px" seamless=""></iframe>
-	</div>
-
+  <div data-role="popup" id="popupMap" data-overlay-theme="d" data-theme="c" data-corners="false" data-tolerance="15,15">
+	<a href="#" data-rel="back" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	<iframe src="credit.html" width="300px" height="300px" seamless=""></iframe>
+  </div>
 
 </div> 
-
-
-<div id="jq-dropdown-1" class="jq-dropdown jq-dropdown-tip" >
-        <ul class="jq-dropdown-menu">
-            <li><a href="quill/examples/advanced.html" rel="external">Drafts</a></li>
-			 <li class="jq-dropdown-divider"></li>
-			<li><a href="swip2.html" rel="external">Finisched</a></li>
-			 <li class="jq-dropdown-divider"></li>
-			<li><a href="#1">Trash</a></li>
-        </ul>
-    </div>
-    
-    <div id="jq-dropdown-2" class="jq-dropdown jq-dropdown-tip jq-dropdown-tip">
-    	<div class="jq-dropdown-panel">
-        	You can put whatever HTML you want in a panel!
-    	</div>
-	</div>
 	
 	<script type="text/javascript" src="cordova.js"></script>
-	<script type="text/javascript" src="js/swip3.js"></script>
+	<script type="text/javascript" src="js/swip6.js"></script>
 	
 	<script>
-		$('#rati1').raty({
-						 score: 3,
-						 click: function(score, evt) {
-						 //alert('ID: ' + this.id + "\nscore: " + score + "\nevent: " + evt);
-						 }
-						 });
-
+		$(".spinner").hide();
 	</script>
+	
 </body>
 </html>

@@ -132,7 +132,7 @@
   font-family: Courier, 'Arial', sans-serif;
   font-size: 12pt;
   height: 100%;
-  line-height: 1;
+  line-height: 2;
   
   margin: 0px;
   margin-top: 1in;
@@ -207,80 +207,17 @@
 }
 
 .ql-editor i {
-	font-style: italic;
-	
-	/*border-top: 3px Solid #ebd8dc;
-	font-style: normal;
+	border-bottom: 1px Solid #ebd8dc;
 	list-style-type: none;
 	text-decoration: none;
-	margin-left: 1in;
+	margin-left: 1.6in;
 	line-height: 1;
-	border-bottom: 3px Solid #ebd8dc;
-	display:block;*/
-
-}
-
-.heading {
-	font-family: Courier, 'Arial', sans-serif;
-	font-size: 12pt;
-
-	list-style-type: none;
-	text-transform: uppercase;
-	line-height: 1;
-	margin-bottom: 10px;
 	display:block;
-	
+
 }
-
-.action {
-	font-family: Courier, 'Arial', sans-serif;
-	font-size: 12pt;
-
-	text-transform: none;
-	text-align: left;
-	font-style: normal;
-	list-style-type: none;
-	text-decoration: none;
-	line-height: 1;
-	margin-bottom: 10px;
-	display:block;
-	
-}
-
-.trans {
-	border-top: 5px Solid #ebd8dc;
-	text-align: right;
-	font-style: normal;
-	list-style-type: none;
-	text-transform: uppercase;
-	line-height: 1;
-	margin-bottom: 10px;
-	display:block;
-}
-
-.shot {
-	border-top: 5px Solid #ebd8dc;
-	text-align: left;
-	list-style-type: none;
-	text-transform: uppercase;
-	line-height: 1;
-	margin-bottom: 10px;
-	display:block;
-}
-
-.paren {
-	border-top: 5px Solid #ebd8dc;
-	list-style-type: none;
-	text-decoration: none;
-	line-height: 1;
-	margin-bottom: 10px;
-	display:block;
-}
-
-
 .ql-editor s {
   /*text-decoration: line-through;*/
-  border-top: 5px Solid #ebd8dc;
+  border-bottom: 1px Solid #ebd8dc;
   
   font-family: Courier, 'Arial', sans-serif;
   font-style: normal;
@@ -288,12 +225,16 @@
   text-transform: uppercase;
   margin-left: 2.2in;
   line-height: 1;
-  margin-bottom: 10px;
   display:block;
   
 }
 .ql-editor u {
-  text-decoration: underline;
+  /*text-decoration: underline;*/
+  font-style: normal;
+  margin-left: auto;
+  text-decoration: none;
+  text-transform: none;
+  display:block;
   
 }
 .ql-editor a,
@@ -315,26 +256,18 @@
 }
 .ql-editor ol {
   /*list-style-type: decimal;*/
-  border-top: 5px Solid #ebd8dc;
+  border-bottom: 1px Solid #ebd8dc;
   list-style-type: none;
   text-decoration: none;
-  margin-left: 1.6in;
+  margin-left: 1in;
   line-height: 1;
-  margin-bottom: 10px;
   display:block;
 }
-
 .ql-editor ul {
   /*list-style-type: disc;*/
-  border-top: 5px Solid #ebd8dc;
-  text-align: left;
-  font-style: normal;
+  border-bottom: 1px Solid #ebd8dc;
   list-style-type: none;
-  margin-left: 1in;
-  text-decoration: none;
-  text-transform: none;
-  line-height: 1;
-  margin-top:10px;
+  text-transform: uppercase;
   display:block;
 }
 
@@ -429,125 +362,12 @@
   vertical-align: middle;
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: 80px 16px;
+  background-size: 18px 18px;
   box-sizing: border-box;
   cursor: pointer;
   text-align: center;
-  width: 80px;
+  width: 140px;
 }
-
-.ql-snow.ql-toolbar .ciccio {
-	background-image: url(Shene2.png);
-	box-sizing: border-box;
-	display: inline-block;
-	height: 24px;
-	line-height: 24px;
-	vertical-align: middle;
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: 80px 16px;
-	box-sizing: border-box;
-	cursor: pointer;
-	text-align: center;
-	width: 80px;
-}
-
-.ql-snow.ql-toolbar .ActionButton {
-	background-image: url(Action.png);
-	box-sizing: border-box;
-	display: inline-block;
-	height: 24px;
-	line-height: 24px;
-	vertical-align: middle;
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: 80px 16px;
-	box-sizing: border-box;
-	cursor: pointer;
-	text-align: center;
-	width: 80px;
-}
-
-.ql-snow.ql-toolbar .TransButton {
-	background-image: url(Trans.png);
-	box-sizing: border-box;
-	display: inline-block;
-	height: 24px;
-	line-height: 24px;
-	vertical-align: middle;
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: 80px 16px;
-	box-sizing: border-box;
-	cursor: pointer;
-	text-align: center;
-	width: 80px;
-}
-
-.ql-snow.ql-toolbar .ShotButton {
-	background-image: url(Shot.png);
-	box-sizing: border-box;
-	display: inline-block;
-	height: 24px;
-	line-height: 24px;
-	vertical-align: middle;
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: 80px 16px;
-	box-sizing: border-box;
-	cursor: pointer;
-	text-align: center;
-	width: 80px;
-}
-
-.ql-snow.ql-toolbar .ParenButton {
-	background-image: url(Pare.png);
-	box-sizing: border-box;
-	display: inline-block;
-	height: 24px;
-	line-height: 24px;
-	vertical-align: middle;
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: 80px 16px;
-	box-sizing: border-box;
-	cursor: pointer;
-	text-align: center;
-	width: 80px;
-}
-
-.ql-snow.ql-toolbar .DialogButton {
-	background-image: url(Dialog.png);
-	box-sizing: border-box;
-	display: inline-block;
-	height: 24px;
-	line-height: 24px;
-	vertical-align: middle;
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: 80px 16px;
-	box-sizing: border-box;
-	cursor: pointer;
-	text-align: center;
-	width: 80px;
-}
-
-.ql-snow.ql-toolbar .CharacterButton {
-	background-image: url(Char.png);
-	box-sizing: border-box;
-	display: inline-block;
-	height: 24px;
-	line-height: 24px;
-	vertical-align: middle;
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: 80px 16px;
-	box-sizing: border-box;
-	cursor: pointer;
-	text-align: center;
-	width: 80px;
-}
-
 .ql-snow.ql-toolbar .ql-picker {
   box-sizing: border-box;
   color: #444;
@@ -617,7 +437,7 @@
 }
 .ql-snow.ql-toolbar .ql-picker.ql-color-picker .ql-picker-options {
   padding: 5px;
-  width: 120px;
+  width: 152px;
 }
 .ql-snow.ql-toolbar .ql-picker.ql-color-picker .ql-picker-options .ql-picker-item {
   border: 1px solid transparent;
@@ -635,10 +455,10 @@
   border-color: #000;
 }
 .ql-snow.ql-toolbar .ql-picker.ql-font {
-  width: 95px;
+  width: 105px;
 }
 .ql-snow.ql-toolbar .ql-picker.ql-size {
-  width: 90px;
+  width: 150px;
 }
 .ql-snow.ql-toolbar .ql-picker.ql-font .ql-picker-label,
 .ql-snow.ql-toolbar .ql-picker.ql-size .ql-picker-label {
@@ -648,7 +468,7 @@
 }
 .ql-snow.ql-toolbar .ql-picker.ql-align .ql-picker-label {
   background-position: center center;
-  width: 80px;
+  width: 140px;
 }
 .ql-snow.ql-toolbar .ql-picker.ql-align .ql-picker-item {
   box-sizing: border-box;
@@ -657,7 +477,7 @@
   line-height: 24px;
   vertical-align: middle;
   padding: 0px;
-  width: 80px;
+  width: 140px;
 }
 .ql-snow.ql-toolbar .ql-picker.ql-align .ql-picker-options {
   padding: 4px 0px;
@@ -724,7 +544,7 @@
 .ql-snow.ql-toolbar .ql-picker.ql-strike .ql-picker-label,
 .ql-snow.ql-toolbar .ql-picker .ql-picker-label[data-value=strike],
 .ql-snow.ql-toolbar .ql-picker .ql-picker-item[data-value=strike] {
-  background-image: url("Char.png");
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAn1BMVEUAAAAAAACAgIBAQEA7OztAQEBLS0tHR0dAQEBJSUlGRkZERERCQkJERERDQ0NERERERERDQ0NFRUVERERERERERERERERERERFRUVERERERERERERFRUVDQ0NFRUVERERFRUVFRUVERERFRUVFRUVFRUVERERFRUVFRUVERERERERERERERERERERERERERERERERERERERERERERERERfrjwTAAAANHRSTlMAAQIMDRAREhQVKCk6PEhLT1xkZWZ4e4CCg4SIiZucoaersLK2wcTFydLX2ODi5err8fX3BKZfrQAAAH5JREFUGBmlwOEWgTAYBuC3isgMxCYAmwRh++7/2qRzttP/HnQTZjdjilkALzhR4wBvQiaLk8WXOJwlHVHjYgxnSmbeR0swGEkpxWZ3vt7fL/w9P4/ist+KdZ7zYYiWiCnScFYiRq1HFo4mxaKIKdJw0ooaVQovkaW1pUzQyQ86Agx4yKmWPAAAAABJRU5ErkJggg==");
 }
 .ql-snow.ql-toolbar .ql-format-button.ql-strike.ql-active,
 .ql-snow.ql-toolbar .ql-picker.ql-strike .ql-picker-label.ql-active,
@@ -734,7 +554,7 @@
 .ql-snow.ql-toolbar:not(.ios) .ql-picker.ql-strike .ql-picker-label:hover,
 .ql-snow.ql-toolbar:not(.ios) .ql-picker .ql-picker-label[data-value=strike]:hover,
 .ql-snow.ql-toolbar:not(.ios) .ql-picker .ql-picker-item[data-value=strike]:hover {
-  background-image: url("Char2.png");
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAolBMVEUAAAAAAP8AgP8AatUAYsQAYM8AadIAY8YAZswAYc4AZswAZM0AZcoAZswAZ8oAZswAZMsAZ8oAZswAZcoAZ8sAZswAZssAZssAZs0AZswAZ8wAZs0AZ8wAZs0AZswAZ8wAZ8wAZs0AZ8wAZ8wAZs0AZs0AZs0AZcwAZs0AZcwAZswAZswAZswAZswAZswAZswAZswAZswAZswAZswAZswAZsyiCU+yAAAANXRSTlMAAQIMDRAREhQVKCk6PEhLT1xkZWZ4e4CAgoOEiImbnKGnq7CytsHExcnS19jg4uXq6/H190B1i7AAAAB/SURBVBgZpcDhFoEwGAbgt4pIBmImAJsEYfvu/9ZU52yn/z3oxk/vWuczD453psYRzoR0GkaLHzFYSzqhwvgY1pT0vI8WbzASQvDt/nJ7fN6ovb7P/HrYrTdZxoY+WoJEkoK14iEqPTKwFMkkCBJJClZcUqOM4USiMKYQETr5A2SVDLpJv6ZtAAAAAElFTkSuQmCC");
 }
 .ql-snow.ql-toolbar .ql-format-button.ql-link,
 .ql-snow.ql-toolbar .ql-picker.ql-link .ql-picker-label,
@@ -784,12 +604,11 @@
 .ql-snow.ql-toolbar:not(.ios) .ql-picker .ql-picker-item[data-value=list]:hover {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAS1BMVEUAAAAAZswAZ8kAZM0AZ8oAZcsAZcsAZswAZswAZ80AZs0AZs0AZ80AZ8wAZcwAZs0AZs0AZswAZswAZswAZswAZswAZswAZswAZswCB3gJAAAAGHRSTlMAMjRCQ0lOfYKQlJmaocTFxuHi5OXm9falfyKhAAAATElEQVR42mMgFnCKYIpJMDDwSUABP1yIHyYkABYRlBAmwngucV50IXZGIXTjmQTZ0I0XIcp4DjEedCFWFlF041mZRdCN5xDjZiAdAACXwgbrzvG+ZgAAAABJRU5ErkJggg==");
 }
-
 .ql-snow.ql-toolbar .ql-format-button.ql-bullet,
 .ql-snow.ql-toolbar .ql-picker.ql-bullet .ql-picker-label,
 .ql-snow.ql-toolbar .ql-picker .ql-picker-label[data-value=bullet],
 .ql-snow.ql-toolbar .ql-picker .ql-picker-item[data-value=bullet] {
-  background-image: url("Dialog.png");
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASBAMAAACk4JNkAAAAD1BMVEUAAABERERFRUVERERERETRGyWnAAAABHRSTlMAxMXG4b8ciAAAABxJREFUCNdjYMAPhBhdgMAJyFJmArGcGRgGXAcA/t0ImAOSO9kAAAAASUVORK5CYII=");
 }
 .ql-snow.ql-toolbar .ql-format-button.ql-bullet.ql-active,
 .ql-snow.ql-toolbar .ql-picker.ql-bullet .ql-picker-label.ql-active,
@@ -799,27 +618,8 @@
 .ql-snow.ql-toolbar:not(.ios) .ql-picker.ql-bullet .ql-picker-label:hover,
 .ql-snow.ql-toolbar:not(.ios) .ql-picker .ql-picker-label[data-value=bullet]:hover,
 .ql-snow.ql-toolbar:not(.ios) .ql-picker .ql-picker-item[data-value=bullet]:hover {
-  background-image: url("Dialog.png");
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASBAMAAACk4JNkAAAAD1BMVEUAAAAAZcwAZs0AZs0AZsyEYJIjAAAABHRSTlMAxMXG4b8ciAAAABxJREFUCNdjYMAPhBhdgMAJyFJmArGcGRgGXAcA/t0ImAOSO9kAAAAASUVORK5CYII=");
 }
-
-.ql-snow.ql-toolbar .ql-format-button.heading,
-.ql-snow.ql-toolbar .ql-picker.heading .ql-picker-label,
-.ql-snow.ql-toolbar .ql-picker .ql-picker-label[data-value=heading],
-.ql-snow.ql-toolbar .ql-picker .ql-picker-item[data-value=heading] {
-	background-image: url("Shene.png");
-}
-.ql-snow.ql-toolbar .ql-format-button.heading.ql-active,
-.ql-snow.ql-toolbar .ql-picker.heading .ql-picker-label.ql-active,
-.ql-snow.ql-toolbar .ql-picker .ql-picker-label[data-value=heading].ql-active,
-.ql-snow.ql-toolbar .ql-picker .ql-picker-item[data-value=heading].ql-selected,
-.ql-snow.ql-toolbar:not(.ios) .ql-format-button.heading:hover,
-.ql-snow.ql-toolbar:not(.ios) .ql-picker.heading .ql-picker-label:hover,
-.ql-snow.ql-toolbar:not(.ios) .ql-picker .ql-picker-label[data-value=heading]:hover,
-.ql-snow.ql-toolbar:not(.ios) .ql-picker .ql-picker-item[data-value=heading]:hover {
-	background-image: url("Shene2.png");
-}
-
-
 .ql-snow.ql-toolbar .ql-format-button.ql-authorship,
 .ql-snow.ql-toolbar .ql-picker.ql-authorship .ql-picker-label,
 .ql-snow.ql-toolbar .ql-picker .ql-picker-label[data-value=authorship],
@@ -995,7 +795,7 @@
   .ql-snow.ql-toolbar .ql-picker.ql-strike .ql-picker-label,
   .ql-snow.ql-toolbar .ql-picker .ql-picker-label[data-value=strike],
   .ql-snow.ql-toolbar .ql-picker .ql-picker-item[data-value=strike] {
-    background-image: url("Char.png");
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAABLFBMVEUAAACAgIBVVVVAQEAzMzNVVVVAQEA5OTlNTU1JSUlERERHR0dDQ0NGRkZDQ0NAQEBCQkJAQEBGRkZAQEBGRkZERERBQUFERERGRkZCQkJGRkZERERFRUVERERDQ0NFRUVERERDQ0NFRUVCQkJDQ0NFRUVCQkJDQ0NERERDQ0NERERERERDQ0NFRUVERERERERERERERERFRUVERERDQ0NFRUVERERERERFRUVERERERERDQ0NDQ0NFRUVERERERERFRUVERERERERFRUVERERERERDQ0NERERFRUVERERERERERERFRUVERERERERERERERERFRUVERERERERERERFRUVERERERERERERERERERERERERERERERERERERERERERERERERERERERET5TTiyAAAAY3RSTlMAAgMEBQYICQoODxITFhcYGxwdICEtLzEzNjc4P0BFRkdISk1YWWBjaWtsdHZ3f4CHiImKjJGSk5SVl5ufo6Smp625uru8vb/BwsPExcbMzs/Q0dPi4+Tl6+zv8PL19vf4+/z2SQ4sAAABE0lEQVQ4y2NgGDmAV8c5PCkxxFGDE6cSDuOEZCiI0WXGroY/OBkJeHJhU8Pkm4wCXBixKFIHyUTqibJzS5lEgNhqWBT5AMWD+CFsHg8gxxuLoniguCyMIwLkxGFRBPKZDKEw8gMqCuAloEgb7HADMTZ8ijisjHTUlCSFOdgFxeVUNPXM7Z38QmJ9EApQxFFCyxeuxhtFPC7U39nBQl9LVV5CiAMpiFDEOYQlldR0jGwM8DmOVVDRLBpkpDIBr/KBXOBKKNSEgYpiMUQjgaLChBQ5A0W94AHO6wXkumEoUgY5NcpUUYCFRUDBNAqHw22T0YAdNp9bo6qxZMLqI4VAhJIgBZwelzZ0D4uLC3M3lB5B5QgAFQdgZ6NzzvYAAAAASUVORK5CYII=");
   }
   .ql-snow.ql-toolbar .ql-format-button.ql-strike.ql-active,
   .ql-snow.ql-toolbar .ql-picker.ql-strike .ql-picker-label.ql-active,
@@ -1005,7 +805,7 @@
   .ql-snow.ql-toolbar:not(.ios) .ql-picker.ql-strike .ql-picker-label:hover,
   .ql-snow.ql-toolbar:not(.ios) .ql-picker .ql-picker-label[data-value=strike]:hover,
   .ql-snow.ql-toolbar:not(.ios) .ql-picker .ql-picker-item[data-value=strike]:hover {
-    background-image: url("Char2.png");
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAABLFBMVEUAAAAAgP8AVaoAgL8AZswAVdUAYL8AccYAZswAbcgAZswAY8YAa8kAaNEAZMgAasoAaNAAZMgAasoAaMcAZMkAZswAZ8kAaMsAZM0AaMsAZswAZM0AZcoAZMsAZMsAZswAZc0AZ8oAZMsAZ8oAZcsAZMsAZcoAZMsAZswAZssAZssAZcoAZssAZcwAZssAZs0AZswAZ8wAZs0AZs0AZswAZswAZ8wAZs0AZs0AZ80AZ8wAZswAZ8wAZs0AZ8wAZ8wAZs0AZs0AZswAZ8wAZs0AZs0AZ8wAZcwAZs0AZ8wAZswAZcwAZs0AZs0AZ8wAZswAZswAZs0AZswAZswAZswAZswAZswAZswAZswAZswAZswAZswAZswAZswAZswAZswAZswAZswAZswAZswL5dPDAAAAY3RSTlMAAgMEBQYICQoODxITFhcYGxwdICEtLzEzNjc4P0BFRkdISk1YWWBjaWtsdHZ3f4CHiImKjJGSk5SVl5ufo6Smp625uru8vb/BwsPExcbMzs/Q0dPi4+Tl6+zv8PL19vf4+/z2SQ4sAAABE0lEQVQ4y2NgGDmAV8c5PCkxxFGDE6cSDuOEZCiI0WXGroY/OBkJeHJhU8Pkm4wCXBixKFIHyUTqibJzS5lEgNhqWBT5AMWD+CFsHg8gxxuLoniguCyMIwLkxGFRBPKZDKEw8gMqCuAloEgb7HADMTZ8ijisjHTUlCSFOdgFxeVUNPXM7Z38QmJ9EApQxFFCyxeuxhtFPC7U39nBQl9LVV5CiAMpiFDEOYQlldR0jGwM8DmOVVDRLBpkpDIBr/KBXOBKKNSEgYpiMUQjgaLChBQ5A0W94AHO6wXkumEoUgY5NcpUUYCFRUDBNAqHw22T0YAdNp9bo6qxZMLqI4VAhJIgBZwelzZ0D4uLC3M3lB5B5QgAFQdgZ6NzzvYAAAAASUVORK5CYII=");
   }
   .ql-snow.ql-toolbar .ql-format-button.ql-link,
   .ql-snow.ql-toolbar .ql-picker.ql-link .ql-picker-label,
@@ -1059,7 +859,7 @@
   .ql-snow.ql-toolbar .ql-picker.ql-bullet .ql-picker-label,
   .ql-snow.ql-toolbar .ql-picker .ql-picker-label[data-value=bullet],
   .ql-snow.ql-toolbar .ql-picker .ql-picker-item[data-value=bullet] {
-    background-image: url("Dialog.png");
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkBAMAAAATLoWrAAAAElBMVEUAAABCQkJEREREREREREREREQc4xmxAAAABXRSTlMATeXo6UtNtyIAAAAzSURBVCjPY2AYACBsyCAcCgOGYCHTYAZTuFAwRCgISSgILCSiyCACF1JkGBgw6voBcj0AFsUtDasGrUcAAAAASUVORK5CYII=");
   }
   .ql-snow.ql-toolbar .ql-format-button.ql-bullet.ql-active,
   .ql-snow.ql-toolbar .ql-picker.ql-bullet .ql-picker-label.ql-active,
@@ -1069,26 +869,8 @@
   .ql-snow.ql-toolbar:not(.ios) .ql-picker.ql-bullet .ql-picker-label:hover,
   .ql-snow.ql-toolbar:not(.ios) .ql-picker .ql-picker-label[data-value=bullet]:hover,
   .ql-snow.ql-toolbar:not(.ios) .ql-picker .ql-picker-item[data-value=bullet]:hover {
-    background-image: url("Dialog2.png");
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkBAMAAAATLoWrAAAAElBMVEUAAAAAZ8oAZswAZswAZswAZsxixJGvAAAABXRSTlMATeXo6UtNtyIAAAAzSURBVCjPY2AYACBsyCAcCgOGYCHTYAZTuFAwRCgISSgILCSiyCACF1JkGBgw6voBcj0AFsUtDasGrUcAAAAASUVORK5CYII=");
   }
-  
-  .ql-snow.ql-toolbar .ql-format-button.heading,
-  .ql-snow.ql-toolbar .ql-picker.heading .ql-picker-label,
-  .ql-snow.ql-toolbar .ql-picker .ql-picker-label[data-value=heading],
-  .ql-snow.ql-toolbar .ql-picker .ql-picker-item[data-value=heading] {
-	  background-image: url("Shene.png");
-  }
-  .ql-snow.ql-toolbar .ql-format-button.heading.ql-active,
-  .ql-snow.ql-toolbar .ql-picker.heading .ql-picker-label.ql-active,
-  .ql-snow.ql-toolbar .ql-picker .ql-picker-label[data-value=heading].ql-active,
-  .ql-snow.ql-toolbar .ql-picker .ql-picker-item[data-value=heading].ql-selected,
-  .ql-snow.ql-toolbar:not(.ios) .ql-format-button.heading:hover,
-  .ql-snow.ql-toolbar:not(.ios) .ql-picker.heading .ql-picker-label:hover,
-  .ql-snow.ql-toolbar:not(.ios) .ql-picker .ql-picker-label[data-value=heading]:hover,
-  .ql-snow.ql-toolbar:not(.ios) .ql-picker .ql-picker-item[data-value=heading]:hover {
-	  background-image: url("Shene2.png");
-  }
-  
   .ql-snow.ql-toolbar .ql-format-button.ql-authorship,
   .ql-snow.ql-toolbar .ql-picker.ql-authorship .ql-picker-label,
   .ql-snow.ql-toolbar .ql-picker .ql-picker-label[data-value=authorship],

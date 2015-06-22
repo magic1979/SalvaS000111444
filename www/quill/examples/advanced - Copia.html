@@ -3,7 +3,6 @@
   <head>
     <title>Quill Pretty Editor Demo</title>
 	<script type="text/javascript">
-	var oDoc, sDefTxt;
 	 
 	function test() {
 	  var html = advancedEditor.getHTML();
@@ -22,7 +21,6 @@
   </head>
   <body >
     <div id="content-container" >
-	<form name="compForm" method="post" action="sample.php" onsubmit="if(validateMode()){this.myDoc.value=oDoc.innerHTML;return true;}return false;">
       <div class="basic-wrapper" style="display:none">
         <div class="toolbar-container">
           <select title="Font" class="ql-font">
@@ -145,8 +143,7 @@
         
 		<div id="editor" class="editor-container"></div>
       </div>
-	  
-	</form>
+	
     </div>
 	<a href="javascript:test()">LINK</a>
 	<a href="javascript:test2()">LINK2</a>

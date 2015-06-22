@@ -4,12 +4,26 @@ function onDeviceReady() {
 	document.addEventListener("resume", onResume, false);
 
     $(".spinner").hide();
+	var Token;
 	
 	setTimeout (function(){
 		document.getElementById('test1').click();
 	}, 500);
 	
 	iframme();
+	
+	var connectionStatus = false;
+	connectionStatus = navigator.onLine ? 'online' : 'offline';
+	
+	if(connectionStatus=='online'){
+		//Verifica Token
+		
+		verificatoken()
+	}
+	else{
+	 // Che Faccio
+	}
+	
 }
 
 function closemenu() {
@@ -21,9 +35,185 @@ function closemenu() {
 	
 }
 
+function createstory() {
+	navigator.notification.prompt(
+								  'Insert Name',  // message
+								  onPrompt,                  // callback to invoke
+								  'Create Story',            // title
+								  ['Invia','Annulla'],             // buttonLabels
+								  ''                 // defaultText
+								  );
+}
+
+function onPrompt(results) {
+	if(results.buttonIndex==1){
+		if (results.input1 == "") {
+			navigator.notification.alert(
+										 'insert name',  // message
+										 alertDismissed,         // callback
+										 'Create Story',            // title
+										 'OK'                  // buttonName
+										 );
+			return;
+		}
+		
+
+		//Nome Storia
+		//alert("You selected button number " + results.buttonIndex + " and entered " + results.input1);
+		
+		$(".spinner").show();
+		$.ajax({
+			   type:"GET",
+			   url:"https://www.storymatch.co/storymatch/userstories/create",
+			   data: {token:localStorage.getItem("Token"),title:results.input1},
+			   contentType: "application/json; charset=utf-8",
+			   json: 'callback',
+			   crossDomain: true,
+			   success:function(result){
+			   
+			   if (result.ID==1024){
+			   navigator.notification.alert(
+											result.msg,  // message
+											alertDismissed,         // callback
+											'Create Story',            // title
+											'OK'                  // buttonName
+											);
+			   
+			   window.location.href = "swip2.html";
+		    }
+			   else{
+			   navigator.notification.alert(
+											result.msg,  // message
+											alertDismissed,         // callback
+											'Create Story',            // title
+											'OK'                  // buttonName
+											);
+			   }
+			   
+			   $(".spinner").hide();
+			   
+			   },
+			   error: function(){
+			   $(".spinner").hide();
+			   
+			   navigator.notification.alert(
+											'Possibile errore di rete, riprova tra qualche minuto',  // message
+											alertDismissed,         // callback
+											'Errore',            // title
+											'OK'                  // buttonName
+											);
+			   
+			   },
+			   dataType:"json"});
+		
+	}
+	
+}
+
+
+function verificatoken() {
+	Token = localStorage.getItem("Token");
+	
+	$(".spinner").show();
+	$.ajax({
+		   type:"GET",
+		   url:"https://www.storymatch.co/storymatch/authentication/validatetoken",
+		   data: {token:Token},
+		   contentType: "application/json; charset=utf-8",
+		   json: 'callback',
+		   crossDomain: true,
+		   success:function(result){
+		   
+		   if (result.ID==1024){
+			 //OK
+
+		   }
+		   else{
+		   navigator.notification.alert(
+										result.msg,  // message
+										exitapp,         // callback
+										'Logout',            // title
+										'OK'                  // buttonName
+										);
+		   }
+		   
+		   $(".spinner").hide();
+		   
+		   },
+		   error: function(){
+		   $(".spinner").hide();
+		   
+		   navigator.notification.alert(
+										'Possibile errore di rete, riprova tra qualche minuto',  // message
+										alertDismissed,         // callback
+										'Errore',            // title
+										'OK'                  // buttonName
+										);
+		   window.location.href = "index.html";
+		   
+		   },
+		   dataType:"json"});
+	
+}
+
+function esempio(){
+	var conta = 1;
+	
+	$(".spinner").show();
+	$.ajax({
+		   type:"GET",
+		   url:"http://5.249.157.197:9000/storymatchsearch/stepsbyid",
+		   data: {ID:2},
+		   contentType: "application/json; charset=utf-8",
+		   json: 'callback',
+		   crossDomain: true,
+		   success:function(result){
+		   
+		   alert("Title: " + result.title);
+		   
+		   $.each(result.characters, function(i,item){
+				  var fruits = item.detail["steps"]
+				  
+				  alert("Pitch:" + item.detail["pitch"])
+				  
+				  //alert("stepsID: " + fruits[0]["id"]);
+				  
+				  alert(fruits.length);
+				  
+				  for ( i=0; i < fruits.length; i++ )
+				  {
+				  
+					if(fruits[i]["id"]==49){
+					  //alert(fruits[i]["step"]);
+				    }
+					
+					if((conta==1)||(conta==2)){
+				       alert(fruits[i]["step"]);
+					}
+				  
+				  conta = conta+1;
+				  }
+				  
+				   //alert(item.detail["steps"]);
+				  });
+		   
+		   },
+		   error: function(){
+		   $(".spinner").hide();
+		   
+		   alert("Errore");
+		   
+		   },
+		   dataType:"json"});
+}
+
 
 function alertDismissed() {
 	
+}
+
+function exitapp() {
+	 window.location.href = "index.html";
 }
 
 function LogOut() {
@@ -56,6 +246,8 @@ function LogOut() {
 										'Logout',            // title
 										'OK'                  // buttonName
 										);
+		   
+		   window.location.href = "index.html";
 		   }
 		   
 		   $(".spinner").hide();
@@ -138,3 +330,4 @@ $( document ).on( "pagecreate", function() {
 				 });
 
 }
+

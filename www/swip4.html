@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 		
 		<link type="text/css" rel="stylesheet" href="jquery.dropdown.min.css" />
 		<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.2.min.css" />
@@ -302,6 +302,38 @@ body .ui-body-c, body .ui-overlay-c
 	box-shadow: 0px 0px 0.5px 1px #000;
 }
 
+.edita2 {
+	background-color: #FFF;
+	background-image: url(img/Penna2.png);
+	background-size: 50px 50px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:50px;
+	width:50px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #000;
+	box-shadow: 0px 0px 0.5px 1.5px #000;
+}
+
+.edita2:active {
+	background-color:#ebd8dc;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+
+
 .idea {
 	background-color: #000;
 	background-image: url(img/Lampadina2.png);
@@ -488,6 +520,37 @@ body .ui-body-c, body .ui-overlay-c
 	box-shadow: 0px 0px 0.5px 1px #000;
 }
 
+.lucchetto2 {
+	background-color: #FFF;
+	background-image: url(img/Lock2.png);
+	background-size: 50px 50px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:50px;
+	width:50px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #000;
+	box-shadow: 0px 0px 0.5px 1.5px #000;
+}
+
+.lucchetto2:active {
+	background-color:#ebd8dc;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+
 .infinito {
 	background-color: #ebd8dc;
 	background-image: url(img/Infinito2.png);
@@ -549,6 +612,37 @@ body .ui-body-c, body .ui-overlay-c
 	box-shadow: 0px 0px 0.5px 1px #fff;
 }
 
+.salva {
+	background-color: #ebd8dc;
+	background-image: url(img/save.png);
+	background-size: 50px 50px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:50px;
+	width:50px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #000;
+	box-shadow: 0px 0px 0.5px 1.5px #000;
+}
+
+.salva:active {
+	background-color:#FFF;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+
 .collegamento {
 	text-decoration: none;
 }
@@ -592,14 +686,20 @@ body .ui-body-c, body .ui-overlay-c
 				<tr>
 					<td width="33%" align="left"><a href="swip2.html" rel="external" class="collegamento"><font color="#FFF"><img src="img/arrowS.png" width="18">&nbsp;Back</font></a></td>
 					<td width="33%" align="center"><font color="#FFF">12 Step</font></td>
-					<td width="33%" align="right"><a href="swip5.html" rel="external" class="collegamento"><font color="#FFF">Next&nbsp;<img src="img/arrowD.png" width="18"></font></td>
+					<td width="33%" align="right"><a id="ava" href="#" rel="external" class="collegamento"><font color="#FFF">Next&nbsp;<img src="img/arrowD.png" width="18"></font></td>
 				</tr>
 	  </table>
   </div>
-
-  <div id="contenuto"></div>
+  <div class="spinner" id="spinner"></div>
   
-  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <form name="formia" action="entra.asp" method="post">
+
+	<div id="contenuto"></div>
+  
+  </form>
+  <!-- Step -->
+  
+  <!--<table width="100%" border="0" cellpadding="0" cellspacing="0">
 	  <tr><td class="trtabella2" colspan="4"><br><br></td></tr>
 	  <tr>
 		  <td class="trtabella" width="90%">
@@ -656,10 +756,10 @@ body .ui-body-c, body .ui-overlay-c
 		  </td>
 		  <td class="trtabella" width="15%" align="center"></td>
 	  </tr>
-	  <tr><td class="trtabella2" colspan="4"><hr></td></tr>
+	  <tr><td class="trtabella2" colspan="4"><hr></td></tr>-->
 	  
 	  <!-- SECONSA -->
-	  <tr>
+	  <!--<tr>
 		  <td class="trtabella" width="90%">
 			  <table width="90%">
 				  <tr>
@@ -704,16 +804,16 @@ body .ui-body-c, body .ui-overlay-c
 	  </tr>
 	  <tr><td class="trtabella2" colspan="4"><hr></td></tr>
 
-  </table>
+  </table>-->
   
   <div data-role="footer" data-theme="c" data-position="fixed" data-tap-toggle="false">
 	  <center>
 		  <table width="100%">
 			  <tr>
 				  <td width="10%"></td>
-				  <td width="8px" align="left"><a href="swip3.html" rel="external"><div width="52px" class="idea"></div></a></td>
+				  <td width="8px" align="left"><a id="ispirazione" href="swip3.html" rel="external"><div width="52px" class="idea"></div></a></td>
 				  <td width="22%" align="left">Inspirations?</td>
-				  <td width="15%" align="right"><a href="#" rel="external"><div width="52px" class="infinito2"></div></a></td>
+				  <td width="15%" align="right"><a href="javascript:shuffletotal()" rel="external"><div width="52px" class="infinito2"></div></a></td>
 				  <td width="15%" align="left">&nbsp;Shuffle</td>
 				  <td width="20%" align="right">29c | 5W</td>
 				  <td width="10%"></td>

@@ -24,7 +24,7 @@ button,
 .ui-btn {
 	font-size: 1em;
 	line-height: 1.3;
-	 font-family: sans-serif /*{global-font-family}*/;
+	  font-family: sans-serif /*{global-font-family}*/;
 }
 legend,
 .ui-input-text input,
@@ -590,7 +590,7 @@ html .ui-panel-page-container-c {
 html .ui-bar-c a,
 html .ui-body-c a,
 html body .ui-group-theme-c a {
-	color: #c1677e /*{c-link-color}*/;
+	color: #d7b2c6 /*{c-link-color}*/;
 	font-weight: bold;
 }
 .ui-page-theme-c a:visited,
@@ -623,7 +623,7 @@ html .ui-bar-c .ui-btn:visited,
 html .ui-body-c .ui-btn:visited,
 html body .ui-group-theme-c .ui-btn:visited,
 html head + body .ui-btn.ui-btn-c:visited {
-	background-color: #707070 /*{c-bup-background-color}*/;
+	background-color: #eb1919 /*{c-bup-background-color}*/;
 	border-color: #00000 /*{c-bup-border}*/;
 	color: #000000 /*{c-bup-color}*/;
 	text-shadow: 0 /*{c-bup-shadow-x}*/ 0px /*{c-bup-shadow-y}*/ 0 /*{c-bup-shadow-radius}*/ #00000 /*{c-bup-shadow-color}*/;
@@ -634,10 +634,10 @@ html .ui-bar-c .ui-btn:hover,
 html .ui-body-c .ui-btn:hover,
 html body .ui-group-theme-c .ui-btn:hover,
 html head + body .ui-btn.ui-btn-c:hover {
-	background-color: #b0b0b0 /*{c-bhover-background-color}*/;
+	background-color: #FFFFFF /*{c-bhover-background-color}*/;
 	border-color: #000000 /*{c-bhover-border}*/;
 	color: #000000 /*{c-bhover-color}*/;
-	text-shadow: 0 /*{c-bhover-shadow-x}*/ 0px /*{c-bhover-shadow-y}*/ 0 /*{c-bhover-shadow-radius}*/ #000000 /*{c-bhover-shadow-color}*/;
+	text-shadow: 0 /*{c-bhover-shadow-x}*/ 0px /*{c-bhover-shadow-y}*/ 0 /*{c-bhover-shadow-radius}*/ #f3f3f3 /*{c-bhover-shadow-color}*/;
 }
 /* Button down */
 .ui-page-theme-c .ui-btn:active,
@@ -645,10 +645,10 @@ html .ui-bar-c .ui-btn:active,
 html .ui-body-c .ui-btn:active,
 html body .ui-group-theme-c .ui-btn:active,
 html head + body .ui-btn.ui-btn-c:active {
-	background-color: #b0b0b0 /*{c-bdown-background-color}*/;
-	border-color: #000000 /*{c-bdown-border}*/;
+	background-color: #e8e8e8 /*{c-bdown-background-color}*/;
+	border-color: #dddddd /*{c-bdown-border}*/;
 	color: #333333 /*{c-bdown-color}*/;
-	text-shadow: 0 /*{c-bdown-shadow-x}*/ 0px /*{c-bdown-shadow-y}*/ 0 /*{c-bdown-shadow-radius}*/ #000000 /*{c-bdown-shadow-color}*/;
+	text-shadow: 0 /*{c-bdown-shadow-x}*/ 0px /*{c-bdown-shadow-y}*/ 0 /*{c-bdown-shadow-radius}*/ #f3f3f3 /*{c-bdown-shadow-color}*/;
 }
 /* Active button */
 .ui-page-theme-c .ui-btn.ui-btn-active,
@@ -674,10 +674,10 @@ html .ui-bar-c .ui-slider-track .ui-btn-active,
 html .ui-body-c .ui-slider-track .ui-btn-active,
 html body .ui-group-theme-c .ui-slider-track .ui-btn-active,
 html body div.ui-slider-track.ui-body-c .ui-btn-active {
-	background-color: #c1677e /*{c-active-background-color}*/;
+	background-color: #df90bc /*{c-active-background-color}*/;
 	border-color: #000000 /*{c-active-border}*/;
 	color: #ffffff /*{c-active-color}*/;
-	text-shadow: 0 /*{c-active-shadow-x}*/ 0px /*{c-active-shadow-y}*/ 0 /*{c-active-shadow-radius}*/ #333333 /*{c-active-shadow-color}*/;
+	text-shadow: 0 /*{c-active-shadow-x}*/ 0px /*{c-active-shadow-y}*/ 0 /*{c-active-shadow-radius}*/ #005599 /*{c-active-shadow-color}*/;
 }
 /* Active radio button icon */
 .ui-page-theme-c .ui-radio-on:after,
@@ -685,7 +685,7 @@ html .ui-bar-c .ui-radio-on:after,
 html .ui-body-c .ui-radio-on:after,
 html body .ui-group-theme-c .ui-radio-on:after,
 .ui-btn.ui-radio-on.ui-btn-c:after {
-	border-color: #c1677e /*{c-active-background-color}*/;
+	border-color: #df90bc /*{c-active-background-color}*/;
 }
 /* Focus */
 .ui-page-theme-c .ui-btn:focus,
@@ -700,9 +700,9 @@ html .ui-body-c .ui-focus,
 html body .ui-group-theme-c .ui-focus,
 html head + body .ui-btn-c.ui-focus,
 html head + body .ui-body-c.ui-focus {
-	-webkit-box-shadow: 0 0 12px #c1677e /*{c-active-background-color}*/;
-	-moz-box-shadow: 0 0 12px #c1677e /*{c-active-background-color}*/;
-	box-shadow: 0 0 12px #c1677e /*{c-active-background-color}*/;
+	-webkit-box-shadow: 0 0 12px #df90bc /*{c-active-background-color}*/;
+	-moz-box-shadow: 0 0 12px #df90bc /*{c-active-background-color}*/;
+	box-shadow: 0 0 12px #df90bc /*{c-active-background-color}*/;
 }
 
 
@@ -839,7 +839,7 @@ html .ui-body-d .ui-slider-track .ui-btn-active,
 html body .ui-group-theme-d .ui-slider-track .ui-btn-active,
 html body div.ui-slider-track.ui-body-d .ui-btn-active {
 	background-color: #3388cc /*{d-active-background-color}*/;
-	border-color: #1c4a70 /*{d-active-border}*/;
+	border-color: #3388cc /*{d-active-border}*/;
 	color: #ffffff /*{d-active-color}*/;
 	text-shadow: 0 /*{d-active-shadow-x}*/ 1px /*{d-active-shadow-y}*/ 0 /*{d-active-shadow-radius}*/ #005599 /*{d-active-shadow-color}*/;
 }

@@ -14,7 +14,8 @@
   width: 98%;
 }
 .editor-container {
-  height: 760px;
+  height: 460px;
+  /*border: 1px solid #000;*/
 }
 .toolbar-container {
   border-bottom: 1px solid #ccc;

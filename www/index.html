@@ -21,8 +21,7 @@
 -->
 <html>
     <head>
-
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=medium-dpi" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 			
 			<link type="text/css" rel="stylesheet" href="jquery.dropdown.min.css" />
 			<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.2.min.css" />
@@ -37,8 +36,96 @@
 			
 			<script src="js/jquery.mobile-1.4.2.min.js"></script>
 			<script type="text/javascript" src="js/app.js"></script>
-
 			
+			<script type="text/javascript">
+				<!--
+				
+				var keyStr = "ABCDEFGHIJKLMNOP" +
+				"QRSTUVWXYZabcdef" +
+				"ghijklmnopqrstuv" +
+				"wxyz0123456789+/" +
+				"=";
+				
+				function encode64(input) {
+     input = escape(input);
+	 var output = "";
+	 var chr1, chr2, chr3 = "";
+	 var enc1, enc2, enc3, enc4 = "";
+	 var i = 0;
+	 
+	 do {
+		 chr1 = input.charCodeAt(i++);
+		 chr2 = input.charCodeAt(i++);
+		 chr3 = input.charCodeAt(i++);
+		 
+		 enc1 = chr1 >> 2;
+		 enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+		 enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+		 enc4 = chr3 & 63;
+		 
+		 if (isNaN(chr2)) {
+			 enc3 = enc4 = 64;
+		 } else if (isNaN(chr3)) {
+			 enc4 = 64;
+		 }
+		 
+		 output = output +
+		 keyStr.charAt(enc1) +
+		 keyStr.charAt(enc2) +
+		 keyStr.charAt(enc3) +
+		 keyStr.charAt(enc4);
+		 chr1 = chr2 = chr3 = "";
+		 enc1 = enc2 = enc3 = enc4 = "";
+	 } while (i < input.length);
+	 
+	 return output;
+				}
+			
+			function decode64(input) {
+				var output = "";
+				var chr1, chr2, chr3 = "";
+				var enc1, enc2, enc3, enc4 = "";
+				var i = 0;
+				
+				// remove all characters that are not A-Z, a-z, 0-9, +, /, or =
+				var base64test = /[^A-Za-z0-9\+\/\=]/g;
+				if (base64test.exec(input)) {
+					alert("There were invalid base64 characters in the input text.\n" +
+						  "Valid base64 characters are A-Z, a-z, 0-9, '+', '/',and '='\n" +
+						  "Expect errors in decoding.");
+				}
+				input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+				
+				do {
+					enc1 = keyStr.indexOf(input.charAt(i++));
+					enc2 = keyStr.indexOf(input.charAt(i++));
+					enc3 = keyStr.indexOf(input.charAt(i++));
+					enc4 = keyStr.indexOf(input.charAt(i++));
+					
+					chr1 = (enc1 << 2) | (enc2 >> 4);
+					chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+					chr3 = ((enc3 & 3) << 6) | enc4;
+					
+					output = output + String.fromCharCode(chr1);
+					
+					if (enc3 != 64) {
+						output = output + String.fromCharCode(chr2);
+					}
+					if (enc4 != 64) {
+						output = output + String.fromCharCode(chr3);
+					}
+					
+					chr1 = chr2 = chr3 = "";
+					enc1 = enc2 = enc3 = enc4 = "";
+					
+				} while (i < input.length);
+				
+				return unescape(output);
+			}
+			
+				//--></script>
+
+
 			<script>
 				$(document).on("pagecreate","#article1",function(){
 							   $("p").on("swipe",function(){
@@ -204,6 +291,24 @@
 				
 			}
 			
+			.myTableStyle3
+			{
+				
+				width: 220px;
+				height: 460px;
+				
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				bottom: 50%;
+				margin-top: -400px;
+				margin-left: -110px;
+				
+				
+				z-index:2000;
+				
+			}
+			
 			#showHide {
 		  width: 15px;
 		  height: 15px;
@@ -331,7 +436,7 @@
 		<div data-role="page" id="article1" class="div2" >
 			
 			<div data-role="content">
-				<table id="myTable" class="myTableStyle2" border="0" >
+				<table id="myTable" class="myTableStyle2" border="0" style="display: none;">
 					<tr>
 						<td align="center"><img src="Logo.png" width="140"></td>
 					</tr>
@@ -342,6 +447,11 @@
 						<td align="center"><img src="img/Pag1.png" width="80"></td>
 					</tr>
 				</table>
+				
+				<table id="myTable2" class="myTableStyle3" border="0" >
+					<tr><td>
+						<!--<video id="sampleMovie" src="Video.mov" autoplay height="300px"></video>-->
+				</td></tr></table>
 			</div>
 			
 			<center><br><br>

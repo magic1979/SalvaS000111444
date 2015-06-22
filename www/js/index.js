@@ -57,6 +57,15 @@ var app = {
 			//		   }, 20 );
 			});
 		
+		
+		// Per il video.
+		
+		setTimeout (function(){
+			$("#myTable").show();
+		}, 500);
+		
+		
+		
 		$(".spinner").hide();
 
 		$(document).keydown(function (eventObj){
@@ -105,7 +114,7 @@ function getKey(key){
 
 function vai(){
 	var emailreg = self.document.formia.email.value.toLowerCase();
-	var pinreg = self.document.formia.myInput.value.toLowerCase();
+	var pinreg = self.document.formia.myInput.value;
 	
 	if (emailreg == "") {
 		navigator.notification.alert(
@@ -127,6 +136,8 @@ function vai(){
 									 );
 		return;
 	}
+	
+	pinreg = encode64(pinreg);
 	
 	//alert(pinreg);
 	
@@ -150,10 +161,11 @@ function vai(){
 	//localStorage.setItem("pinreg", pinreg);
 	
 	//chiamo paco
+	
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/authentication/signup",
+		   url:"https://www.storymatch.co/storymatch/authentication/signup",
 		   data: {username:emailreg,password:pinreg,name:"",surname:""},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -261,6 +273,8 @@ function Login(){
 		return;
 	}
 	
+	pinreg = encode64(pinreg);
+	
 	
 	EmailAddr = self.document.formia2.emailL.value;
 	Filtro = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,})+\.)+([a-zA-Z0-9]{2,})+$/;
@@ -285,7 +299,7 @@ function Login(){
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/authentication/login",
+		   url:"https://www.storymatch.co/storymatch/authentication/login",
 		   data: {username:emailreg,password:pinreg},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -293,7 +307,7 @@ function Login(){
 		   success:function(result){
 		   
 			if (result.ID==1024){
-			  alert(result.token);
+			  //alert(result.token);
 			  localStorage.setItem("email", emailreg);
 			  localStorage.setItem("Token", result.token);
 			  window.location.href = "swip.html";
@@ -395,7 +409,7 @@ function onPrompt(results) {
 		$(".spinner").show();
 		$.ajax({
 			   type:"GET",
-			   url:"http://5.249.157.197:9000/storymatch/authentication/asktoreset",
+			   url:"https://www.storymatch.co/storymatch/authentication/asktoreset",
 			   data: {username:results.input1},
 			   contentType: "application/json; charset=utf-8",
 			   json: 'callback',

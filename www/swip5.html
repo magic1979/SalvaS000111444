@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 		
 		<link type="text/css" rel="stylesheet" href="jquery.dropdown.min.css" />
 		<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.2.min.css" />
@@ -16,18 +16,6 @@
 		
 		<script src="js/jquery.mobile-1.4.2.min.js"></script>
 		<script type="text/javascript" src="js/app.js"></script>
-<script>
-$(document).on("pagecreate","#article1",function(){
-  $("p").on("swipe",function(){
-    $(this).hide();
-  });                   
-
-  $("li").on("swipe",function(){
-    alert();
-  });
-  
-});
-</script>
 
 <style>
 	.div1 {
@@ -682,6 +670,45 @@ right: 0;
 .collegamento {
 	text-decoration: none;
 }
+
+.textarea1 {
+	border-style: none;
+	border-color: Transparent;
+	background-color: inherit;
+	overflow: auto;
+	outline: none;
+}
+
+.salva {
+	background-color: #000;
+	background-image: url(img/save.png);
+	background-size: 50px 50px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:50px;
+	width:50px;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #000;
+	box-shadow: 0px 0px 0.5px 1.5px #000;
+}
+
+.salva:active {
+	background-color:#ebd8dc;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
 </style>
 
 
@@ -711,13 +738,13 @@ right: 0;
   <div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div1">
    <table width="100%" height="52px" border="0" valign="center">
 				<tr>
-					<td width="33%" align="left"><a href="swip4.html" rel="external" class="collegamento"><font color="#FFF"><img src="img/arrowS.png" width="18">&nbsp;Back</font></a></td>
+					<td width="33%" align="left"><a id="indietro" href="#" rel="external" class="collegamento"><font color="#FFF"><img src="img/arrowS.png" width="18">&nbsp;Back</font></a></td>
 					<td width="33%" align="center"><font color="#FFF">Outline</font></td>
-					<td width="33%" align="right"><a href="advanced.html" rel="external" class="collegamento"><font color="#FFF">Next&nbsp;<img src="img/arrowD.png" width="18"></font></td>
+					<td width="33%" align="right"><a id="avanti" href="advanced.html" rel="external" class="collegamento"><font color="#FFF">Next&nbsp;<img src="img/arrowD.png" width="18"></font></td>
 				</tr></table>
   </div>
 
-  
+  <!-- outline
   <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	  <tr><td class="trtabella2" colspan="4"><br><br></td></tr>
 	  <tr>
@@ -802,33 +829,37 @@ right: 0;
 	  </tr>
 
 
-  </table>
+  </table>-->
+  
+  <div class="spinner" id="spinner"></div>
+  
+  <form name="formia" action="entra.asp" method="post">
+	  
+	  <input name="contaout" id="contaout" type="hidden">
+	  <div id="contenuto"></div>
+
   
   <div id="bolla" class="bubble" style="display:none" align="center" valign="center">
 	  <div style="width:380px; height:230px; overflow: auto;" valign="center">
-		  <table width="100%"><tr><td width="10%"></td><td width="100%" align="left">
-			  <b>Hollow Hill</b></td></tr>
-		  <tr><td width="10%"></td><td width="100%" align="left">
-			  Ehendebi squamus tionseq uaspici ipid quad esed mo conseque doloreferum unt essi rent recerib eaquas ex expla ipit magnimendus, occatiam nobit audante.Ehendebi squamus tionseq uaspici ipid quad esed mo conseque doloreferum unt essi rent recerib eaquas ex expla ipit magnimendus, occatiam nobit audante.</td></tr><tr><td width="10%"></td><td width="100%" align="left">
-				  <b>Hollow Hill</b></td></tr>
-			  <tr><td width="10%"></td><td width="100%" align="left">
-				  Ehendebi squamus tionseq uaspici ipid quad esed mo conseque doloreferum unt essi rent recerib eaquas ex expla ipit magnimendus, occatiam nobit audante.Ehendebi squamus tionseq uaspici ipid quad esed mo conseque doloreferum unt essi rent recerib eaquas ex expla ipit magnimendus, occatiam nobit audante.</td></tr>
-		  </table>
+		 <div id="bollicina"></div>
 	  </div>
   </div>
   <div data-role="footer" data-theme="c" data-position="fixed" data-tap-toggle="false">
 	  <center>
 		  <table width="100%" height="52px">
 			  <tr>
-				  <td width="30%">&nbsp;</td>
-				  <td width="30%" align="center"><a href="javascript:visbolla()" rel="external" class="collegamento"><font color="#fff">12 Step</font></a></td>
-				  <td width="20%" align="right">29c | 5W</td>
+				  <td width="10%"></td>
+				  <td width="5%">Save</td>
+				  <td width="35%" align="left"> <a id="salvataggio" href='javascript:salva()'><div width='52px' class='salva'></div></a></td>
+				  <td width="30%" align="center"><a id="visbollicina" href="javascript:visbolla()" rel="external" class="collegamento"><font color="#fff">12 Step</font></a></td>
+				  <td width="15%" align="right">29c | 5W</td>
 				  <td width="10%"></td>
 			 </tr>
 			</table>
 	  </center>
   </div>
-
+  
+</form>
 
 </div> 
 

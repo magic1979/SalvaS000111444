@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 	
 	<link type="text/css" rel="stylesheet" href="jquery.dropdown.min.css" />
 	<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.2.min.css" />
@@ -275,7 +275,7 @@ iframe {
 					<tr><td><br></td></tr>
 					<tr><td><a id="badde" class="badge1" data-badge="1"><div width="38px" class="messaggio"></div></a></td></tr>
 					<tr><td><br></td></tr>
-					<tr><td><a href="#popupMap" data-rel="popup" data-position-to="window"><div width="38px" class="altro"></div></a></td></tr>
+					<tr><td><a href="#popupMap" onclick="javascript:prendiemail()"  data-rel="popup" data-position-to="window"><div width="38px" class="altro"></div></a></td></tr>
 					<tr><td><br></td></tr>
 				</table>
 			</td></tr>
@@ -313,7 +313,7 @@ iframe {
 		  <td align="center" style="text-decoration: none"><font size="4" color="#FFF" class="testo">You have nit create any stories yet</font></td>
 	  </tr>
 	  <tr>
-		  <td align="center"><a href="swip4.html" rel="external" class="btn"><font color="#FFF">Start your first story</font></a></td>
+		  <td align="center"><a href="javascript:createstory()" rel="external" class="btn"><font color="#FFF">Start your first story</font></a></td>
 	  </tr>
   </table>
       	<!--<div class="myTableStyle2">
@@ -324,7 +324,8 @@ iframe {
 			<a href="#" data-rel="back" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
 			<iframe src="setting.html" width="600px" height="760px" seamless=""></iframe>
 		</div>
-</div> 
+		
+</div>
 
 
 <div id="jq-dropdown-1" class="jq-dropdown jq-dropdown-tip" >

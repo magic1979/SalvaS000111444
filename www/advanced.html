@@ -1,17 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" href="css/spinner.css" />
+		  
 	<script type="text/javascript">
 	var oDoc, sDefTxt;
 	 
 	function test() {
-	  var html = advancedEditor.getHTML();
-	  alert(html);
+
+	  
+	  
 	}
 	
-	function test2() {
-	  advancedEditor.setHTML('<div>Hello</div>');
+	function parentesi() {
+		
+	  //button click
+
+	  
+	  // metto il focus
+	  this.advancedEditor.focus();
+	  
+	  var range = this.advancedEditor.getSelection();
+
+	 // alert(range.start);
+	 // alert(range.end);
+	  
+	  advancedEditor.insertText(range.start, '(', {
+		'fore-color': '#0000'
+		});
+		
+		advancedEditor.insertText(range.end+1, ')', {
+			'fore-color': '#0000'
+		});
+								  
+		$("#pth").click();
 	}
+	
 	
 	</script>
 	
@@ -19,14 +44,14 @@
 
 	<link rel="stylesheet" type="text/css" href="quill/quill.snow.css">
 	<link rel="stylesheet" type="text/css" href="quill/examples/styles/advanced.css">
-	
+
 	
     <meta charset="utf-8">
 	
 	<style>
 		.div1 {
 
-			background-color: #ebd8dc;;
+			background-color: #ebd8dc;
 
 		}
 		.div2 {
@@ -150,6 +175,20 @@
 		text-decoration: none;
 	}
 
+.sometext {
+	font-size: 12pt;
+	color: red;
+	margin-left: 1.5in;
+}
+	
+	.pippo {
+		background-color: #000;
+		background-image: url(Shene2.png);
+		background-size: 24px 140px;
+		background-repeat: no-repeat;
+		background-position:center;
+	}
+
 </style>
   </head>
   <body class="div1">
@@ -159,126 +198,131 @@
 		<center><br>
 			<table width="100%" border="0">
 				<tr>
-					<td width="33%" align="left"><a href="swip5.html" rel="external" class="collegamento"><font color="#FFF">&nbsp;&nbsp;Back</font></a></td>
-					<td width="33%" align="center"><font color="#FFF">Hollow Hill</font></td>
-					<td width="33%" align="right"><font color="#FFF">Share&nbsp;&nbsp;</font></td>
+					<td width="33%" align="left"><a id="indietro" href="swip5.html" rel="external" class="collegamento"><font color="#FFF">&nbsp;&nbsp;Back</font></a></td>
+					<td width="33%" align="center"><span><font color="#FFF">Hollow Hill</font></span></td>
+					<td width="33%" align="right"><a id="salvataggio" href="swip5.html" rel="external" class="collegamento"><font color="#FFF">Share&nbsp;</font></a> | <a id="pdf" href="swip5.html" rel="external" class="collegamento"><font color="#FFF">&nbsp;PDF</font></a></td>
 			</tr></table>
 		</center>
 	</div>
 </div>
 
+<div class="spinner" id="spinner"></div>
 
+<!--style="display: none;"-->
     <div id="content-container">
+	<div class="basic-wrapper" style="display:none">
+			<div class="toolbar-container">
+				<select title="Font" class="ql-font">
+					<option value="sans-serif" selected>Sans Serif</option>
+					<option value="Georgia, serif">Serif</option>
+					<option value="Monaco, 'Courier New', monospace">Monospace</option>
+				</select>
+				<select title="Size" class="ql-size">
+					<option value="10px">Small</option>
+					<option value="13px" selected>Normal</option>
+					<option value="18px">Large</option>
+					<option value="32px">Huge</option>
+				</select>
+				<select title="Text Alignment" class="ql-align">
+					<option value="left" selected>Left</option>
+					<option value="center">Center</option>
+					<option value="right">Right</option>
+					<option value="justify">Justify</option>
+				</select>
+				<button title="Bold" class="ql-bold">Bold</button>
+				<button title="Italic" class="ql-italic">Italic</button>
+				<button title="Underline" class="ql-underline">Under</button>
+				<button title="List" class="ql-list">List</button>
+			</div>
+			<div class="editor-container"></div>
+		</div>
 	<form name="compForm" method="post" action="sample.php" onsubmit="if(validateMode()){this.myDoc.value=oDoc.innerHTML;return true;}return false;">
 
       <div class="advanced-wrapper" >
 		<table border="0" class="fondo" width="100%" align="center"><tr><td>
-					<div class="toolbar-container"><span class="ql-format-group">
-						<select title="Font" class="ql-font">
-							<option value="sans-serif" selected>Character</option>
-							<option value="sans-serif">Sens-Serif</option>
-							<option value="Georgia, serif">Georgia</option>
-							<option value="Monaco, 'Courier New', monospace">Courier</option>
-						</select>
-						<select title="Size" class="ql-size">
-							<option value="13px" selected>Schene heading</option>
-							<option value="10px">Small</option>
-							<option value="13px">Normal</option>
-							<option value="18px">Large</option>
-							<option value="32px">Huge</option>
-						</select></span><span class="ql-format-group"><span title="Bold" class="ql-format-button ql-bold"></span><span class="ql-format-separator"></span><span title="Italic" class="ql-format-button ql-italic"></span><span class="ql-format-separator"></span><span title="Underline" class="ql-format-button ql-underline"></span></span><span class="ql-format-group">
-							<select title="Text Color" class="ql-color">
-								<option value="rgb(0, 0, 0)" selected></option>
-								<option value="rgb(230, 0, 0)"></option>
-								<option value="rgb(255, 153, 0)"></option>
-								<option value="rgb(255, 255, 0)"></option>
-								<option value="rgb(0, 138, 0)"></option>
-								<option value="rgb(0, 102, 204)"></option>
-								<option value="rgb(153, 51, 255)"></option>
-								<option value="rgb(255, 255, 255)"></option>
-								<option value="rgb(250, 204, 204)"></option>
-								<option value="rgb(255, 235, 204)"></option>
-								<option value="rgb(255, 255, 204)"></option>
-								<option value="rgb(204, 232, 204)"></option>
-								<option value="rgb(204, 224, 245)"></option>
-								<option value="rgb(235, 214, 255)"></option>
-								<option value="rgb(187, 187, 187)"></option>
-								<option value="rgb(240, 102, 102)"></option>
-								<option value="rgb(255, 194, 102)"></option>
-								<option value="rgb(255, 255, 102)"></option>
-								<option value="rgb(102, 185, 102)"></option>
-								<option value="rgb(102, 163, 224)"></option>
-								<option value="rgb(194, 133, 255)"></option>
-								<option value="rgb(136, 136, 136)"></option>
-								<option value="rgb(161, 0, 0)"></option>
-								<option value="rgb(178, 107, 0)"></option>
-								<option value="rgb(178, 178, 0)"></option>
-								<option value="rgb(0, 97, 0)"></option>
-								<option value="rgb(0, 71, 178)"></option>
-								<option value="rgb(107, 36, 178)"></option>
-								<option value="rgb(68, 68, 68)"></option>
-								<option value="rgb(92, 0, 0)"></option>
-								<option value="rgb(102, 61, 0)"></option>
-								<option value="rgb(102, 102, 0)"></option>
-								<option value="rgb(0, 55, 0)"></option>
-								<option value="rgb(0, 41, 102)"></option>
-								<option value="rgb(61, 20, 102)"></option>
-							</select><span class="ql-format-separator"></span>
-							<select title="Background Color" class="ql-background">
-								<option value="rgb(0, 0, 0)"></option>
-								<option value="rgb(230, 0, 0)"></option>
-								<option value="rgb(255, 153, 0)"></option>
-								<option value="rgb(255, 255, 0)"></option>
-								<option value="rgb(0, 138, 0)"></option>
-								<option value="rgb(0, 102, 204)"></option>
-								<option value="rgb(153, 51, 255)"></option>
-								<option value="rgb(255, 255, 255)" selected></option>
-								<option value="rgb(250, 204, 204)"></option>
-								<option value="rgb(255, 235, 204)"></option>
-								<option value="rgb(255, 255, 204)"></option>
-								<option value="rgb(204, 232, 204)"></option>
-								<option value="rgb(204, 224, 245)"></option>
-								<option value="rgb(235, 214, 255)"></option>
-								<option value="rgb(187, 187, 187)"></option>
-								<option value="rgb(240, 102, 102)"></option>
-								<option value="rgb(255, 194, 102)"></option>
-								<option value="rgb(255, 255, 102)"></option>
-								<option value="rgb(102, 185, 102)"></option>
-								<option value="rgb(102, 163, 224)"></option>
-								<option value="rgb(194, 133, 255)"></option>
-								<option value="rgb(136, 136, 136)"></option>
-								<option value="rgb(161, 0, 0)"></option>
-								<option value="rgb(178, 107, 0)"></option>
-								<option value="rgb(178, 178, 0)"></option>
-								<option value="rgb(0, 97, 0)"></option>
-								<option value="rgb(0, 71, 178)"></option>
-								<option value="rgb(107, 36, 178)"></option>
-								<option value="rgb(68, 68, 68)"></option>
-								<option value="rgb(92, 0, 0)"></option>
-								<option value="rgb(102, 61, 0)"></option>
-								<option value="rgb(102, 102, 0)"></option>
-								<option value="rgb(0, 55, 0)"></option>
-								<option value="rgb(0, 41, 102)"></option>
-								<option value="rgb(61, 20, 102)"></option>
-							</select><span class="ql-format-separator"></span>
-							<select title="Text Alignment" class="ql-align">
-								<option value="left" selected></option>
-								<option value="center"></option>
-								<option value="right"></option>
-								<option value="justify"></option>
-							</select></span><span class="ql-format-group"><span title="Link" class="ql-format-button ql-link"></span><span class="ql-format-separator"></span><span title="Image" class="ql-format-button ql-image"></span><span class="ql-format-separator"></span><span title="List" class="ql-format-button ql-list"></span></span>
-					</div>
-				</td></tr></table>
+			
+		</td></tr></table>
 		<div id="editor" class="editor-container"></div>
+
+		<center>
+		<div class="toolbar-container"><span class="ql-format-group">
+
+			<select title="Font" class="ql-font" style="display:none">
+				<option value="Default, 'Courier'" selected>Character</option>
+				<option value="sans-serif" selected>Sans Serif</option>
+				<option value="Georgia, serif">Georgia</option>
+				<option value="Monaco, 'Courier', monospace">Monospace</option>
+			</select>
+			<select title="Size" class="ql-size" style="display:none">
+				<option value="12pt" selected>Schene heading</option>
+				<option value="10px">Small</option>
+				<option value="12pt">Normal</option>
+				<option value="18px">Large</option>
+				<option value="32px">Huge</option>
+			</select></span>
 		
-		<table width="120px" align="left"><tr>
-			<td width="60px">
-				<a href="javascript:undor()" rel="external"><div width="52px" class="sinistra"></div></a>
-			</td>
-			<td width="60px">
-				<a href="javascript:redor()" rel="external"><div width="52px" class="destra"></div></a>
-			</td>
-		</tr>
+			<span class="ql-format-group">
+				
+<span class="ql-format-separator"></span>
+
+				<span title="heading" class="ql-format-button heading"><i class="fa fa-code"></i></span>
+				<!-- SHENE HEADING
+				 <span id="tit" title="bullet" class="ql-format-button ql-bullet"></span>-->
+				
+<span class="ql-format-separator"></span>
+
+				<!-- ACTION -->
+				<span id="act" title="action" class="ActionButton action"><i class="fa fa-code"></i></span>
+				
+<span class="ql-format-separator"></span>
+
+				<!-- CHARACTER
+ 				 <span id="italia" title="Italic" class="ql-format-button ql-italic"></span>-->
+				<span id="spk" title="strikeThrough" class="ql-format-button ql-strike"></span>
+				
+<span class="ql-format-separator"></span>
+
+				<!-- DIALOG
+				<span id="dlg" title="Underline" class="ql-format-button ql-underline"></span>-->
+				<span id="tit" title="bullet" class="ql-format-button ql-bullet"></span>
+
+				<span class="ql-format-separator"></span>
+				
+				<br>
+				
+				<span title="paren" class="ParenButton paren"><i class="fa fa-code"></i></span>
+					
+				<span class="ql-format-separator"></span>
+				
+				<span title="trans" class="TransButton trans"><i class="fa fa-code"></i></span>
+				
+<span class="ql-format-separator"></span>
+
+				<span title="shot" class="ShotButton shot"><i class="fa fa-code"></i></span>
+				
+<span class="ql-format-separator"></span>
+
+				<span><a href="javascript:cancella()" rel="external"><img src="quill/Text.png" width="80px" height="16px"></a></span>
+				
+<span class="ql-format-separator"></span>
+
+				<span title="Link" class="ql-format-button ql-link " style="display:none"></span>
+				<span title="Image" class="ql-format-button ql-image" style="display:none"></span>
+				<span id="pth" title="List" class="ql-format-button ql-list" style="display:none"></span>
+				
+				</span>
+		</div>
+
+		<br>
+		<table width="140px" align="left" >
+			<tr>
+				<td width="70px">
+					<a href="javascript:undor()" rel="external"><div width="30px" class="sinistra"></div></a>
+				</td>
+				<td width="70px">
+					<a href="javascript:test()" rel="external"><div width="30px" class="destra"></div></a>
+				</td>
+			</tr>
 		</table>
 
       </div>
@@ -287,7 +331,7 @@
     </div>
 	
 	<div id="Footer">
-		<center><font color="#FFF">Header Content</font></center>
+		<center><font color="#FFF"></font></center>
 	</div>
 
 	<script type="text/javascript" src="cordova.js"></script>
@@ -296,6 +340,161 @@
 	
     <script type="text/javascript" src="quill/quill.js"></script>
     <script type="text/javascript" src="quill/examples/scripts/advanced.js"></script>
+	
+	<script>
+		$('.heading').click(function(){
+			var range =""
+						 
+			// metto il focus
+			advancedEditor.focus();
+						 
+			range = advancedEditor.getSelection();
+						 
+				//alert(range.start);
+				//alert(range.end);
+						 
+				//Prendo Testo
+				var delta = advancedEditor.getText(range.start, range.end);
+				//alert(delta)
+						 
+				
+				advancedEditor.deleteText(range.start, range.end);
+
+				
+				advancedEditor.insertText(range.start, delta, {
+					'fore-color': '#FFF'
+				});
+						 
+				 setTimeout (function(){
+						advancedEditor.formatText(range.start, range.end, 'cssClass', 'heading');
+				}, 500);
+						 
+			 })
+			
+		 $('.action').click(function(){
+				var range ="";
+						  
+				 // metto il focus
+				advancedEditor.focus();
+						  
+				range = advancedEditor.getSelection();
+						  
+				//alert(range.start);
+				//alert(range.end);
+						  
+				//Formatto Testo
+				//advancedEditor.formatText(range.start, range.end, 'cssText', 'text0');
+						   
+				//Prendo Testo
+				var delta = advancedEditor.getText(range.start, range.end);
+				//alert(delta)
+						   
+				advancedEditor.deleteText(range.start, range.end);
+
+				
+				advancedEditor.insertText(range.start, delta, {
+					'fore-color': '#000'
+				});
+
+						   
+				 setTimeout (function(){
+						advancedEditor.formatText(range.start, range.end, 'cssText', 'action');
+				}, 500);
+		})
+		
+		$('.trans').click(function(){
+						  
+			// metto il focus
+			advancedEditor.focus();
+						  
+			var range = advancedEditor.getSelection();
+						  
+			//alert(range.start);
+			//alert(range.end);
+						  
+			//Formatto Testo
+			//advancedEditor.formatText(range.start, range.end, 'cssText', 'text0');
+						  
+			//Prendo Testo
+			var delta = advancedEditor.getText(range.start, range.end);
+			//alert(delta)
+						  
+			advancedEditor.deleteText(range.start, range.end);
+						  
+
+			advancedEditor.insertText(range.start, delta, {
+				'fore-color': '#0000'
+			});
+
+						  
+			setTimeout (function(){
+				advancedEditor.formatText(range.start, range.end, 'cssTrans', 'trans');
+			}, 500);
+						  
+		})
+
+		$('.shot').click(function(){
+						 
+			if($('.shot').length > 0)
+			{
+				//alert("Attiva")
+			}
+				  
+			// metto il focus
+			advancedEditor.focus();
+				  
+			var range = advancedEditor.getSelection();
+				  
+			//alert(range.start);
+			//alert(range.end);
+				  
+			//Formatto Testo
+			//advancedEditor.formatText(range.start, range.end, 'cssText', 'text0');
+				  
+			//Prendo Testo
+			var delta = advancedEditor.getText(range.start, range.end);
+			//alert(delta)
+				  
+			advancedEditor.deleteText(range.start, range.end);
+				  
+
+				advancedEditor.insertText(range.start, delta, {
+					'fore-color': '#000'
+				});
+				
+	 
+			setTimeout (function(){
+				advancedEditor.formatText(range.start, range.end, 'cssShot', 'shot');
+			}, 500);
+			
+			
+			// WORK start write
+			if(range.end==range.start){
+			 // alert("=")
+			  advancedEditor.insertText(range.start, '', {
+				'fore-color': '#000'
+			  });
+						 
+			  var fine = parseInt(range.start)+1
+						 
+			  setTimeout (function(){
+				advancedEditor.formatText(range.start, fine, 'cssShot', 'shot');
+			  }, 500);
+						 
+			}
+			
+		})
+		
+		$('.paren').click(function(){
+						 
+			parentesi()
+						 
+		})
+
+
+
+
+	</script>
 	
   </body>
 </html>
