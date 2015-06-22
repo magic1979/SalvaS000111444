@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-	
-	<link type="text/css" rel="stylesheet" href="jquery.dropdown.min.css" />
-	<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.2.min.css" />
-	<link rel="stylesheet" href="themes/Story.css" />
-	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
-	<link rel="stylesheet" href="css/spinner.css" />
-	<link rel="stylesheet" href="css/main.css" />
-	
-	
-	<script src="jquery-1.11.1.min.js"></script>
-	<script type="text/javascript" src="jquery.dropdown.min.js"></script>
-	
-	<script src="js/jquery.mobile-1.4.2.min.js"></script>
-	<script type="text/javascript" src="js/app.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link type="text/css" rel="stylesheet" href="jquery.dropdown.min.css" />
+		<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.2.min.css" />
+		<link rel="stylesheet" href="themes/Story.css" />
+		<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+		<link rel="stylesheet" href="css/spinner.css" />
+		<link rel="stylesheet" href="css/main.css" />
+		
+		
+		<script src="jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="jquery.dropdown.min.js"></script>
+		
+		<script src="js/jquery.mobile-1.4.2.min.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
 
+<script>
+$(document).on("pagecreate","#article1",function(){
+  $("p").on("swipe",function(){
+    $(this).hide();
+  });                   
 
+  $("li").on("swipe",function(){
+    alert();
+  });
+  
+});
+</script>
 
 <style>
+	
 	.div1 {
 		background-color: #000;
 		height: 52px;
@@ -27,7 +39,15 @@
 		
 		vertical-align: middle;
 	}
-
+	.trtabella{
+		font-family:Roboto, sans-serif;
+		background-color:#ebd8dc;
+		height: 130px;
+	}
+.trtabella2{
+	font-family:Roboto, sans-serif;
+	background-color:#ebd8dc;
+}
 .div2 {
 
 /* Note: This gradient may render differently in browsers that don't support the unprefixed gradient syntax */
@@ -57,20 +77,20 @@ background-image: linear-gradient(to bottom right, #BD8699 0%, #A390A4 50%, #C6A
   border-radius: 40px;
   font-family: Arial;
   color: #fff;
-  font-size: 18px;
-  padding: 25px 30px 25px 30px;
+  font-size: 14px;
+  padding: 10px 20px 10px 20px;
   border: solid #fff 2px;
   text-decoration: none;
   text-shadow:0 0 0;
 }
 
 .btn:active {
-  background: #000000;
-  background-image: -webkit-linear-gradient(top, #000000, #000000);
-  background-image: -moz-linear-gradient(top, #000000, #000000);
-  background-image: -ms-linear-gradient(top, #000000, #000000);
-  background-image: -o-linear-gradient(top, #000000, #000000);
-  background-image: linear-gradient(to bottom, #000000, #000000);
+  background: #ffffff;
+  background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+  background-image: linear-gradient(to bottom, #ffffff, #ffffff);
   text-decoration: none;
   text-shadow:0 0 0;
 }
@@ -98,6 +118,7 @@ background-image: linear-gradient(to bottom right, #BD8699 0%, #A390A4 50%, #C6A
 	margin-top: -240px;
 	margin-left: -150px;
 	
+	z-index:2999;
 	
 }
 
@@ -113,7 +134,9 @@ background-image: linear-gradient(to bottom right, #BD8699 0%, #A390A4 50%, #C6A
 	bottom: 60px;
 	margin-top: -70px;
 	margin-left: -150px;
-
+	
+	
+	z-index:1999;
 	
 }
 
@@ -183,6 +206,52 @@ body .ui-body-c, body .ui-overlay-c
 	
 }
 
+.btn {
+	-webkit-border-radius: 40;
+	-moz-border-radius: 40;
+	border-radius: 40px;
+	font-family: Arial;
+	color: #000000;
+	font-size: 14px;
+	padding: 5px 20px 5px 20px;
+	border: solid #000000 2px;
+	text-decoration: none;
+}
+
+.btn:active {
+	background: #ffffff;
+	background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+	background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+	background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+	background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+	background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+	text-decoration: none;
+}
+
+.btn2 {
+	-webkit-border-radius: 40;
+	-moz-border-radius: 40;
+	border-radius: 40px;
+	font-family: Arial;
+	color: #fff;
+	font-size: 18px;
+	padding: 25px 25px 25px 25px;
+	border: solid #fff 2px;
+	text-decoration: none;
+	text-shadow:0 0 0;
+}
+
+.btn2:active {
+	background: #000000;
+	background-image: -webkit-linear-gradient(top, #000000, #000000);
+	background-image: -moz-linear-gradient(top, #000000, #000000);
+	background-image: -ms-linear-gradient(top, #000000, #000000);
+	background-image: -o-linear-gradient(top, #000000, #000000);
+	background-image: linear-gradient(to bottom, #000000, #000000);
+	text-decoration: none;
+	text-shadow:0 0 0;
+}
+
 .messaggio {
 	background-color: #634c56;
 	background-image: url(img/Mess2.png);
@@ -244,20 +313,6 @@ body .ui-body-c, body .ui-overlay-c
 	-moz-box-shadow: 0px 0px 0.5px 1px #000;
 	box-shadow: 0px 0px 0.5px 1px #000;
 }
-
-.ui-dialog-contain {
-	width: 92.5%;
-	max-width: 500px;
-	margin: 10% auto 15px auto;
-	padding: 0;
-	position: relative;
-	top: -15px;
-}
-
-iframe {
-	border: none;
-}
-
 </style>
 
 
@@ -275,7 +330,7 @@ iframe {
 					<tr><td><br></td></tr>
 					<tr><td><a id="badde" class="badge1" data-badge="1"><div width="38px" class="messaggio"></div></a></td></tr>
 					<tr><td><br></td></tr>
-					<tr><td><a href="#popupMap" onclick="javascript:prendiemail()"  data-rel="popup" data-position-to="window"><div width="38px" class="altro"></div></a></td></tr>
+					<tr><td><a href="javascript:LogOut()"><div width="38px" class="altro"></div></a></td></tr>
 					<tr><td><br></td></tr>
 				</table>
 			</td></tr>
@@ -284,57 +339,87 @@ iframe {
 
 
 <div data-role="page" id="article1" class="div2">
-	
   <div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div1">
-    <a id="test1" href="#" class="showMenu"><img src="img/list.png" width="20"></a>
+    <a href="#" class="showMenu"><img src="img/list.png" width="20"></a>
 	<center>
-	<p><a href="#" data-jq-dropdown="#jq-dropdown-1" style="text-decoration: none"><font color="#fff">Drafts</font></a></p></center>
+	<p><a href="swip4.html" data-jq-dropdown="#jq-dropdown-1" style="text-decoration: none"><font color="#fff">Drafts</font></a></p></center>
   </div>
-  
-  <div class="spinner" id="spinner"></div>
 
-  <!--<div data-role="main" class="ui-content">
-    <p>If you swipe me, I will disappear.</p>
-		<p>Swipe me away!</p>
-		<p>Swipe me too!</p>
-		
-		<ui>
-		  <li>Test</li>
-		  <li>Test2</li>
-		</ui>
-		<br>
-		<a href="#" class="btn" data-jq-dropdown="#jq-dropdown-1"><font color="#000000">Pinch</font></a>
-		<br><br>
-	
-  </div>-->
-  
-  <table id="myTable" class="myTableStyle" border="0" >
+  <center>
+
+	<!-- Storie personali -->
+
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	  <tr>
-		  <td align="center" style="text-decoration: none"><font size="4" color="#FFF" class="testo">You have nit create any stories yet</font></td>
+		  <td class="trtabella" width="20%">
+			  <table width="90%"><tr><td width="10%"></td><td width="90%" align="left">
+				  <b>Hollow Hill</b><br>Today 1:14 pm
+			  </td></tr></table>
+		  </td>
+		  <td class="trtabella" width="5%" align="center">
+			  <img src="img/Comunity2.png" width="25">
+				  </td>
+		  <td class="trtabella" width="65%" align="left">
+			  <table width="80%" align="center" border="0">
+				  <tr>
+					  <td width="30%" align="center">
+						  <a href="#" class="btn"><font color="#000000">Duplicate</font></a>
+					  </td>
+					  <td width="30%" align="center">
+						  <a href="javascript:forgot()" class="btn"><font color="#000000">Share</font></a>
+					  </td>
+					  <td width="30%" align="center">
+						  <a href="#" class="btn"><font color="#000000">Trash</font></a>
+					  </td>
+					  <td width="10%" align="left"></td>
+				  </tr>
+			  </table>
+		  </td>
 	  </tr>
+	  <tr><td class="trtabella2" colspan="3"><hr></td></tr>
 	  <tr>
-		  <td align="center"><a href="javascript:createstory()" rel="external" class="btn"><font color="#FFF">Start your first story</font></a></td>
+		  <td class="trtabella" width="20%">
+			  <table width="80%"><tr><td widt="10%"></td><td width="90%" align="left">
+				  <b>Hollow Hill</b><br>Today 1:14 pm
+			  </td></tr></table>
+		  </td>
+		  <td class="trtabella" width="5%" align="center">
+			  <img src="img/Comunity2.png" width="25">
+				  </td>
+		  <td class="trtabella" width="65%" align="left">
+			  <table width="80%" align="center" border="0">
+				  <tr>
+					  <td width="30%" align="center">
+						  <a href="#" class="btn"><font color="#000000">Duplicate</font></a>
+					  </td>
+					  <td width="30%" align="center">
+						  <a href="javascript:forgot()" class="btn"><font color="#000000">Share</font></a>
+					  </td>
+					  <td width="30%" align="center">
+						  <a href="#" class="btn"><font color="#000000">Trash</font></a>
+					  </td>
+					  <td width="10%" align="left"></td>
+				  </tr>
+			  </table>
+		  </td>
 	  </tr>
+	  <tr><td class="trtabella2" colspan="3"><hr></td></tr>
   </table>
-      	<!--<div class="myTableStyle2">
-        	You can put whatever HTML you want in a panel! You can put whatever HTML you want in a panel! You can put whatever HTML you want in a panel! You can put whatever HTML you want in a panel! You can put whatever HTML you want in a panel! You can put whatever HTML you want in a panel! You can put whatever HTML you want in a panel!
-    	</div>-->
-		
-		<div data-role="popup" id="popupMap" data-overlay-theme="d" data-theme="c" data-corners="false" data-tolerance="15,15">
-			<a href="#" data-rel="back" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
-			<iframe src="setting.html" width="600px" height="760px" seamless></iframe>
-		</div>
-		
-</div>
+  
+  <br><br><br><br>
+  <a href="swip4.html" rel="external" class="btn2"><font color="#FFF">Start your story</font></a>
+  </center>
+
+</div> 
 
 
 <div id="jq-dropdown-1" class="jq-dropdown jq-dropdown-tip" >
         <ul class="jq-dropdown-menu">
-            <li><a href="swip2.html" rel="external">Drafts</a></li>
+            <li><a href="#" rel="external">Drafts</a></li>
 			 <li class="jq-dropdown-divider"></li>
-			<li><a href="javascript:LogOut()">Finisched</a></li>
+			<li><a href="#" rel="external">Finisched</a></li>
 			 <li class="jq-dropdown-divider"></li>
-			<li><a href="#" rel="external">Trash</a></li>
+			<li><a href="#">Trash</a></li>
         </ul>
     </div>
     
@@ -345,6 +430,6 @@ iframe {
 	</div>
 	
 	<script type="text/javascript" src="cordova.js"></script>
-	<script type="text/javascript" src="js/swip.js"></script>
+	<script type="text/javascript" src="js/swip2.js"></script>
 </body>
 </html>

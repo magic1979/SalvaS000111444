@@ -35,7 +35,7 @@ function leggi(id) {
 	var conto = 1;
 	var ciccio;
 	
-	var out = "Lista Outline<br>";
+	var out = "";
 	
 	$(".spinner").show();
 	$.ajax({
@@ -216,7 +216,7 @@ function leggioutline(id) {
 	var conto = 1;
 	var ciccio;
 	
-	var out = "";
+	var out = "Lista Outline<br><br>";
 	
 	$(".spinner").show();
 	$.ajax({
