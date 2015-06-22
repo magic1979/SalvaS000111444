@@ -14,7 +14,7 @@ function onDeviceReady() {
 	if(connectionStatus=='online'){
 		//Verifica Token
 		
-		verificatoken()
+		//verificatoken()
 	}
 	else{
 	 // Che Faccio @
