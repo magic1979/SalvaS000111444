@@ -6,10 +6,10 @@
 		version   = "1.0">
 		<name>StoryMatch</name>
 		<description>StoryMatch, e sei un cliente di serie A</description>
-		<author href="http://www.betaandroid.it" email="info@betaandroid.it">
+		<author href="https://www.storymatch.co" email="info@betaandroid.it">
 Salvatore sas
 		</author>
-		<preference name="phonegap-version" value="3.5.0" />
+		<preference name="phonegap-version" value="3.7.0" />
 		<preference name="orientation" value="portrait" />
 		<preference name="fullscreen" value="true" />
 		<preference name="target-device" value="universal" />
@@ -94,6 +94,7 @@ Salvatore sas
 		<gap:splash src="res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone" />
 		<gap:splash src="splash.png" />
 		<access origin="*" />
+		<access origin="https://www.storymatch.co" />
 		<access origin="http://google.com" subdomains="true"  />
 		<access origin="http://google.com" subdomains="true"  />
 		<access origin="https://googleapis.com" subdomains="true"  />
