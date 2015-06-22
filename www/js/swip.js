@@ -18,7 +18,7 @@ function onDeviceReady() {
 	if(connectionStatus=='online'){
 		//Verifica Token
 		
-		//verificatoken()
+		verificatoken()
 	}
 	else{
 	 // Che Faccio
@@ -64,7 +64,7 @@ function onPrompt(results) {
 		$(".spinner").show();
 		$.ajax({
 			   type:"GET",
-			   url:"https://www.storymatch.co/storymatch/userstories/create",
+			   url:"http://5.249.157.197:9000/storymatch/userstories/create",
 			   data: {token:localStorage.getItem("Token"),title:results.input1},
 			   contentType: "application/json; charset=utf-8",
 			   json: 'callback',
@@ -117,7 +117,7 @@ function verificatoken() {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://www.storymatch.co/storymatch/authentication/validatetoken",
+		   url:"http://5.249.157.197:9000/storymatch/authentication/validatetoken",
 		   data: {token:Token},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',

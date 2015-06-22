@@ -27,7 +27,7 @@ function listapitch(IDPage,page) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://www.storymatch.co/storymatch/search/stepsbygenres",
+		   url:"http://5.249.157.197:9000/storymatch/search/stepsbygenres",
 		   data: {token:localStorage.getItem("Token"),genre:"All",page:page,pagesize:"5"},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',

@@ -92,7 +92,7 @@ function editstory(id,IDPitch) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://www.storymatch.co/storymatch/search/stepsbyid",
+		   url:"http://5.249.157.197:9000/storymatch/search/stepsbyid",
 		   data: {ID:id, token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -220,7 +220,7 @@ function editstory2(id) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://www.storymatch.co/storymatch/search/stepsbyid",
+		   url:"http://5.249.157.197:9000/storymatch/search/stepsbyid",
 		   data: {ID:id, token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -230,10 +230,39 @@ function editstory2(id) {
 		   
 		   $.each(result.characters, function(i,item){
 				  var fruits = item.detail["steps"]
+				  var pitcho = "";
+				  var crea=0;
+				  var steppo;
+				  var chiuso;
+				  
+				  if(conto==1){
+				  pitcho = item.detail["pitch"].replace("'","");
+				  story = story + "<tr><td width='10%'></td><td width='90%' align='left'><div id='pitcho'>"+ item.detail["pitch"].replace("'","") +"</div></td></tr></table></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr> <tr><td class='trtabella2' colspan='4'><br><br></td></tr>"
+				  }
+				  
+				  
+				  if ((pitcho=="")||(!pitcho)){
+				  crea=1;
+				  }
 
 				  
 				  for ( i=0; i < fruits.length; i++ )
 				  {
+				  
+				  if((conto==1)||(conto==2)||(conto==3)||(conto==6)||(conto==7)){
+				  //alert(conto);
+				  //alert(fruits[i]["step"].replace("'",""));
+				  
+				  if (crea==1){
+				  if(conto==7){
+				  pitcho = pitcho + " and " + fruits[i]["step"].replace("'","")
+				  }
+				  else{
+				  pitcho = pitcho + " " + fruits[i]["step"].replace("'","")
+				  }
+					 }
+				  }
+
 				  
 				  if(localStorage.getItem("locco"+ conto +"")==0){
 					 document.getElementById("myTextarea"+ conto +"").value = fruits[i]["step"].replace("'","");
@@ -251,7 +280,8 @@ function editstory2(id) {
 				  }
 				  
 				  $(".spinner").hide();
-				  
+				  $("#pitcho").html(pitcho);
+				  localStorage.setItem("pitcho", pitcho);
 				  
 				  });
 		   
@@ -366,18 +396,18 @@ function redor() {
 
 
 function salva(id,conto,idstory,idpitch) {
-	alert(id)
-	alert(conto)
+	//alert(id)
+	//alert(conto)
 	var step1 = document.getElementById("myTextarea"+ conto +"").value;
 
 						  
-	alert(step1)
+	//alert(step1)
 	//var step2 = self.document.formia.myTextarea2.value;
 						  
 						  $(".spinner").show();
 						  $.ajax({
 								 type:"GET",
-								 url:"https://www.storymatch.co/storymatch/userstories/update/step",
+								 url:"http://5.249.157.197:9000/storymatch/userstories/update/step",
 								 data: {token:localStorage.getItem("Token"),stepid:id,step:step1},
 								 contentType: "application/json; charset=utf-8",
 								 json: 'callback',
@@ -391,6 +421,7 @@ function salva(id,conto,idstory,idpitch) {
 															  'Modifica Step',            // title
 															  'OK'                  // buttonName
 															  );
+								 editstory2(idstory)
 								 
 								 }
 								 else{
@@ -419,7 +450,6 @@ function salva(id,conto,idstory,idpitch) {
 								 dataType:"json"});
 
 						  
-	editstory2(idstory)
 	//alert(step1);
 	//alert(step2);
 							  
@@ -432,7 +462,7 @@ var conto2 = conto-1;
 						  $(".spinner").show();
 						  $.ajax({
 								 type:"GET",
-								 url:"https://www.storymatch.co/storymatch/search/steprnd",
+								 url:"http://5.249.157.197:9000/storymatch/search/steprnd",
 								 data: {token:localStorage.getItem("Token"),stepnum:conto2},
 								 contentType: "application/json; charset=utf-8",
 								 json: 'callback',
@@ -482,7 +512,7 @@ function shuffletotal() {
 			$(".spinner").show();
 			$.ajax({
 				type:"GET",
-				url:"https://www.storymatch.co/storymatch/search/stepsrnd",
+				url:"http://5.249.157.197:9000/storymatch/search/stepsrnd",
 				data: {token:localStorage.getItem("Token")},
 				contentType: "application/json; charset=utf-8",
 				json: 'callback',
@@ -527,8 +557,8 @@ function shuffletotal() {
 						  
 
 function lucchetto(id,conto,idstory,idpitch) {
-	alert(conto);
-	alert(id);
+	//alert(conto);
+	//alert(id);
 	var locco = document.getElementById("locco"+ conto +"").value;
 						
 	 if (locco==0) {

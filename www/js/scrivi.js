@@ -40,7 +40,7 @@ function leggi(id) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://www.storymatch.co/storymatch/search/stepsbyid",
+		   url:"http://5.249.157.197:9000/storymatch/search/stepsbyid",
 		   data: {ID:id, token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -108,7 +108,7 @@ function scrivi(id) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://www.storymatch.co/storymatch/userstories/update/script",
+		   url:"http://5.249.157.197:9000/storymatch/userstories/update/script",
 		   data: {token:Token,storyid:id,script:html},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -165,7 +165,7 @@ function creapdf(id) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://www.storymatch.co/storymatch/userstories/createpdf",
+		   url:"http://5.249.157.197:9000/storymatch/userstories/createpdf",
 		   data: {token:Token,storyid:id,script:html},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -216,12 +216,12 @@ function leggioutline(id) {
 	var conto = 1;
 	var ciccio;
 	
-	var out = "Lista Outline<br><br>";
+	var out = "";
 	
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://www.storymatch.co/storymatch/search/stepsbyid",
+		   url:"http://5.249.157.197:9000/storymatch/search/stepsbyid",
 		   data: {ID:id, token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',

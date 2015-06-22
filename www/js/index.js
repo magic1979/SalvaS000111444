@@ -165,7 +165,7 @@ function vai(){
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://www.storymatch.co/storymatch/authentication/signup",
+		   url:"http://5.249.157.197:9000/storymatch/authentication/signup",
 		   data: {username:emailreg,password:pinreg,name:"",surname:""},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -299,7 +299,7 @@ function Login(){
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://www.storymatch.co/storymatch/authentication/login",
+		   url:"http://5.249.157.197:9000/storymatch/authentication/login",
 		   data: {username:emailreg,password:pinreg},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -409,7 +409,7 @@ function onPrompt(results) {
 		$(".spinner").show();
 		$.ajax({
 			   type:"GET",
-			   url:"https://www.storymatch.co/storymatch/authentication/asktoreset",
+			   url:"http://5.249.157.197:9000/storymatch/authentication/asktoreset",
 			   data: {username:results.input1},
 			   contentType: "application/json; charset=utf-8",
 			   json: 'callback',
