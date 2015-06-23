@@ -221,6 +221,7 @@
 }
 
 .heading {
+	margin-top:5px;
 	font-family: Courier, 'Arial', sans-serif;
 	font-size: 12pt;
 
@@ -233,6 +234,7 @@
 }
 
 .action {
+	margin-top:5px;
 	font-family: Courier, 'Arial', sans-serif;
 	font-size: 12pt;
 
@@ -248,7 +250,7 @@
 }
 
 .trans {
-	border-top: 5px Solid #ebd8dc;
+	margin-top:5px;
 	text-align: right;
 	font-style: normal;
 	list-style-type: none;
@@ -259,7 +261,7 @@
 }
 
 .shot {
-	border-top: 5px Solid #ebd8dc;
+	margin-top:5px;
 	text-align: left;
 	list-style-type: none;
 	text-transform: uppercase;
@@ -269,7 +271,7 @@
 }
 
 .paren {
-	border-top: 5px Solid #ebd8dc;
+	margin-top:5px;
 	list-style-type: none;
 	text-decoration: none;
 	line-height: 1;
@@ -280,7 +282,7 @@
 
 .ql-editor s {
   /*text-decoration: line-through;*/
-  border-top: 5px Solid #ebd8dc;
+  margin-top:5px;
   
   font-family: Courier, 'Arial', sans-serif;
   font-style: normal;
@@ -315,7 +317,7 @@
 }
 .ql-editor ol {
   /*list-style-type: decimal;*/
-  border-top: 5px Solid #ebd8dc;
+  margin-top:5px;
   list-style-type: none;
   text-decoration: none;
   margin-left: 1.6in;
@@ -326,7 +328,7 @@
 
 .ql-editor ul {
   /*list-style-type: disc;*/
-  border-top: 5px Solid #ebd8dc;
+  margin-top:5px;
   text-align: left;
   font-style: normal;
   list-style-type: none;
@@ -424,129 +426,229 @@
 .ql-snow.ql-toolbar .ql-format-button {
   box-sizing: border-box;
   display: inline-block;
-  height: 24px;
-  line-height: 24px;
+  height: 31px;
+  line-height: 31px;
   vertical-align: middle;
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: 80px 16px;
+  background-size: 140px 31px;
   box-sizing: border-box;
   cursor: pointer;
   text-align: center;
-  width: 80px;
+  width: 140px;
 }
 
-.ql-snow.ql-toolbar .ciccio {
-	background-image: url(Shene2.png);
+.ql-snow.ql-toolbar .Heading {
+	background-image: url(Heading.png);
 	box-sizing: border-box;
 	display: inline-block;
-	height: 24px;
-	line-height: 24px;
+	height: 31px;
+	line-height: 31px;
 	vertical-align: middle;
 	background-position: center center;
 	background-repeat: no-repeat;
-	background-size: 80px 16px;
+	background-size: 140px 31px;
 	box-sizing: border-box;
 	cursor: pointer;
 	text-align: center;
-	width: 80px;
+	width: 140px;
+}
+
+.ql-snow.ql-toolbar .Heading2 {
+	background-image: url(Heading1.png);
+	box-sizing: border-box;
+	display: inline-block;
+	height: 31px;
+	line-height: 31px;
+	vertical-align: middle;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 140px 31px;
+	box-sizing: border-box;
+	cursor: pointer;
+	text-align: center;
+	width: 140px;
 }
 
 .ql-snow.ql-toolbar .ActionButton {
 	background-image: url(Action.png);
 	box-sizing: border-box;
 	display: inline-block;
-	height: 24px;
-	line-height: 24px;
+	height: 31px;
+	line-height: 31px;
 	vertical-align: middle;
 	background-position: center center;
 	background-repeat: no-repeat;
-	background-size: 80px 16px;
+	background-size: 140px 31px;
 	box-sizing: border-box;
 	cursor: pointer;
 	text-align: center;
-	width: 80px;
+	width: 140px;
+	margin-top: 10px;
+}
+
+.ql-snow.ql-toolbar .ActionButton2 {
+	background-image: url(Action2.png);
+	box-sizing: border-box;
+	display: inline-block;
+	height: 31px;
+	line-height: 31px;
+	vertical-align: middle;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 140px 31px;
+	box-sizing: border-box;
+	cursor: pointer;
+	text-align: center;
+	width: 140px;
+	margin-top: 10px;
 }
 
 .ql-snow.ql-toolbar .TransButton {
-	background-image: url(Trans.png);
+	background-image: url(Transitin.png);
 	box-sizing: border-box;
 	display: inline-block;
-	height: 24px;
-	line-height: 24px;
+	height: 31px;
+	line-height: 31px;
 	vertical-align: middle;
 	background-position: center center;
 	background-repeat: no-repeat;
-	background-size: 80px 16px;
+	background-size: 140px 31px;
 	box-sizing: border-box;
 	cursor: pointer;
 	text-align: center;
-	width: 80px;
+	width: 140px;
+}
+
+.ql-snow.ql-toolbar .TransButton2 {
+	background-image: url(Transition2.png);
+	box-sizing: border-box;
+	display: inline-block;
+	height: 31px;
+	line-height: 31px;
+	vertical-align: middle;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 140px 31px;
+	box-sizing: border-box;
+	cursor: pointer;
+	text-align: center;
+	width: 140px;
 }
 
 .ql-snow.ql-toolbar .ShotButton {
 	background-image: url(Shot.png);
 	box-sizing: border-box;
 	display: inline-block;
-	height: 24px;
-	line-height: 24px;
+	height: 31px;
+	line-height: 31px;
 	vertical-align: middle;
 	background-position: center center;
 	background-repeat: no-repeat;
-	background-size: 80px 16px;
+	background-size: 140px 31px;
 	box-sizing: border-box;
 	cursor: pointer;
 	text-align: center;
-	width: 80px;
+	width: 140px;
 }
 
-.ql-snow.ql-toolbar .ParenButton {
-	background-image: url(Pare.png);
+.ql-snow.ql-toolbar .ShotButton2 {
+	background-image: url(Shot2.png);
 	box-sizing: border-box;
 	display: inline-block;
-	height: 24px;
-	line-height: 24px;
+	height: 31px;
+	line-height: 31px;
 	vertical-align: middle;
 	background-position: center center;
 	background-repeat: no-repeat;
-	background-size: 80px 16px;
+	background-size: 140px 31px;
 	box-sizing: border-box;
 	cursor: pointer;
 	text-align: center;
-	width: 80px;
+	width: 140px;
+}
+
+
+.ql-snow.ql-toolbar .ParenButton {
+	background-image: url(Parenthetical.png);
+	box-sizing: border-box;
+	display: inline-block;
+	height: 31px;
+	line-height: 31px;
+	vertical-align: middle;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 140px 31px;
+	box-sizing: border-box;
+	cursor: pointer;
+	text-align: center;
+	width: 140px;
+}
+
+.ql-snow.ql-toolbar .ParenButton2 {
+	background-image: url(Parenthetical2.png);
+	box-sizing: border-box;
+	display: inline-block;
+	height: 31px;
+	line-height: 31px;
+	vertical-align: middle;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 140px 31px;
+	box-sizing: border-box;
+	cursor: pointer;
+	text-align: center;
+	width: 140px;
 }
 
 .ql-snow.ql-toolbar .DialogButton {
 	background-image: url(Dialog.png);
 	box-sizing: border-box;
 	display: inline-block;
-	height: 24px;
-	line-height: 24px;
+	height: 31px;
+	line-height: 31px;
 	vertical-align: middle;
 	background-position: center center;
 	background-repeat: no-repeat;
-	background-size: 80px 16px;
+	background-size: 140px 31px;
 	box-sizing: border-box;
 	cursor: pointer;
 	text-align: center;
-	width: 80px;
+	width: 140px;
 }
 
 .ql-snow.ql-toolbar .CharacterButton {
-	background-image: url(Char.png);
+	background-image: url(Character.png);
 	box-sizing: border-box;
 	display: inline-block;
-	height: 24px;
-	line-height: 24px;
+	height: 31px;
+	line-height: 31px;
 	vertical-align: middle;
 	background-position: center center;
 	background-repeat: no-repeat;
-	background-size: 80px 16px;
+	background-size: 140px 31px;
 	box-sizing: border-box;
 	cursor: pointer;
 	text-align: center;
-	width: 80px;
+	width: 140px;
 }
+
+.ql-snow.ql-toolbar .CharacterButton2 {
+	background-image: url(Character2.png);
+	box-sizing: border-box;
+	display: inline-block;
+	height: 31px;
+	line-height: 31px;
+	vertical-align: middle;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 140px 31px;
+	box-sizing: border-box;
+	cursor: pointer;
+	text-align: center;
+	width: 140px;
+}
+
 
 .ql-snow.ql-toolbar .ql-picker {
   box-sizing: border-box;
@@ -581,7 +683,7 @@
   border: 1px solid transparent;
   box-sizing: border-box;
   display: none;
-  padding: 4px 8px;
+  padding: 0px 0px;
   position: absolute;
   width: 100%;
 }
@@ -616,14 +718,14 @@
   width: 28px;
 }
 .ql-snow.ql-toolbar .ql-picker.ql-color-picker .ql-picker-options {
-  padding: 5px;
-  width: 120px;
+  padding: 0px;
+  width: 160px;
 }
 .ql-snow.ql-toolbar .ql-picker.ql-color-picker .ql-picker-options .ql-picker-item {
   border: 1px solid transparent;
   float: left;
   height: 16px;
-  margin: 2px;
+  margin: 0px;
   padding: 0px;
   width: 16px;
 }
@@ -635,32 +737,32 @@
   border-color: #000;
 }
 .ql-snow.ql-toolbar .ql-picker.ql-font {
-  width: 95px;
+  width: 140px;
 }
 .ql-snow.ql-toolbar .ql-picker.ql-size {
-  width: 90px;
+  width: 140px;
 }
 .ql-snow.ql-toolbar .ql-picker.ql-font .ql-picker-label,
 .ql-snow.ql-toolbar .ql-picker.ql-size .ql-picker-label {
-  padding-left: 8px;
-  padding-right: 8px;
+  padding-left: 4px;
+  padding-right: 4px;
   
 }
 .ql-snow.ql-toolbar .ql-picker.ql-align .ql-picker-label {
   background-position: center center;
-  width: 80px;
+  width: 140px;
 }
 .ql-snow.ql-toolbar .ql-picker.ql-align .ql-picker-item {
   box-sizing: border-box;
   display: inline-block;
-  height: 24px;
-  line-height: 24px;
+  height: 31px;
+  line-height: 31px;
   vertical-align: middle;
   padding: 0px;
-  width: 80px;
+  width: 140px;
 }
 .ql-snow.ql-toolbar .ql-picker.ql-align .ql-picker-options {
-  padding: 4px 0px;
+  padding: 0px 0px;
 }
 .ql-snow.ql-toolbar .ql-picker .ql-picker-label {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASBAMAAACk4JNkAAAAKlBMVEUAAABJSUlAQEBERERFRUVERERERERERERERERFRUVEREREREREREREREQJcW6NAAAADXRSTlMAFRzExcbLzM/Q0dLbKbcyLwAAADVJREFUCNdjYCAeMKYJQFnSdzdCWbl3r0NZvnev4tFre/cKlNV79yaUpXP3EJTFtEqBBHcAAHyoDQk0vM/lAAAAAElFTkSuQmCC");
@@ -724,7 +826,7 @@
 .ql-snow.ql-toolbar .ql-picker.ql-strike .ql-picker-label,
 .ql-snow.ql-toolbar .ql-picker .ql-picker-label[data-value=strike],
 .ql-snow.ql-toolbar .ql-picker .ql-picker-item[data-value=strike] {
-  background-image: url("Char.png");
+  background-image: url("Character.png");
 }
 .ql-snow.ql-toolbar .ql-format-button.ql-strike.ql-active,
 .ql-snow.ql-toolbar .ql-picker.ql-strike .ql-picker-label.ql-active,
@@ -734,7 +836,7 @@
 .ql-snow.ql-toolbar:not(.ios) .ql-picker.ql-strike .ql-picker-label:hover,
 .ql-snow.ql-toolbar:not(.ios) .ql-picker .ql-picker-label[data-value=strike]:hover,
 .ql-snow.ql-toolbar:not(.ios) .ql-picker .ql-picker-item[data-value=strike]:hover {
-  background-image: url("Char2.png");
+  background-image: url("Character2.png");
 }
 .ql-snow.ql-toolbar .ql-format-button.ql-link,
 .ql-snow.ql-toolbar .ql-picker.ql-link .ql-picker-label,
@@ -799,7 +901,7 @@
 .ql-snow.ql-toolbar:not(.ios) .ql-picker.ql-bullet .ql-picker-label:hover,
 .ql-snow.ql-toolbar:not(.ios) .ql-picker .ql-picker-label[data-value=bullet]:hover,
 .ql-snow.ql-toolbar:not(.ios) .ql-picker .ql-picker-item[data-value=bullet]:hover {
-  background-image: url("Dialog.png");
+  background-image: url("Dialog2.png");
 }
 
 .ql-snow.ql-toolbar .ql-format-button.heading,
@@ -995,7 +1097,7 @@
   .ql-snow.ql-toolbar .ql-picker.ql-strike .ql-picker-label,
   .ql-snow.ql-toolbar .ql-picker .ql-picker-label[data-value=strike],
   .ql-snow.ql-toolbar .ql-picker .ql-picker-item[data-value=strike] {
-    background-image: url("Char.png");
+    background-image: url("Character.png");
   }
   .ql-snow.ql-toolbar .ql-format-button.ql-strike.ql-active,
   .ql-snow.ql-toolbar .ql-picker.ql-strike .ql-picker-label.ql-active,
@@ -1005,7 +1107,7 @@
   .ql-snow.ql-toolbar:not(.ios) .ql-picker.ql-strike .ql-picker-label:hover,
   .ql-snow.ql-toolbar:not(.ios) .ql-picker .ql-picker-label[data-value=strike]:hover,
   .ql-snow.ql-toolbar:not(.ios) .ql-picker .ql-picker-item[data-value=strike]:hover {
-    background-image: url("Char2.png");
+    background-image: url("Character2.png");
   }
   .ql-snow.ql-toolbar .ql-format-button.ql-link,
   .ql-snow.ql-toolbar .ql-picker.ql-link .ql-picker-label,

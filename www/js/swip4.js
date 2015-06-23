@@ -3,13 +3,32 @@ document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady() {
 	document.addEventListener("resume", onResume, false);
 	
+	document.addEventListener("showkeyboard", function(){ $("[data-role=footer]").hide();}, false);
+	document.addEventListener("hidekeyboard", function(){ $("[data-role=footer]").show();}, false);
+	
+	$(document).on('focus', 'select, input, textarea', function () {
+		$('#myfooter').css({'position': 'absolute', 'bottom': '0px' });
+	});
+	$(document).on('blur', 'select, input, textarea', function () {
+		$('#myfooter').css({ 'position': 'fixed' });
+	});
+	
+	
 	var story;
     $(".spinner").hide();
+	var IDPage;
+	var IDPitch;
 	
-	var IDPage = getParameterByName('id');
-	var IDPitch = getParameterByName('idPitch');
+	$(".spinner").hide();
 	
+	verificatoken()
+	
+	IDPage = getParameterByName('id');
+	IDPitch = getParameterByName('idPitch');
+	
+
 	$("#ispirazione").attr("href", "swip3.html?IDPage="+ IDPage +"");
+	//$("#salvatutto").attr("href", "javascript:salvasteps("+ IDPage +")");
 
 	
 	if (IDPitch==0){
@@ -154,7 +173,7 @@ function editstory(id,IDPitch) {
 					steppo = fruits[i]["step"].replace("'","")
 				  }
 				  
-				  story = story + "<tr><td class='trtabella' width='90%'><table width='100%' border='0'><tr><td width='10%'></td><td width='90%' align='left'><b>"+ conto +"</b></td></tr><tr><td width='10%'></td><td width='90%' align='left'><textarea name='myTextarea"+ conto +"' id='myTextarea"+ conto +"' rows='4' cols='60' class='textarea1' style='background-color: transparent;' >"+ steppo +"</textarea></td></tr><tr><td width='10%'></td><td width='90%' align='left'><br></td></tr><tr><td width='10%'></td><td width='90%' align='left'><table width='100%'><tr><td width='55px'><a id='sin"+ conto +"' href='#' rel='external'><div width='52px' class='sinistra'></div></a></td><td width='55px'><a id='des"+ conto +"' href='#' rel='external'><div width='52px' class='destra'></div></a></td><td width='55px'><a href='javascript:abilita"+ conto +"()' rel='external'><div id='edit"+ conto +"' width='52px' class='edita'></div></a></td><td width='55px'><a href='javascript:lucchetto("+ fruits[i]["id"] +","+ conto +","+ id +","+ IDPitch +")' rel='external'><div id='lock"+ conto +"' width='52px' class='lucchetto'></div></a></td><td width='55px'><a href='javascript:shuffle("+ conto +")' rel='external'><div width='52px' class='infinito'></div></a></td><td width='55px'></td></tr></table></td></tr></table></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><input type='hidden' id='locco"+ conto +"' name='locco"+ conto +"' value='0'><hr></td></tr>"
+				  story = story + "<tr><td class='trtabella' width='90%'><table width='100%' border='0'><tr><td width='10%'></td><td width='90%' align='left'><b>"+ conto +"</b></td></tr><tr><td width='10%'></td><td width='90%' align='left'><input id='idLine"+ conto +"' value='"+ fruits[i]["id"] +"' type='hidden'><textarea name='myTextarea"+ conto +"' id='myTextarea"+ conto +"' rows='4' cols='60' class='textarea1' style='background-color: transparent;' >"+ steppo +"</textarea></td></tr><tr><td width='10%'></td><td width='90%' align='left'><br></td></tr><tr><td width='10%'></td><td width='90%' align='left'><table width='100%'><tr><td width='55px'><a id='sin"+ conto +"' href='#' rel='external'><div width='52px' class='sinistra'></div></a></td><td width='55px'><a id='des"+ conto +"' href='#' rel='external'><div width='52px' class='destra'></div></a></td><td width='55px'><a href='javascript:abilita"+ conto +"()' rel='external'><div id='edit"+ conto +"' width='52px' class='edita'></div></a></td><td width='55px'><a href='javascript:lucchetto("+ fruits[i]["id"] +","+ conto +","+ id +","+ IDPitch +")' rel='external'><div id='lock"+ conto +"' width='52px' class='lucchetto'></div></a></td><td width='55px'><a href='javascript:shuffle("+ conto +")' rel='external'><div width='52px' class='infinito'></div></a></td><td width='55px'></td></tr></table></td></tr></table></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><input type='hidden' id='locco"+ conto +"' name='locco"+ conto +"' value='0'><hr></td></tr>"
 				  
 				  
 				  conto = conto+1;
@@ -297,32 +316,73 @@ function editstory2(id) {
 	
 }
 
-function esempio(){
+function editstory3(id) {
+	
+	var length = 2,
+	element = null;
+	var conto = 1;
+	
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/testjson/story",
-		   data: {ID:1},
+		   url:"http://5.249.157.197:9000/storymatch/search/stepsbyid",
+		   data: {ID:id, token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
 		   crossDomain: true,
 		   success:function(result){
 		   
-		   //alert(result.title);
 		   
 		   $.each(result.characters, function(i,item){
 				  var fruits = item.detail["steps"]
+				  var pitcho = "";
+				  var crea=0;
+				  var steppo;
+				  var chiuso;
 				  
-				  alert(fruits[0]["id"]);
+				  if(conto==1){
+				  pitcho = item.detail["pitch"].replace("'","");
+				  story = story + "<tr><td width='10%'></td><td width='90%' align='left'><div id='pitcho'>"+ item.detail["pitch"].replace("'","") +"</div></td></tr></table></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr> <tr><td class='trtabella2' colspan='4'><br><br></td></tr>"
+				  }
+				  
+				  
+				  if ((pitcho=="")||(!pitcho)){
+				  crea=1;
+				  }
+				  
 				  
 				  for ( i=0; i < fruits.length; i++ )
 				  {
-				  if(fruits[i]["id"]==12){
-				  alert(fruits[i]["step"]);
+				  
+				  if((conto==1)||(conto==2)||(conto==3)||(conto==6)||(conto==7)){
+				  
+				  if (crea==1){
+				  if(conto==7){
+				  pitcho = pitcho + " and " + fruits[i]["step"].replace("'","")
 				  }
+				  else{
+				  pitcho = pitcho + " " + fruits[i]["step"].replace("'","")
+				  }
+					 }
 				  }
 				  
-				  //alert(item.detail["steps"]);
+				  
+				  if(localStorage.getItem("locco"+ conto +"")==0){
+					 //document.getElementById("myTextarea"+ conto +"").value = fruits[i]["step"].replace("'","");
+				  }
+				  else{
+				  $("#lock"+ conto +"").removeClass('lucchetto').addClass('lucchetto2');
+				  document.getElementById("locco"+ conto +"").value = 1;
+				  }
+
+				  conto = conto+1;
+				  
+				  }
+				  
+				  $(".spinner").hide();
+				  $("#pitcho").html(pitcho);
+				  localStorage.setItem("pitcho", pitcho);
+				  
 				  });
 		   
 		   },
@@ -333,6 +393,96 @@ function esempio(){
 		   
 		   },
 		   dataType:"json"});
+	
+	
+}
+
+
+function salvasteps(id) {
+	var contasalva = 1;
+	var stringa = "["
+	var iddOut;
+	var OutOutline;
+	
+	var numout = 12;
+	
+	//alert(numout);
+	
+	for ( i=0; i < numout; i++ )
+	{
+
+		iddOut = document.getElementById("idLine"+ contasalva +"").value
+		
+		OutOutline = document.getElementById("myTextarea"+ contasalva +"").value;
+		OutOutline.replace(' ','%20');
+		
+		
+		if (contasalva==1){
+			stringa = stringa + "{%22id%22:"+ iddOut +",%22step%22:%22"+ OutOutline +"%22}";
+		}
+		else{
+			stringa = stringa + ",{%22id%22:"+ iddOut +",%22step%22:%22"+ OutOutline +"%22}";
+		}
+		
+		contasalva = contasalva + 1;
+	}
+	
+	stringa = stringa + "]";
+	
+	//stringa = "[{%22id%22:44,%22outline%22:%22questa%20e%20la%20modifica%20ok%205%22}]"
+	
+	//stringa = JSON.stringify(stringa);
+	
+	//alert(stringa);
+	
+	
+	$(".spinner").show();
+	$.ajax({
+		   type:"GET",
+		   url:"http://5.249.157.197:9000/storymatch/userstories/update/steps?steps="+stringa+"",
+		   data: {token:localStorage.getItem("Token"),storyid:id},
+		   contentType: "application/json; charset=utf-8",
+		   json: 'callback',
+		   crossDomain: true,
+		   success:function(result){
+		   
+		   if (result.ID==1024){
+		   navigator.notification.alert(
+										'Saved Steps',  // message
+										alertDismissed,         // callback
+										'Steps',            // title
+										'OK'                  // buttonName
+										);
+		   editstory2(id)
+		   }
+		   else{
+		   navigator.notification.alert(
+										result.ID + "-" + result.msg,  // message
+										alertDismissed,         // callback
+										'Modifica Outline',            // title
+										'OK'                  // buttonName
+										);
+		   }
+		   
+		   $(".spinner").hide();
+		   buildout(id)
+		   
+		   },
+		   error: function(){
+		   $(".spinner").hide();
+		   
+		   navigator.notification.alert(
+										'Possibile errore di rete, riprova tra qualche minuto',  // message
+										alertDismissed,         // callback
+										'Errore',            // title
+										'OK'                  // buttonName
+										);
+		   
+		   },
+		   dataType:"json"});
+	
+	//[{%22id%22:181,%22outline%22:%22questa%20e%20la%20modifica%22},{%22id%22:182,%22outline%22:%22questa%20e%20la%20creazione%22},{%22id%22:null,%22outline%22:%22questa%20e%20la%20modifica%20del%20null%22}]
+	
 }
 
 
@@ -415,13 +565,8 @@ function salva(id,conto,idstory,idpitch) {
 								 success:function(result){
 								 
 								 if (result.ID==1024){
-								 navigator.notification.alert(
-															  'Modifica effettuata',  // message
-															  alertDismissed,         // callback
-															  'Modifica Step',            // title
-															  'OK'                  // buttonName
-															  );
-								 editstory2(idstory)
+
+									editstory3(idstory)
 								 
 								 }
 								 else{
@@ -1302,6 +1447,54 @@ function lucchetto(id,conto,idstory,idpitch) {
 						  }
 
 
+						  function verificatoken() {
+						  Token = localStorage.getItem("Token");
+						  
+						  $(".spinner").show();
+						  $.ajax({
+								 type:"GET",
+								 url:"http://5.249.157.197:9000/storymatch/authentication/validatetoken",
+								 data: {token:Token},
+								 contentType: "application/json; charset=utf-8",
+								 json: 'callback',
+								 crossDomain: true,
+								 success:function(result){
+								 
+								 if (result.ID==1024){
+								 //OK
+								 
+								 }
+								 else{
+								 navigator.notification.alert(
+															  result.msg,  // message
+															  exitapp,         // callback
+															  'Logout',            // title
+															  'OK'                  // buttonName
+															  );
+								 }
+								 
+								 $(".spinner").hide();
+								 
+								 },
+								 error: function(){
+								 $(".spinner").hide();
+								 
+								 navigator.notification.alert(
+															  'Possibile errore di rete, riprova tra qualche minuto',  // message
+															  alertDismissed,         // callback
+															  'Errore',            // title
+															  'OK'                  // buttonName
+															  );
+								 window.location.href = "index.html";
+								 
+								 },
+								 dataType:"json"});
+						  
+						  }
+						  
+						  function exitapp() {
+						  window.location.href = "index.html";
+						  }
 
 
 

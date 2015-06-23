@@ -9,15 +9,6 @@
 	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
 	<link rel="stylesheet" href="css/spinner.css" />
 	<link rel="stylesheet" href="css/main.css" />
-	
-	
-	<script src="jquery-1.11.1.min.js"></script>
-	<script type="text/javascript" src="jquery.dropdown.min.js"></script>
-	
-	<script src="js/jquery.mobile-1.4.2.min.js"></script>
-	<script type="text/javascript" src="js/app.js"></script>
-
-
 
 <style>
 	.div1 {
@@ -258,6 +249,10 @@ iframe {
 	border: none;
 }
 
+.iframme {
+	z-index:2999;
+}
+
 </style>
 
 
@@ -275,7 +270,7 @@ iframe {
 					<tr><td><br></td></tr>
 					<tr><td><a id="badde" class="badge1" data-badge="1"><div width="38px" class="messaggio"></div></a></td></tr>
 					<tr><td><br></td></tr>
-					<tr><td><a href="#popupMap" onclick="javascript:prendiemail()"  data-rel="popup" data-position-to="window"><div width="38px" class="altro"></div></a></td></tr>
+					<tr><td><a href="#" onclick="javascript:vedi()"  data-rel="popup" data-position-to="window"><div width="38px" class="altro"></div></a></td></tr>
 					<tr><td><br></td></tr>
 				</table>
 			</td></tr>
@@ -320,10 +315,12 @@ iframe {
         	You can put whatever HTML you want in a panel! You can put whatever HTML you want in a panel! You can put whatever HTML you want in a panel! You can put whatever HTML you want in a panel! You can put whatever HTML you want in a panel! You can put whatever HTML you want in a panel! You can put whatever HTML you want in a panel!
     	</div>-->
 		
-		<div data-role="popup" id="popupMap" data-overlay-theme="d" data-theme="c" data-corners="false" data-tolerance="15,15">
+		<div id="framme" style="display: none;" class="iframme"></div>
+		
+		<!--<div data-role="popup" id="popupMap" data-overlay-theme="d" data-theme="c" data-corners="false" data-tolerance="15,15">
 			<a href="#" data-rel="back" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
-			<iframe src="setting.html" width="600px" height="760px" seamless></iframe>
-		</div>
+			<iframe src="setting.html" width="600px" height="760px" seamless=""></iframe>
+		</div>-->
 		
 </div>
 
@@ -346,5 +343,11 @@ iframe {
 	
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/swip.js"></script>
+	
+	<script src="jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="jquery.dropdown.min.js"></script>
+	
+	<script src="js/jquery.mobile-1.4.2.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>

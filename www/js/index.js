@@ -40,6 +40,12 @@ var app = {
 		document.addEventListener("showkeyboard", function(){ $("[data-role=footer]").hide();}, false);
 		document.addEventListener("hidekeyboard", function(){ $("[data-role=footer]").show();}, false);
 		
+		var hoverDelay = $.mobile.buttonMarkup.hoverDelay = 0;
+		
+		$.mobile.defaultPageTransition = 'none';
+		$.mobile.defaultDialogTransition = 'none';
+		
+		
 		$('body').on('touchmove', function (e) {
 			e.preventDefault();
 		});
@@ -83,13 +89,7 @@ var app = {
 		
 		
         var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
 
     }
 };
@@ -356,13 +356,54 @@ function VerificaLogin(){
 	//alert(localStorage.getItem("email"));@
 	if (localStorage.getItem("email") === null || typeof(localStorage.getItem("email")) == 'undefined' || localStorage.getItem("email")==0) {
 		
+		window.location.href = "#article3";
 		$(".spinner").hide();
 	}
 	else{
 		
 		//alert("no");
-		window.location.href = "swip.html";
+		verificatoken()
 	}
+}
+
+function verificatoken() {
+	Token = localStorage.getItem("Token");
+	
+	$(".spinner").show();
+	$.ajax({
+		   type:"GET",
+		   url:"http://5.249.157.197:9000/storymatch/authentication/validatetoken",
+		   data: {token:Token},
+		   contentType: "application/json; charset=utf-8",
+		   json: 'callback',
+		   crossDomain: true,
+		   success:function(result){
+		   
+		   if (result.ID==1024){
+		   //OK
+		   window.location.href = "swip.html";
+		   }
+		   else{
+		   window.location.href = "#article4";
+		   }
+		   
+		   $(".spinner").hide();
+		   
+		   },
+		   error: function(){
+		   $(".spinner").hide();
+		   
+		   navigator.notification.alert(
+										'Possibile errore di rete, riprova tra qualche minuto',  // message
+										alertDismissed,         // callback
+										'Errore',            // title
+										'OK'                  // buttonName
+										);
+		   window.location.href = "index.html";
+		   
+		   },
+		   dataType:"json"});
+	
 }
 
 

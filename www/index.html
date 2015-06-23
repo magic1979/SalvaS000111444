@@ -29,141 +29,7 @@
 			<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
 			<link rel="stylesheet" href="css/spinner.css" />
 			<link rel="stylesheet" href="css/main.css" />
-
-			
-			<script src="jquery-1.11.1.min.js"></script>
-			<script type="text/javascript" src="jquery.dropdown.min.js"></script>
-			
-			<script src="js/jquery.mobile-1.4.2.min.js"></script>
-			<script type="text/javascript" src="js/app.js"></script>
-			
-			<script type="text/javascript">
-				<!--
-				
-				var keyStr = "ABCDEFGHIJKLMNOP" +
-				"QRSTUVWXYZabcdef" +
-				"ghijklmnopqrstuv" +
-				"wxyz0123456789+/" +
-				"=";
-				
-				function encode64(input) {
-     input = escape(input);
-	 var output = "";
-	 var chr1, chr2, chr3 = "";
-	 var enc1, enc2, enc3, enc4 = "";
-	 var i = 0;
-	 
-	 do {
-		 chr1 = input.charCodeAt(i++);
-		 chr2 = input.charCodeAt(i++);
-		 chr3 = input.charCodeAt(i++);
-		 
-		 enc1 = chr1 >> 2;
-		 enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
-		 enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
-		 enc4 = chr3 & 63;
-		 
-		 if (isNaN(chr2)) {
-			 enc3 = enc4 = 64;
-		 } else if (isNaN(chr3)) {
-			 enc4 = 64;
-		 }
-		 
-		 output = output +
-		 keyStr.charAt(enc1) +
-		 keyStr.charAt(enc2) +
-		 keyStr.charAt(enc3) +
-		 keyStr.charAt(enc4);
-		 chr1 = chr2 = chr3 = "";
-		 enc1 = enc2 = enc3 = enc4 = "";
-	 } while (i < input.length);
-	 
-	 return output;
-				}
-			
-			function decode64(input) {
-				var output = "";
-				var chr1, chr2, chr3 = "";
-				var enc1, enc2, enc3, enc4 = "";
-				var i = 0;
-				
-				// remove all characters that are not A-Z, a-z, 0-9, +, /, or =
-				var base64test = /[^A-Za-z0-9\+\/\=]/g;
-				if (base64test.exec(input)) {
-					alert("There were invalid base64 characters in the input text.\n" +
-						  "Valid base64 characters are A-Z, a-z, 0-9, '+', '/',and '='\n" +
-						  "Expect errors in decoding.");
-				}
-				input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
-				
-				do {
-					enc1 = keyStr.indexOf(input.charAt(i++));
-					enc2 = keyStr.indexOf(input.charAt(i++));
-					enc3 = keyStr.indexOf(input.charAt(i++));
-					enc4 = keyStr.indexOf(input.charAt(i++));
-					
-					chr1 = (enc1 << 2) | (enc2 >> 4);
-					chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
-					chr3 = ((enc3 & 3) << 6) | enc4;
-					
-					output = output + String.fromCharCode(chr1);
-					
-					if (enc3 != 64) {
-						output = output + String.fromCharCode(chr2);
-					}
-					if (enc4 != 64) {
-						output = output + String.fromCharCode(chr3);
-					}
-					
-					chr1 = chr2 = chr3 = "";
-					enc1 = enc2 = enc3 = enc4 = "";
-					
-				} while (i < input.length);
-				
-				return unescape(output);
-			}
-			
-				//--></script>
-
-
-			<script>
-				$(document).on("pagecreate","#article1",function(){
-							   $("p").on("swipe",function(){
-										 $(this).hide();
-										 });
-							   
-							   $("li").on("swipe",function(){
-										  alert();
-										  });
-							   
-							   });
-							   
-							   $(document).on('swipeleft', '.ui-page', function(event){
-											  if(event.handled !== true) // This will prevent event triggering more then once
-											  {
-											  var nextpage = $.mobile.activePage.next('[data-role="page"]');
-											  // swipe using id of next page if exists
-											  if (nextpage.length > 0) {
-											  $.mobile.changePage(nextpage, {transition: "slide", reverse: false}, true, true);
-											  }
-											  event.handled = true;
-											  }
-											  return false;
-											  });
-											  
-											  $(document).on('swiperight', '.ui-page', function(event){
-															 if(event.handled !== true) // This will prevent event triggering more then once
-															 {
-															 var prevpage = $(this).prev('[data-role="page"]');
-															 if (prevpage.length > 0) {
-															 $.mobile.changePage(prevpage, {transition: "slide", reverse: true}, true, true);
-															 }
-															 event.handled = true;
-															 }
-															 return false;
-															 });
-				</script>
-			
+		
 			<style>
 				.div1 {
 					background-color: #000000;
@@ -456,7 +322,7 @@
 			
 			<center><br><br>
 			<table height="680" width="400" align="center" border="0" ><tr><td align="center" valign="bottom">
-				<a href="#article3" onclick="javascript:VerificaLogin()" rel="external" class="btn"><font color="#FFF">Get Started</font></a>
+				<a href="javascript:VerificaLogin()" onclick="#" rel="external" class="btn"><font color="#FFF">Get Started</font></a>
 			</td></tr>
 			</table>
 			
@@ -481,7 +347,7 @@
 			
 			<center><br><br>
 				<table height="680" width="400" align="center" border="0" ><tr><td align="center" valign="bottom">
-					<a href="#article3" onclick="javascript:VerificaLogin()" class="btn"><font color="#FFF">Get Started</font></a>
+					<a href="javascript:VerificaLogin()" onclick="#" class="btn"><font color="#FFF">Get Started</font></a>
 				</td></tr>
 				</table>
 			
@@ -534,7 +400,7 @@
 					<tr>
 						<td align="center">
 					<table width="300" align="center"><tr><td>
-						  <form name="formia2" action="entra.asp" method="post">
+						  <form id="formia2" name="formia2" action="entra.asp" method="post">
 							  <input placeholder="Email address" id="emailL" type="text" name="emailL" size="15" >
 								  <div class="inputContainer">
 									  <input placeholder="Password" id="myInputL" type="password" name="passwordL" class="password" size="15">
@@ -562,6 +428,141 @@
 		
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+		
+		<script src="jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="jquery.dropdown.min.js"></script>
+		
+		<script src="js/jquery.mobile-1.4.2.min.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
+		
+		<script type="text/javascript">
+			<!--
+			
+			var keyStr = "ABCDEFGHIJKLMNOP" +
+			"QRSTUVWXYZabcdef" +
+			"ghijklmnopqrstuv" +
+			"wxyz0123456789+/" +
+			"=";
+			
+			function encode64(input) {
+				input = escape(input);
+				var output = "";
+				var chr1, chr2, chr3 = "";
+				var enc1, enc2, enc3, enc4 = "";
+				var i = 0;
+				
+				do {
+					chr1 = input.charCodeAt(i++);
+					chr2 = input.charCodeAt(i++);
+					chr3 = input.charCodeAt(i++);
+					
+					enc1 = chr1 >> 2;
+					enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+					enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+					enc4 = chr3 & 63;
+					
+					if (isNaN(chr2)) {
+						enc3 = enc4 = 64;
+					} else if (isNaN(chr3)) {
+						enc4 = 64;
+					}
+					
+					output = output +
+					keyStr.charAt(enc1) +
+					keyStr.charAt(enc2) +
+					keyStr.charAt(enc3) +
+					keyStr.charAt(enc4);
+					chr1 = chr2 = chr3 = "";
+					enc1 = enc2 = enc3 = enc4 = "";
+				} while (i < input.length);
+				
+				return output;
+			}
+		
+		function decode64(input) {
+			var output = "";
+			var chr1, chr2, chr3 = "";
+			var enc1, enc2, enc3, enc4 = "";
+			var i = 0;
+			
+			// remove all characters that are not A-Z, a-z, 0-9, +, /, or =
+			var base64test = /[^A-Za-z0-9\+\/\=]/g;
+			if (base64test.exec(input)) {
+				alert("There were invalid base64 characters in the input text.\n" +
+					  "Valid base64 characters are A-Z, a-z, 0-9, '+', '/',and '='\n" +
+					  "Expect errors in decoding.");
+			}
+			input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+			
+			do {
+				enc1 = keyStr.indexOf(input.charAt(i++));
+				enc2 = keyStr.indexOf(input.charAt(i++));
+				enc3 = keyStr.indexOf(input.charAt(i++));
+				enc4 = keyStr.indexOf(input.charAt(i++));
+				
+				chr1 = (enc1 << 2) | (enc2 >> 4);
+				chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+				chr3 = ((enc3 & 3) << 6) | enc4;
+				
+				output = output + String.fromCharCode(chr1);
+				
+				if (enc3 != 64) {
+					output = output + String.fromCharCode(chr2);
+				}
+				if (enc4 != 64) {
+					output = output + String.fromCharCode(chr3);
+				}
+				
+				chr1 = chr2 = chr3 = "";
+				enc1 = enc2 = enc3 = enc4 = "";
+				
+			} while (i < input.length);
+			
+			return unescape(output);
+		}
+		
+			//--></script>
+		
+		
+		<script>
+			$(document).on("pagecreate","#article1",function(){
+						   $("p").on("swipe",function(){
+									 $(this).hide();
+									 });
+						   
+						   $("li").on("swipe",function(){
+									  alert();
+									  });
+						   
+						   });
+						   
+						   $(document).on('swipeleft', '.ui-page', function(event){
+										  if(event.handled !== true) // This will prevent event triggering more then once
+										  {
+										  var nextpage = $.mobile.activePage.next('[data-role="page"]');
+										  // swipe using id of next page if exists
+										  if (nextpage.length > 0) {
+										  $.mobile.changePage(nextpage, {transition: "slide", reverse: false}, true, true);
+										  }
+										  event.handled = true;
+										  }
+										  return false;
+										  });
+										  
+										  $(document).on('swiperight', '.ui-page', function(event){
+														 if(event.handled !== true) // This will prevent event triggering more then once
+														 {
+														 var prevpage = $(this).prev('[data-role="page"]');
+														 if (prevpage.length > 0) {
+														 $.mobile.changePage(prevpage, {transition: "slide", reverse: true}, true, true);
+														 }
+														 event.handled = true;
+														 }
+														 return false;
+														 });
+			</script>
+		
+		
         <script type="text/javascript">
             app.initialize();
         </script>

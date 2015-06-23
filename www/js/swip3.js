@@ -2,15 +2,22 @@ document.addEventListener('deviceready', onDeviceReady, false);
 
 function onDeviceReady() {
 	document.addEventListener("resume", onResume, false);
+	document.addEventListener("showkeyboard", function(){ $("[data-role=footer]").hide();}, false);
+	document.addEventListener("hidekeyboard", function(){ $("[data-role=footer]").show();}, false);
 	
     $(".spinner").hide();
 	
 	var IDPage = getParameterByName('IDPage');
-	$("#indietro").attr("href", "swip4.html?id="+ IDPage +"");
+	
+	verificatoken()
 	
 	listapitch(IDPage,1)
 
 	pagina()
+	
+
+	$("#indietro").attr("href", "swip4.html?id="+ IDPage +"");
+
 	
 	/*$(window).scroll(function() {
 	  if($(window).scrollTop() + $(window).height() > $(document).height() - 1) {
@@ -34,7 +41,7 @@ function listapitch(IDPage,page) {
 		   crossDomain: true,
 		   success:function(result){
 		   
-	var lista = "<table width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella' width='70%'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='4'>Need some inspiratiopns?<br>Trey with thrse ideas or start from scatch</font></td></tr></table></td><td class='trtabella' width='5%' align='center'></td><td class='trtabella' width='10%' align='left'><a href='#' rel='external'><div width='52px' class='idea'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr><tr><td class='trtabella3' colspan='4' align='center'> <a href='#' class='btn'><font color='#000000'>All Pitches</font></a>&nbsp;&nbsp;&nbsp;<a href='#' class='btn'><font color='#000000'>All Generes</font></a>&nbsp;&nbsp;&nbsp;<a href='#popupMap' data-rel='popup' data-position-to='window' class='btn'><font color='#000000'>Best Rated</font></a></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
+	var lista = "<table width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella' width='70%'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='4'>Need some inspirations?<br>Trey with thrse ideas or start from scatch</font></td></tr></table></td><td class='trtabella' width='5%' align='center'></td><td class='trtabella' width='10%' align='left'><a href='#' rel='external'><div width='52px' class='idea'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr><tr><td class='trtabella3' colspan='4' align='center'> <a href='#' class='btn'><font color='#000000'>All Pitches</font></a>&nbsp;&nbsp;&nbsp;<a href='#' class='btn'><font color='#000000'>All Generes</font></a>&nbsp;&nbsp;&nbsp;<a href='#popupMap' data-rel='popup' data-position-to='window' class='btn'><font color='#000000'>Best Rated</font></a></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
 		   
 		   
 		   //alert(result.ID);
@@ -80,7 +87,7 @@ function listapitch(IDPage,page) {
 		   
 		    $(".spinner").hide();
 		   
-		   alert(pagine)
+		   //alert(pagine)
 		   var stringa = "<font size='4' color='#000'>Your current page: " + page + "</font>&nbsp;&nbsp;&nbsp;";
 		   
 		   for ( i=1; i < pagine; i++ )
@@ -196,4 +203,56 @@ function getParameterByName(name) {
 						  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
 						  results = regex.exec(location.search);
 						  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+						  }
+
+
+
+
+						  function verificatoken() {
+						  Token = localStorage.getItem("Token");
+						  
+						  $(".spinner").show();
+						  $.ajax({
+								 type:"GET",
+								 url:"http://5.249.157.197:9000/storymatch/authentication/validatetoken",
+								 data: {token:Token},
+								 contentType: "application/json; charset=utf-8",
+								 json: 'callback',
+								 crossDomain: true,
+								 success:function(result){
+								 
+								 if (result.ID==1024){
+								 //OK
+								 
+								 }
+								 else{
+								 navigator.notification.alert(
+															  result.msg,  // message
+															  exitapp,         // callback
+															  'Logout',            // title
+															  'OK'                  // buttonName
+															  );
+								 }
+								 
+								 $(".spinner").hide();
+								 
+								 },
+								 error: function(){
+								 $(".spinner").hide();
+								 
+								 navigator.notification.alert(
+															  'Possibile errore di rete, riprova tra qualche minuto',  // message
+															  alertDismissed,         // callback
+															  'Errore',            // title
+															  'OK'                  // buttonName
+															  );
+								 window.location.href = "index.html";
+								 
+								 },
+								 dataType:"json"});
+						  
+						  }
+						  
+						  function exitapp() {
+						  window.location.href = "index.html";
 						  }

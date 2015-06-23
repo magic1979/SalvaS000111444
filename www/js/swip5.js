@@ -2,22 +2,35 @@ document.addEventListener('deviceready', onDeviceReady, false);
 
 function onDeviceReady() {
 	document.addEventListener("resume", onResume, false);
+	document.addEventListener("showkeyboard", function(){ $("[data-role=footer]").hide();}, false);
+	document.addEventListener("hidekeyboard", function(){ $("[data-role=footer]").show();}, false);
+	
+	$(document).on('focus', 'select, input, textarea', function () {
+				   $('#myfooter').css({'position': 'absolute', 'bottom': '0px' });
+				   });
+	$(document).on('blur', 'select, input, textarea', function () {
+				   $('#myfooter').css({ 'position': 'fixed' });
+				   });
+	
 	var out;
 	var out2;
 	var Addvariabile="";
 	var Rimvariabile="";
 	
+	verificatoken()
+	
     $(".spinner").hide();
 	
 	var IDStep = getParameterByName('id');
+	
+	$("#salvataggio").attr("href", "javascript:salva("+ IDStep +")");
+	$("#indietro").attr("href", "swip4.html?id="+ IDStep +"&idPitch=0");
+	$("#avanti").attr("href", "advanced.html?id="+ IDStep +"");
 	
 	
 	buildout(IDStep);
 	editstory2(IDStep)
 	
-	$("#salvataggio").attr("href", "javascript:salva("+ IDStep +")");
-	$("#indietro").attr("href", "swip4.html?id="+ IDStep +"");
-	$("#avanti").attr("href", "advanced.html?id="+ IDStep +"");
 }
 
 
@@ -78,7 +91,7 @@ function buildout(id) {
 		   //var list = document.getElementById("textarea");
 		   //new SwipeOut(list);
 		   
-		   $("textarea").on("swipeleft",function(){
+		   $("textarea").live("swipeleft",function(){
 				var numlist = String(this.id)
 				 numlist = numlist.substring(10)
 				
@@ -88,7 +101,7 @@ function buildout(id) {
 				$("#delete"+ numlist +"").show();
 		   });
 		   
-		   $("textarea").on("swiperight",function(){
+		   $("textarea").live("swiperight",function(){
 				var numlist = String(this.id)
 				 numlist = numlist.substring(10)
 							
@@ -341,7 +354,9 @@ function editstory2(id) {
 		   crossDomain: true,
 		   success:function(result){
 		   
-		   bollicina = bollicina = "<tr><td width='10%'></td><td width='100%' align='left'><b>"+ result.title +"</b></td></tr><tr><td colspan='2'><hr></td></tr>"
+		   bollicina = bollicina = "<tr><td width='10%'></td><td width='100%' align='left'><font size='3'><b>"+ result.title +"</b></font></td></tr><tr><td colspan='2'><br></td></tr>"
+		   
+		   
 		   
 		   $.each(result.characters, function(i,item){
 				  var fruits = item.detail["steps"]
@@ -350,7 +365,7 @@ function editstory2(id) {
 				  for ( i=0; i < fruits.length; i++ )
 				  {
 				  
-				 bollicina = bollicina + "<tr><td width='10%'></td><td width='100%' align='left'>"+ fruits[i]["step"].replace("'","") +"</td></tr><tr><td><hr></td></tr>"
+				 bollicina = bollicina + "<tr><td width='10%'></td><td width='100%' align='left'>"+ fruits[i]["step"].replace("'","") +"</td></tr><tr><td><br></td></tr>"
 				  
 				  //story = story + "<tr><td class='trtabella' width='90%'><table width='100%' border='0'><tr><td width='10%'></td><td width='90%' align='left'><b>"+ conto +"</b></td></tr><tr><td width='10%'></td><td width='90%' align='left'><textarea name='myTextarea"+ conto +"' id='myTextarea"+ conto +"' rows='4' cols='60' class='textarea1' style='background-color: transparent;' >"+ fruits[i]["step"].replace("'","") +"</textarea></td></tr><tr><td width='10%'></td><td width='90%' align='left'><br></td></tr><tr><td width='10%'></td><td width='90%' align='left'><table width='100%'><tr><td width='55px'><a id='sin"+ conto +"' href='#' rel='external'><div width='52px' class='sinistra'></div></a></td><td width='55px'><a id='des"+ conto +"' href='#' rel='external'><div width='52px' class='destra'></div></a></td><td width='55px'><a href='javascript:abilita"+ conto +"()' rel='external'><div width='52px' class='edita'></div></a></td><td width='55px'><a href='javascript:lucchetto("+ conto +")' rel='external'><div id='lock"+ conto +"' width='52px' class='lucchetto'></div></a></td><td width='55px'><a href='javascript:shuffle("+ conto +")' rel='external'><div width='52px' class='infinito'></div></a></td><td width='55px'><a href='javascript:salva("+ fruits[i]["id"] +","+ conto +","+ id +")' rel='external'><div width='52px' class='salva'></div></a></td></tr></table></td></tr></table></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><input type='hidden' id='locco"+ conto +"' name='locco"+ conto +"' value='0'><hr></td></tr>"
 				  
@@ -530,5 +545,55 @@ function getParameterByName(name) {
 						  
 						  document.execCommand('redo', false, null);
 						  
+						  }
+
+						  
+						  function verificatoken() {
+						  Token = localStorage.getItem("Token");
+						  
+						  $(".spinner").show();
+						  $.ajax({
+								 type:"GET",
+								 url:"http://5.249.157.197:9000/storymatch/authentication/validatetoken",
+								 data: {token:Token},
+								 contentType: "application/json; charset=utf-8",
+								 json: 'callback',
+								 crossDomain: true,
+								 success:function(result){
+								 
+								 if (result.ID==1024){
+								 //OK
+								 
+								 }
+								 else{
+								 navigator.notification.alert(
+															  result.msg,  // message
+															  exitapp,         // callback
+															  'Logout',            // title
+															  'OK'                  // buttonName
+															  );
+								 }
+								 
+								 $(".spinner").hide();
+								 
+								 },
+								 error: function(){
+								 $(".spinner").hide();
+								 
+								 navigator.notification.alert(
+															  'Possibile errore di rete, riprova tra qualche minuto',  // message
+															  alertDismissed,         // callback
+															  'Errore',            // title
+															  'OK'                  // buttonName
+															  );
+								 window.location.href = "index.html";
+								 
+								 },
+								 dataType:"json"});
+						  
+						  }
+						  
+						  function exitapp() {
+						  window.location.href = "index.html";
 						  }
 

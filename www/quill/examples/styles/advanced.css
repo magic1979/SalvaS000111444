@@ -14,9 +14,15 @@
   width: 98%;
 }
 .editor-container {
-  height: 460px;
+  height: 300px;
   /*border: 1px solid #000;*/
 }
+
+.editor-container2 {
+	height: 520px;
+	/*border: 1px solid #000;*/
+}
+
 .toolbar-container {
   border-bottom: 1px solid #ccc;
 }

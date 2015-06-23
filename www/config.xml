@@ -11,7 +11,8 @@ Salvatore sas
 		</author>
 		<preference name="phonegap-version" value="3.7.0" />
 		<preference name="orientation" value="portrait" />
-		<preference name="fullscreen" value="true" />
+		<preference name="android-windowSoftInputMode" value="stateVisible" />
+		<preference name="fullscreen" value="false" />
 		<preference name="target-device" value="universal" />
 		<preference name="webviewbounce" value="true" />
 		<preference name="prerendered-icon" value="true" />
@@ -34,7 +35,7 @@ Salvatore sas
 		<preference name="android-installLocation" value="auto" />
 		<preference name="splashscreen" value="splash" />
 		<preference name="SplashScreenDelay" value="10000" />
-		<preference name="ErrorUrl" value="http://www.mistertod.it"/>
+		<preference name="ErrorUrl" value="http://www.storymatch.co"/>
 		<preference name="BackgroundColor" value="#707070"/>
 		<preference name="KeepRunning" value="true"/>
 		<preference name="DisallowOverscroll" value="true"/>
@@ -104,4 +105,8 @@ Salvatore sas
 		<access origin="*.pushwoosh.com" />
 		<gap:plugin name="nl.x-services.plugins.socialsharing"  version="4.3.0" />
 		<gap:plugin name="de.appplant.cordova.plugin.email-composer"  />
+		
+	<gap:config-file platform="android" parent="/manifest" mode="add" xmlns:android="http://schemas.android.com/apk/res/android">
+		android:windowSoftInputMode="stateVisible"
+	</gap:config-file>
 	</widget>

@@ -8,19 +8,139 @@ function onDeviceReady() {
 	
 	var IDPage = getParameterByName('id');
 	
+	verificatoken()
+	
 	//$("#tit").click();
 	//advancedEditor.setHTML('<div>Write Story</div>');
-	
+
+
 	$("#indietro").attr("href", "swip5.html?id="+ IDPage +"");
 	$("#salvataggio").attr("href", "javascript:scrivi("+ IDPage +")");
 	$("#pdf").attr("href", "javascript:creapdf("+ IDPage +")");
+	
+	$('.Heading').on('click', function() {
+			$(this).removeClass('Heading').addClass('Heading2');
+			$('.ShotButton2').removeClass('ShotButton2').addClass('ShotButton');
+			$('.ActionButton2').removeClass('ActionButton2').addClass('ActionButton');
+		    $('.TransButton2').removeClass('TransButton2').addClass('TransButton');
+		});
+	$('.Heading2').on('click', function() {
+			$(this).removeClass('Heading2').addClass('Heading');
+		});
+	
+	$('.ActionButton').on('click', function() {
+		$(this).removeClass('ActionButton').addClass('ActionButton2');
+		$('.ShotButton2').removeClass('ShotButton2').addClass('ShotButton');
+		$('.Heading2').removeClass('Heading2').addClass('Heading');
+		$('.TransButton2').removeClass('TransButton2').addClass('TransButton');
+	});
+	$('.ActionButton2').on('click', function() {
+			$(this).removeClass('ActionButton2').addClass('ActionButton');
+	});
+	
+
+	$('.ShotButton').on('click', function() {
+		$(this).removeClass('ShotButton').addClass('ShotButton2');
+		$('.Heading2').removeClass('Heading2').addClass('Heading');
+		$('.ActionButton2').removeClass('ActionButton2').addClass('ActionButton');
+		$('.TransButton2').removeClass('TransButton2').addClass('TransButton');
+	});
+	
+	$('.ShotButton2').on('click', function() {
+		$(this).removeClass('ShotButton2').addClass('ShotButton');
+	});
+	
+	localStorage.setItem("click", 0);
+	
+	$('.ParenButton').on('click', function() {
+		//alert(localStorage.getItem("click"))
+						 
+		if (localStorage.getItem("click")==0){
+						 
+		$(this).removeClass('ParenButton').addClass('ParenButton2');
+		$('.Heading2').removeClass('Heading2').addClass('Heading');
+		$('.ActionButton2').removeClass('ActionButton2').addClass('ActionButton');
+		$('.ShotButton2').removeClass('ShotButton2').addClass('ShotButton');
+		$('.TransButton2').removeClass('TransButton2').addClass('TransButton');
+						 
+				localStorage.setItem("click", 1);
+		}
+			else{
+						 $(this).removeClass('ParenButton2').addClass('ParenButton');
+						 $('.Heading2').removeClass('Heading2').addClass('Heading');
+						 $('.ActionButton2').removeClass('ActionButton2').addClass('ActionButton');
+						 $('.ShotButton2').removeClass('ShotButton2').addClass('ShotButton');
+						 $('.TransButton2').removeClass('TransButton2').addClass('TransButton');
+				localStorage.setItem("click", 0);
+			}
+		
+	});
+	
+	$('.TransButton').on('click', function() {
+		$(this).removeClass('TransButton').addClass('TransButton2');
+		$('.Heading2').removeClass('Heading2').addClass('Heading');
+		$('.ActionButton2').removeClass('ActionButton2').addClass('ActionButton');
+		$('.ShotButton2').removeClass('ShotButton2').addClass('ShotButton');
+	});
+	
+	$('.TransButton2').on('click', function() {
+			$(this).removeClass('TransButton2').addClass('TransButton');
+	});
+	
+	
+	$("#spk").on('click', function() {
+		$('.TransButton2').removeClass('TransButton2').addClass('TransButton');
+		$('.Heading2').removeClass('Heading2').addClass('Heading');
+		$('.ActionButton2').removeClass('ActionButton2').addClass('ActionButton');
+		$('.ShotButton2').removeClass('ShotButton2').addClass('ShotButton');
+	});
+	
+	
+	$("#tit").on('click', function() {
+		$('.TransButton2').removeClass('TransButton2').addClass('TransButton');
+		$('.Heading2').removeClass('Heading2').addClass('Heading');
+		$('.ActionButton2').removeClass('ActionButton2').addClass('ActionButton');
+		$('.ShotButton2').removeClass('ShotButton2').addClass('ShotButton');
+	});
+	
+	$('#editor').removeClass('editor-container');
+	$('#editor').addClass('editor-container2'); // ALta al massimo
+
+	
+	$(window).load(function() {
+      	var toolbar = advancedEditor.modules.toolbar.container;
+				   
+				   
+				   advancedEditor.on('selection-change', function (range) {
+									 
+									 if ((range && range.start == range.end)||(range && range.start != range.end)) { // no selection, fade out.
+							 
+									 $('#editor').removeClass('editor-container2');
+									 
+									 $('#editor').addClass('editor-container');
+									 
+									 
+									 } else {
+									 
+									 $('#editor').removeClass('editor-container');
+									 
+									 $('#editor').addClass('editor-container2');
+
+									 
+									 }
+									 });
+				   });
+	
+	
+	window.addEventListener('resize', function() { alert(window.innerHeight); });
+
+	
 	
 	var connectionStatus = false;
 	connectionStatus = navigator.onLine ? 'online' : 'offline';
 	
 	if(connectionStatus=='online'){
 		//Verifica Token
-		
 		
 		leggi(IDPage);
 	}
@@ -35,7 +155,7 @@ function leggi(id) {
 	var conto = 1;
 	var ciccio;
 	
-	var out = "";
+	var out = " ";
 	
 	$(".spinner").show();
 	$.ajax({
@@ -87,7 +207,7 @@ function leggi(id) {
 		   error: function(){
 		   $(".spinner").hide();
 		   
-		   alert("Errore");
+		   alert("Errore Caricamento leggi");
 		   
 		   },
 		   dataType:"json"});
@@ -216,7 +336,7 @@ function leggioutline(id) {
 	var conto = 1;
 	var ciccio;
 	
-	var out = "Lista Outline<br><br>";
+	var out = "";
 	
 	$(".spinner").show();
 	$.ajax({
@@ -237,7 +357,7 @@ function leggioutline(id) {
 				  for ( i=0; i < idOutline.length; i++ )
 				   {
 				   
-					 out = out + idOutline[i]["outline"] + "<br><br>";
+					 out = out + " " + idOutline[i]["outline"] + "<br><br>";
 				   
 				   }
 				  
@@ -254,7 +374,7 @@ function leggioutline(id) {
 		   error: function(){
 		   $(".spinner").hide();
 		   
-		   alert("Errore");
+		   alert("Errore Leggi Outline");
 		   
 		   },
 		   dataType:"json"});
@@ -338,3 +458,54 @@ function getParameterByName(name) {
 						  document.execCommand('redo', false, null);
 						  
 						  }
+						  
+						  
+						  function verificatoken() {
+						  Token = localStorage.getItem("Token");
+						  
+						  $(".spinner").show();
+						  $.ajax({
+								 type:"GET",
+								 url:"http://5.249.157.197:9000/storymatch/authentication/validatetoken",
+								 data: {token:Token},
+								 contentType: "application/json; charset=utf-8",
+								 json: 'callback',
+								 crossDomain: true,
+								 success:function(result){
+								 
+								 if (result.ID==1024){
+								 //OK
+								 
+								 }
+								 else{
+								 navigator.notification.alert(
+															  result.msg,  // message
+															  exitapp,         // callback
+															  'Logout',            // title
+															  'OK'                  // buttonName
+															  );
+								 }
+								 
+								 $(".spinner").hide();
+								 
+								 },
+								 error: function(){
+								 $(".spinner").hide();
+								 
+								 navigator.notification.alert(
+															  'Possibile errore di rete, riprova tra qualche minuto',  // message
+															  alertDismissed,         // callback
+															  'Errore',            // title
+															  'OK'                  // buttonName
+															  );
+								 window.location.href = "index.html";
+								 
+								 },
+								 dataType:"json"});
+						  
+						  }
+						  
+						  function exitapp() {
+						  window.location.href = "index.html";
+						  }
+
