@@ -126,13 +126,12 @@ function onDeviceReady() {
 									 
 									 $('#editor').addClass('editor-container2');
 
-									 
 									 }
 									 });
 				   });
 	
 	
-	window.addEventListener('resize', function() { alert(window.innerHeight); });
+	//window.addEventListener('resize', function() { alert(window.innerHeight); });
 
 	
 	
