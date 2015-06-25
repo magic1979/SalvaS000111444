@@ -34,7 +34,7 @@ function listapitch(IDPage,page) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/search/stepsbygenres",
+		   url:"https://www.storymatch.co/storymatch/search/stepsbygenres",
 		   data: {token:localStorage.getItem("Token"),genre:"All",page:page,pagesize:"5"},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -214,7 +214,7 @@ function getParameterByName(name) {
 						  $(".spinner").show();
 						  $.ajax({
 								 type:"GET",
-								 url:"http://5.249.157.197:9000/storymatch/authentication/validatetoken",
+								 url:"https://www.storymatch.co/storymatch/authentication/validatetoken",
 								 data: {token:Token},
 								 contentType: "application/json; charset=utf-8",
 								 json: 'callback',

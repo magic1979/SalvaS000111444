@@ -8,8 +8,6 @@ function onDeviceReady() {
 	
 	var IDPage = getParameterByName('id');
 	
-	verificatoken()
-	
 	//$("#tit").click();
 	//advancedEditor.setHTML('<div>Write Story</div>');
 
@@ -134,14 +132,14 @@ function onDeviceReady() {
 	//window.addEventListener('resize', function() { alert(window.innerHeight); });
 
 	
-	
 	var connectionStatus = false;
 	connectionStatus = navigator.onLine ? 'online' : 'offline';
 	
 	if(connectionStatus=='online'){
 		//Verifica Token
 		
-		leggi(IDPage);
+		verificatoken(IDPage)
+	
 	}
 	else{
 	 // Che Faccio
@@ -159,7 +157,7 @@ function leggi(id) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/search/stepsbyid",
+		   url:"https://www.storymatch.co/storymatch/search/stepsbyid",
 		   data: {ID:id, token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -227,7 +225,7 @@ function scrivi(id) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/userstories/update/script",
+		   url:"https://www.storymatch.co/storymatch/userstories/update/script",
 		   data: {token:Token,storyid:id,script:html},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -284,7 +282,7 @@ function creapdf(id) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/userstories/createpdf",
+		   url:"https://www.storymatch.co/storymatch/userstories/createpdf",
 		   data: {token:Token,storyid:id,script:html},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -340,7 +338,7 @@ function leggioutline(id) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/search/stepsbyid",
+		   url:"https://www.storymatch.co/storymatch/search/stepsbyid",
 		   data: {ID:id, token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -459,13 +457,13 @@ function getParameterByName(name) {
 						  }
 						  
 						  
-						  function verificatoken() {
+						  function verificatoken(IDPage) {
 						  Token = localStorage.getItem("Token");
 						  
 						  $(".spinner").show();
 						  $.ajax({
 								 type:"GET",
-								 url:"http://5.249.157.197:9000/storymatch/authentication/validatetoken",
+								 url:"https://www.storymatch.co/storymatch/authentication/validatetoken",
 								 data: {token:Token},
 								 contentType: "application/json; charset=utf-8",
 								 json: 'callback',
@@ -474,7 +472,7 @@ function getParameterByName(name) {
 								 
 								 if (result.ID==1024){
 								 //OK
-								 
+								 	leggi(IDPage);
 								 }
 								 else{
 								 navigator.notification.alert(

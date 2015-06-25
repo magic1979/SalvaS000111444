@@ -47,7 +47,7 @@ function LogOut() {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/authentication/logout",
+		   url:"https://www.storymatch.co/storymatch/authentication/logout",
 		   data: {token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',

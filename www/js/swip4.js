@@ -111,7 +111,7 @@ function editstory(id,IDPitch) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/search/stepsbyid",
+		   url:"https://www.storymatch.co/storymatch/search/stepsbyid",
 		   data: {ID:id, token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -239,7 +239,7 @@ function editstory2(id) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/search/stepsbyid",
+		   url:"https://www.storymatch.co/storymatch/search/stepsbyid",
 		   data: {ID:id, token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -325,7 +325,7 @@ function editstory3(id) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/search/stepsbyid",
+		   url:"https://www.storymatch.co/storymatch/search/stepsbyid",
 		   data: {ID:id, token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -439,7 +439,7 @@ function salvasteps(id) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/userstories/update/steps?steps="+stringa+"",
+		   url:"https://www.storymatch.co/storymatch/userstories/update/steps?steps="+stringa+"",
 		   data: {token:localStorage.getItem("Token"),storyid:id},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -557,7 +557,7 @@ function salva(id,conto,idstory,idpitch) {
 						  $(".spinner").show();
 						  $.ajax({
 								 type:"GET",
-								 url:"http://5.249.157.197:9000/storymatch/userstories/update/step",
+								 url:"https://www.storymatch.co/storymatch/userstories/update/step",
 								 data: {token:localStorage.getItem("Token"),stepid:id,step:step1},
 								 contentType: "application/json; charset=utf-8",
 								 json: 'callback',
@@ -607,7 +607,7 @@ var conto2 = conto-1;
 						  $(".spinner").show();
 						  $.ajax({
 								 type:"GET",
-								 url:"http://5.249.157.197:9000/storymatch/search/steprnd",
+								 url:"https://www.storymatch.co/storymatch/search/steprnd",
 								 data: {token:localStorage.getItem("Token"),stepnum:conto2},
 								 contentType: "application/json; charset=utf-8",
 								 json: 'callback',
@@ -657,7 +657,7 @@ function shuffletotal() {
 			$(".spinner").show();
 			$.ajax({
 				type:"GET",
-				url:"http://5.249.157.197:9000/storymatch/search/stepsrnd",
+				url:"https://www.storymatch.co/storymatch/search/stepsrnd",
 				data: {token:localStorage.getItem("Token")},
 				contentType: "application/json; charset=utf-8",
 				json: 'callback',
@@ -1453,7 +1453,7 @@ function lucchetto(id,conto,idstory,idpitch) {
 						  $(".spinner").show();
 						  $.ajax({
 								 type:"GET",
-								 url:"http://5.249.157.197:9000/storymatch/authentication/validatetoken",
+								 url:"https://www.storymatch.co/storymatch/authentication/validatetoken",
 								 data: {token:Token},
 								 contentType: "application/json; charset=utf-8",
 								 json: 'callback',

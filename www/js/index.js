@@ -165,7 +165,7 @@ function vai(){
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/authentication/signup",
+		   url:"https://www.storymatch.co/storymatch/authentication/signup",
 		   data: {username:emailreg,password:pinreg,name:"",surname:""},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -214,7 +214,7 @@ function esempio(){
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/testjson/story",
+		   url:"https://www.storymatch.co/storymatch/testjson/story",
 		   data: {ID:1},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -299,7 +299,7 @@ function Login(){
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/authentication/login",
+		   url:"https://www.storymatch.co/storymatch/authentication/login",
 		   data: {username:emailreg,password:pinreg},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -372,7 +372,7 @@ function verificatoken() {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/authentication/validatetoken",
+		   url:"https://www.storymatch.co/storymatch/authentication/validatetoken",
 		   data: {token:Token},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -450,7 +450,7 @@ function onPrompt(results) {
 		$(".spinner").show();
 		$.ajax({
 			   type:"GET",
-			   url:"http://5.249.157.197:9000/storymatch/authentication/asktoreset",
+			   url:"https://www.storymatch.co/storymatch/authentication/asktoreset",
 			   data: {username:results.input1},
 			   contentType: "application/json; charset=utf-8",
 			   json: 'callback',

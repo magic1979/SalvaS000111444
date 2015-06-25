@@ -14,7 +14,7 @@ function onDeviceReady() {
 	setTimeout (function(){
 		document.getElementById('test1').click();
 				
-		$("#framme").html("<div class='iframme' data-role='popup' id='popupMap' data-overlay-theme='d' data-theme='c' data-corners='false' data-tolerance='15,15'><a href='javascript:novedi()' data-rel='back' class='ui-btn ui-btn-b ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right'>Close</a><iframe src='setting.html' width='600px' height='760px' seamless=''></iframe></div>")
+		//$("#framme").html("<div class='iframme' data-role='popup' id='popupMap' data-overlay-theme='d' data-theme='c' data-corners='false' data-tolerance='15,15'><a href='javascript:novedi()' data-rel='back' class='ui-btn ui-btn-b ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right'>Close</a><iframe src='setting.html' width='600px' height='760px' seamless=''></iframe></div>")
 	}, 500);
 	
 	iframme();
@@ -45,14 +45,14 @@ function closemenu() {
 function createstory() {
 	navigator.notification.prompt(
 								  'Insert Name',  // message
-								  onPrompt,                  // callback to invoke
+								  creastoria,                  // callback to invoke
 								  'Create Story',            // title
 								  ['Invia','Annulla'],             // buttonLabels
 								  ''                 // defaultText
 								  );
 }
 
-function onPrompt(results) {
+function creastoria(results) {
 	if(results.buttonIndex==1){
 		if (results.input1 == "") {
 			navigator.notification.alert(
@@ -71,7 +71,7 @@ function onPrompt(results) {
 		$(".spinner").show();
 		$.ajax({
 			   type:"GET",
-			   url:"http://5.249.157.197:9000/storymatch/userstories/create",
+			   url:"https://www.storymatch.co/storymatch/userstories/create",
 			   data: {token:localStorage.getItem("Token"),title:results.input1},
 			   contentType: "application/json; charset=utf-8",
 			   json: 'callback',
@@ -124,7 +124,7 @@ function verificatoken() {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/authentication/validatetoken",
+		   url:"https://www.storymatch.co/storymatch/authentication/validatetoken",
 		   data: {token:Token},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -169,7 +169,7 @@ function esempio(){
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatchsearch/stepsbyid",
+		   url:"https://www.storymatch.co/storymatchsearch/stepsbyid",
 		   data: {ID:2},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -232,7 +232,7 @@ function LogOut() {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/authentication/logout",
+		   url:"https://www.storymatch.co/storymatch/authentication/logout",
 		   data: {token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
