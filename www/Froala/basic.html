@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="css/froala_editor.css" rel="stylesheet" type="text/css">
+  <link href="css/froala_style.css" rel="stylesheet" type="text/css">
+
+    <style>
+        body {
+            text-align: center;
+        }
+
+        section {
+            width: 100%;
+            margin: auto;
+            text-align: left;
+        }
+		
+		#scrollable {
+          float: left;
+          overflow: scroll;
+          background: lightblue;
+          height: 300px;
+          padding: 10px;
+          position: relative;
+          margin-top: 50px;
+          margin-left: 50px;
+        }
+    </style>
+</head>
+
+<body>
+<button id="getHTML">Get HTML</button>
+  <section id="editor">
+      <div id='edit' style="margin-top: 30px;" class="froala-view"></div>
+  </section>
+
+  	<p><a href="#" id="get-text" class="r-btn text-small">Clear</a></p>
+	<p><a href="#" id="get-text1" class="r-btn text-small">Clear</a></p>
+	
+  <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+  <script src="js/froala_editor.min.js"></script>
+  <script src="js/plugins/block_styles.min.js"></script>
+
+  <script>
+      $(function(){
+	  
+        $('#edit').editable({
+            inlineMode: false,
+			scrollableContainer: '#scrollable',
+			buttons: ['blockStyle', 'html'],
+			
+			blockStyles: {
+				'p': {
+				'class1': 'Class 1',
+				'class2': 'Class 2'
+				}
+			},
+			defaultBlockStyle: {
+				'class1': 'Class 1',
+				'class2': 'Class 2'
+			},
+
+          })
+		  .on('editable.getHTML', function (e, editor, html) {
+				// Do something here.
+		  });
+		  
+		  $('#get-text').click(function (e, editor, html) {
+			  $(".blockStyle").val("class1");
+		  })
+		  
+		   $('#get-text1').click(function (e) {
+			  $('html').click();
+		  })
+		  
+
+		$('#getHTML').click(function (e) {
+          e.preventDefault();
+         alert($('#edit').editable('getHTML', false, true));
+        })
+		
+		$('#edit').editable('setHTML', '<p>My custom paragraph.</p>', false);
+		$('#edit').editable('focus');
+      });
+  </script>
+</body>
+</html>

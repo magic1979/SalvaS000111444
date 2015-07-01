@@ -13,8 +13,6 @@ function onDeviceReady() {
 	
 	setTimeout (function(){
 		document.getElementById('test1').click();
-				
-		//$("#framme").html("<div class='iframme' data-role='popup' id='popupMap' data-overlay-theme='d' data-theme='c' data-corners='false' data-tolerance='15,15'><a href='javascript:novedi()' data-rel='back' class='ui-btn ui-btn-b ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right'>Close</a><iframe src='setting.html' width='600px' height='760px' seamless=''></iframe></div>")
 	}, 500);
 	
 	iframme();
@@ -225,9 +223,6 @@ function exitapp() {
 
 function LogOut() {
 
-	//alert(localStorage.getItem("Token"));
-	//localStorage.setItem("email", 0);
-	//localStorage.setItem("Token", "");
 	
 	$(".spinner").show();
 	$.ajax({
