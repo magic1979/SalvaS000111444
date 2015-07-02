@@ -334,7 +334,7 @@ function Login(){
 			  //alert(result.token);
 			  localStorage.setItem("email", emailreg);
 			  localStorage.setItem("Token", result.token);
-			  window.location.href = "swip.html";
+			  window.location.href = "swip2.html";
 			  
 		   }
 		   else{
@@ -399,7 +399,7 @@ function verificatoken() {
 		   if (result.ID==1024){
 		   //OK
 		   //alert(result.ID);
-		   window.location.href = "swip.html";
+		   window.location.href = "swip2.html";
 		   }
 		   else{
 			//alert(result.msg);
