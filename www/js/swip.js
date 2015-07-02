@@ -3,10 +3,6 @@ document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady() {
 	document.addEventListener("resume", onResume, false);
 	
-	var hoverDelay = $.mobile.buttonMarkup.hoverDelay = 0;
-	
-	$.mobile.defaultPageTransition = 'none';
-	$.mobile.defaultDialogTransition = 'none';
 
     $(".spinner").hide();
 	var Token;
