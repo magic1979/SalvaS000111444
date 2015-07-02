@@ -3,13 +3,14 @@ document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady() {
 	document.addEventListener("resume", onResume, false);
 	
-
-    $(".spinner").hide();
+	$(".spinner").hide();
+	var lista;
 	var Token;
 	
+	
 	setTimeout (function(){
-		document.getElementById("test1").click();
-	}, 500);
+			document.getElementById('test1').click();
+		}, 500);
 	
 	iframme();
 	
@@ -28,10 +29,6 @@ function onDeviceReady() {
 	
 }
 
-function closemenu() {
-	document.getElementById("test1").click();
-	
-}
 
 function createstory() {
 	navigator.notification.prompt(
@@ -55,54 +52,6 @@ function onPrompt(results) {
 			return;
 		}
 		
-
-		//Nome Storia
-		//alert("You selected button number " + results.buttonIndex + " and entered " + results.input1);
-		
-		/*$(".spinner").show();
-		$.ajax({
-			   type:"GET",
-			   url:"https://www.storymatch.co/storymatch/userstories/create",
-			   data: {token:localStorage.getItem("Token"),title:results.input1},
-			   contentType: "application/json; charset=utf-8",
-			   json: 'callback',
-			   crossDomain: true,
-			   success:function(result){
-			   
-			   if (result.ID==1024){
-			   navigator.notification.alert(
-											result.msg,  // message
-											alertDismissed,         // callback
-											'Create Story',            // title
-											'OK'                  // buttonName
-											);
-			   
-			   window.location.href = "swip2.html";
-		    }
-			   else{
-			   navigator.notification.alert(
-											result.msg,  // message
-											alertDismissed,         // callback
-											'Create Story',            // title
-											'OK'                  // buttonName
-											);
-			   }
-			   
-			   $(".spinner").hide();
-			   
-			   },
-			   error: function(){
-			   $(".spinner").hide();
-			   
-			   navigator.notification.alert(
-											'Possibile errore di rete, riprova tra qualche minuto',  // message
-											alertDismissed,         // callback
-											'Errore',            // title
-											'OK'                  // buttonName
-											);
-			   
-			   },
-			   dataType:"json"});*/
 		
 		$(".spinner").show();
 		$.ajax({
@@ -173,8 +122,8 @@ function verificatoken() {
 		   success:function(result){
 		   
 		   if (result.ID==1024){
-			 //OK
-			 //Token = localStorage.getItem("Token");
+		   //OK
+		     listaStory()
 		   }
 		   else{
 		   navigator.notification.alert(
@@ -197,69 +146,13 @@ function verificatoken() {
 										'Errore',            // title
 										'OK'                  // buttonName
 										);
-										
-		   window.location.href = "index.html";
 		   
 		   },
 		   dataType:"json"});
 	
 }
 
-function esempio(){
-	var conta = 1;
-	
-	$(".spinner").show();
-	$.ajax({
-		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatchsearch/stepsbyid",
-		   data: {ID:2},
-		   contentType: "application/json; charset=utf-8",
-		   json: 'callback',
-		   crossDomain: true,
-		   success:function(result){
-		   
-		   alert("Title: " + result.title);
-		   
-		   $.each(result.characters, function(i,item){
-				  var fruits = item.detail["steps"]
-				  
-				  alert("Pitch:" + item.detail["pitch"])
-				  
-				  //alert("stepsID: " + fruits[0]["id"]);
-				  
-				  alert(fruits.length);
-				  
-				  for ( i=0; i < fruits.length; i++ )
-				  {
-				  
-					if(fruits[i]["id"]==49){
-					  //alert(fruits[i]["step"]);
-				    }
-					
-					if((conta==1)||(conta==2)){
-				       alert(fruits[i]["step"]);
-					}
-				  
-				  conta = conta+1;
-				  }
-				  
-				   //alert(item.detail["steps"]);
-				  });
-		   
-		   },
-		   error: function(){
-		   $(".spinner").hide();
-		   
-		   alert("Errore");
-		   
-		   },
-		   dataType:"json"});
-}
 
-
-function alertDismissed() {
-	
-}
 
 function costruzione() {
 	
@@ -409,11 +302,4 @@ $( document ).on( "pagecreate", function() {
 
 }
 
-function vedi() {
-	$("#framme").show()
-}
-
-function novedi() {
-	$("#framme").hide()
-}
 

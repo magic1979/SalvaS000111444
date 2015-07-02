@@ -407,59 +407,6 @@ function creastoria(results) {
 			return;
 		}
 		
-		
-		//Nome Storia
-		//alert("You selected button number " + results.buttonIndex + " and entered " + results.input1);
-		
-		/*$(".spinner").show();
-		$.ajax({
-			   type:"GET",
-			   url:"https://www.storymatch.co/storymatch/userstories/create",
-			   data: {token:localStorage.getItem("Token"),title:results.input1},
-			   contentType: "application/json; charset=utf-8",
-			   json: 'callback',
-			   crossDomain: true,
-			   success:function(result){
-			   
-			   if (result.ID==1024){
-			   navigator.notification.alert(
-											result.msg,  // message
-											alertDismissed,         // callback
-											'Create Story',            // title
-											'OK'                  // buttonName
-											);
-			   
-			   window.location.href = "swip2.html";
-			   
-		    }
-			   
-			   
-			   
-			   else{
-			   navigator.notification.alert(
-											result.msg,  // message
-											alertDismissed,         // callback
-											'Create Story',            // title
-											'OK'                  // buttonName
-											);
-			   }
-			   
-			   $(".spinner").hide();
-			   
-			   },
-			   error: function(){
-			   $(".spinner").hide();
-			   
-			   navigator.notification.alert(
-											'Possibile errore di rete, riprova tra qualche minuto',  // message
-											alertDismissed,         // callback
-											'Errore',            // title
-											'OK'                  // buttonName
-											);
-			   
-			   },
-			   dataType:"json"});*/
-		
 		$(".spinner").show();
 		$.ajax({
 			   url: "https://www.storymatch.co/storymatch/userstories/create",
