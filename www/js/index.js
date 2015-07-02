@@ -163,7 +163,7 @@ function vai(){
 										   'OK'                  // buttonName
 										   );
 		   
-		   window.location.href = "swip.html";
+		   //window.location.href = "swip.html";
 			  
 		   }
 		   else{

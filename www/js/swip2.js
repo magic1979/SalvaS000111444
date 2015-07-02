@@ -5,6 +5,7 @@ function onDeviceReady() {
 
     $(".spinner").hide();
 	var lista;
+	var Token;
 	
 	//listaStory()
 	
@@ -20,7 +21,7 @@ function onDeviceReady() {
 		//Verifica Token
 		
 		verificatoken()
-		Token = localStorage.getItem("Token");
+		//Token = localStorage.getItem("Token");
 		//listaStory()
 	}
 	else{
