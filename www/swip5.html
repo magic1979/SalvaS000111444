@@ -595,10 +595,10 @@ body .ui-body-c, body .ui-overlay-c
 .bubble
 {
 
-	bottom:80px;
+bottom:80px;
 
 margin: auto;
-position: absolute;
+position: fixed;
 left:0;
 right: 0;
 
@@ -664,6 +664,7 @@ right: 0;
 }
 .collegamento {
 	text-decoration: none;
+	z-index: 100;
 }
 
 .textarea1 {
@@ -735,7 +736,7 @@ right: 0;
 				<tr>
 					<td width="33%" align="left"><a id="indietro" href="#" rel="external" class="collegamento"><font color="#FFF"><img src="img/arrowS.png" width="18">&nbsp;Back</font></a></td>
 					<td width="33%" align="center"><font color="#FFF">Outline</font></td>
-					<td width="33%" align="right"><a id="avanti" href="advanced.html" rel="external" class="collegamento"><font color="#FFF">Next&nbsp;<img src="img/arrowD.png" width="18"></font></td>
+					<td width="33%" align="right"><a id="avanti" href="#" rel="external" class="collegamento"><font color="#FFF">Next&nbsp;<img src="img/arrowD.png" width="18"></font></td>
 				</tr></table>
   </div>
 
@@ -833,21 +834,22 @@ right: 0;
 	  <input name="contaout" id="contaout" type="hidden">
 	  <div id="contenuto"></div>
 
-  
-  <div id="bolla" class="bubble" style="display:none" align="center" valign="center">
-	  <div style="width:380px; height:230px; overflow: auto;" valign="center">
-		 <div id="bollicina"></div>
-	  </div>
-  </div>
+
+<div id="bolla" class="bubble" style="display:none" align="center" valign="center">
+	<div style="width:380px; height:230px; overflow: auto;" valign="center">
+		<div id="bollicina"></div>
+	</div>
+</div>
   <div id="myfooter" data-role="footer" data-theme="c" data-position="fixed" data-tap-toggle="false">
 	  <center>
 		  <table width="100%" height="52px">
 			  <tr>
 				  <td width="10%"></td>
-				  <td width="20%" align="left"> <a id="salvataggio" href='javascript:salva()'><div width='52px' class='salva'></div></a></td>
+				  <td width="20%" align="left"> </td>
 				  <td width="40%" align="center"><a id="visbollicina" href="javascript:visbolla()" rel="external" class="collegamento"><font color="#fff">12 Step</font></a></td>
 				  <td width="20%" align="right">29c | 5W</td>
 				  <td width="10%"></td>
+				  <!-- <a id="salvataggio" href='javascript:salva()'><div width='52px' class='salva'></div></a> -->
 			 </tr>
 			</table>
 	  </center>
@@ -882,14 +884,5 @@ right: 0;
 	<script src="js/jquery.mobile-1.4.2.min.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
 	
-	<script>
-		$('#rati1').raty({
-						 score: 3,
-						 click: function(score, evt) {
-						 //alert('ID: ' + this.id + "\nscore: " + score + "\nevent: " + evt);
-						 }
-						 });
-
-	</script>
 </body>
 </html>

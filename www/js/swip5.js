@@ -17,7 +17,7 @@ function onDeviceReady() {
 	var Addvariabile="";
 	var Rimvariabile="";
 	
-	verificatoken()
+	//verificatoken()
 	
     $(".spinner").hide();
 	
@@ -25,10 +25,10 @@ function onDeviceReady() {
 	
 	$("#salvataggio").attr("href", "javascript:salva("+ IDStep +")");
 	$("#indietro").attr("href", "swip4.html?id="+ IDStep +"&idPitch=0");
-	$("#avanti").attr("href", "advanced.html?id="+ IDStep +"");
 	
+	$("#avanti").attr("href", "javascript:salva("+ IDStep +",0,0)");
 	
-	buildout(IDStep);
+	buildout(IDStep)
 	editstory2(IDStep)
 	
 }
@@ -52,9 +52,9 @@ function buildout(id) {
 		   crossDomain: true,
 		   success:function(result){
 		   
-		   out = out + "<table width='100%' border='0' cellpadding='0' cellspacing='0' style='background-color: #ebd8dc;'><tr><td class='trtabella' width='95%'><table width='90%' border='0'><tr><td width='10%'></td><td width='90%' align='left'><b>"+ result.title +"</b></td></tr><tr><td width='10%'></td><td width='90%' align='left'>"+ localStorage.getItem("pitcho"); +"<br></td></tr><tr><td colspan='2'><hr></td></tr></table></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='5'><hr></td></tr></table>";
+		   out = out + "<table width='100%' border='0' cellpadding='0' cellspacing='0' style='background-color: #ebd8dc;'><tr><td class='trtabella' width='95%'><table width='90%' border='0'><tr><td width='10%'></td><td width='90%' align='left'><b>"+ result.title +"</b></td></tr><tr><td width='10%'></td><td width='90%' align='left'>"+ localStorage.getItem("pitcho"); +"<br><br></td></tr><tr><td colspan='2'><br></td></tr></table></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='5'><hr></td></tr></table>";
 		   
-		   //$("#titolo").html(result.title);
+		   //$("#titolo").html(result.title);@
 		   
 		  $.each(result.characters, function(i,item){
 				 var idOutline = item.detail["outline"]
@@ -66,7 +66,7 @@ function buildout(id) {
 				  document.getElementById("contaout").value=conto;
 				 
 				 
-				  out = out + "<table width='100%' border='0' cellpadding='0' cellspacing='0' style='background-color: #ebd8dc;'><tr><td class='trtabella' width='95%'><table width='90%' border='0'><tr><td width='10%'></td><td width='90%' align='left'>"+ outi +"</td></tr><tr><td width='10%'></td><td width='90%' align='left'><input id='idLine"+ outi +"' value='"+ idOutline[i]["id"] +"' type='hidden'><textarea name='myTextarea"+ outi +"' id='myTextarea"+ outi +"' rows='4' cols='60' class='textarea1' style='background-color: transparent;'>"+ idOutline[i]["outline"] +"</textarea></td></tr><tr><td width='10%'></td><td width='90%' align='left'><br></td></tr><tr><td width='10%'></td><td width='95%' align='left'><table width='100%' border='0'><tr><td width='15%'><a href='javascript:undor()' rel='external'><div width='52px' class='sinistra'></div></a></td><td width='15%' align='left'><a href='javascript:redor()' rel='external'><div width='52px' class='destra'></div></a></td><td width='70%' align='right'><table id='swippe"+ outi +"' width='50%' border='0'><tr><td align='right' valign='center'><a href='javascript:aggiungi("+ id +","+ outi +")' rel='external'><div width='30px' class='plus'></div></a></td><td align='center' valign='center'><a href='javascript:rimuovi("+ id +","+ outi +")' rel='external'><div width='30px' class='minus'></div></a></td></tr></table><table id='delete"+outi+"' width='50%' height='38px' border='0' style='display: none;'><tr><td align='right' valign='center' colspan='2'><a href='javascript:cancella("+ id +","+ outi +")' rel='external' class='btn'><font color='#000000'>Cancel</font></a></td></tr></table></td><td width='10%'></td></tr></table></td></tr></table></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='5'><hr></td></tr></table>";
+				  out = out + "<table width='100%' border='0' cellpadding='0' cellspacing='0' style='background-color: #ebd8dc;'><tr><td class='trtabella2' colspan='5'><hr></td></tr><tr><td class='trtabella' width='95%'><table width='90%' border='0'><tr><td width='10%'></td><td width='90%' align='left'>"+ outi +"</td></tr><tr><td width='10%'></td><td width='90%' align='left'><input id='idLine"+ outi +"' value='"+ idOutline[i]["id"] +"' type='hidden'><textarea name='myTextarea"+ outi +"' id='myTextarea"+ outi +"' rows='4' cols='60' class='textarea1' style='background-color: transparent;'>"+ idOutline[i]["outline"] +"</textarea></td></tr><tr><td width='10%'></td><td width='90%' align='left'><br></td></tr><tr><td width='10%'></td><td width='95%' align='left'><table width='100%' border='0'><tr><td width='15%'><a href='javascript:undor()' rel='external'><div width='52px' class='sinistra'></div></a></td><td width='15%' align='left'><a href='javascript:redor()' rel='external'><div width='52px' class='destra'></div></a></td><td width='70%' align='right'><table id='swippe"+ outi +"' width='50%' border='0'><tr><td align='right' valign='center'><a href='javascript:salva("+ id +",1,"+ outi +")' rel='external'><div width='30px' class='plus'></div></a></td><td align='center' valign='center'><a href='javascript:salva("+ id +",2,"+ outi +")' rel='external'><div width='30px' class='minus'></div></a></td></tr></table><table id='delete"+outi+"' width='50%' height='38px' border='0' style='display: none;'><tr><td align='right' valign='center' colspan='2'><a href='javascript:cancella("+ id +","+ outi +")' rel='external' class='btn'><font color='#000000'>Cancel</font></a></td></tr></table></td><td width='10%'></td></tr></table></td></tr></table></td><td class='trtabella' width='15%' align='center'></td></tr></table>";
 				 
 				 //<table id='delete"outi"' width='50%' border='1' style='display: none;'><tr><td align='right' valign='center' colspan='2'><a href='javascript:cancella("+ id +","+ outi +")' rel='external'><div width='30px' class='plus'></div></a></td></tr></table>
 				 
@@ -91,7 +91,7 @@ function buildout(id) {
 		   //var list = document.getElementById("textarea");
 		   //new SwipeOut(list);
 		   
-		   $("textarea").live("swipeleft",function(){
+		   $("textarea").on("swipeleft",function(){
 				var numlist = String(this.id)
 				 numlist = numlist.substring(10)
 				
@@ -101,7 +101,7 @@ function buildout(id) {
 				$("#delete"+ numlist +"").show();
 		   });
 		   
-		   $("textarea").live("swiperight",function(){
+		   $("textarea").on("swiperight",function(){
 				var numlist = String(this.id)
 				 numlist = numlist.substring(10)
 							
@@ -184,11 +184,12 @@ function aggiungi(id,outo) {
 	
 	$(".spinner").show();
 	$.ajax({
-		   type:"GET",
-		   url:"https://www.storymatch.co/storymatch/userstories/save/outline",
-		   data: {token:Token,storyid:id,outline:outi},
-		   contentType: "application/json; charset=utf-8",
-		   json: 'callback',
+		   url: "https://www.storymatch.co/storymatch/userstories/save/outline",
+		   dataType: "json",
+		   type: "post",
+		   contentType: "application/json",
+		   data: JSON.stringify( { "storyid":id,"outline":""+outi+"" } ),
+		   processData: false,
 		   crossDomain: true,
 		   success:function(result){
 		   
@@ -248,11 +249,12 @@ function rimuovi(id,outo) {
 	
 	$(".spinner").show();
 	$.ajax({
-		   type:"GET",
-		   url:"https://www.storymatch.co/storymatch/userstories/save/outline",
-		   data: {token:Token,storyid:id,outline:outi},
-		   contentType: "application/json; charset=utf-8",
-		   json: 'callback',
+		   url: "https://www.storymatch.co/storymatch/userstories/save/outline",
+		   dataType: "json",
+		   type: "post",
+		   contentType: "application/json",
+		   data: JSON.stringify( { "storyid":id,"outline":""+outi+"" } ),
+		   processData: false,
 		   crossDomain: true,
 		   success:function(result){
 		   
@@ -297,11 +299,12 @@ function cancella(id,outo) {
 	
 	$(".spinner").show();
 	$.ajax({
-		   type:"GET",
-		   url:"https://www.storymatch.co/storymatch/userstories/delete/outline",
-		   data: {token:Token,storyid:id,outline:outi},
-		   contentType: "application/json; charset=utf-8",
-		   json: 'callback',
+		   url: "https://www.storymatch.co/storymatch/userstories/delete/outline",
+		   dataType: "json",
+		   type: "post",
+		   contentType: "application/json",
+		   data: JSON.stringify( { "storyid":id,"outline":""+outi+"" } ),
+		   processData: false,
 		   crossDomain: true,
 		   success:function(result){
 		   
@@ -395,7 +398,7 @@ function editstory2(id) {
 }
 
 
-function salva(id) {
+function salva(id,prov,outo) {
 	var contasalva = 1;
 	var stringa = "["
 	var iddOut;
@@ -416,13 +419,12 @@ function salva(id) {
 		
 		OutOutline = document.getElementById("myTextarea"+ contasalva +"").value;
 		OutOutline.replace(' ','%20');
-			
 		
 		if (contasalva==1){
-			stringa = stringa + "{%22id%22:"+ iddOut +",%22outline%22:%22"+ OutOutline +"%22}";
+			stringa = stringa + "{\"id\":\""+ iddOut +"\",\"outline\":\""+ OutOutline +"\"}";
 		}
 		else{
-			stringa = stringa + ",{%22id%22:"+ iddOut +",%22outline%22:%22"+ OutOutline +"%22}";
+			stringa = stringa + ",{\"id\":\""+ iddOut +"\",\"outline\":\""+ OutOutline +"\"}";
 		}
 		
 		contasalva = contasalva + 1;
@@ -430,30 +432,44 @@ function salva(id) {
 	
 	stringa = stringa + "]";
 	
-	//stringa = "[{%22id%22:44,%22outline%22:%22questa%20e%20la%20modifica%20ok%205%22}]"
-	
-	//stringa = JSON.stringify(stringa);
-	
 	//alert(stringa);
 	
 	
 	$(".spinner").show();
 	$.ajax({
-		   type:"GET",
+		   /*type:"GET",
 		   url:"https://www.storymatch.co/storymatch/userstories/update/outlines?outline="+stringa+"",
 		   data: {token:localStorage.getItem("Token"),storyid:id},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
+		   crossDomain: true,*/
+		   
+		   url: "https://www.storymatch.co/storymatch/userstories/update/outlines",
+		   dataType: "json",
+		   type: "post",
+		   contentType: "application/json",
+		   data: JSON.stringify( { "storyid":id,"outline":""+stringa+"" } ),
+		   processData: false,
 		   crossDomain: true,
 		   success:function(result){
 		   
 		   if (result.ID==1024){
-		   navigator.notification.alert(
+		   /*navigator.notification.alert(
 										'Saved Outline',  // message
 										alertDismissed,         // callback
 										'Outline',            // title
 										'OK'                  // buttonName
-										);
+										);*/
+		   
+		   if(prov==0){
+		     window.location.href = "advanced.html?id="+ id +"";
+		   }
+		   else if(prov==1){
+			aggiungi(id,outo)
+		   }
+		   else{
+			rimuovi(id,outo)
+		   }
 		   
 		   }
 		   else{
@@ -466,7 +482,7 @@ function salva(id) {
 		   }
 		   
 		   $(".spinner").hide();
-		   buildout(id)
+		   //buildout(id)
 		   
 		   },
 		   error: function(){

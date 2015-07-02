@@ -37,8 +37,6 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-		document.addEventListener("showkeyboard", function(){ $("[data-role=footer]").hide();}, false);
-		document.addEventListener("hidekeyboard", function(){ $("[data-role=footer]").show();}, false);
 		
 		var hoverDelay = $.mobile.buttonMarkup.hoverDelay = 0;
 		
@@ -49,19 +47,6 @@ var app = {
 		$('body').on('touchmove', function (e) {
 			e.preventDefault();
 		});
-		
-		// Workaround for buggy header/footer fixed position when virtual keyboard is on/off
-		$('input, select')
-		.on('focus', function (e) {
-			$('header, footer').css('position', 'absolute');
-			})
-		.on('blur', function (e) {
-			$('header, footer').css('position', 'fixed');
-			//force page redraw to fix incorrectly positioned fixed elements
-			//setTimeout( function() {
-			//window.scrollTo( $.mobile.window.scrollLeft(), $.mobile.window.scrollTop() );
-			//		   }, 20 );
-			});
 		
 		
 		// Per il video.
@@ -74,9 +59,9 @@ var app = {
 		
 		$(".spinner").hide();
 
-		$(document).keydown(function (eventObj){
-							getKey(eventObj);
-							});
+		//$(document).keydown(function (eventObj){
+							//getKey(eventObj);
+		//});
 		
 						  $("#showHide").click(function() {
 							if ($(".password").attr("type") == "password") {
@@ -89,6 +74,7 @@ var app = {
 		
 		
         var parentElement = document.getElementById(id);
+		
 
 
     }
@@ -137,7 +123,7 @@ function vai(){
 		return;
 	}
 	
-	pinreg = encode64(pinreg);
+	//pinreg = encode64(pinreg);
 	
 	//alert(pinreg);
 	
@@ -156,19 +142,16 @@ function vai(){
 		return;
 	}
 	
-	
-	//localStorage.setItem("emailreg", emailreg);
-	//localStorage.setItem("pinreg", pinreg);
-	
 	//chiamo paco
 	
 	$(".spinner").show();
 	$.ajax({
-		   type:"GET",
-		   url:"https://www.storymatch.co/storymatch/authentication/signup",
-		   data: {username:emailreg,password:pinreg,name:"",surname:""},
-		   contentType: "application/json; charset=utf-8",
-		   json: 'callback',
+		   url: "https://www.storymatch.co/storymatch/authentication/signup",
+		   dataType: "json",
+		   type: "post",
+		   contentType: "application/json",
+		   data: JSON.stringify( { "username": ""+ emailreg +"", "password": ""+ pinreg +"", "name":"","surname":"" } ),
+		   processData: false,
 		   crossDomain: true,
 		   success:function(result){
 		   
@@ -179,6 +162,8 @@ function vai(){
 										   'SigUp',            // title
 										   'OK'                  // buttonName
 										   );
+		   
+		   window.location.href = "swip.html";
 			  
 		   }
 		   else{
@@ -214,7 +199,7 @@ function esempio(){
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://www.storymatch.co/storymatch/testjson/story",
+		   url:"http://5.249.157.197:9000/storymatch/testjson/story",
 		   data: {ID:1},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -273,7 +258,7 @@ function Login(){
 		return;
 	}
 	
-	pinreg = encode64(pinreg);
+	//pinreg = encode64(pinreg);
 	
 	
 	EmailAddr = self.document.formia2.emailL.value;
@@ -292,13 +277,10 @@ function Login(){
 	}
 	
 	
-	//localStorage.setItem("emailreg", emailreg);
-	//localStorage.setItem("pinreg", pinreg);
-	
 	//chiamo paco @
-	$(".spinner").show();
+	/*$(".spinner").show();
 	$.ajax({
-		   type:"GET",
+		   type:"POST",
 		   url:"https://www.storymatch.co/storymatch/authentication/login",
 		   data: {username:emailreg,password:pinreg},
 		   contentType: "application/json; charset=utf-8",
@@ -325,18 +307,55 @@ function Login(){
 		   $(".spinner").hide();
 		   
 		   },
-		   error: function(){
+		   error: function(jqXhr, textStatus, errorThrown ){
 		   $(".spinner").hide();
 		   
 			  navigator.notification.alert(
-										   'Possibile errore di rete, riprova tra qualche minuto',  // message
+										    errorThrown,  // message
 										    alertDismissed,         // callback
 										   'Errore',            // title
 										   'OK'                  // buttonName
 										   );
 		   
 		   },
-		   dataType:"json"});
+		   dataType:"json"});*/
+	
+	$(".spinner").show();
+	$.ajax({
+		   url: "https://www.storymatch.co/storymatch/authentication/login",
+		   dataType: "json",
+		   type: "post",
+		   contentType: "application/json",
+		   data: JSON.stringify( { "username": ""+ emailreg +"", "password": ""+ pinreg +"" } ),
+		   processData: false,
+		   crossDomain: true,
+		   success: function( result, textStatus, jQxhr ){
+		   if (result.ID==1024){
+			  //alert(result.token);
+			  localStorage.setItem("email", emailreg);
+			  localStorage.setItem("Token", result.token);
+			  window.location.href = "swip.html";
+			  
+		   }
+		   else{
+			  navigator.notification.alert(
+										   result.msg,  // message
+										   alertDismissed,         // callback
+										   'Email',            // title
+										   'OK'                  // buttonName
+										   );
+		   $(".spinner").hide();
+		   }
+
+		   },
+		   error: function( jqXhr, textStatus, errorThrown ){
+			navigator.notification.alert(
+										'Possibile errore di rete, riprova tra qualche minuto',  // message
+										alertDismissed,         // callback
+										'Errore',            // title
+										'OK'                  // buttonName
+										);		   }
+		   });
 
 	
 
@@ -349,31 +368,29 @@ function alertDismissed() {
 function LogOut() {
 	localStorage.setItem("email", "");
 	localStorage.setItem("Token", "");
-	//alert("out");
 }
 
 function VerificaLogin(){
-	//alert(localStorage.getItem("email"));@
+
 	if (localStorage.getItem("email") === null || typeof(localStorage.getItem("email")) == 'undefined' || localStorage.getItem("email")==0) {
 		
-		window.location.href = "#article3";
+		window.location.href = "#article4";
 		$(".spinner").hide();
 	}
 	else{
-		
-		//alert("no");
+
+		//alert(localStorage.getItem("email") + "-" + localStorage.getItem("Token"));
 		verificatoken()
 	}
 }
 
 function verificatoken() {
-	Token = localStorage.getItem("Token");
 	
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
 		   url:"https://www.storymatch.co/storymatch/authentication/validatetoken",
-		   data: {token:Token},
+		   data: {token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
 		   crossDomain: true,
@@ -381,10 +398,13 @@ function verificatoken() {
 		   
 		   if (result.ID==1024){
 		   //OK
+		   //alert(result.ID);
 		   window.location.href = "swip.html";
 		   }
 		   else{
-		   window.location.href = "#article4";
+			//alert(result.msg);
+		    //window.location.href = "Froala/basic.html";
+			window.location.href = "#article4";
 		   }
 		   
 		   $(".spinner").hide();
@@ -399,7 +419,8 @@ function verificatoken() {
 										'Errore',            // title
 										'OK'                  // buttonName
 										);
-		   window.location.href = "index.html";
+		   
+		   window.location.href = "#article4";
 		   
 		   },
 		   dataType:"json"});
@@ -445,15 +466,15 @@ function onPrompt(results) {
 		}
 		
 		//Recupera la Password
-		//alert("You selected button number " + results.buttonIndex + " and entered " + results.input1);
 		
 		$(".spinner").show();
 		$.ajax({
-			   type:"GET",
-			   url:"https://www.storymatch.co/storymatch/authentication/asktoreset",
-			   data: {username:results.input1},
-			   contentType: "application/json; charset=utf-8",
-			   json: 'callback',
+			   url: "https://www.storymatch.co/storymatch/authentication/asktoreset",
+			   dataType: "json",
+			   type: "post",
+			   contentType: "application/json",
+			   data: JSON.stringify( { "username": ""+ results.input1 +"" } ),
+			   processData: false,
 			   crossDomain: true,
 			   success:function(result){
 			   

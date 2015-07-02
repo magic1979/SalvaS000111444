@@ -10,7 +10,6 @@
 	function test() {
 
 	  
-	  
 	}
 	
 	function parentesi() {
@@ -53,6 +52,11 @@
 			background-color: #ebd8dc;
 
 		}
+	.div3 {
+		
+		background-color: #000;
+		
+	}
 		.div2 {
 			
 			/* Note: This gradient may render differently in browsers that don't support the unprefixed gradient syntax @ */
@@ -201,24 +205,39 @@
 	font-family:Roboto, sans-serif;
 }
 	
-	.giugiug {
+	/*.giugiu {
 		background-color: #000;
 		width:100%;
 		height: 52px;
-		vertical-align: middle;
 		
 		position:absolute;
 		bottom:0px;
 		left:0px;
 		z-index:-1000;
 		font-family:Roboto, sans-serif;
+	}*/
+	
+	.giusu {
+		background-color: #000;
+		width:100%;
+		height: 52px;
+		
+		position:fixed;
+		bottom:264px;
+		left:0px;
+		z-index:1000;
+		font-family:Roboto, sans-serif;
 	}
 	
-	.inpu {
-		border: 0px solid black;
-		background-color: transparent;
+	::-webkit-scrollbar {
+		-webkit-appearance: none;
+		width: 7px;
 	}
-	
+	::-webkit-scrollbar-thumb {
+		border-radius: 4px;
+		background-color: rgba(0,0,0,.5);
+		box-shadow: 0 0 1px rgba(255,255,255,.5);
+	}
 
 </style>
   </head>
@@ -229,7 +248,7 @@
 	<table width="100%" border="0" class="topo">
 		<tr>
 			<td width="33%" align="left"><a id="indietro" href="swip5.html" rel="external" class="collegamento"><font color="#FFF">&nbsp;&nbsp;Back</font></a></td>
-			<td width="33%" align="center"><span id="titolo"><font color="#FFF">Title</font></span></td>
+			<td width="33%" align="center"><span id="titolo"><font color="#FFF"><div id="tito"></div></font></span></td>
 			<td width="33%" align="right"><a id="salvataggio" href="swip5.html" rel="external" class="collegamento"><font color="#FFF">Share&nbsp;</font></a> | <a id="pdf" href="swip5.html" rel="external" class="collegamento"><font color="#FFF">&nbsp;PDF</font></a></td>
 		</tr></table>
 </center>
@@ -270,7 +289,8 @@
       <div class="advanced-wrapper" >
 		  
 		<div id="editor" class="editor-container"></div>
-
+		
+		
 		<center>
 		<div class="toolbar-container">
 		<span class="ql-format-group">
@@ -291,29 +311,26 @@
 		
 			<span class="ql-format-group">
 				
-			<table border="0" width="560" height="62" >
-			<tr>
-			<td width="140" align="center" valign="bottom" height="31"><span id="shena" title="heading" class="Heading heading"><i class="fa fa-code"></i></span></td>
-			<td width="140" align="center" valign="center" height="31"><span id="act" title="action" class="ActionButton action"><i class="fa fa-code"></i></span></td>
-			<td width="140" align="center" valign="center" height="31"><span id="spk" title="strikeThrough" class="ql-format-button ql-strike"></span></td>
-			<td width="140" align="center" valign="center" height="31"><span id="tit" title="bullet" class="ql-format-button ql-bullet"></span></td></tr>
-			
-			<tr>
-				<td width="140" align="center" valign="center" height="31"><span title="paren" class="ParenButton paren"><i class="fa fa-code"></i></span></td>
-				<td width="140" align="center" valign="center" height="31"><span title="trans" class="TransButton trans"><i class="fa fa-code"></i></span></td>
-				<td width="140" align="center" valign="center" height="31"><span title="shot" class="ShotButton shot"><i class="fa fa-code"></i></span></td>
-				<td width="140" align="center" valign="center"  height="31"><span><a href="javascript:cancella()" rel="external"><img src="quill/Text.png" width="140px" height="31px"></a></span></td></tr>
-			</table>
-				
 				<span title="Link" class="ql-format-button ql-link " style="display:none"></span>
 				<span title="Image" class="ql-format-button ql-image" style="display:none"></span>
 				<span id="pth" title="List" class="ql-format-button ql-list" style="display:none"></span>
+			
+			<table id="footerbutton" valign="center" align="center" border="0" width="100%" height="16" class="div3 giusu" style="display:none"><tr>
+			<td width="140" align="center" valign="center" height="16"><span id="shena" title="heading" class="Heading heading"><i class="fa fa-code"></i></span></td>
+			<td width="140" align="center" valign="center" height="16"><span id="act" title="action" class="ActionButton action"><i class="fa fa-code"></i></span></td>
+			<td width="140" align="center" valign="center" height="16"><span id="spk" title="strikeThrough" class="ql-format-button ql-strike"></span></td>
+			<td width="140" align="center" valign="center" height="16"><span id="tit" title="bullet" class="ql-format-button ql-bullet"></span></td>
+			<td width="140" align="center" valign="center" height="16"><span title="paren" class="ParenButton paren"><i class="fa fa-code"></i></span></td>
+			<td width="140" align="center" valign="center" height="16"><span title="trans" class="TransButton trans"><i class="fa fa-code"></i></span></td>
+			<td width="140" align="center" valign="center" height="16"><span title="shot" class="ShotButton shot"><i class="fa fa-code"></i></span></td>
+			<td width="140" align="center" valign="center" height="16"><span id="txt" title="text" class="TextButton testo"><i class="fa fa-code"></i></span></td>
+			</tr></table>
+
 				
-				</span>
+			</span>
 		</div>
 
-		<br>
-		<table width="140px" align="left" >
+		<!--<table width="140px" align="left" >
 			<tr>
 				<td width="70px">
 					<a href="javascript:undor()" rel="external"><div width="30px" class="sinistra"></div></a>
@@ -322,15 +339,16 @@
 					<a href="javascript:test()" rel="external"><div width="30px" class="destra"></div></a>
 				</td>
 			</tr>
-		</table>
+		</table>-->
+		
       </div>
-	<input type="text" class="inpu" readonly>
+	  
 	</form>
     </div>
 	
-	<center>
+	<!--<center>
 		<table width="100%" border="0" class="giugiu"></table>
-	</center>
+	</center>-->
 
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
@@ -340,7 +358,36 @@
     <script type="text/javascript" src="quill/examples/scripts/advanced.js"></script>
 	
 	<script>
-		$('.heading').click(function(){
+		localStorage.setItem("ALTROB", 0);
+		
+		localStorage.setItem("clickHe", 0);
+		localStorage.setItem("clickAc", 0);
+		localStorage.setItem("clickDl", 0);
+		localStorage.setItem("clickTr", 0);
+		
+		//HEADING
+		$('.Heading').on('click', function() {
+						 if (localStorage.getItem("clickHe")==0){
+						 $(this).removeClass('Heading').addClass('Heading2');
+						 $('.ShotButton2').removeClass('ShotButton2').addClass('ShotButton');
+						 $('.ActionButton2').removeClass('ActionButton2').addClass('ActionButton');
+						 $('.TransButton2').removeClass('TransButton2').addClass('TransButton');
+						 localStorage.setItem("clickHe", 1);
+						 
+						 addHeding()
+						 }
+						 else{
+						 $(this).removeClass('Heading2').addClass('Heading');
+						 localStorage.setItem("clickHe", 0);
+						 
+						  removeHeding()
+						 }
+						 });
+						 
+		
+	function addHeding(){
+			localStorage.setItem("clickAc", 0);
+			localStorage.setItem("clickTr", 0);
 			var range =""
 						 
 			// metto il focus
@@ -360,31 +407,98 @@
 
 				
 				advancedEditor.insertText(range.start, delta, {
-					'fore-color': '#FFF'
+					'fore-color': '#000'
 				});
 						 
 				 setTimeout (function(){
 						advancedEditor.formatText(range.start, range.end, 'cssClass', 'heading');
+						 
+					    cursorManager.moveCursor("|", range.end);
 				}, 500);
 							
-						// WORK start write
-						if(range.end==range.start){
-							// alert("=")
-							advancedEditor.insertText(range.start, ' ', {
-								'fore-color': '#000'
-							});
-							
-							var fine = parseInt(range.start)+1
-							
-							setTimeout (function(){
-							  advancedEditor.formatText(range.start, fine, 'cssShot', 'heading');
-							}, 500);
-							
-						}
-						 
-			 })
-			
-		 $('.action').click(function(){
+							// WORK start write
+							if(range.end==range.start){
+								// alert("=")
+								advancedEditor.insertText(range.start, ' ', {
+									'fore-color': '#000'
+								});
+														  
+								var inizio = parseInt(range.start)+1
+								
+								
+								setTimeout (function(){
+									advancedEditor.formatText(range.start, inizio,  'cssClass', 'heading');
+									cursorManager.moveCursor("|", inizio);
+								}, 500);
+											
+							}
+		}
+	
+	function removeHeding(){
+		// metto il focus
+		advancedEditor.focus();
+		
+		var range = advancedEditor.getSelection();
+		
+		//Prendo Testo
+		var delta = advancedEditor.getText(range.start, range.end);
+		//alert(delta)
+		
+		advancedEditor.deleteText(range.start, range.end);
+		
+		
+		advancedEditor.insertText(range.start, delta, {
+								  'fore-color': '#000'
+								  });
+								  
+								  
+								  setTimeout (function(){
+										advancedEditor.formatText(range.start, range.end, 'cssText', 'testo');
+										cursorManager.moveCursor("|", range.end);
+									}, 500);
+											  
+											  
+											  // WORK start write
+											  if(range.end==range.start){
+												  // alert("=")
+												  var inizio = parseInt(range.start)-1
+												  
+												  setTimeout (function(){
+														advancedEditor.formatText(inizio, range.start, 'cssText', 'testo');
+														cursorManager.moveCursor("|", inizio);
+												  }, 500);
+																						
+											  }
+	}
+	
+	
+	//ACTION
+	
+	$('.ActionButton').on('click', function() {
+						  if (localStorage.getItem("clickAc")==0){
+						  $(this).removeClass('ActionButton').addClass('ActionButton2');
+						  $('.ShotButton2').removeClass('ShotButton2').addClass('ShotButton');
+						  $('.Heading2').removeClass('Heading2').addClass('Heading');
+						  $('.TransButton2').removeClass('TransButton2').addClass('TransButton');
+						  localStorage.setItem("clickAc", 1);
+						  localStorage.setItem("ALTROB", 1);
+						  
+						  addAction()
+						  }
+
+						  else{
+						  $(this).removeClass('ActionButton2').addClass('ActionButton');
+						  localStorage.setItem("clickAc", 0);
+						  
+						  removeHeding()
+						  }
+	});
+						  
+		
+		
+		function addAction(){
+				localStorage.setItem("clickHe", 0);
+				localStorage.setItem("clickTr", 0);
 				var range ="";
 						  
 				 // metto il focus
@@ -412,26 +526,65 @@
 						   
 				 setTimeout (function(){
 						advancedEditor.formatText(range.start, range.end, 'cssText', 'action');
+						cursorManager.moveCursor("|", range.end);
 				}, 500);
 							
 						// WORK start write
 						if(range.end==range.start){
 							// alert("=")
-							advancedEditor.insertText(range.start, ' ', {
-							  'fore-color': '#000'
-							});
 							
-							var fine = parseInt(range.start)+1
+							advancedEditor.insertText(range.start, ' ', {
+								'fore-color': '#000'
+							});
+													  
+							var inizio = parseInt(range.start)+1
+							
 							
 							setTimeout (function(){
-									advancedEditor.formatText(range.start, fine, 'cssShot', 'action');
+								advancedEditor.formatText(range.start, inizio,  'cssText', 'action');
+								cursorManager.moveCursor("|", inizio);
 							}, 500);
-							
+
 						}
-		})
+
+		}
+	
+	
+	//Character
+	
+	$("#spk").on('click', function() {
+		$('.TransButton2').removeClass('TransButton2').addClass('TransButton');
+		$('.Heading2').removeClass('Heading2').addClass('Heading');
+		$('.ActionButton2').removeClass('ActionButton2').addClass('ActionButton');
+		$('.ShotButton2').removeClass('ShotButton2').addClass('ShotButton');
 		
-		$('.trans').click(function(){
-						  
+	});
+	
+	
+	//Transition
+	$('.TransButton').on('click', function() {
+					 if (localStorage.getItem("clickTr")==0){
+					 $(this).removeClass('TransButton').addClass('TransButton2');
+					 $('.Heading2').removeClass('Heading2').addClass('Heading');
+					 $('.ActionButton2').removeClass('ActionButton2').addClass('ActionButton');
+					 $('.ShotButton2').removeClass('ShotButton2').addClass('ShotButton');
+
+					 addTransition()
+					 }
+					 else{
+					 $(this).removeClass('TransButton2').addClass('TransButton');
+						 localStorage.setItem("clickTr", 0);
+					 
+					 removeHeding()
+					 }
+					 });
+	
+	
+	
+		function addTransition(){
+			localStorage.setItem("clickHe", 0);
+			localStorage.setItem("clickAc", 0)
+			
 			// metto il focus
 			advancedEditor.focus();
 						  
@@ -451,30 +604,37 @@
 						  
 
 			advancedEditor.insertText(range.start, delta, {
-				'fore-color': '#0000'
+				'fore-color': '#000'
 			});
 
 						  
 			setTimeout (function(){
 				advancedEditor.formatText(range.start, range.end, 'cssTrans', 'trans');
+				cursorManager.moveCursor("|", range.end);
+				advancedEditor.focus();
 			}, 500);
 						  
-						// WORK start write
-						if(range.end==range.start){
-						  // alert("=")
-						  advancedEditor.insertText(range.start, ' ', {
-								'fore-color': '#000'
-						   });
-						  
-						  var fine = parseInt(range.start)+1
-						  
-						  setTimeout (function(){
-							  advancedEditor.formatText(range.start, fine, 'cssShot', 'trans');
-						   }, 500);
-						  
-						}
-						  
-		})
+						  // WORK start write
+						  if(range.end==range.start){
+							  alert("=")
+							  
+							  advancedEditor.insertText(range.start, ' ', {
+														'fore-color': '#000'
+														});
+														
+														var inizio = parseInt(range.start)+1
+														//alert(inizio)
+														
+														setTimeout (function(){
+																	advancedEditor.formatText(range.start, inizio,  'cssTrans', 'trans');
+																	cursorManager.moveCursor("|", inizio);
+																	advancedEditor.focus();
+																	}, 500);
+																	
+						  }
+		}
+
+
 
 		$('.shot').click(function(){
 						 
@@ -494,7 +654,7 @@
 			//Formatto Testo
 			//advancedEditor.formatText(range.start, range.end, 'cssText', 'text0');
 				  
-			//Prendo Testo
+			//Prendo Testo@
 			var delta = advancedEditor.getText(range.start, range.end);
 			//alert(delta)
 				  
@@ -527,6 +687,54 @@
 			}
 			
 		})
+		
+		$('.testo').click(function(){
+						 
+						 // metto il focus
+						 advancedEditor.focus();
+						 
+						 var range = advancedEditor.getSelection();
+						 
+						 //alert(range.start);
+						 //alert(range.end);
+						 
+						 //Formatto Testo
+						 //advancedEditor.formatText(range.start, range.end, 'cssText', 'text0');
+						 
+						 //Prendo Testo
+						 var delta = advancedEditor.getText(range.start, range.end);
+						 //alert(delta)
+						 
+						 advancedEditor.deleteText(range.start, range.end);
+						 
+						 
+						 advancedEditor.insertText(range.start, delta, {
+												   'fore-color': '#000'
+												   });
+						 
+						 
+						 setTimeout (function(){
+									 advancedEditor.formatText(range.start, range.end, 'cssText', 'testo');
+									 }, 500);
+						 
+						 
+						 // WORK start write
+						 if(range.end==range.start){
+						 // alert("=")
+						 advancedEditor.insertText(range.start, ' ', {
+												   'fore-color': '#000'
+												   });
+						 
+						 var fine = parseInt(range.start)+1
+						 
+						 setTimeout (function(){
+									 advancedEditor.formatText(range.start, fine, 'cssShot', 'text');
+									 }, 500);
+						 
+						 }
+						 
+						 })
+
 		
 		$('.paren').click(function(){
 						 

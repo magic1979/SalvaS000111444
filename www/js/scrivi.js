@@ -8,34 +8,23 @@ function onDeviceReady() {
 	
 	var IDPage = getParameterByName('id');
 	
+	
 	//$("#tit").click();
 	//advancedEditor.setHTML('<div>Write Story</div>');
+	
+	$('html, body').on('touchmove', function (e) {
+		e.preventDefault();
+	});
+	
+	jQuery('#editor').on('touchstart touchmove', function(e){
+		e.stopPropagation();
+	});
 
 
 	$("#indietro").attr("href", "swip5.html?id="+ IDPage +"");
 	$("#salvataggio").attr("href", "javascript:scrivi("+ IDPage +")");
 	$("#pdf").attr("href", "javascript:creapdf("+ IDPage +")");
-	
-	$('.Heading').on('click', function() {
-			$(this).removeClass('Heading').addClass('Heading2');
-			$('.ShotButton2').removeClass('ShotButton2').addClass('ShotButton');
-			$('.ActionButton2').removeClass('ActionButton2').addClass('ActionButton');
-		    $('.TransButton2').removeClass('TransButton2').addClass('TransButton');
-		});
-	$('.Heading2').on('click', function() {
-			$(this).removeClass('Heading2').addClass('Heading');
-		});
-	
-	$('.ActionButton').on('click', function() {
-		$(this).removeClass('ActionButton').addClass('ActionButton2');
-		$('.ShotButton2').removeClass('ShotButton2').addClass('ShotButton');
-		$('.Heading2').removeClass('Heading2').addClass('Heading');
-		$('.TransButton2').removeClass('TransButton2').addClass('TransButton');
-	});
-	$('.ActionButton2').on('click', function() {
-			$(this).removeClass('ActionButton2').addClass('ActionButton');
-	});
-	
+
 
 	$('.ShotButton').on('click', function() {
 		$(this).removeClass('ShotButton').addClass('ShotButton2');
@@ -74,25 +63,7 @@ function onDeviceReady() {
 		
 	});
 	
-	$('.TransButton').on('click', function() {
-		$(this).removeClass('TransButton').addClass('TransButton2');
-		$('.Heading2').removeClass('Heading2').addClass('Heading');
-		$('.ActionButton2').removeClass('ActionButton2').addClass('ActionButton');
-		$('.ShotButton2').removeClass('ShotButton2').addClass('ShotButton');
-	});
-	
-	$('.TransButton2').on('click', function() {
-			$(this).removeClass('TransButton2').addClass('TransButton');
-	});
-	
-	
-	$("#spk").on('click', function() {
-		$('.TransButton2').removeClass('TransButton2').addClass('TransButton');
-		$('.Heading2').removeClass('Heading2').addClass('Heading');
-		$('.ActionButton2').removeClass('ActionButton2').addClass('ActionButton');
-		$('.ShotButton2').removeClass('ShotButton2').addClass('ShotButton');
-	});
-	
+		
 	
 	$("#tit").on('click', function() {
 		$('.TransButton2').removeClass('TransButton2').addClass('TransButton');
@@ -103,9 +74,12 @@ function onDeviceReady() {
 	
 	$('#editor').removeClass('editor-container');
 	$('#editor').addClass('editor-container2'); // ALta al massimo
+	
+	$('#footerbutton').addClass('giugiu');
+
+	$('#footerbutton').removeClass('giusu');
 
 	
-	$(window).load(function() {
       	var toolbar = advancedEditor.modules.toolbar.container;
 				   
 				   
@@ -117,29 +91,49 @@ function onDeviceReady() {
 									 
 									 $('#editor').addClass('editor-container');
 									 
+									 /*$('#footerbutton').removeClass('giugiu');
+
+									 setTimeout (function(){
+										$('#footerbutton').addClass('giusu');
+									 }, 500);*/
+									 
+									 $("#footerbutton").fadeIn();
+									 advancedEditor.focus();
+									 
+									 ("#wrapper-advanced").click()
+									 window.scrollTo(0,-300)
 									 
 									 } else {
 									 
 									 $('#editor').removeClass('editor-container');
 									 
 									 $('#editor').addClass('editor-container2');
-
+									 
+									 
+									 
+									 /*$('#footerbutton').addClass('giugiu');
+									 
+									 $('#footerbutton').removeClass('giusu');*/
+									 
+									 $("#footerbutton").fadeOut();
+									 
 									 }
-									 });
-				   });
-	
-	
-	//window.addEventListener('resize', function() { alert(window.innerHeight); });
 
+					});
+
+	
+	
+	//window.addEventListener('resize', function() { alert(window.innerHeight); }); @
+	
 	
 	var connectionStatus = false;
 	connectionStatus = navigator.onLine ? 'online' : 'offline';
 	
 	if(connectionStatus=='online'){
 		//Verifica Token
-		
 		verificatoken(IDPage)
-	
+		$(".spinner").hide();
+
 	}
 	else{
 	 // Che Faccio
@@ -164,7 +158,7 @@ function leggi(id) {
 		   crossDomain: true,
 		   success:function(result){
 		   
-		   //$("#titolo").html(result.title);
+		   $("#tito").html(result.title);
 		   
 		   $.each(result.characters, function(i,item){
 				  var script = item.detail["script"]
@@ -204,7 +198,7 @@ function leggi(id) {
 		   error: function(){
 		   $(".spinner").hide();
 		   
-		   alert("Errore Caricamento leggi");
+		   //alert("Errore Caricamento leggi");
 		   
 		   },
 		   dataType:"json"});
@@ -214,21 +208,27 @@ function leggi(id) {
 
 function scrivi(id) {
 	var html = advancedEditor.getHTML();
+	var righe;
 	html = html.replace(/<ul>/g,"<dialolg>").replace(/<\/ul>/g,"</dialog>");
 	html = html.replace(/<s>/g,"<character>").replace(/<\/s>/g,"</character>");
 	html = html.replace(/<ol>/g,"<parenth>").replace(/<\/ol>/g,"</parenth>");
 	
 	//alert(html);
 	
+	//dividi
+	//righe = html.split(/<\/div>/);
+	//alert(parseInt((righe.length+0.5)/2));
+	
 	Token = localStorage.getItem("Token");
 	
 	$(".spinner").show();
 	$.ajax({
-		   type:"GET",
-		   url:"https://www.storymatch.co/storymatch/userstories/update/script",
-		   data: {token:Token,storyid:id,script:html},
-		   contentType: "application/json; charset=utf-8",
-		   json: 'callback',
+		   url: "https://www.storymatch.co/storymatch/userstories/update/script",
+		   dataType: "json",
+		   type: "post",
+		   contentType: "application/json",
+		   data: JSON.stringify( { "storyid": ""+ id +"","script":""+ html +""} ),
+		   processData: false,
 		   crossDomain: true,
 		   success:function(result){
 		   
@@ -265,7 +265,7 @@ function scrivi(id) {
 										);
 		   
 		   },
-		   dataType:"json"});
+	dataType:"json"});
 }
 
 
@@ -371,7 +371,7 @@ function leggioutline(id) {
 		   error: function(){
 		   $(".spinner").hide();
 		   
-		   alert("Errore Leggi Outline");
+		   //alert("Errore Leggi Outline");
 		   
 		   },
 		   dataType:"json"});
@@ -472,7 +472,7 @@ function getParameterByName(name) {
 								 
 								 if (result.ID==1024){
 								 //OK
-								 	leggi(IDPage);
+								 leggi(IDPage);
 								 }
 								 else{
 								 navigator.notification.alert(

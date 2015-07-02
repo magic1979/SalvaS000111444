@@ -26,10 +26,12 @@ function onDeviceReady() {
 	});*/
 	
 	var pagine;
+	var conta;
 }
 
 
 function listapitch(IDPage,page) {
+	conta = 1
 	
 	$(".spinner").show();
 	$.ajax({
@@ -41,7 +43,7 @@ function listapitch(IDPage,page) {
 		   crossDomain: true,
 		   success:function(result){
 		   
-	var lista = "<table width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella' width='70%'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='4'>Need some inspirations?<br>Trey with thrse ideas or start from scatch</font></td></tr></table></td><td class='trtabella' width='5%' align='center'></td><td class='trtabella' width='10%' align='left'><a href='#' rel='external'><div width='52px' class='idea'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr><tr><td class='trtabella3' colspan='4' align='center'> <a href='#' class='btn'><font color='#000000'>All Pitches</font></a>&nbsp;&nbsp;&nbsp;<a href='#' class='btn'><font color='#000000'>All Generes</font></a>&nbsp;&nbsp;&nbsp;<a href='#popupMap' data-rel='popup' data-position-to='window' class='btn'><font color='#000000'>Best Rated</font></a></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
+	var lista = "<table width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella' width='70%'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='4'>Need some inspirations?<br>Trey with thrse ideas or start from scatch</font></td></tr></table></td><td class='trtabella' width='5%' align='center'></td><td class='trtabella' width='10%' align='left'><a href='javascript:costruzione()' rel='external'><div width='52px' class='idea'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr><tr><td class='trtabella3' colspan='4' align='center'> <a href='javascript:costruzione()' class='btn'><font color='#000000'>All Pitches</font></a>&nbsp;&nbsp;&nbsp;<a href='#' class='btn'><font color='#000000'>All Generes</font></a>&nbsp;&nbsp;&nbsp;<a href='javascript:costruzione()' data-rel='popup' data-position-to='window' class='btn'><font color='#000000'>Best Rated</font></a></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
 		   
 		   
 		   //alert(result.ID);
@@ -50,7 +52,8 @@ function listapitch(IDPage,page) {
 		   $.each(result.obj, function(i,item){
 				  //var fruits = item.steps
 				  
-				lista = lista + "<tr><td class='trtabella' colspan='4' align='left'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='3'><b>"+ item.title +"</b>&nbsp;("+ item.year +")<br>"+ item.pitch.replace("'","") +".</font></td></tr><tr><td width='10%'></td><td width='90%' align='left'><font size='3'><b><br>action, mistery,sci-fy,consecteur adipiscing, cupidatat non proident</b></font></td></tr></table></td></tr><tr><td class='trtabella' width='70%'><table width='90%' border='0'><tr><td width='10%'></td><td align='center'><img src='img/Ratio.png' width='16'></td><td width='150' align='left'><div id='rati"+ item.storyid +"'><img src='img/CuoreVuoto.png' width='20'> <img src='img/CuoreVuoto.png' width='20'> <img src='img/CuoreVuoto.png' width='20'> <img src='img/CuoreVuoto.png' width='20'> <img src='img/CuoreVuoto.png' width='20'></div></td><td align='left'>("+ item.voters +")</td></tr></table></td><td class='trtabella' width='5%' align='right'>Edit &nbsp;</td><td class='trtabella' width='10%' align='left'><a href='swip4.html?id="+ IDPage +"&idPitch="+ item.storyid +"' rel='external'><div width='52px' class='edita'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
+				  
+				lista = lista + "<tr><td class='trtabella' colspan='4' align='left'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='3'><b>"+ item.title +"</b>&nbsp;("+ item.year +")<br>"+ item.pitch.replace("'","") +".</font></td></tr><tr><td width='10%'></td><td width='90%' align='left'><font size='3'><b><br>action, mistery,sci-fy,consecteur adipiscing, cupidatat non proident</b></font></td></tr></table></td></tr><tr><td class='trtabella' width='70%'><table width='90%' border='0'><tr><td width='10%'></td><td align='center'><img src='img/Ratio.png' width='16'></td><td width='170' align='left'><input id='numrati"+ conta +"' type='hidden' value='"+ item.storyid +"'><div id='rati"+ item.storyid +"'></div></td><td align='left'>("+ item.voters +")</td></tr></table></td><td class='trtabella' width='5%' align='right'>Edit &nbsp;</td><td class='trtabella' width='10%' align='left'><a href='javascript:confirmLogout("+ IDPage +","+ item.storyid +")' rel='external'><div width='52px' class='edita'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
 				  
 				  
 				  /*if(conto==1){
@@ -79,6 +82,7 @@ function listapitch(IDPage,page) {
 				
 				  pagine = parseInt(item.pagecount)/5;
 				
+				  conta = conta +1;
 				  
 			});
 		   
@@ -95,10 +99,25 @@ function listapitch(IDPage,page) {
 			 if(page!=i){
 		       stringa = stringa + " | " + "<a href='javascript:listapitch("+ IDPage +","+ i +")'><font size='4' color='#000'>"+ i +"</font></a>"
 			 }
+		     else{
+			  
+			 }
+		   
 		   }
 		   
 		   $("#selector").html(stringa);
 		   
+		   
+		   for ( k=1; k < conta; k++ )
+		   {
+
+			 $('#rati'+document.getElementById("numrati"+ k +"").value).raty({
+				click: function(score, evt) {
+				//alert('ID: ' + this.id + "\nscore: " + score + "\nevent: " + evt);
+				}
+			  });
+
+		   }
 		   
 		   },
 		   error: function(){
@@ -110,13 +129,29 @@ function listapitch(IDPage,page) {
 		   dataType:"json"});
 	
 	
+}
+
+
+function confirmLogout(id,idpitch) {
+	localStorage.setItem("id3", id);
+	localStorage.setItem("idpitch3", idpitch);
 	
-	/*$('#rati1').raty({
-					 click: function(score, evt) {
-					 alert('ID: ' + this.id + "\nscore: " + score + "\nevent: " + evt);
-					 }
-					 });*/
+	navigator.notification.confirm(
+								   'You want to overwrite your story',  // message
+								   onConfirm,              // callback to invoke with index of button pressed
+								   'Confirm',            // title
+								   'Accept,Reject'      // buttonLabels
+								   );
 	
+	
+}
+
+function onConfirm(button) {
+	
+	if (button==1){
+		
+		 window.location.href = "swip4.html?id="+ localStorage.getItem("id3") +"&idPitch="+ localStorage.getItem("idpitch3") +"";
+	}
 }
 
 
@@ -255,4 +290,16 @@ function getParameterByName(name) {
 						  
 						  function exitapp() {
 						  window.location.href = "index.html";
+						  }
+						  
+						  
+						  function costruzione() {
+						  
+						  navigator.notification.alert(
+													   'Under Construction',  // message
+													   alertDismissed,         // callback
+													   'Stop',            // title
+													   'OK'                  // buttonName
+													   );
+						  
 						  }

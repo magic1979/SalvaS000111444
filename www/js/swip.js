@@ -13,6 +13,8 @@ function onDeviceReady() {
 	
 	setTimeout (function(){
 		document.getElementById('test1').click();
+				
+		//$("#framme").html("<div class='iframme' data-role='popup' id='popupMap' data-overlay-theme='d' data-theme='c' data-corners='false' data-tolerance='15,15'><a href='javascript:novedi()' data-rel='back' class='ui-btn ui-btn-b ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right'>Close</a><iframe src='setting.html' width='600px' height='760px' seamless=''></iframe></div>")
 	}, 500);
 	
 	iframme();
@@ -24,6 +26,7 @@ function onDeviceReady() {
 		//Verifica Token
 		
 		verificatoken()
+		var Token = localStorage.getItem("Token");
 	}
 	else{
 	 // Che Faccio
@@ -43,14 +46,14 @@ function closemenu() {
 function createstory() {
 	navigator.notification.prompt(
 								  'Insert Name',  // message
-								  creastoria,                  // callback to invoke
+								  onPrompt,                  // callback to invoke
 								  'Create Story',            // title
 								  ['Invia','Annulla'],             // buttonLabels
 								  ''                 // defaultText
 								  );
 }
 
-function creastoria(results) {
+function onPrompt(results) {
 	if(results.buttonIndex==1){
 		if (results.input1 == "") {
 			navigator.notification.alert(
@@ -66,7 +69,7 @@ function creastoria(results) {
 		//Nome Storia
 		//alert("You selected button number " + results.buttonIndex + " and entered " + results.input1);
 		
-		$(".spinner").show();
+		/*$(".spinner").show();
 		$.ajax({
 			   type:"GET",
 			   url:"https://www.storymatch.co/storymatch/userstories/create",
@@ -109,7 +112,57 @@ function creastoria(results) {
 											);
 			   
 			   },
+			   dataType:"json"});*/
+		
+		$(".spinner").show();
+		$.ajax({
+			   url: "https://www.storymatch.co/storymatch/userstories/create",
+			   dataType: "json",
+			   type: "post",
+			   contentType: "application/json",
+			   data: JSON.stringify( { "token":localStorage.getItem("Token"),"title":results.input1 } ),
+			   processData: false,
+			   crossDomain: true,
+			   success:function(result){
+			   
+			   if (result.ID==1024){
+			   navigator.notification.alert(
+											result.msg,  // message
+											alertDismissed,         // callback
+											'Create Story',            // title
+											'OK'                  // buttonName
+											);
+			   
+			   window.location.href = "swip2.html";
+		    }
+			   else{
+			   navigator.notification.alert(
+											result.msg,  // message
+											alertDismissed,         // callback
+											'Create Story',            // title
+											'OK'                  // buttonName
+											);
+			   }
+			   
+			   $(".spinner").hide();
+			   
+			   },
+			   error: function( jqXhr, textStatus, errorThrown ){
+			   $(".spinner").hide();
+			   
+			   alert(errorThrown)
+			   
+			   navigator.notification.alert(
+											'Possibile errore di rete, riprova tra qualche minuto',  // message
+											alertDismissed,         // callback
+											'Errore',            // title
+											'OK'                  // buttonName
+											);
+			   
+			   },
 			   dataType:"json"});
+		
+		
 		
 	}
 	
@@ -167,7 +220,7 @@ function esempio(){
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://www.storymatch.co/storymatchsearch/stepsbyid",
+		   url:"http://5.249.157.197:9000/storymatchsearch/stepsbyid",
 		   data: {ID:2},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -217,20 +270,31 @@ function alertDismissed() {
 	
 }
 
+function costruzione() {
+	
+	navigator.notification.alert(
+								 'Under Construction',  // message
+								 alertDismissed,         // callback
+								 'Stop',            // title
+								 'OK'                  // buttonName
+								 );
+	
+}
+
 function exitapp() {
 	 window.location.href = "index.html";
 }
 
 function LogOut() {
-
 	
 	$(".spinner").show();
 	$.ajax({
-		   type:"GET",
-		   url:"https://www.storymatch.co/storymatch/authentication/logout",
-		   data: {token:localStorage.getItem("Token")},
-		   contentType: "application/json; charset=utf-8",
-		   json: 'callback',
+		   url: "https://www.storymatch.co/storymatch/authentication/logout",
+		   dataType: "json",
+		   type: "post",
+		   contentType: "application/json",
+		   data: JSON.stringify( { "token": ""+ localStorage.getItem("Token") +""} ),
+		   processData: false,
 		   crossDomain: true,
 		   success:function(result){
 		   
@@ -269,6 +333,27 @@ function LogOut() {
 		   dataType:"json"});
 
 }
+
+function confirmLogout() {
+	
+	
+	navigator.notification.confirm(
+								   'confirm the logout',  // message
+								   onConfirm,              // callback to invoke with index of button pressed
+								   'Logout',            // title
+								   'Accept,Reject'      // buttonLabels
+								   );
+
+	
+}
+
+function onConfirm(button) {
+	
+	if (button==1){
+		LogOut()
+	}
+}
+
 
 function onResume() {
 	onDeviceReady();

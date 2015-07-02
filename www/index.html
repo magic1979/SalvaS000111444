@@ -145,7 +145,7 @@
 				height: 460px;
 				background-color: #ebdae0;
 				
-				position: fixed;
+				position: absolute;
 				top: 50%;
 				left: 50%;
 				bottom: 50%;
@@ -295,11 +295,49 @@
 				
 			}
 			
+	html, body{
+    float:left;
+	margin:0;
+	padding:0;
+	width:100%;
+	height:100%;
+	
+	/* Note: This gradient may render differently in browsers that don't support the unprefixed gradient syntax */
+	
+	/* IE10 Consumer Preview */
+	background-image: -ms-linear-gradient(top left, #BD8699 0%, #A390A4 50%, #C6A886 100%);
+	
+	/* Mozilla Firefox */
+	background-image: -moz-linear-gradient(top left, #BD8699 0%, #A390A4 50%, #C6A886 100%);
+	
+	/* Opera */
+	background-image: -o-linear-gradient(top left, #BD8699 0%, #A390A4 50%, #C6A886 100%);
+	
+	/* Webkit (Safari/Chrome 10) */
+	background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #BD8699), color-stop(0.5, #A390A4), color-stop(1, #C6A886));
+	
+	/* Webkit (Chrome 11+) */
+	background-image: -webkit-linear-gradient(top left, #BD8699 0%, #A390A4 50%, #C6A886 100%);
+	
+	/* W3C Markup, IE10 Release Preview */
+	background-image: linear-gradient(to bottom right, #BD8699 0%, #A390A4 50%, #C6A886 100%);
+	
+	-webkit-background-size: cover !important;
+	-moz-background-size: cover !important;
+	-o-background-size: cover !important;
+	background-size: cover !important;
+	
+	}
+			
+	.ui-page, .ui-page-active{
+		background:none !important;
+	}
+			
 			
 				</style>
     <body>
 		
-		<div data-role="page" id="article1" class="div2" >
+		<div data-role="page" id="article1" >
 			
 			<div data-role="content">
 				<table id="myTable" class="myTableStyle2" border="0" style="display: none;">
@@ -322,14 +360,14 @@
 			
 			<center><br><br>
 			<table height="680" width="400" align="center" border="0" ><tr><td align="center" valign="bottom">
-				<a href="Froala/basic.html" onclick="#" rel="external" class="btn"><font color="#FFF">Get Started</font></a>
+				<a href="javascript:VerificaLogin()" onclick="#" rel="external" class="btn"><font color="#FFF">Get Started</font></a>
 			</td></tr>
 			</table>
 			
 			
 		</div>
 		
-		<div data-role="page" id="article2" class="div2">
+		<div data-role="page" id="article2" >
 			
 			<div data-role="content">
 				<table id="myTable" class="myTableStyle2" border="0" >
@@ -352,7 +390,7 @@
 				</table>
 			
 		</div>
-		<div data-role="page" id="article3" class="div2" data-theme="c">
+		<div data-role="page" id="article3"  data-theme="c">
 			
 			<div class="spinner" id="spinner"></div>
 			
@@ -388,7 +426,7 @@
 				
 		</div>
 		
-		<div data-role="page" id="article4" class="div2" data-theme="c">
+		<div data-role="page" id="article4" data-theme="c">
 			
 			<div class="spinner" id="spinner"></div>
 			

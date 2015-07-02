@@ -18,11 +18,15 @@ function alertDismissed() {
 }
 
 function LogOut() {
-	localStorage.setItem("email", 0);
-	localStorage.setItem("Token", "");
-	//alert("out");
-	
-	window.location.href = "index.html";
+
+		
+		navigator.notification.alert(
+									 'Under Construction',  // message
+									 alertDismissed,         // callback
+									 'Stop',            // title
+									 'OK'                  // buttonName
+									 );
+
 }
 
 
@@ -47,7 +51,7 @@ function LogOut() {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://www.storymatch.co/storymatch/authentication/logout",
+		   url:"http://5.249.157.197:9000/storymatch/authentication/logout",
 		   data: {token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',

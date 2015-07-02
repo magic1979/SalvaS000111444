@@ -62,14 +62,14 @@ authorship = advancedEditor.getModule('authorship');
 
 authorship.addAuthor('basic', 'rgba(255,153,51,0.4)');
 
-//cursorManager = advancedEditor.getModule('multi-cursor');
+cursorManager = advancedEditor.getModule('multi-cursor', {timeout: 1000});
 
-//cursorManager.setCursor('basic', 0, 'basic', 'rgba(255,153,51,0.9)');
+cursorManager.setCursor('|', 0, '|', 'rgba(255,153,51,0.9)');
 
-basicEditor.on('selection-change', function(range) {
+advancedEditor.on('selection-change', function(range) {
   console.info('basic', 'selection', range);
   if (range != null) {
-    return cursorManager.moveCursor('basic', range.end);
+    return cursorManager.moveCursor('|', range.end);
   }
 });
 

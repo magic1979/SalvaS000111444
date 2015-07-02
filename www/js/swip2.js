@@ -12,9 +12,16 @@ function onDeviceReady() {
 	connectionStatus = navigator.onLine ? 'online' : 'offline';
 	
 	if(connectionStatus=='online'){
+		
+		setTimeout (function(){
+			document.getElementById('test1').click();
+		}, 500);
+		
 		//Verifica Token
 		
 		verificatoken()
+		Token = localStorage.getItem("Token");
+		//listaStory()
 	}
 	else{
 	 // Che Faccio @
@@ -24,6 +31,7 @@ function onDeviceReady() {
 }
 
 function listaStory() {
+	Token = localStorage.getItem("Token");
 	
 	//QUI
 	 lista = "<table width='100%' border='0' cellpadding='0' cellspacing='0'>"
@@ -31,7 +39,7 @@ function listaStory() {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/userstories/list",
+		   url:"https://www.storymatch.co/storymatch/userstories/list",
 		   data: {token:Token},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -111,7 +119,7 @@ function verificatoken() {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/authentication/validatetoken",
+		   url:"https://www.storymatch.co/storymatch/authentication/validatetoken",
 		   data: {token:Token},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -154,11 +162,12 @@ function deletestory(id) {
 	
 	$(".spinner").show();
 	$.ajax({
-		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/userstories/delete",
-		   data: {token:Token,storyid:id},
-		   contentType: "application/json; charset=utf-8",
-		   json: 'callback',
+		   url: "https://www.storymatch.co/storymatch/userstories/delete",
+		   dataType: "json",
+		   type: "post",
+		   contentType: "application/json",
+		   data: JSON.stringify( { "token": ""+ localStorage.getItem("Token") +"", "storyid":""+ id +""} ),
+		   processData: false,
 		   crossDomain: true,
 		   success:function(result){
 		   
@@ -206,11 +215,12 @@ function clonestory(id) {
 	
 	$(".spinner").show();
 	$.ajax({
-		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/userstories/clone",
-		   data: {token:Token,storyid:id},
-		   contentType: "application/json; charset=utf-8",
-		   json: 'callback',
+		   url: "https://www.storymatch.co/storymatch/userstories/clone",
+		   dataType: "json",
+		   type: "post",
+		   contentType: "application/json",
+		   data: JSON.stringify( { "token": ""+ localStorage.getItem("Token") +"", "storyid":""+ id +""} ),
+		   processData: false,
 		   crossDomain: true,
 		   success:function(result){
 		   
@@ -400,10 +410,10 @@ function creastoria(results) {
 		//Nome Storia
 		//alert("You selected button number " + results.buttonIndex + " and entered " + results.input1);
 		
-		$(".spinner").show();
+		/*$(".spinner").show();
 		$.ajax({
 			   type:"GET",
-			   url:"http://5.249.157.197:9000/storymatch/userstories/create",
+			   url:"https://www.storymatch.co/storymatch/userstories/create",
 			   data: {token:localStorage.getItem("Token"),title:results.input1},
 			   contentType: "application/json; charset=utf-8",
 			   json: 'callback',
@@ -447,8 +457,87 @@ function creastoria(results) {
 											);
 			   
 			   },
+			   dataType:"json"});*/
+		
+		$(".spinner").show();
+		$.ajax({
+			   url: "https://www.storymatch.co/storymatch/userstories/create",
+			   dataType: "json",
+			   type: "post",
+			   contentType: "application/json",
+			   data: JSON.stringify( { "token":localStorage.getItem("Token"),"title":results.input1 } ),
+			   processData: false,
+			   crossDomain: true,
+			   success:function(result){
+			   
+			   if (result.ID==1024){
+			   navigator.notification.alert(
+											result.msg,  // message
+											alertDismissed,         // callback
+											'Create Story',            // title
+											'OK'                  // buttonName
+											);
+			   
+			   window.location.href = "swip2.html";
+		    }
+			   else{
+			   navigator.notification.alert(
+											result.msg,  // message
+											alertDismissed,         // callback
+											'Create Story',            // title
+											'OK'                  // buttonName
+											);
+			   }
+			   
+			   $(".spinner").hide();
+			   
+			   },
+			   error: function( jqXhr, textStatus, errorThrown ){
+			   $(".spinner").hide();
+			   
+			   alert(errorThrown)
+			   
+			   navigator.notification.alert(
+											'Possibile errore di rete, riprova tra qualche minuto',  // message
+											alertDismissed,         // callback
+											'Errore',            // title
+											'OK'                  // buttonName
+											);
+			   
+			   },
 			   dataType:"json"});
 		
 	}
+	
+}
+
+function confirmLogout() {
+	
+	
+	navigator.notification.confirm(
+								   'confirm the logout',  // message
+								   onConfirm,              // callback to invoke with index of button pressed
+								   'Logout',            // title
+								   'Accept,Reject'      // buttonLabels
+								   );
+	
+	
+}
+
+function onConfirm(button) {
+	
+	if (button==1){
+		LogOut()
+	}
+}
+
+function costruzione() {
+	
+	navigator.notification.alert(
+								 'Under Construction',  // message
+								 alertDismissed,         // callback
+								 'Stop',            // title
+								 'OK'                  // buttonName
+								 );
 	
 }
