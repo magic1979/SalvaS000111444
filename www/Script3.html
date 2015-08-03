@@ -198,7 +198,7 @@ section {
 	  
         $('#edit').editable({
             inlineMode: false,
-			height:940,
+			height:840,
 			editorClass: 'custom-class',
 			scrollableContainer: '#scrollable',
 			buttons: ['blockStyle', 'html'],
@@ -1238,7 +1238,7 @@ function mantieni(classificazione,num) {
   window.addEventListener('native.keyboardshow', keyboardShowHandler);
   
   function keyboardShowHandler(e){
-	  $('#edit').editable('option', 'height', '520');
+	  $('#edit').editable('option', 'height', '420');
 	  
 	  $("#footerbutton").show();
 	  
@@ -1274,7 +1274,7 @@ function mantieni(classificazione,num) {
   window.addEventListener('native.keyboardhide', keyboardHideHandler);
   
   function keyboardHideHandler(e){
-	  $('#edit').editable('option', 'height', '940');
+	  $('#edit').editable('option', 'height', '840');
 	  
 	  $("#footerbutton").hide();
 	  
