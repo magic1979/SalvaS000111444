@@ -1797,10 +1797,12 @@ hr.fr-tag {
 .froala-editor.f-basic hr {
   display: none;
 }
+
+/*SFONDO*/
 .froala-wrapper.f-basic {
   border: solid 1px #252525;
   position: relative;
-  background: #ffffff;
+  background: #ebd8dc;
 }
 .froala-element.f-basic {
   padding: 10px;

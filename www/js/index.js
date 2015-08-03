@@ -40,10 +40,18 @@ var app = {
 		
 		var hoverDelay = $.mobile.buttonMarkup.hoverDelay = 0;
 		
+		$.support.cors = true;
+		$.mobile.allowCrossDomainPages = true;
+		$.mobile.phonegapNavigationEnabled = true
+		$.mobile.pushStateEnabled = false;
+		
 		$.mobile.defaultPageTransition = 'none';
 		$.mobile.defaultDialogTransition = 'none';
 		
-		
+		$(function() {
+          FastClick.attach(document.body);
+		});
+
 		$('body').on('touchmove', function (e) {
 			e.preventDefault();
 		});
@@ -51,12 +59,13 @@ var app = {
 		
 		// Per il video.
 		
-		setTimeout (function(){
+		//setTimeout (function(){
 			$("#myTable").show();
-		}, 500);
+			VerificaLogin()
+		//}, 5500);
 		
 		
-		
+
 		$(".spinner").hide();
 
 		//$(document).keydown(function (eventObj){
@@ -146,7 +155,7 @@ function vai(){
 	
 	$(".spinner").show();
 	$.ajax({
-		   url: "https://www.storymatch.co/storymatch/authentication/signup",
+		   url: "https://dev.storymatch.co/storymatch/authentication/signup",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
@@ -182,9 +191,9 @@ function vai(){
 		   $(".spinner").hide();
 		   
 			  navigator.notification.alert(
-										   'Possibile errore di rete, riprova tra qualche minuto',  // message
+										   'possible network error',  // message
 										   alertDismissed,         // callback
-										   'Errore',            // title
+										   'Error',            // title
 										   'OK'                  // buttonName
 										   );
 		   
@@ -227,7 +236,12 @@ function esempio(){
 		   error: function(){
 		   $(".spinner").hide();
 		   
-		   alert("Errore");
+		   navigator.notification.alert(
+										'possible network error',  // message
+										alertDismissed,         // callback
+										'Error',            // title
+										'OK'                  // buttonName
+										);
 		   
 		},
 	dataType:"json"});
@@ -281,7 +295,7 @@ function Login(){
 	/*$(".spinner").show();
 	$.ajax({
 		   type:"POST",
-		   url:"https://www.storymatch.co/storymatch/authentication/login",
+		   url:"https://dev.storymatch.co/storymatch/authentication/login",
 		   data: {username:emailreg,password:pinreg},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -313,7 +327,7 @@ function Login(){
 			  navigator.notification.alert(
 										    errorThrown,  // message
 										    alertDismissed,         // callback
-										   'Errore',            // title
+										   'Error',            // title
 										   'OK'                  // buttonName
 										   );
 		   
@@ -322,7 +336,7 @@ function Login(){
 	
 	$(".spinner").show();
 	$.ajax({
-		   url: "https://www.storymatch.co/storymatch/authentication/login",
+		   url: "https://dev.storymatch.co/storymatch/authentication/login",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
@@ -334,7 +348,7 @@ function Login(){
 			  //alert(result.token);
 			  localStorage.setItem("email", emailreg);
 			  localStorage.setItem("Token", result.token);
-			  window.location.href = "swip2.html";
+			  window.location.href = "swip.html";
 			  
 		   }
 		   else{
@@ -350,9 +364,9 @@ function Login(){
 		   },
 		   error: function( jqXhr, textStatus, errorThrown ){
 			navigator.notification.alert(
-										'Possibile errore di rete, riprova tra qualche minuto',  // message
+										'possible network error',  // message
 										alertDismissed,         // callback
-										'Errore',            // title
+										'Error',            // title
 										'OK'                  // buttonName
 										);		   }
 		   });
@@ -389,7 +403,7 @@ function verificatoken() {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://www.storymatch.co/storymatch/authentication/validatetoken",
+		   url:"https://dev.storymatch.co/storymatch/authentication/validatetoken",
 		   data: {token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -399,11 +413,13 @@ function verificatoken() {
 		   if (result.ID==1024){
 		   //OK
 		   //alert(result.ID);
-		   window.location.href = "swip2.html";
+		   
+		   window.location.href = "swip.html";
 		   }
 		   else{
 			//alert(result.msg);
 		    //window.location.href = "Froala/basic.html";
+		    self.document.formia2.emailL.value = localStorage.getItem("email");
 			window.location.href = "#article4";
 		   }
 		   
@@ -414,9 +430,9 @@ function verificatoken() {
 		   $(".spinner").hide();
 		   
 		   navigator.notification.alert(
-										'Possibile errore di rete, riprova tra qualche minuto',  // message
+										'possible network error',  // message
 										alertDismissed,         // callback
-										'Errore',            // title
+										'Error',            // title
 										'OK'                  // buttonName
 										);
 		   
@@ -469,7 +485,7 @@ function onPrompt(results) {
 		
 		$(".spinner").show();
 		$.ajax({
-			   url: "https://www.storymatch.co/storymatch/authentication/asktoreset",
+			   url: "https://dev.storymatch.co/storymatch/authentication/asktoreset",
 			   dataType: "json",
 			   type: "post",
 			   contentType: "application/json",
@@ -503,9 +519,9 @@ function onPrompt(results) {
 			   $(".spinner").hide();
 			   
 			   navigator.notification.alert(
-											'Possibile errore di rete, riprova tra qualche minuto',  // message
+											'possible network error',  // message
 											alertDismissed,         // callback
-											'Errore',            // title
+											'Error',            // title
 											'OK'                  // buttonName
 											);
 			   

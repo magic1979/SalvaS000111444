@@ -1,6 +1,7 @@
 document.addEventListener('deviceready', onDeviceReady, false);
 
 function onDeviceReady() {
+	
 	document.addEventListener("resume", onResume, false);
 	document.addEventListener("showkeyboard", function(){ $("[data-role=footer]").hide();}, false);
 	document.addEventListener("hidekeyboard", function(){ $("[data-role=footer]").show();}, false);
@@ -32,11 +33,12 @@ function onDeviceReady() {
 
 function listapitch(IDPage,page) {
 	conta = 1
+	 var generi = "";
 	
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://www.storymatch.co/storymatch/search/stepsbygenres",
+		   url:"https://dev.storymatch.co/storymatch/search/stepsbygenres",
 		   data: {token:localStorage.getItem("Token"),genre:"All",page:page,pagesize:"5"},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -47,13 +49,24 @@ function listapitch(IDPage,page) {
 		   
 		   
 		   //alert(result.ID);
-		   //$("#titolo").html(result.title);
+		   //$("#titolo").html(result.title); @
 		   
 		   $.each(result.obj, function(i,item){
-				  //var fruits = item.steps
+				  var fruits = item.genres
 				  
+				  //alert(fruits.length)
 				  
-				lista = lista + "<tr><td class='trtabella' colspan='4' align='left'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='3'><b>"+ item.title +"</b>&nbsp;("+ item.year +")<br>"+ item.pitch.replace("'","") +".</font></td></tr><tr><td width='10%'></td><td width='90%' align='left'><font size='3'><b><br>action, mistery,sci-fy,consecteur adipiscing, cupidatat non proident</b></font></td></tr></table></td></tr><tr><td class='trtabella' width='70%'><table width='90%' border='0'><tr><td width='10%'></td><td align='center'><img src='img/Ratio.png' width='16'></td><td width='170' align='left'><input id='numrati"+ conta +"' type='hidden' value='"+ item.storyid +"'><div id='rati"+ item.storyid +"'></div></td><td align='left'>("+ item.voters +")</td></tr></table></td><td class='trtabella' width='5%' align='right'>Edit &nbsp;</td><td class='trtabella' width='10%' align='left'><a href='javascript:confirmLogout("+ IDPage +","+ item.storyid +")' rel='external'><div width='52px' class='edita'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
+				  for ( i=0; i < fruits.length; i++ )
+				  {
+				  if (i==0){
+					generi = generi + fruits[i]["name"]
+				  }
+				  else{
+					generi = generi + "," + fruits[i]["name"]
+				  }
+				  }
+				  
+				lista = lista + "<tr><td class='trtabella' colspan='4' align='left'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='3'><b>"+ item.title +"</b>&nbsp;("+ item.year +")<br>"+ item.pitch.replace("'","") +".</font></td></tr><tr><td width='10%'></td><td width='90%' align='left'><font size='3'><b><br>"+ generi +"</b></font></td></tr></table></td></tr><tr><td class='trtabella' width='70%'><table width='90%' border='0'><tr><td width='10%'></td><td align='center'><img src='img/Ratio.png' width='16'></td><td width='170' align='left'><input id='numrati"+ conta +"' type='hidden' value='"+ item.storyid +"'><input id='ratirati"+ conta +"' type='hidden' value='"+ item.rating +"'><div id='rati"+ item.storyid +"'></div></td><td align='left'>("+ item.voters +")</td></tr></table></td><td class='trtabella' width='5%' align='right'>Edit &nbsp;</td><td class='trtabella' width='10%' align='left'><a href='javascript:confirmLogout("+ IDPage +","+ item.storyid +")' rel='external'><div width='52px' class='edita'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
 				  
 				  
 				  /*if(conto==1){
@@ -80,9 +93,10 @@ function listapitch(IDPage,page) {
 				  
 				  //$("#rati"+ item.storyid +"").html("<img src='img/CuoreVuoto.png' width='20'> <img src='img/CuoreVuoto.png' width='20'> <img src='img/CuoreVuoto.png' width='20'> <img src='img/CuoreVuoto.png' width='20'> <img src='img/CuoreVuoto.png' width='20'>");
 				
-				  pagine = parseInt(item.pagecount)/5;
+				  pagine = parseInt(item.pagecount);
 				
 				  conta = conta +1;
+				  
 				  
 			});
 		   
@@ -107,15 +121,21 @@ function listapitch(IDPage,page) {
 		   
 		   $("#selector").html(stringa);
 		   
+		   myScroll.refresh();
+		   
 		   
 		   for ( k=1; k < conta; k++ )
 		   {
+		   
+		     //$('#rati'+document.getElementById("numrati"+ k +"").value).raty({ score: 3 });
 
 			 $('#rati'+document.getElementById("numrati"+ k +"").value).raty({
-				click: function(score, evt) {
-				//alert('ID: ' + this.id + "\nscore: " + score + "\nevent: " + evt);
+				score: document.getElementById("ratirati"+ k +"").value ,click: function(score, evt) {
+				alert('ID: ' + this.id.slice(4) + "\nscore: " + score + "\nevent: " + evt);
 				}
 			  });
+		   
+		     //$('#rati'+document.getElementById("numrati"+ k +"").value).raty({ score: 3 });
 
 		   }
 		   
@@ -249,7 +269,7 @@ function getParameterByName(name) {
 						  $(".spinner").show();
 						  $.ajax({
 								 type:"GET",
-								 url:"https://www.storymatch.co/storymatch/authentication/validatetoken",
+								 url:"https://dev.storymatch.co/storymatch/authentication/validatetoken",
 								 data: {token:Token},
 								 contentType: "application/json; charset=utf-8",
 								 json: 'callback',

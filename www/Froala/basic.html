@@ -7,9 +7,11 @@
   <link href="css/froala_editor.css" rel="stylesheet" type="text/css">
   <link href="css/froala_style.css" rel="stylesheet" type="text/css">
 
+
     <style>
         body {
-            text-align: center;
+            text-align: left;
+			background-color: #F0F0F0;
         }
 
         section {
@@ -25,20 +27,81 @@
           height: 300px;
           padding: 10px;
           position: relative;
-          margin-top: 50px;
-          margin-left: 50px;
+          margin-top: 20px;
+          margin-left: 20px;
         }
+	.div3 {
+		
+		background-color: #000;
+		
+	}
+	.giusu {
+		background-color: #000;
+		width:100%;
+		height: 52px;
+		
+		position:fixed;
+		bottom:264px;
+		left:0px;
+		z-index:1000;
+		font-family:Roboto, sans-serif;
+	}
+	.topo {
+		background-color: #000;
+		width:100%;
+		height: 52px;
+		vertical-align: middle;
+		
+		position:absolute;
+		top:0px;
+		left:0px;
+		z-index:1000;
+		font-family:Roboto, sans-serif;
+	}
+		.froala-editor.f-basic {
+			display: none !important;
+			
+		}
+		
+	.NoEdit {
+		color: #FFF;
+		text-decoration: none;
+		text-transform: none;
+	}
+	
+	.SelEdit {
+		color: #FFC0CB;
+		text-decoration: none;
+		text-transform: none;
+	}
+
     </style>
 </head>
 
 <body>
-<button id="getHTML">Get HTML</button>
+	<center>
+		<table width="100%" border="0" class="topo">
+			<tr>
+				<td width="33%" align="left"><a id="indietro" href="swip5.html" rel="external" class="collegamento"><font color="#FFF">&nbsp;&nbsp;Back</font></a></td>
+				<td width="33%" align="center"><span id="titolo"><font color="#FFF"><div id="tito"></div></font></span></td>
+				<td width="33%" align="right"><a id="salvataggio" href="swip5.html" rel="external" class="collegamento"><font color="#FFF">Share&nbsp;</font></a> | <a id="pdf" href="swip5.html" rel="external" class="collegamento"><font color="#FFF">&nbsp;PDF</font></a></td>
+			</tr></table>
+	</center>
+
   <section id="editor">
-      <div id='edit' style="margin-top: 30px;" class="froala-view"></div>
+  <button id="getHTML">Get HTML</button>
+      <div id='edit' style="margin-top: 30px; " class="froala-view"></div>
+	  <table id="footerbutton" valign="center" align="center" border="0" width="100%" height="52" class="div3" >
+	  <tr>
+		<td width="100%" align="center" valign="center" height="16"><font color="#FFF"><p><a href="#" id="get-text" class="NoEdit">Alza</a> | <a href="#" id="get-text1" class="NoEdit">Calss1</a> | <a href="#" id="get-text2" class="NoEdit">Calss2</a> | <a href="#" id="get-text3" class="NoEdit">Parentesi</a> </p></font></td>
+		
+		<td width="100%" align="center" valign="center" height="16"><font color="#FFF"><p><a href="#" id="Heading" class="NoEdit">Shene Heading</a> |</p></font></td>
+	  </tr>
+	  </table>
+	<input type="text" value="">
   </section>
 
-  	<p><a href="#" id="get-text" class="r-btn text-small">Clear</a></p>
-	<p><a href="#" id="get-text1" class="r-btn text-small">Clear</a></p>
+	<!-- <button id="getHTML">Get HTML</button> -->
 	
   <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
   <script src="js/froala_editor.min.js"></script>
@@ -49,6 +112,8 @@
 	  
         $('#edit').editable({
             inlineMode: false,
+			height:750,
+			editorClass: 'custom-class',
 			scrollableContainer: '#scrollable',
 			buttons: ['blockStyle', 'html'],
 			
@@ -68,23 +133,167 @@
 				// Do something here.
 		  });
 		  
+			/*$('#edit').on('editable.focus', function (e, editor) {
+				alert();
+			})
+		  
+		  $('#edit').on('editable.blur', function (e, editor) {
+			  $("#edit").editable('setFocusAtEnd', $("#edit").data('fa.editable').$element);
+			  $('#edit').editable('option', 'height', '750');
+			  $("#edit").data('fa.editable').$wrapper.scrollTop($("#edit").data('fa.editable').$element.outerHeight());
+          })  */
+		  
 		  $('#get-text').click(function (e, editor, html) {
-			  $(".blockStyle").val("class1");
+
+			  $('#edit').editable('option', 'height', '300');
+			  
+			  var instance = $("#edit").data('fa.editable'); // Get editor instance.
+			  var el = instance.getSelectionElement(); // Get the current element.
+              var scrollDiff = $(el).offset().top - instance.$element.offset().top; // Find the position of the current element inside the editor.
+              $("#edit").data('fa.editable').$wrapper.scrollTop(scrollDiff);  // Set scroll.
+			  
+			  $("#edit").editable('focus');
+			  //$("#edit").editable('setFocusAtEnd', $("#edit").data('fa.editable').$element);
+			  //$("#edit").data('fa.editable').$wrapper.scrollTop($("#edit").data('fa.editable').$element.outerHeight());
 		  })
 		  
 		   $('#get-text1').click(function (e) {
-			  $('html').click();
+				$("#edit").editable('blockStyle', 'class1');
+				
+				 var instance = $("#edit").data('fa.editable'); // Get editor instance.
+				 var el = instance.getSelectionElement(); // Get the current element.
+				 var scrollDiff = $(el).offset().top - instance.$element.offset().top; // Find the position of the current element inside the editor.
+				 $("#edit").data('fa.editable').$wrapper.scrollTop(scrollDiff);  // Set scroll.
+			  
+			     $("#edit").editable('focus');
+				
+				 $('#get-text1').removeClass('NoEdit').addClass('SelEdit');
+				//$("#edit").editable('setFocusAtEnd', $("#edit").data('fa.editable').$element);
+				//$("#edit").data('fa.editable').$wrapper.scrollTop($("#edit").data('fa.editable').$element.outerHeight());
+				
+				mantieni("class2",2)
 		  })
 		  
+		  $('#get-text2').click(function (e) {
+				$("#edit").editable('blockStyle', 'class2');
+				$("#edit").editable('setFocusAtEnd', $("#edit").data('fa.editable').$element);
+				
+				$("#edit").data('fa.editable').$wrapper.scrollTop($("#edit").data('fa.editable').$element.outerHeight());
+				
+				mantieni("class3",3)
+		  })
+		  
+		  $('#get-text3').click(function (e) {
+			  $("#edit").editable('blockStyle', 'class3');
+			  $("#edit").editable('setFocusAtEnd', $("#edit").data('fa.editable').$element);
+			  
+			  var elements =  $('#edit').editable('getSelectionElements');
+			  
+			  /*for (var i = 0; i < elements.length; i++) {
+				var element = elements[i];
+
+				$(element).append(")");
+				$(element).prepend("(");
+
+			 }*/
+			 
+			 mantieni("class1",1)
+			 
+		   })
 
 		$('#getHTML').click(function (e) {
           e.preventDefault();
-         alert($('#edit').editable('getHTML', false, true));
+          alert($('#edit').editable('getHTML', false, true));
         })
 		
-		$('#edit').editable('setHTML', '<p>My custom paragraph.</p>', false);
+		$('#edit').editable('setHTML', '<p>My custom paragraph.<br>dkjasjfdkj</p>', false);
 		$('#edit').editable('focus');
+		
+		
+		 $('#edit').data('fa.editable').$element.on('mouseup touchend', function (e) {
+			var blocks = $('#edit').data('fa.editable').getSelectionElements();
+        
+			//alert ($(blocks[0]).attr('class'));
+			/*$('#edit').editable('option', 'height', '300');
+			  
+			  var instance = $("#edit").data('fa.editable'); // Get editor instance.
+			  var el = instance.getSelectionElement(); // Get the current element.
+              var scrollDiff = $(el).offset().top - instance.$element.offset().top; // Find the position of the current element inside the editor.
+              $("#edit").data('fa.editable').$wrapper.scrollTop(scrollDiff);  // Set scroll.
+			  
+			  $("#edit").editable('focus');*/
+		});
       });
+	  
+	  
+function mantieni(classificazione,num) {
+	 //STESSO CARATTERE QUANDO VADO A CAPO.
+	$.Editable.prototype.breakEnd = function (parentEl, breakBefore) {
+    if (breakBefore === undefined) breakBefore = false;
+
+    if (parentEl.tagName == 'BLOCKQUOTE') {
+      var contents = $(parentEl).contents();
+      if (contents.length && contents[contents.length - 1].tagName == 'BR') {
+        $(contents[contents.length - 1]).remove();
+      }
+    }
+
+    // Find the element where to start.
+    var el = $(parentEl).find('break').get(0);
+
+    // IE 9, 10 workaround.
+    var br = this.br;
+    if (!this.options.paragraphy) br = '<br/>'
+
+    // Build string.
+    var str = this.markers_html + br;
+    if (breakBefore) str = this.markers_html + $.Editable.INVISIBLE_SPACE;
+
+    while (el != parentEl) {
+      // Pass over A and BREAK tags.
+      if (el.tagName != 'A' && el.tagName != 'BREAK') {
+        str = '<' + el.tagName + this.attrs(el) + '>' + str + '</' + el.tagName + '>';
+      }
+
+      el = el.parentNode;
+    }
+
+    if (breakBefore) {
+      if (el.tagName != 'A' && el.tagName != 'BREAK') {
+        str = '<' + el.tagName + this.attrs(el) + '>' + str + '</' + el.tagName + '>';
+      }
+    }
+
+    // Wrap with parent.
+    if (this.options.paragraphy) {
+		//alert(classificazione)
+		str = '<' + parentEl.tagName + " " + 'class="'+ classificazione +'"' + '>' + str + '</' + parentEl.tagName + '>';
+      //str = '<' + parentEl.tagName + this.attrs(parentEl) + '>' + str + '</' + parentEl.tagName + '>';
+    }
+
+    if (breakBefore) str = br + str;
+	
+	//alert(num)
+	
+	if (num == 1){
+	 mantieni("class2",2)
+	}
+	else if (num == 2){
+	 mantieni("class3",3)
+	}
+	else if (num == 3){
+	 mantieni("class1",1)
+	}
+	else{
+	 //mantieni("class1")
+	}
+	
+	
+    return str;
+  }
+	  
+}
   </script>
-</body>
+  
+  </body>
 </html>

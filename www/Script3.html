@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta content='True' name='HandheldFriendly' />
+  <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0' name='viewport' />
+  <meta name="viewport" content="width=device-width" />
+
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="Froala/css/froala_editor.css" rel="stylesheet" type="text/css">
+  <link href="Froala/css/froala_style.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="css/spinner.css" />
+
+
+
+<style>
+	
+	body {
+		text-align: left;
+		background-color: #ebd8dc;
+		height:100%;
+		overflow: hidden;
+		z-index:-1000;
+
+	}
+
+section {
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	text-align: left;
+
+}
+
+#scrollable {
+	float: left;
+	overflow: scroll;
+	background: lightblue;
+	height: 100px;
+	padding: 10px;
+	position: relative;
+	margin-top: 20px;
+	margin-left: 20px;
+	
+	overflow-y:auto;
+}
+.div3 {
+	
+	background-color: #000;
+	
+}
+.giusu {
+	background-color: #000;
+	width:100%;
+	height: 52px;
+	
+	position:fixed;
+	bottom:264px;
+	left:0px;
+	z-index:1000;
+	font-family:Roboto, sans-serif;
+}
+.topo {
+	background-color: #000;
+	width:100%;
+	height: 52px;
+	vertical-align: middle;
+	
+	position:fixed;
+	top:0px;
+	left:0px;
+	z-index:1000;
+	font-family:Roboto, sans-serif;
+}
+.froala-editor.f-basic {
+	display: none !important;
+	
+}
+
+.NoEdit {
+	color: #FFF;
+	text-decoration: none;
+	text-transform: none;
+	font-size: 18px;
+	padding: 6px 8px 6px 8px;
+
+}
+
+.SelEdit {
+	color: #00FFFF;
+	text-decoration: none;
+	text-transform: none;
+	font-size: 18px;
+	padding: 6px 8px 6px 8px;
+
+}
+
+.collegamento {
+	text-decoration: none;
+}
+
+
+
+#edit{
+	overflow-y:auto;
+}
+
+.draffa {
+	font-family: Arial;
+	color: #000000;
+	font-size: 18px;
+	padding: 5px 20px 5px 20px;
+	border: solid #000 2px;
+	text-decoration: none;
+}
+
+.draffa:active {
+	background: #ebd8dc;
+	background-image: -webkit-linear-gradient(top, #ebd8dc, #ebd8dc);
+	background-image: -moz-linear-gradient(top, #ebd8dc, #ebd8dc);
+	background-image: -ms-linear-gradient(top, #ebd8dc, #ebd8dc);
+	background-image: -o-linear-gradient(top, #ebd8dc, #ebd8dc);
+	background-image: linear-gradient(to bottom, #ebd8dc, #ebd8dc);
+	text-decoration: none;
+
+}
+
+	</style>
+
+<script>
+	var IDPage = getParameterByName('id');
+	
+	//alert(IDPage);
+	
+	function getParameterByName(name) {
+		name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+							  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+							  results = regex.exec(location.search);
+							  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+							  }
+
+</script>
+
+</head>
+
+<body onscroll="scrollTo(0,0);">
+	<center>
+		<table id="header" width="100%" border="0" class="topo" >
+			<tr>
+				<td width="33%" align="left"><a id="indietro" rel="external" class="draffa"><font color="#FFF"><b>&nbsp;&nbsp;Back</b></font></a></td>
+				<td width="33%" align="center"><span id="titolo"><font color="#FFF"><div id="tito"></div></font></span></td>
+				<td width="33%" align="right"><a id="shareS" rel="external" class="draffa"><font color="#FFF"><b>Share</b>&nbsp;</font></a> | <a id="getHTML" class="draffa"><font color="#FFF">&nbsp;<b>PDF</b></font></a></td>
+			</tr></table>
+	</center>
+	
+  <div class="spinner" id="spinner"></div>
+
+  <section id="editor">
+
+      <div id='edit' style="margin-top: 52px; " class="froala-view"></div>
+	  
+  </section>
+  
+  <table id="footerbutton" valign="center" align="center" border="0" heigth="52" width="100%" style="display:none;">
+	  <tr><td width="100%" align="left" valign="center" ><a id="Undo">Undo</a> | <a id="Redo">Redo</a></td></tr>
+	  <tr>
+		  <td width="100%" align="center" valign="center" class="div3"><font color="#FFF"><p><a id="Heading" class="NoEdit">Shene Heading</a> | <a id="Action" class="NoEdit">Action</a> | <a id="Character" class="NoEdit">Character</a> | <a id="Dialog" class="NoEdit">Dialog</a> | <a id="Pare" class="NoEdit">Parenthetical</a> |  <a id="Transition" class="NoEdit">Transition</a> | <a id="Shot" class="NoEdit">Shot</a> | <a id="Texto" class="NoEdit">Text</a> | </p></font></td>
+	  </tr>
+  </table>
+
+	<!-- <button id="getHTML">Get HTML</button> -->
+	
+
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+  <!--<script src="js/jquery.mousewheel.js"></script>-->
+  <script src="js/jquery.finger.js"></script>
+  <script src="Froala/js/froala_editor.min.js"></script>
+  <script src="Froala/js/plugins/block_styles.min.js"></script>
+  
+  <script type="text/javascript" src="js/scrivi.js"></script>
+
+  <script>
+	  $(".spinner").hide();
+	  //alert(IDPage)
+	  $("#shareS").attr("href", "javascript:share("+ IDPage +")");
+	  
+	  var pressH = 0;
+	  var pressA = 0;
+	  var pressC = 0;
+	  var pressD = 0;
+	  var pressP = 0;
+	  var pressT = 0;
+	  var pressS = 0;
+	  var pressTx = 0;
+  
+      $(function(){
+	  
+        $('#edit').editable({
+            inlineMode: false,
+			height:940,
+			editorClass: 'custom-class',
+			scrollableContainer: '#scrollable',
+			buttons: ['blockStyle', 'html'],
+			
+          })
+		  .on('editable.getHTML', function (e, editor, html) {
+				
+		  });
+		  
+		  /*$('#edit').on('editable.blur', function (e, editor) {
+
+			  $("#footerbutton").hide();
+			  $('#edit').editable('option', 'height', '750');
+			  
+			  //var instance = $("#edit").data('fa.editable'); // Get editor instance.
+			  //var el = instance.getSelectionElement(); // Get the current element.
+              //var scrollDiff = $(el).offset().top - instance.$element.offset().top; // Find the position of the current element inside the editor.
+              //$("#edit").data('fa.editable').$wrapper.scrollTop(localStorage.getItem("posizione"));  // Set scroll.
+			  
+			  //$("#edit").editable('focus');
+			  
+          })*/
+		
+		
+		 //$("#footerbutton").show();
+		
+		  $('#edit').on('editable.focus', function (e, editor) {
+			  
+			  var instance = $("#edit").data('fa.editable'); // Get editor instance.
+			  var el = instance.getSelectionElement(); // Get the current element.
+              var scrollDiff = $(el).offset().top - instance.$element.offset().top; // Find the position of the current element inside the editor.
+			  
+              $("#edit").data('fa.editable').$wrapper.scrollTop(scrollDiff-150);  // Set scroll.
+			  
+			  $("#edit").editable('focus');
+			  
+			})
+
+		
+		$('#Heading')
+		.on('mousedown touchstart', function (e) {
+			if (e.which !== 1) return true;
+			
+			e.preventDefault()
+			e.stopPropagation()
+			})
+		.on('click touch', function (e) {
+			e.preventDefault()
+			e.stopPropagation()
+			})
+		.on('mouseup touchend', function (e) {
+			if (e.which !== 1) return true;
+			
+			e.stopPropagation();
+			e.preventDefault();
+			
+			$('#Action').removeClass('SelEdit').addClass('NoEdit');
+			pressA = 0
+			$('#Character').removeClass('SelEdit').addClass('NoEdit');
+			pressC = 0
+			$('#Dialog').removeClass('SelEdit').addClass('NoEdit');
+			pressD = 0
+			$('#Pare').removeClass('SelEdit').addClass('NoEdit');
+			pressP = 0
+			$('#Transition').removeClass('SelEdit').addClass('NoEdit');
+			pressT = 0
+			$('#Texto').removeClass('SelEdit').addClass('NoEdit');
+			pressTx = 0
+			$('#Shot').removeClass('SelEdit').addClass('NoEdit');
+			pressS = 0
+			
+			$("#edit").editable('blockStyle', 'heading');
+			
+			var instance = $("#edit").data('fa.editable');
+			var el = instance.getSelectionElement();
+			var scrollDiff = $(el).offset().top - instance.$element.offset().top;
+			$("#edit").data('fa.editable').$wrapper.scrollTop(scrollDiff-150);
+			localStorage.setItem("posizione", scrollDiff-150);
+			
+			$("#edit").editable('focus');
+			
+			if (pressH==0){
+			$('#Heading').removeClass('NoEdit').addClass('SelEdit');
+			pressH = 1
+			}
+			else{
+			$('#Heading').removeClass('SelEdit').addClass('NoEdit');
+			pressH = 0
+			}
+			
+			mantieni("action",2)
+
+			})
+		
+		
+		$('a#Action')
+		.on('mousedown touchstart', function (e) {
+			if (e.which !== 1) return true;
+			
+			e.preventDefault()
+			e.stopPropagation()
+			})
+		.on('click touch', function (e) {
+			e.preventDefault()
+			e.stopPropagation()
+			})
+		.on('mouseup touchend', function (e) {
+			if (e.which !== 1) return true;
+			
+			e.stopPropagation();
+			e.preventDefault();
+			
+			$('#Heading').removeClass('SelEdit').addClass('NoEdit');
+			pressH = 0
+			$('#Character').removeClass('SelEdit').addClass('NoEdit');
+			pressC = 0
+			$('#Dialog').removeClass('SelEdit').addClass('NoEdit');
+			pressD = 0
+			$('#Pare').removeClass('SelEdit').addClass('NoEdit');
+			pressP = 0
+			$('#Transition').removeClass('SelEdit').addClass('NoEdit');
+			pressT = 0
+			$('#Texto').removeClass('SelEdit').addClass('NoEdit');
+			pressTx = 0
+			$('#Shot').removeClass('SelEdit').addClass('NoEdit');
+			pressS = 0
+			
+			$("#edit").editable('blockStyle', 'action');
+			
+			var instance = $("#edit").data('fa.editable');
+			var el = instance.getSelectionElement();
+			var scrollDiff = $(el).offset().top - instance.$element.offset().top;
+			$("#edit").data('fa.editable').$wrapper.scrollTop(scrollDiff-150);
+			
+			$("#edit").editable('focus');
+			
+			if (pressA==0){
+			$('#Action').removeClass('NoEdit').addClass('SelEdit');
+			pressA = 1
+			}
+			else{
+			$('#Action').removeClass('SelEdit').addClass('NoEdit');
+			pressA = 0
+			}
+			
+			mantieni("action",2)
+			
+			})
+
+		
+		$('a#Character')
+		.on('mousedown touchstart', function (e) {
+			if (e.which !== 1) return true;
+			
+			e.preventDefault()
+			e.stopPropagation()
+			})
+		.on('click touch', function (e) {
+			e.preventDefault()
+			e.stopPropagation()
+			})
+		.on('mouseup touchend', function (e) {
+			if (e.which !== 1) return true;
+			
+			e.stopPropagation();
+			e.preventDefault();
+			
+			$('#Heading').removeClass('SelEdit').addClass('NoEdit');
+			pressH = 0
+			$('#Action').removeClass('SelEdit').addClass('NoEdit');
+			pressA = 0
+			$('#Dialog').removeClass('SelEdit').addClass('NoEdit');
+			pressD = 0
+			$('#Pare').removeClass('SelEdit').addClass('NoEdit');
+			pressP = 0
+			$('#Transition').removeClass('SelEdit').addClass('NoEdit');
+			pressT = 0
+			$('#Texto').removeClass('SelEdit').addClass('NoEdit');
+			pressTx = 0
+			$('#Shot').removeClass('SelEdit').addClass('NoEdit');
+			pressS = 0
+			
+			$("#edit").editable('blockStyle', 'character');
+			
+			var instance = $("#edit").data('fa.editable');
+			var el = instance.getSelectionElement();
+			var scrollDiff = $(el).offset().top - instance.$element.offset().top;
+			$("#edit").data('fa.editable').$wrapper.scrollTop(scrollDiff-150);
+			
+			$("#edit").editable('focus');
+			
+			if (pressC==0){
+			$('#Character').removeClass('NoEdit').addClass('SelEdit');
+			pressC = 1
+			}
+			else{
+			$('#Character').removeClass('SelEdit').addClass('NoEdit');
+			pressC = 0
+			}
+			
+			mantieni("dialog",3)
+			
+			})
+		
+		$('a#Dialog')
+		.on('mousedown touchstart', function (e) {
+			if (e.which !== 1) return true;
+			
+			e.preventDefault()
+			e.stopPropagation()
+			})
+		.on('click touch', function (e) {
+			e.preventDefault()
+			e.stopPropagation()
+			})
+		.on('mouseup touchend', function (e) {
+			if (e.which !== 1) return true;
+			
+			e.stopPropagation();
+			e.preventDefault();
+			
+			$('#Heading').removeClass('SelEdit').addClass('NoEdit');
+			pressH = 0
+			$('#Action').removeClass('SelEdit').addClass('NoEdit');
+			pressA = 0
+			$('#Character').removeClass('SelEdit').addClass('NoEdit');
+			pressC = 0
+			$('#Pare').removeClass('SelEdit').addClass('NoEdit');
+			pressP = 0
+			$('#Transition').removeClass('SelEdit').addClass('NoEdit');
+			pressT = 0
+			$('#Texto').removeClass('SelEdit').addClass('NoEdit');
+			pressTx = 0
+			$('#Shot').removeClass('SelEdit').addClass('NoEdit');
+			pressS = 0
+			
+			$("#edit").editable('blockStyle', 'dialog');
+			
+			var instance = $("#edit").data('fa.editable');
+			var el = instance.getSelectionElement();
+			var scrollDiff = $(el).offset().top - instance.$element.offset().top;
+			$("#edit").data('fa.editable').$wrapper.scrollTop(scrollDiff-150);
+			
+			$("#edit").editable('focus');
+			
+			if (pressD==0){
+			$('#Dialog').removeClass('NoEdit').addClass('SelEdit');
+			pressD = 1
+			}
+			else{
+			$('#Dialog').removeClass('SelEdit').addClass('NoEdit');
+			pressD = 0
+			}
+			
+			mantieni("action",2)
+			
+			})
+		
+		$('a#Pare')
+		.on('mousedown touchstart', function (e) {
+			if (e.which !== 1) return true;
+			
+			e.preventDefault()
+			e.stopPropagation()
+			})
+		.on('click touch', function (e) {
+			e.preventDefault()
+			e.stopPropagation()
+			})
+		.on('mouseup touchend', function (e) {
+			if (e.which !== 1) return true;
+			
+			e.stopPropagation();
+			e.preventDefault();
+			
+			$('#Heading').removeClass('SelEdit').addClass('NoEdit');
+			pressH = 0
+			$('#Action').removeClass('SelEdit').addClass('NoEdit');
+			pressA = 0
+			$('#Character').removeClass('SelEdit').addClass('NoEdit');
+			pressC = 0
+			$('#Dialog').removeClass('SelEdit').addClass('NoEdit');
+			pressD = 0
+			$('#Transition').removeClass('SelEdit').addClass('NoEdit');
+			pressT = 0
+			$('#Texto').removeClass('SelEdit').addClass('NoEdit');
+			pressTx = 0
+			$('#Shot').removeClass('SelEdit').addClass('NoEdit');
+			pressS = 0
+			
+			$("#edit").editable('blockStyle', 'parenthetical');
+			
+			var instance = $("#edit").data('fa.editable');
+			var el = instance.getSelectionElement();
+			var scrollDiff = $(el).offset().top - instance.$element.offset().top;
+			$("#edit").data('fa.editable').$wrapper.scrollTop(scrollDiff-150);
+			
+			$("#edit").editable('focus');
+			
+			if (pressP==0){
+			$('#Pare').removeClass('NoEdit').addClass('SelEdit');
+			pressP = 1
+			}
+			else{
+			$('#Pare').removeClass('SelEdit').addClass('NoEdit');
+			pressP = 0
+			}
+			
+			mantieni("dialog",3)
+			
+			})
+		
+		$('a#Transition')
+		.on('mousedown touchstart', function (e) {
+			if (e.which !== 1) return true;
+			
+			e.preventDefault()
+			e.stopPropagation()
+			})
+		.on('click touch', function (e) {
+			e.preventDefault()
+			e.stopPropagation()
+			})
+		.on('mouseup touchend', function (e) {
+			if (e.which !== 1) return true;
+			
+			e.stopPropagation();
+			e.preventDefault();
+			
+			$('#Heading').removeClass('SelEdit').addClass('NoEdit');
+			pressH = 0
+			$('#Action').removeClass('SelEdit').addClass('NoEdit');
+			pressA = 0
+			$('#Character').removeClass('SelEdit').addClass('NoEdit');
+			pressC = 0
+			$('#Dialog').removeClass('SelEdit').addClass('NoEdit');
+			pressD = 0
+			$('#Pare').removeClass('SelEdit').addClass('NoEdit');
+			pressP = 0
+			$('#Texto').removeClass('SelEdit').addClass('NoEdit');
+			pressTx = 0
+			$('#Shot').removeClass('SelEdit').addClass('NoEdit');
+			pressS = 0
+			
+			$("#edit").editable('blockStyle', 'transition');
+			
+			var instance = $("#edit").data('fa.editable');
+			var el = instance.getSelectionElement();
+			var scrollDiff = $(el).offset().top - instance.$element.offset().top;
+			$("#edit").data('fa.editable').$wrapper.scrollTop(scrollDiff-150);
+			
+			$("#edit").editable('focus');
+			
+			if (pressT==0){
+			$('#Transition').removeClass('NoEdit').addClass('SelEdit');
+			pressT = 1
+			}
+			else{
+			$('#Transition').removeClass('SelEdit').addClass('NoEdit');
+			pressT = 0
+			}
+			
+			mantieni("heading",1)
+			
+			})
+
+		
+		$('a#Texto')
+		.on('mousedown touchstart', function (e) {
+			if (e.which !== 1) return true;
+			
+			e.preventDefault()
+			e.stopPropagation()
+			})
+		.on('click touch', function (e) {
+			e.preventDefault()
+			e.stopPropagation()
+			})
+		.on('mouseup touchend', function (e) {
+			if (e.which !== 1) return true;
+			
+			e.stopPropagation();
+			e.preventDefault();
+			
+			$('#Heading').removeClass('SelEdit').addClass('NoEdit');
+			pressH = 0
+			$('#Action').removeClass('SelEdit').addClass('NoEdit');
+			pressA = 0
+			$('#Character').removeClass('SelEdit').addClass('NoEdit');
+			pressC = 0
+			$('#Dialog').removeClass('SelEdit').addClass('NoEdit');
+			pressD = 0
+			$('#Pare').removeClass('SelEdit').addClass('NoEdit');
+			pressP = 0
+			$('#Transition').removeClass('SelEdit').addClass('NoEdit');
+			pressT = 0
+			$('#Shot').removeClass('SelEdit').addClass('NoEdit');
+			pressS = 0
+			
+			$("#edit").editable('blockStyle', 'text');
+			
+			var instance = $("#edit").data('fa.editable');
+			var el = instance.getSelectionElement();
+			var scrollDiff = $(el).offset().top - instance.$element.offset().top;
+			$("#edit").data('fa.editable').$wrapper.scrollTop(scrollDiff-150);
+			
+			$("#edit").editable('focus');
+			
+			if (pressTx==0){
+			$('#Texto').removeClass('NoEdit').addClass('SelEdit');
+			pressTx = 1
+			}
+			else{
+			$('#Texto').removeClass('SelEdit').addClass('NoEdit');
+			pressTx = 0
+			}
+			
+			mantieni("text",7)
+			
+			})
+		
+		
+		$('a#Shot')
+		.on('mousedown touchstart', function (e) {
+			if (e.which !== 1) return true;
+			
+			e.preventDefault()
+			e.stopPropagation()
+			})
+		.on('click touch', function (e) {
+			e.preventDefault()
+			e.stopPropagation()
+			})
+		.on('mouseup touchend', function (e) {
+			if (e.which !== 1) return true;
+			
+			e.stopPropagation();
+			e.preventDefault();
+			
+			$('#Heading').removeClass('SelEdit').addClass('NoEdit');
+			pressH = 0
+			$('#Action').removeClass('SelEdit').addClass('NoEdit');
+			pressA = 0
+			$('#Character').removeClass('SelEdit').addClass('NoEdit');
+			pressC = 0
+			$('#Dialog').removeClass('SelEdit').addClass('NoEdit');
+			pressD = 0
+			$('#Pare').removeClass('SelEdit').addClass('NoEdit');
+			pressP = 0
+			$('#Transition').removeClass('SelEdit').addClass('NoEdit');
+			pressT = 0
+			$('#Texto').removeClass('SelEdit').addClass('NoEdit');
+			pressTx = 0
+			
+			$("#edit").editable('blockStyle', 'shot');
+			
+			var instance = $("#edit").data('fa.editable');
+			var el = instance.getSelectionElement();
+			var scrollDiff = $(el).offset().top - instance.$element.offset().top;
+			$("#edit").data('fa.editable').$wrapper.scrollTop(scrollDiff-150);
+			
+			$("#edit").editable('focus');
+			
+			if (pressS==0){
+			$('#Shot').removeClass('NoEdit').addClass('SelEdit');
+			pressS = 1
+			}
+			else{
+			$('#Shot').removeClass('SelEdit').addClass('NoEdit');
+			pressS = 0
+			}
+			
+			mantieni("action",2)
+			
+			})
+		
+		  /*$('#Undo').click(function (e) {
+			$('#edit').editable('undo');
+			
+			var instance = $("#edit").data('fa.editable'); 
+			var el = instance.getSelectionElement(); 
+			var scrollDiff = $(el).offset().top - instance.$element.offset().top; 
+			$("#edit").data('fa.editable').$wrapper.scrollTop(scrollDiff-150);
+			
+			$("#edit").editable('focus');
+          })*/
+		  
+	   
+	   $('a#Undo')
+		   .on('mousedown touchstart', function (e) {
+			if (e.which !== 1) return true;
+
+			e.preventDefault()
+			e.stopPropagation()
+		   })
+		   .on('click touch', function (e) {
+			e.preventDefault()
+			e.stopPropagation()
+			})
+		   .on('mouseup touchend', function (e) {
+			  if (e.which !== 1) return true;
+
+			  e.stopPropagation();
+			  e.preventDefault();
+
+			  $('#edit').editable('undo');
+			   
+			   var instance = $("#edit").data('fa.editable');
+			   var el = instance.getSelectionElement();
+			   var scrollDiff = $(el).offset().top - instance.$element.offset().top;
+			   $("#edit").data('fa.editable').$wrapper.scrollTop(localStorage.getItem("posizione"));
+			   
+			   $("#edit").editable('focus');
+			})
+			
+		 $('a#Redo')
+		   .on('mousedown touchstart', function (e) {
+			if (e.which !== 1) return true;
+
+			e.preventDefault()
+			e.stopPropagation()
+		   })
+		   .on('click touch', function (e) {
+			e.preventDefault()
+			e.stopPropagation()
+			})
+		   .on('mouseup touchend', function (e) {
+			  if (e.which !== 1) return true;
+
+			  e.stopPropagation();
+			  e.preventDefault();
+
+			  $('#edit').editable('redo');
+			   
+			   var instance = $("#edit").data('fa.editable');
+			   var el = instance.getSelectionElement();
+			   var scrollDiff = $(el).offset().top - instance.$element.offset().top;
+			   $("#edit").data('fa.editable').$wrapper.scrollTop(localStorage.getItem("posizione"));
+			   
+			   $("#edit").editable('focus');
+			})
+		  
+		  
+		$('#getHTML').click(function (e) {
+          e.preventDefault();
+		  var ciccio = $('#edit').editable('getHTML', false, true)
+		  
+							$(".spinner").show();
+							$.ajax({
+								   url: "https://dev.storymatch.co/storymatch/userstories/update/script",
+								   dataType: "json",
+								   type: "post",
+								   contentType: "application/json",
+								   data: JSON.stringify( { "storyid": ""+ IDPage +"","script":""+ ciccio +""} ),
+								   processData: false,
+								   crossDomain: true,
+								   success:function(result){
+								   
+								   if (result.ID==1024){
+								   //OK
+								   navigator.notification.alert(
+																'Saved Script',  // message
+																alertDismissed,         // callback
+																'Script',            // title
+																'OK'                  // buttonName
+																);
+								   creapdf(IDPage)
+								   
+								   }
+								   else{
+								   navigator.notification.alert(
+																result.msg,  // message
+																alertDismissed,         // callback
+																'Save Script',            // title
+																'OK'                  // buttonName
+																);
+								   }
+								   
+								   $(".spinner").hide();
+								   
+								   },
+								   error: function(){
+								   $(".spinner").hide();
+								   
+								   navigator.notification.alert(
+																'Possibile errore di rete, riprova tra qualche minuto',  // message
+																alertDismissed,         // callback
+																'Errore',            // title
+																'OK'                  // buttonName
+																);
+								   
+								   },
+								   dataType:"json"});
+
+		  
+		  
+          //alert(ciccio);
+		  //alert(IDPage);
+        })
+		
+		leggi(IDPage);
+		
+		
+		$('#edit').editable('setHTML', '<p>Start Write your script</p>', false);
+		//$('#edit').editable('focus');
+		//<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		
+		
+		$('#edit').data('fa.editable').$element.on('press mousedown touchstart', function (e) {
+							   
+			var blocks = $('#edit').data('fa.editable').getSelectionElements();
+        
+			// RIDIMENSIONA
+			//$('#edit').editable('option', 'height', '300');
+													
+			//alert($(blocks[0]).attr('class'))
+			
+			//alert ($(blocks[0]).attr('class'));
+			if ($(blocks[0]).attr('class')=="heading"){
+				$('a#Heading').removeClass('NoEdit').addClass('SelEdit');
+				pressH = 1
+				
+				$('a#Action').removeClass('SelEdit').addClass('NoEdit');
+				pressA = 0
+				$('#Character').removeClass('SelEdit').addClass('NoEdit');
+				pressC = 0
+				$('#Dialog').removeClass('SelEdit').addClass('NoEdit');
+				pressD = 0
+				$('#Pare').removeClass('SelEdit').addClass('NoEdit');
+				pressP = 0
+				$('#Transition').removeClass('SelEdit').addClass('NoEdit');
+				pressT = 0
+				$('#Texto').removeClass('SelEdit').addClass('NoEdit');
+					pressTx = 0
+				$('#Shot').removeClass('SelEdit').addClass('NoEdit');
+				pressS = 0
+
+													
+			}
+			else if ($(blocks[0]).attr('class')=="action"){
+				$('a#Action').removeClass('NoEdit').addClass('SelEdit');
+				 pressA = 1
+				 
+				 $('a#Heading').removeClass('SelEdit').addClass('NoEdit');
+				 pressH = 0
+				 $('#Character').removeClass('SelEdit').addClass('NoEdit');
+				 pressC = 0
+				 $('#Dialog').removeClass('SelEdit').addClass('NoEdit');
+				pressD = 0
+				$('#Pare').removeClass('SelEdit').addClass('NoEdit');
+				pressP = 0
+				$('#Transition').removeClass('SelEdit').addClass('NoEdit');
+				pressT = 0
+				$('#Texto').removeClass('SelEdit').addClass('NoEdit');
+					pressTx = 0
+				$('#Shot').removeClass('SelEdit').addClass('NoEdit');
+				pressS = 0
+
+													
+			}
+			else if ($(blocks[0]).attr('class')=="character"){
+				$('#Character').removeClass('NoEdit').addClass('SelEdit');
+				 pressC = 1
+				 
+				 $('#Heading').removeClass('SelEdit').addClass('NoEdit');
+				 pressH = 0
+				 $('#Action').removeClass('SelEdit').addClass('NoEdit');
+				 pressA = 0
+				 $('#Dialog').removeClass('SelEdit').addClass('NoEdit');
+				pressD = 0
+				$('#Pare').removeClass('SelEdit').addClass('NoEdit');
+				pressP = 0
+				$('#Transition').removeClass('SelEdit').addClass('NoEdit');
+				pressT = 0
+				$('#Texto').removeClass('SelEdit').addClass('NoEdit');
+					pressTx = 0
+				$('#Shot').removeClass('SelEdit').addClass('NoEdit');
+				pressS = 0
+			}
+			else if ($(blocks[0]).attr('class')=="dialog"){
+				$('#Dialog').removeClass('NoEdit').addClass('SelEdit');
+				 pressC = 1
+				 
+				 $('#Heading').removeClass('SelEdit').addClass('NoEdit');
+				 pressH = 0
+				 $('#Action').removeClass('SelEdit').addClass('NoEdit');
+				 pressA = 0
+				 $('#Character').removeClass('SelEdit').addClass('NoEdit');
+				pressD = 0
+				$('#Pare').removeClass('SelEdit').addClass('NoEdit');
+				pressP = 0
+				$('#Transition').removeClass('SelEdit').addClass('NoEdit');
+				pressT = 0
+				$('#Texto').removeClass('SelEdit').addClass('NoEdit');
+					pressTx = 0
+				$('#Shot').removeClass('SelEdit').addClass('NoEdit');
+				pressS = 0
+			}
+			else if ($(blocks[0]).attr('class')=="parenthetical"){
+				$('#Pare').removeClass('NoEdit').addClass('SelEdit');
+				 pressP = 1
+				 
+				 $('#Heading').removeClass('SelEdit').addClass('NoEdit');
+				 pressH = 0
+				 $('#Action').removeClass('SelEdit').addClass('NoEdit');
+				 pressA = 0
+				 $('#Character').removeClass('SelEdit').addClass('NoEdit');
+				pressD = 0
+				$('#Dialog').removeClass('SelEdit').addClass('NoEdit');
+				pressD = 0
+				$('#Transition').removeClass('SelEdit').addClass('NoEdit');
+				pressT = 0
+				$('#Texto').removeClass('SelEdit').addClass('NoEdit');
+					pressTx = 0
+				$('#Shot').removeClass('SelEdit').addClass('NoEdit');
+				pressS = 0
+			}
+			
+			else if ($(blocks[0]).attr('class')=="transition"){
+				$('#Transition').removeClass('NoEdit').addClass('SelEdit');
+				 pressT = 1
+				 
+				 $('#Heading').removeClass('SelEdit').addClass('NoEdit');
+				 pressH = 0
+				 $('#Action').removeClass('SelEdit').addClass('NoEdit');
+				 pressA = 0
+				 $('#Character').removeClass('SelEdit').addClass('NoEdit');
+				pressD = 0
+				$('#Pare').removeClass('SelEdit').addClass('NoEdit');
+				pressP = 0
+				$('#Dialog').removeClass('SelEdit').addClass('NoEdit');
+				pressD = 0
+				$('#Texto').removeClass('SelEdit').addClass('NoEdit');
+				pressTx = 0
+				$('#Shot').removeClass('SelEdit').addClass('NoEdit');
+				pressS = 0
+			}
+			else if ($(blocks[0]).attr('class')=="text"){
+				$('#Texto').removeClass('NoEdit').addClass('SelEdit');
+				 pressTx = 1
+				 
+				 $('#Heading').removeClass('SelEdit').addClass('NoEdit');
+				 pressH = 0
+				 $('#Action').removeClass('SelEdit').addClass('NoEdit');
+				 pressA = 0
+				 $('#Character').removeClass('SelEdit').addClass('NoEdit');
+				pressD = 0
+				$('#Pare').removeClass('SelEdit').addClass('NoEdit');
+				pressP = 0
+				$('#Dialog').removeClass('SelEdit').addClass('NoEdit');
+				pressD = 0
+				$('#Transition').removeClass('SelEdit').addClass('NoEdit');
+				pressT = 0
+				$('#Shot').removeClass('SelEdit').addClass('NoEdit');
+				pressS = 0
+			}
+			else if ($(blocks[0]).attr('class')=="shot"){
+				$('#Shot').removeClass('NoEdit').addClass('SelEdit');
+				 pressS = 1
+				 
+				 $('#Heading').removeClass('SelEdit').addClass('NoEdit');
+				 pressH = 0
+				 $('#Action').removeClass('SelEdit').addClass('NoEdit');
+				 pressA = 0
+				 $('#Character').removeClass('SelEdit').addClass('NoEdit');
+				pressD = 0
+				$('#Pare').removeClass('SelEdit').addClass('NoEdit');
+				pressP = 0
+				$('#Dialog').removeClass('SelEdit').addClass('NoEdit');
+				pressD = 0
+				$('#Transition').removeClass('SelEdit').addClass('NoEdit');
+				pressT = 0
+				$('#Texto').removeClass('SelEdit').addClass('NoEdit');
+				pressTx = 0
+			}
+			
+			else
+			{
+				$('#Heading').removeClass('SelEdit').addClass('NoEdit');
+				 pressH = 0
+				 $('#Action').removeClass('SelEdit').addClass('NoEdit');
+				 pressA = 0
+				 $('#Character').removeClass('SelEdit').addClass('NoEdit');
+				 pressC = 0
+				 $('#Dialog').removeClass('SelEdit').addClass('NoEdit');
+				pressD = 0
+				$('#Pare').removeClass('SelEdit').addClass('NoEdit');
+				pressP = 0
+				$('#Transition').removeClass('SelEdit').addClass('NoEdit');
+				pressT = 0
+				$('#Texto').removeClass('SelEdit').addClass('NoEdit');
+				pressTx = 0
+				$('#Shot').removeClass('SelEdit').addClass('NoEdit');
+				pressS = 0
+												   
+				
+			}
+
+		});
+});
+	  
+
+
+function mantieni(classificazione,num) {
+	 //STESSO CARATTERE QUANDO VADO A CAPO.
+	$.Editable.prototype.breakEnd = function (parentEl, breakBefore) {
+    if (breakBefore === undefined) breakBefore = false;
+
+    if (parentEl.tagName == 'BLOCKQUOTE') {
+      var contents = $(parentEl).contents();
+      if (contents.length && contents[contents.length - 1].tagName == 'BR') {
+        $(contents[contents.length - 1]).remove();
+      }
+    }
+
+    // Find the element where to start.
+    var el = $(parentEl).find('break').get(0);
+
+    // IE 9, 10 workaround.
+    var br = this.br;
+    if (!this.options.paragraphy) br = '<br/>'
+
+    // Build string.
+    var str = this.markers_html + br;
+    if (breakBefore) str = this.markers_html + $.Editable.INVISIBLE_SPACE;
+
+    while (el != parentEl) {
+      // Pass over A and BREAK tags.
+      if (el.tagName != 'A' && el.tagName != 'BREAK') {
+        str = '<' + el.tagName + this.attrs(el) + '>' + str + '</' + el.tagName + '>';
+      }
+
+      el = el.parentNode;
+    }
+
+    if (breakBefore) {
+      if (el.tagName != 'A' && el.tagName != 'BREAK') {
+        str = '<' + el.tagName + this.attrs(el) + '>' + str + '</' + el.tagName + '>';
+      }
+    }
+
+    // Wrap with parent.
+    if (this.options.paragraphy) {
+		//alert(classificazione)
+		str = '<' + parentEl.tagName + " " + 'class="'+ classificazione +'"' + '>' + str + '</' + parentEl.tagName + '>';
+      //str = '<' + parentEl.tagName + this.attrs(parentEl) + '>' + str + '</' + parentEl.tagName + '>';
+    }
+
+    if (breakBefore) str = br + str;
+	
+	//alert(num)
+	
+	if (num == 1){
+	 mantieni("action",2)
+	 $('#Heading').removeClass('NoEdit').addClass('SelEdit');
+	 pressH = 1
+	 
+	 $('#Action').removeClass('SelEdit').addClass('NoEdit');
+	 pressA = 0
+	 $('#Character').removeClass('SelEdit').addClass('NoEdit');
+	 pressC = 0
+	 $('#Dialog').removeClass('SelEdit').addClass('NoEdit');
+	 pressD = 0
+	 $('#Pare').removeClass('SelEdit').addClass('NoEdit');
+	pressP = 0
+	 $('#Transition').removeClass('SelEdit').addClass('NoEdit');
+	pressT = 0
+	$('#Texto').removeClass('SelEdit').addClass('NoEdit');
+	pressTx = 0
+	$('#Shot').removeClass('SelEdit').addClass('NoEdit');
+	pressS = 0
+	
+	$("#edit").editable('focus');
+	}
+	else if (num == 2){
+	 mantieni("action",2)
+	 $('#Action').removeClass('NoEdit').addClass('SelEdit');
+	 pressA = 1
+	 
+	 $('#Heading').removeClass('SelEdit').addClass('NoEdit');
+	 pressH = 0
+	 $('#Character').removeClass('SelEdit').addClass('NoEdit');
+	 pressC = 0
+	 $('#Dialog').removeClass('SelEdit').addClass('NoEdit');
+	 pressD = 0
+	 $('#Pare').removeClass('SelEdit').addClass('NoEdit');
+	pressP = 0
+	 $('#Transition').removeClass('SelEdit').addClass('NoEdit');
+	pressT = 0
+	$('#Texto').removeClass('SelEdit').addClass('NoEdit');
+	pressTx = 0
+	$('#Shot').removeClass('SelEdit').addClass('NoEdit');
+	pressS = 0
+	
+	 $("#edit").editable('focus');
+	}
+	else if (num == 3){
+	 mantieni("action",2)
+	 $('#Dialog').removeClass('NoEdit').addClass('SelEdit');
+	 pressD = 1
+	 
+	 $('#Heading').removeClass('SelEdit').addClass('NoEdit');
+	 pressH = 0
+	 $('#Character').removeClass('SelEdit').addClass('NoEdit');
+	 pressC = 0
+	 $('#Action').removeClass('SelEdit').addClass('NoEdit');
+	 pressA = 0
+	 $('#Pare').removeClass('SelEdit').addClass('NoEdit');
+	pressP = 0
+	 $('#Transition').removeClass('SelEdit').addClass('NoEdit');
+	pressT = 0
+	$('#Texto').removeClass('SelEdit').addClass('NoEdit');
+	pressTx = 0
+	$('#Shot').removeClass('SelEdit').addClass('NoEdit');
+	pressS = 0
+	
+	 $("#edit").editable('focus');
+	}
+	else if (num == 4){
+	 mantieni("dialog",3)
+	  $('#Character').removeClass('NoEdit').addClass('SelEdit');
+	 pressC = 1
+	 
+	 $('#Heading').removeClass('SelEdit').addClass('NoEdit');
+	 pressH = 0
+	 $('#Action').removeClass('SelEdit').addClass('NoEdit');
+	 pressA = 0
+	 $('#Dialog').removeClass('SelEdit').addClass('NoEdit');
+	 pressD = 0
+	 $('#Pare').removeClass('SelEdit').addClass('NoEdit');
+	pressP = 0
+	 $('#Transition').removeClass('SelEdit').addClass('NoEdit');
+	pressT = 0
+	$('#Texto').removeClass('SelEdit').addClass('NoEdit');
+	pressTx = 0
+	$('#Shot').removeClass('SelEdit').addClass('NoEdit');
+	pressS = 0
+	
+	 $("#edit").editable('focus');
+	 
+	}
+	else if (num == 5){
+	 mantieni("dialog",3)
+	 $('#Pare').removeClass('NoEdit').addClass('SelEdit');
+	 pressP = 1
+	 
+	 $('#Heading').removeClass('SelEdit').addClass('NoEdit');
+	 pressH = 0
+	 $('#Action').removeClass('SelEdit').addClass('NoEdit');
+	 pressA = 0
+	 $('#Character').removeClass('SelEdit').addClass('NoEdit');
+	  pressC = 0
+	 $('#Dialog').removeClass('SelEdit').addClass('NoEdit');
+	 pressD = 0
+	 $('#Transition').removeClass('SelEdit').addClass('NoEdit');
+	pressT = 0
+	$('#Texto').removeClass('SelEdit').addClass('NoEdit');
+	pressTx = 0
+	$('#Shot').removeClass('SelEdit').addClass('NoEdit');
+	pressS = 0
+	
+	 $("#edit").editable('focus');
+	 
+	}
+	else if (num == 6){
+	 mantieni("heading",1)
+	 $('#Transition').removeClass('NoEdit').addClass('SelEdit');
+	 pressT = 1
+	 
+	 $('#Heading').removeClass('SelEdit').addClass('NoEdit');
+	 pressH = 0
+	 $('#Action').removeClass('SelEdit').addClass('NoEdit');
+	 pressA = 0
+	 $('#Character').removeClass('SelEdit').addClass('NoEdit');
+	  pressC = 0
+	 $('#Dialog').removeClass('SelEdit').addClass('NoEdit');
+	 pressD = 0
+	  $('#Pare').removeClass('SelEdit').addClass('NoEdit');
+	 pressP = 0
+	 $('#Texto').removeClass('SelEdit').addClass('NoEdit');
+	pressTx = 0
+	$('#Shot').removeClass('SelEdit').addClass('NoEdit');
+	pressS = 0
+	 
+	 $("#edit").editable('focus');
+	}
+	else if (num == 7){
+	 mantieni("text",7)
+	 $('#Texto').removeClass('NoEdit').addClass('SelEdit');
+	 pressTx = 1
+	 
+	 $('#Heading').removeClass('SelEdit').addClass('NoEdit');
+	 pressH = 0
+	 $('#Action').removeClass('SelEdit').addClass('NoEdit');
+	 pressA = 0
+	 $('#Character').removeClass('SelEdit').addClass('NoEdit');
+	  pressC = 0
+	 $('#Dialog').removeClass('SelEdit').addClass('NoEdit');
+	 pressD = 0
+	  $('#Pare').removeClass('SelEdit').addClass('NoEdit');
+	 pressP = 0
+	 $('#Transition').removeClass('SelEdit').addClass('NoEdit');
+	pressT = 0
+	 $('#Shot').removeClass('SelEdit').addClass('NoEdit');
+	pressS = 0
+				
+	 $("#edit").editable('focus');
+	}
+	else{
+	 $('#Heading').removeClass('SelEdit').addClass('NoEdit');
+	 pressH = 0
+	 $('#Action').removeClass('SelEdit').addClass('NoEdit');
+	 pressA = 0
+	 $('#Character').removeClass('SelEdit').addClass('NoEdit');
+	  pressC = 0
+	 $('#Dialog').removeClass('SelEdit').addClass('NoEdit');
+	 pressD = 0
+	 $('#Pare').removeClass('SelEdit').addClass('NoEdit');
+	 pressP = 0
+	  $('#Transition').removeClass('SelEdit').addClass('NoEdit');
+	pressT = 0
+	$('#Texto').removeClass('SelEdit').addClass('NoEdit');
+					pressTx = 0
+	$('#Shot').removeClass('SelEdit').addClass('NoEdit');
+	pressS = 0
+	
+	 $("#edit").editable('focus');
+	}
+	
+	
+    return str;
+  }
+	  
+}
+  
+  
+  window.addEventListener('native.keyboardshow', keyboardShowHandler);
+  
+  function keyboardShowHandler(e){
+	  $('#edit').editable('option', 'height', '520');
+	  
+	  $("#footerbutton").show();
+	  
+	    /*var instance = $("#edit").data('fa.editable');
+		var el = instance.getSelectionElement();
+		var scrollDiff = $(el).offset().top //- instance.$element.offset().top;
+		$("#edit").data('fa.editable').$wrapper.scrollTop(scrollDiff);*/
+		
+		$('#edit').data('fa.editable').$wrapper.scrollTop(0,0);
+		//$('#edit').data('fa.editable').$wrapper.scrollTop($(selector).data('fa.editable').$wrapper.outerHeight());
+		
+		
+		
+		//$('#edit').editable('focus');
+		
+		/*$(document).bind("touchmove",function(event){
+			event.preventDefault();
+		});
+		
+		$('#edit').bind("touchmove",function(e){
+			e.stopPropagation();
+		});*/
+	  
+	  //var x=window.scrollX;
+	  //var y=window.scrollY;
+	  //window.onscroll=function(){window.scrollTo(0, 0);};
+
+	  cordova.plugins.Keyboard.disableScroll(true);
+
+  }
+  
+  
+  window.addEventListener('native.keyboardhide', keyboardHideHandler);
+  
+  function keyboardHideHandler(e){
+	  $('#edit').editable('option', 'height', '940');
+	  
+	  $("#footerbutton").hide();
+	  
+	  //$('body').off('scroll touchmove mousewheel');
+	  
+	  //window.onscroll=function(){};
+	  
+	  /*$(function() {
+		
+		var toolbox = $('#edit'),
+		height = toolbox.height(),
+		scrollHeight = 940;
+		
+		toolbox.bind('mousewheel', function(e, d) {
+					 if((this.scrollTop === (scrollHeight - height) && d < 0) || (this.scrollTop === 0 && d > 0)) {
+					 e.preventDefault();
+					 }
+					 });
+		
+		});*/
+	  cordova.plugins.Keyboard.disableScroll(true);
+
+  }
+  
+  $("#pdf").attr("href", "javascript:creapdf("+ IDPage +")");
+  
+  function leggi(id) {
+	  var outi = 1;
+	  var conto = 1;
+	  var ciccio;
+	  
+	  var out = " ";
+	  
+	  $(".spinner").show();
+	  $.ajax({
+			 type:"GET",
+			 url:"https://dev.storymatch.co/storymatch/search/stepsbyid",
+			 data: {ID:id, token:localStorage.getItem("Token")},
+			 contentType: "application/json; charset=utf-8",
+			 json: 'callback',
+			 crossDomain: true,
+			 success:function(result){
+			 
+			 $("#tito").html(result.title);
+			 
+			 $.each(result.characters, function(i,item){
+					var script = item.detail["script"]
+					
+					//alert(script)
+					
+					if((script=="")||(!script)){
+					//alert("Null")
+					//leggioutline(id)
+					}
+					
+					out = script;
+					
+			});
+			 
+			 
+			 $(".spinner").hide();
+
+			 $('#edit').editable('setHTML', out, false);
+			 
+			 },
+			 error: function(){
+			 $(".spinner").hide();
+			 
+			 //alert("Errore Caricamento leggi");
+			 
+			 },
+			 dataType:"json"});
+			 
+  }
+  
+  function creapdf(id) {
+	  
+	  $(".spinner").show();
+	  $.ajax({
+			 type:"GET",
+			 url:"https://dev.storymatch.co/storymatch/userstories/createpdfurl",
+			 data: {storyid:id},
+			 contentType: "application/json; charset=utf-8",
+			 json: 'callback',
+			 crossDomain: true,
+			 success:function(result){
+			 
+			 //alert(result.url)
+			 
+			 var ref = window.open('https://'+ result.url +'', '_system', 'location=yes');
+			 
+			 $(".spinner").hide();
+			 
+			 },
+			 error: function(){
+			 $(".spinner").hide();
+			 
+			 navigator.notification.alert(
+										  'Possibile errore di rete, riprova tra qualche minuto',  // message
+										  alertDismissed,         // callback
+										  'Errore',            // title
+										  'OK'                  // buttonName
+										  );
+			 
+			 },
+			 dataType:"json"});
+	 
+	 /*navigator.notification.alert(
+								  'Under Construction',  // message
+								  alertDismissed,         // callback
+								  'Stop',            // title
+								  'OK'                  // buttonName
+								  );*/
+	 
+	 //var ref = window.open('https://dev.storymatch.co/storymatch/userstories/readpdfurl/9b61d084-5a48-43a8-8711-29bcf2ae52a3/81', '_system', 'location=yes');
+
+	 
+
+	 //var ref = window.open('https://dev.storymatch.co/storymatch/userstories/createpdf?storyid='+ id +'', '_system', 'location=yes');
+
+  }
+
+function alertDismissed() {
+	
+}
+  
+  function share(id) {
+	  localStorage.setItem("sharestory", id);
+	  
+	  navigator.notification.prompt(
+									'Share your story',  // message
+									sharestory,                  // callback to invoke
+									'Share Story',            // title
+									['Invia','Annulla'],             // buttonLabels
+									''                 // defaultText
+									);
+  }
+  
+  function sharestory(results) {
+	  if(results.buttonIndex==1){
+		  if (results.input1 == "") {
+			  navigator.notification.alert(
+										   'insert email',  // message
+										   alertDismissed,         // callback
+										   'Email',            // title
+										   'OK'                  // buttonName
+										   );
+										   return;
+		  }
+		  
+		  EmailAddr = results.input1;
+		  Filtro = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,})+\.)+([a-zA-Z0-9]{2,})+$/;
+		  if (Filtro.test(EmailAddr)) {
+			  
+		  }
+		  else {
+			  navigator.notification.alert(
+										   'Caratteri email non consentiti',  // message
+										   alertDismissed,         // callback
+										   'Email',            // title
+										   'OK'                  // buttonName
+										   );
+										   return;
+		  }
+		  
+		  
+		  $(".spinner").show();
+		  $.ajax({
+				 url: "https://dev.storymatch.co/storymatch/userstories/share",
+				 dataType: "json",
+				 type: "post",
+				 contentType: "application/json",
+				 data: JSON.stringify( { "storyid": ""+ localStorage.getItem("sharestory") +"", "usernametoshare":""+ results.input1 +""} ),
+				 processData: false,
+				 crossDomain: true,
+				 success:function(result){
+				 
+				 if (result.ID==1024){
+				 //OK
+				 navigator.notification.alert(
+											  result.msg,  // message
+											  alertDismissed,         // callback
+											  'Share Story',            // title
+											  'OK'                  // buttonName
+											  );
+				 
+				 //listaStory()
+				 }
+				 else{
+				 navigator.notification.alert(
+											  result.msg,  // message
+											  alertDismissed,         // callback
+											  'Share Story',            // title
+											  'OK'                  // buttonName
+											  );
+				 }
+				 
+				 $(".spinner").hide();
+				 
+				 },
+				 error: function(){
+				 $(".spinner").hide();
+				 
+				 navigator.notification.alert(
+											  'possible network error',  // message
+											  alertDismissed,         // callback
+											  'error',            // title
+											  'OK'                  // buttonName
+											  );
+				 
+				 },
+				 dataType:"json"});
+				 
+				 
+				 
+				 
+	  }
+	  
+  }
+  
+  </script>
+  
+  </body>
+
+</html>

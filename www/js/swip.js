@@ -3,16 +3,34 @@ document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady() {
 	document.addEventListener("resume", onResume, false);
 	
-	$(".spinner").hide();
-	var lista;
+	var hoverDelay = $.mobile.buttonMarkup.hoverDelay = 0;
+	
+	$.support.cors = true;
+	$.mobile.allowCrossDomainPages = true;
+	$.mobile.phonegapNavigationEnabled = true
+	$.mobile.pushStateEnabled = false;
+	
+	$.mobile.defaultPageTransition = 'none';
+	$.mobile.defaultDialogTransition = 'none';
+	
+	$(function() {
+	  FastClick.attach(document.body);
+	  });
+	
+	$('body').on('touchmove', function (e) {
+		e.preventDefault();
+	});
+
+    $(".spinner").hide();
 	var Token;
 	
-	
 	setTimeout (function(){
-			document.getElementById('test1').click();
-		}, 500);
+		//document.getElementById("test1").click();
+				
+		//$("#framme").html("<div class='iframme' data-role='popup' id='popupMap' data-overlay-theme='d' data-theme='c' data-corners='false' data-tolerance='15,15'><a href='javascript:novedi()' data-rel='back' class='ui-btn ui-btn-b ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right'>Close</a><iframe src='setting.html' width='600px' height='760px' seamless=''></iframe></div>")
+	}, 500);
 	
-	iframme();
+	var IDPage = getParameterByName('id');
 	
 	var connectionStatus = false;
 	connectionStatus = navigator.onLine ? 'online' : 'offline';
@@ -20,15 +38,64 @@ function onDeviceReady() {
 	if(connectionStatus=='online'){
 		//Verifica Token
 		
+		notifiche()
+		
+		if (IDPage==2){
+			vedicrediti()
+		}
+
 		verificatoken()
+		Token = localStorage.getItem("Token");
+		
+		setTimeout (function(){
+			$("#menu1").fadeIn()
+		}, 300);
 		
 	}
 	else{
 	 // Che Faccio
 	}
 	
+	$(function() {
+	  $("#riga").on("click", function() {
+			Showabbonamento()
+		});
+	  
+	});
+	
+	
+	
 }
 
+function closemenu() {
+	
+	$("#myTable").removeClass("myTableStyle2").addClass("myTableStyle");
+	$("#num1").fadeIn()
+	$("#num2").fadeIn()
+	$("#abbonamento").hide()
+	$("#crediti").hide()
+	
+	window.location.href = "swip2.html";
+}
+
+function closeabbonamento() {
+	
+	$("#myTable").removeClass("myTableStyle").addClass("myTableStyle2");
+	$("#num1").hide()
+	$("#num2").hide()
+	$("#abbonamento").hide()
+	$("#crediti").fadeIn()
+}
+
+function Showabbonamento() {
+	
+	$("#myTable").removeClass("myTableStyle").addClass("myTableStyle2");
+	$("#num1").hide()
+	$("#num2").hide()
+	$("#abbonamento").fadeIn()
+	$("#crediti").hide()
+
+}
 
 function createstory() {
 	navigator.notification.prompt(
@@ -52,10 +119,58 @@ function onPrompt(results) {
 			return;
 		}
 		
+
+		//Nome Storia
+		//alert("You selected button number " + results.buttonIndex + " and entered " + results.input1);
+		
+		/*$(".spinner").show();
+		$.ajax({
+			   type:"GET",
+			   url:"https://dev.storymatch.co/storymatch/userstories/create",
+			   data: {token:localStorage.getItem("Token"),title:results.input1},
+			   contentType: "application/json; charset=utf-8",
+			   json: 'callback',
+			   crossDomain: true,
+			   success:function(result){
+			   
+			   if (result.ID==1024){
+			   navigator.notification.alert(
+											result.msg,  // message
+											alertDismissed,         // callback
+											'Create Story',            // title
+											'OK'                  // buttonName
+											);
+			   
+			   window.location.href = "swip2.html";
+		    }
+			   else{
+			   navigator.notification.alert(
+											result.msg,  // message
+											alertDismissed,         // callback
+											'Create Story',            // title
+											'OK'                  // buttonName
+											);
+			   }
+			   
+			   $(".spinner").hide();
+			   
+			   },
+			   error: function(){
+			   $(".spinner").hide();
+			   
+			   navigator.notification.alert(
+											'possible network error',  // message
+											alertDismissed,         // callback
+											'Errore',            // title
+											'OK'                  // buttonName
+											);
+			   
+			   },
+			   dataType:"json"});*/
 		
 		$(".spinner").show();
 		$.ajax({
-			   url: "https://www.storymatch.co/storymatch/userstories/create",
+			   url: "https://dev.storymatch.co/storymatch/userstories/create",
 			   dataType: "json",
 			   type: "post",
 			   contentType: "application/json",
@@ -92,9 +207,9 @@ function onPrompt(results) {
 			   alert(errorThrown)
 			   
 			   navigator.notification.alert(
-											'Possibile errore di rete, riprova tra qualche minuto',  // message
+											'possible network error',  // message
 											alertDismissed,         // callback
-											'Errore',            // title
+											'Error',            // title
 											'OK'                  // buttonName
 											);
 			   
@@ -114,7 +229,7 @@ function verificatoken() {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://www.storymatch.co/storymatch/authentication/validatetoken",
+		   url:"https://dev.storymatch.co/storymatch/authentication/validatetoken",
 		   data: {token:Token},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -122,8 +237,10 @@ function verificatoken() {
 		   success:function(result){
 		   
 		   if (result.ID==1024){
-		   //OK
-		     listaStory()
+			 //OK
+			 $(".spinner").hide();
+			 $("#emailutente").html(localStorage.getItem("email"));
+		   
 		   }
 		   else{
 		   navigator.notification.alert(
@@ -141,15 +258,72 @@ function verificatoken() {
 		   $(".spinner").hide();
 		   
 		   navigator.notification.alert(
-										'Possibile errore di rete, riprova tra qualche minuto',  // message
+										'possible network error',  // message
 										alertDismissed,         // callback
-										'Errore',            // title
+										'Error',            // title
+										'OK'                  // buttonName
+										);
+		   window.location.href = "index.html";
+		   
+		   },
+		   dataType:"json"});
+	
+}
+
+function esempio(){
+	var conta = 1;
+	
+	$(".spinner").show();
+	$.ajax({
+		   type:"GET",
+		   url:"http://5.249.157.197:9000/storymatchsearch/stepsbyid",
+		   data: {ID:2},
+		   contentType: "application/json; charset=utf-8",
+		   json: 'callback',
+		   crossDomain: true,
+		   success:function(result){
+		   
+		   alert("Title: " + result.title);
+		   
+		   $.each(result.characters, function(i,item){
+				  var fruits = item.detail["steps"]
+				  
+				  alert("Pitch:" + item.detail["pitch"])
+				  
+				  //alert("stepsID: " + fruits[0]["id"]);
+				  
+				  alert(fruits.length);
+				  
+				  for ( i=0; i < fruits.length; i++ )
+				  {
+				  
+					if(fruits[i]["id"]==49){
+					  //alert(fruits[i]["step"]);
+				    }
+					
+					if((conta==1)||(conta==2)){
+				       alert(fruits[i]["step"]);
+					}
+				  
+				  conta = conta+1;
+				  }
+				  
+				   //alert(item.detail["steps"]);
+				  });
+		   
+		   },
+		   error: function(){
+		   $(".spinner").hide();
+		   
+		   navigator.notification.alert(
+										'possible network error',  // message
+										alertDismissed,         // callback
+										'Error',            // title
 										'OK'                  // buttonName
 										);
 		   
 		   },
 		   dataType:"json"});
-	
 }
 
 
@@ -173,7 +347,7 @@ function LogOut() {
 	
 	$(".spinner").show();
 	$.ajax({
-		   url: "https://www.storymatch.co/storymatch/authentication/logout",
+		   url: "https://dev.storymatch.co/storymatch/authentication/logout",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
@@ -207,9 +381,9 @@ function LogOut() {
 		   $(".spinner").hide();
 		   
 		   navigator.notification.alert(
-										'Possibile errore di rete, riprova tra qualche minuto',  // message
+										'possible network error',  // message
 										alertDismissed,         // callback
-										'Errore',            // title
+										'Error',            // title
 										'OK'                  // buttonName
 										);
 		   
@@ -225,7 +399,7 @@ function confirmLogout() {
 								   'confirm the logout',  // message
 								   onConfirm,              // callback to invoke with index of button pressed
 								   'Logout',            // title
-								   'Accept,Reject'      // buttonLabels
+								   'Accept,No'      // buttonLabels
 								   );
 
 	
@@ -302,4 +476,71 @@ $( document ).on( "pagecreate", function() {
 
 }
 
+function vedi() {
+	$("#framme").show()
+}
 
+function novedi() {
+	$("#framme").hide()
+}
+
+function notifiche() {
+	
+	$(".spinner").show();
+	$.ajax({
+		   type:"GET",
+		   url:"https://dev.storymatch.co/storymatch/notify/check",
+		   contentType: "application/json; charset=utf-8",
+		   json: 'callback',
+		   crossDomain: true,
+		   success:function(result){
+		   
+		   
+		   if (result.obj["notifyNumber"]==0){
+		   $("#badde").removeClass("badge1").addClass("badge2");
+		   }
+		   else{
+		   $("#badde").removeClass("badge2").addClass("badge1");
+		   $("#badde").attr("data-badge", result.obj["notifyNumber"])
+		   }
+		   //alert(result.obj["notifyNumber"])
+		   
+		   
+		   $(".spinner").hide();
+		   
+		   },
+		   error: function(){
+		   $(".spinner").hide();
+		   
+		   navigator.notification.alert(
+										'possible network error',  // message
+										alertDismissed,         // callback
+										'Error',            // title
+										'OK'                  // buttonName
+										);
+		   
+		   },
+		   dataType:"json"});
+	
+	
+	//$("#badde").removeClass("badge1").addClass("badge2"); @
+	
+	//$("#badde").attr("data-badge", Badge10);
+	
+	
+}
+
+function vedicrediti() {
+	$("#myTable").removeClass("myTableStyle").addClass("myTableStyle2");
+	$("#num1").hide()
+	$("#num2").hide()
+	$("#abbonamento").hide()
+	$("#crediti").fadeIn()
+}
+
+function getParameterByName(name) {
+	name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+						  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+						  results = regex.exec(location.search);
+						  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+						  }

@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-		
-		<link type="text/css" rel="stylesheet" href="jquery.dropdown.min.css" />
-		<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.2.min.css" />
-		<link rel="stylesheet" href="themes/Story.css" />
-		<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
-		<link rel="stylesheet" href="css/spinner.css" />
-		<link rel="stylesheet" href="css/main.css" />
-
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+	
+	<link type="text/css" rel="stylesheet" href="jquery.dropdown.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.5.min.css" />
+	<link rel="stylesheet" href="themes/Story.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons-1.4.5.min.css" />
+	<link rel="stylesheet" href="css/spinner.css" />
+	<link rel="stylesheet" href="css/main.css" />
 
 <style>
-	
 	.div1 {
 		background-color: #000;
 		height: 52px;
@@ -20,15 +18,7 @@
 		
 		vertical-align: middle;
 	}
-	.trtabella{
-		font-family:Roboto, sans-serif;
-		background-color:#ebd8dc;
-		height: 130px;
-	}
-.trtabella2{
-	font-family:Roboto, sans-serif;
-	background-color:#ebd8dc;
-}
+
 .div2 {
 
 /* Note: This gradient may render differently in browsers that don't support the unprefixed gradient syntax */
@@ -58,20 +48,20 @@ background-image: linear-gradient(to bottom right, #BD8699 0%, #A390A4 50%, #C6A
   border-radius: 40px;
   font-family: Arial;
   color: #fff;
-  font-size: 14px;
-  padding: 10px 20px 10px 20px;
+  font-size: 18px;
+  padding: 25px 30px 25px 30px;
   border: solid #fff 2px;
   text-decoration: none;
   text-shadow:0 0 0;
 }
 
 .btn:active {
-  background: #ffffff;
-  background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
-  background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
-  background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
-  background-image: -o-linear-gradient(top, #ffffff, #ffffff);
-  background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+  background: #000000;
+  background-image: -webkit-linear-gradient(top, #000000, #000000);
+  background-image: -moz-linear-gradient(top, #000000, #000000);
+  background-image: -ms-linear-gradient(top, #000000, #000000);
+  background-image: -o-linear-gradient(top, #000000, #000000);
+  background-image: linear-gradient(to bottom, #000000, #000000);
   text-decoration: none;
   text-shadow:0 0 0;
 }
@@ -88,18 +78,14 @@ background-image: linear-gradient(to bottom right, #BD8699 0%, #A390A4 50%, #C6A
 
 .myTableStyle
 {
+	background-color: #ebd8dc;
+	width: 700px;
 	
-	width: 300px;
-	height: 240px;
-	
-	position: fixed;
-	top: 50%;
+	position: absolute;
+	top: 52px;
 	left: 50%;
-	bottom: 50%;
-	margin-top: -240px;
-	margin-left: -150px;
+	margin-left: -304px;
 	
-	z-index:2999;
 	
 }
 
@@ -108,16 +94,14 @@ background-image: linear-gradient(to bottom right, #BD8699 0%, #A390A4 50%, #C6A
 	
 	width: 300px;
 	height: 140px;
-	background-color: #FFFFFF;
+	background-color: #F0F0F0;
 	
 	position: fixed;
 	left: 50%;
 	bottom: 60px;
 	margin-top: -70px;
 	margin-left: -150px;
-	
-	
-	z-index:1999;
+
 	
 }
 
@@ -128,21 +112,22 @@ body .ui-body-c, body .ui-overlay-c
 
 .home1 {
 	background-color: #634c56;
-	background-image: url(img/Home2.png);
+	background-image: url(img/Home.png);
 	background-size: 38px 38px;
 	background-repeat: no-repeat;
 	background-position:center;
 	
 	height:38px;
 	width:38px;
-	border-radius:999em;
+	
+	/*border-radius:999em;
 	-moz-border-radius:999em;
 	-webkit-border-radius:999em;
 	-o-border-radius: 999em;
 	
 	-webkit-box-shadow: 0px 0px 0.5px 1.5px #FFF;
 	-moz-box-shadow: 0px 0px 0.5px 1.5px #FFF;
-	box-shadow: 0px 0px 0.5px 1.5px #FFF;
+	box-shadow: 0px 0px 0.5px 1.5px #FFF;*/
 }
 
 .home1:active {
@@ -159,8 +144,6 @@ body .ui-body-c, body .ui-overlay-c
 
 .testo
 {
-	text-shadow:0 0 0;
-	text-decoration: none;
 	text-shadow:0 0 0;
 }
 
@@ -181,12 +164,94 @@ body .ui-body-c, body .ui-overlay-c
 	border-radius:50%;
 	box-shadow:0 0 1px #333;
 	border: 1px solid #fff;
+	text-shadow:0 0 0;
 }
 .badge2 {
 	
 }
 .badge2[data-badge]:after {
 	
+}
+
+.messaggio {
+	background-color: #634c56;
+	background-image: url(img/Mess.png);
+	background-size: 38px 38px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:38px;
+	width:38px;
+	
+	/*border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #FFF;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #FFF;
+	box-shadow: 0px 0px 0.5px 1.5px #FFF;*/
+}
+
+.messaggio:active {
+	background-color:#000000;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+
+.altro{
+	background-color: #634c56;
+	background-image: url(img/Altro.png);
+	background-size: 38px 38px;
+	background-repeat: no-repeat;
+	background-position:center;
+	
+	height:38px;
+	width:38px;
+	
+	/*border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1.5px #FFF;
+	-moz-box-shadow: 0px 0px 0.5px 1.5px #FFF;
+	box-shadow: 0px 0px 0.5px 1.5px #FFF;*/
+}
+
+.altro:active {
+	background-color:#000000;
+	border-radius:999em;
+	-moz-border-radius:999em;
+	-webkit-border-radius:999em;
+	-o-border-radius: 999em;
+	
+	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
+	-moz-box-shadow: 0px 0px 0.5px 1px #000;
+	box-shadow: 0px 0px 0.5px 1px #000;
+}
+
+.ui-dialog-contain {
+	width: 92.5%;
+	max-width: 500px;
+	margin: 10% auto 15px auto;
+	padding: 0;
+	position: relative;
+	top: -15px;
+}
+
+iframe {
+	border: none;
+}
+
+.iframme {
+	z-index:2999;
 }
 
 .btn {
@@ -235,66 +300,40 @@ body .ui-body-c, body .ui-overlay-c
 	text-shadow:0 0 0;
 }
 
-.messaggio {
-	background-color: #634c56;
-	background-image: url(img/Mess2.png);
-	background-size: 38px 38px;
-	background-repeat: no-repeat;
-	background-position:center;
-	
-	height:38px;
-	width:38px;
-	border-radius:999em;
-	-moz-border-radius:999em;
-	-webkit-border-radius:999em;
-	-o-border-radius: 999em;
-	
-	-webkit-box-shadow: 0px 0px 0.5px 1.5px #FFF;
-	-moz-box-shadow: 0px 0px 0.5px 1.5px #FFF;
-	box-shadow: 0px 0px 0.5px 1.5px #FFF;
+
+.draffa {
+	font-family: Arial;
+	color: #000000;
+	font-size: 18px;
+	padding: 5px 20px 5px 20px;
+	border: solid #000 2px;
+	text-decoration: none;
 }
 
-.messaggio:active {
-	background-color:#000000;
-	border-radius:999em;
-	-moz-border-radius:999em;
-	-webkit-border-radius:999em;
-	-o-border-radius: 999em;
-	
-	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
-	-moz-box-shadow: 0px 0px 0.5px 1px #000;
-	box-shadow: 0px 0px 0.5px 1px #000;
+.draffa:active {
+	background: #ebd8dc;
+	background-image: -webkit-linear-gradient(top, #ebd8dc, #ebd8dc);
+	background-image: -moz-linear-gradient(top, #ebd8dc, #ebd8dc);
+	background-image: -ms-linear-gradient(top, #ebd8dc, #ebd8dc);
+	background-image: -o-linear-gradient(top, #ebd8dc, #ebd8dc);
+	background-image: linear-gradient(to bottom, #ebd8dc, #ebd8dc);
+	text-decoration: none;
+
 }
 
-.altro{
-	background-color: #634c56;
-	background-image: url(img/Altro2.png);
-	background-size: 38px 38px;
-	background-repeat: no-repeat;
-	background-position:center;
-	
-	height:38px;
-	width:38px;
-	border-radius:999em;
-	-moz-border-radius:999em;
-	-webkit-border-radius:999em;
-	-o-border-radius: 999em;
-	
-	-webkit-box-shadow: 0px 0px 0.5px 1.5px #FFF;
-	-moz-box-shadow: 0px 0px 0.5px 1.5px #FFF;
-	box-shadow: 0px 0px 0.5px 1.5px #FFF;
+#contenuto{
+overflow: scroll;
+top: 0;
+left: 0;
 }
 
-.altro:active {
-	background-color:#000000;
-	border-radius:999em;
-	-moz-border-radius:999em;
-	-webkit-border-radius:999em;
-	-o-border-radius: 999em;
-	
-	-webkit-box-shadow: 0px 0px 0.5px 1px #000;
-	-moz-box-shadow: 0px 0px 0.5px 1px #000;
-	box-shadow: 0px 0px 0.5px 1px #000;
+
+.ui-page {
+	-webkit-backface-visibility: hidden;
+}
+
+.collegamento {
+	text-decoration: none;
 }
 </style>
 
@@ -302,111 +341,86 @@ body .ui-body-c, body .ui-overlay-c
 </head>
 
 <body>
-<div id="menu" style="display: none;">
-	<table height="60px" border="0"><tr><td>&nbsp;</td></tr></table>
-	<table width="50px" border="0">
-		<tr><td width="10px">&nbsp;&nbsp;</td>
-			<td>
-				<table>
-					<tr><td><br></td></tr>
-					<tr><td><a href="#" rel="external"><div width="38px" class="home1"></div></a></td></tr>
-					<tr><td><br></td></tr>
-					<tr><td><a href="javascript:costruzione()" id="badde" class="badge1" data-badge="1"><div width="38px" class="messaggio"></div></a></td></tr>
-					<tr><td><br></td></tr>
-					<tr><td><a href="javascript:costruzione()"><div width="38px" class="altro"></div></a></td></tr>
-					<tr><td><br></td></tr>
-				</table>
-			</td></tr>
-	</table>
-</div>
-
 
 <div data-role="page" id="article1" class="div2">
+	<!--<div data-role="popup" id="popupMap" data-overlay-theme="d" data-theme="c" data-corners="false" data-tolerance="15,15">
+		<a href="#" data-rel="back" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+		<iframe src="setting.html" width="600px" height="760px" seamless=""></iframe>
+	</div>-->
+	
   <div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div1">
-    <a id="test1" href="#" class="showMenu"><img src="img/list.png" width="20"></a>
-	<center>
-	<p><a href="#" data-jq-dropdown="#jq-dropdown-1" style="text-decoration: none"><font color="#fff">Drafts</font></a></p></center>
+
+	<table width="100%" height="52px" border="0" valign="center">
+		<tr>
+			<td width="33%" align="left"></td>
+			<td width="33%" align="center"><a href="#" data-jq-dropdown="#jq-dropdown-1" style="text-decoration: none" class="draffa"><font color="#FFF">Draft <img src="img/arrowGIU.png" height="23"></font></a></td>
+			<td width="33%" align="center"><a id="creaimg" href="javascript:createstory()" rel="external" ><img src="img/Plus.png" width="22"></a><a id="creamsg" href="javascript:createmessaggio()" rel="external" style="display: none;"><img src="img/upload.png" width="22"></a></td>
+		</tr>
+	</table>
   </div>
   
   <div class="spinner" id="spinner"></div>
-
-  <center>
-
-	<!-- Storie personali -->
-	
-	<div id="contenuto"></div>
-
- <!-- <table width="100%" border="0" cellpadding="0" cellspacing="0">
-	  <tr>
-		  <td class="trtabella" width="20%">
-			  <table width="90%"><tr><td width="10%"></td><td width="90%" align="left">
-				  <b>Hollow Hill</b><br>Today 1:14 pm
-			  </td></tr></table>
-		  </td>
-		  <td class="trtabella" width="5%" align="center">
-			  <img src="img/Comunity2.png" width="25">
-				  </td>
-		  <td class="trtabella" width="65%" align="left">
-			  <table width="80%" align="center" border="0">
-				  <tr>
-					  <td width="30%" align="center">
-						  <a href="#" class="btn"><font color="#000000">Duplicate</font></a>
-					  </td>
-					  <td width="30%" align="center">
-						  <a href="javascript:forgot()" class="btn"><font color="#000000">Share</font></a>
-					  </td>
-					  <td width="30%" align="center">
-						  <a href="#" class="btn"><font color="#000000">Trash</font></a>
-					  </td>
-					  <td width="10%" align="left"></td>
-				  </tr>
-			  </table>
-		  </td>
-	  </tr>
-	  <tr><td class="trtabella2" colspan="3"><hr></td></tr>
-	  <tr>
-		  <td class="trtabella" width="20%">
-			  <table width="80%"><tr><td widt="10%"></td><td width="90%" align="left">
-				  <b>Hollow Hill</b><br>Today 1:14 pm
-			  </td></tr></table>
-		  </td>
-		  <td class="trtabella" width="5%" align="center">
-			  <img src="img/Comunity2.png" width="25">
-				  </td>
-		  <td class="trtabella" width="65%" align="left">
-			  <table width="80%" align="center" border="0">
-				  <tr>
-					  <td width="30%" align="center">
-						  <a href="#" class="btn"><font color="#000000">Duplicate</font></a>
-					  </td>
-					  <td width="30%" align="center">
-						  <a href="javascript:forgot()" class="btn"><font color="#000000">Share</font></a>
-					  </td>
-					  <td width="30%" align="center">
-						  <a href="#" class="btn"><font color="#000000">Trash</font></a>
-					  </td>
-					  <td width="10%" align="left"></td>
-				  </tr>
-			  </table>
-		  </td>
-	  </tr>
-	  <tr><td class="trtabella2" colspan="3"><hr></td></tr>
-  </table> -->
   
-  <br><br><br><br>
-  <a href="javascript:createstory()" rel="external" class="btn2"><font color="#FFF">Start your story</font></a>
-  </center>
+  <div id="menu" style="position:fixed;">
+	  <table height="60px" border="0"><tr><td>&nbsp;</td></tr></table>
+	  <table height="1024" width="50px" border="0">
+		  <tr><td width="10px">&nbsp;&nbsp;</td>
+			  <td valign="top">
+				  <table id="menu1" style="display: none;">
+					  <tr><td><br></td></tr>
+					  <tr><td><a href="swip.html" rel="external"><div width="38px" class="home1"></div></a></td></tr>
+					  <tr><td><br></td></tr>
+					  <tr><td><a id="badde" class="badge2" data-badge="0" href="javascript:notifichelist()"><div width="38px" class="messaggio"></div></a></td></tr>
+					  <tr><td><br></td></tr>
+					  <tr><td><a href="swip.html?id=2" rel="external"><div width="38px" class="altro"></div></a></td></tr>
+					  <tr><td><br></td></tr>
+				  </table>
+			  </td></tr>
+	  </table>
+  </div>
 
-</div> 
+  <table id="myTable" class="myTableStyle" border="0" >
+	  <tr id="babbo0" style="display: none;">
+		   <td align="center">
+			   <table width="90%" align="center"><tr><td>
+				   <form id='formia0' name='formia0' action='entra.asp' method='post'><input placeholder='Email address' id='email0' type='text' name='email0' size='30' data-theme="b"><br><textarea rows='5' cols='30' id='messaggio0' name='messaggio0' data-theme="b"></textarea><br><a href='javascript:closemessaggio(0)' class='btn'><font color='#000'>Cancella</font></a><a href='javascript:mandamessaggio(0)' class='btn'><font color='#000'>Invia</font></a></form></td></tr>
+			    <tr><td><hr></td></tr>
+			   </table>
+		   </td>
+	  </tr>
+	  <tr>
+		  <td align="center" ><div id="contenuto" style="display: none;"></div></td>
+	  </tr>
+  </table>
+
+
+<!--<div data-role="popup" id="popupDialog" data-overlay-theme="b" data-theme="c" data-dismissible="false" style="max-width:601px;">
+	<a href="#" data-rel="back" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	<iframe id="ciccio" src="setting2.html" width="600px" height="400px" seamless=""></iframe>
+	
+	<!--<div data-role="header" data-theme="c">
+		<h1>Messagge</h1>
+	</div>
+	<div role="main" class="ui-content">
+		<form id="formia5" name="formia5" action="entra.asp" method="post">
+		<input placeholder="Email address" id="email" type="text" name="email" size="15" >
+		<textarea rows="4" cols="30" id="massaggio" name="messaggio"></textarea>
+		<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">Cancella</a>
+		<a href="#" onClick="javascript:mandamessaggio();" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back" data-transition="flow">Invia</a>
+		</form>
+	</div>
+</div>-->
+
+</div>
 
 
 <div id="jq-dropdown-1" class="jq-dropdown jq-dropdown-tip" >
         <ul class="jq-dropdown-menu">
-            <li><a href="#" rel="external">Drafts</a></li>
+            <li><a href="swip2.html" rel="external">Drafts</a></li>
 			 <li class="jq-dropdown-divider"></li>
-			<li><a href="javascript:confirmLogout()" rel="external">Finisched</a></li>
+			<li><a href="javascript:confirmLogout()">Finisched</a></li>
 			 <li class="jq-dropdown-divider"></li>
-			<li><a href="javascript:costruzione()">Trash</a></li>
+			<li><a href="javascript:cestino()" rel="external">Trash</a></li>
         </ul>
     </div>
     
@@ -417,12 +431,14 @@ body .ui-body-c, body .ui-overlay-c
 	</div>
 	
 	<script type="text/javascript" src="cordova.js"></script>
+	<script type='application/javascript' src='js/fastclick.js'></script>
 	<script type="text/javascript" src="js/swip2.js"></script>
 	
-	<script src="jquery-1.11.1.min.js"></script>
+	<script src="jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="jquery.dropdown.min.js"></script>
 	
-	<script src="js/jquery.mobile-1.4.2.min.js"></script>
-	<script type="text/javascript" src="js/app.js"></script>
+	<script src="js/jquery.mobile-1.4.5.min.js"></script>
+	
+
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 		
 		<link type="text/css" rel="stylesheet" href="jquery.dropdown.min.css" />
 		<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.2.min.css" />
@@ -17,9 +17,6 @@ $(document).on("pagecreate","#article1",function(){
     $(this).hide();
   });                   
 
-  $("li").on("swipe",function(){
-    alert();
-  });
   
 });
 </script>
@@ -32,6 +29,10 @@ $(document).on("pagecreate","#article1",function(){
 		
 		vertical-align: middle;
 	}
+
+.div5 {
+	background-color: #ebd8dc;
+}
 	
 	.trtabella{
 		font-family:Roboto, sans-serif;
@@ -98,6 +99,31 @@ background-image: linear-gradient(to bottom right, #BD8699 0%, #A390A4 50%, #C6A
   background-image: linear-gradient(to bottom, #ffffff, #ffffff);
   text-decoration: none;
   text-shadow:0 0 0;
+}
+
+.btn2 {
+	-webkit-border-radius: 40;
+	-moz-border-radius: 40;
+	border-radius: 40px;
+	font-family: Arial;
+	background: #ffffff;
+	color: #000;
+	font-size: 14px;
+	padding: 10px 20px 10px 20px;
+	border: solid #000 2px;
+	text-decoration: none;
+	text-shadow:0 0 0;
+}
+
+.btn2:active {
+	background: #000;
+	background-image: -webkit-linear-gradient(top, #000, #000);
+	background-image: -moz-linear-gradient(top, #000, #000);
+	background-image: -ms-linear-gradient(top, #000, #000);
+	background-image: -o-linear-gradient(top, #000, #000);
+	background-image: linear-gradient(to bottom, #000, #000);
+	text-decoration: none;
+	text-shadow:0 0 0;
 }
 
 .table {
@@ -298,21 +324,22 @@ body .ui-body-c, body .ui-overlay-c
 
 .idea {
 	background-color: #ebd8dc;
-	background-image: url(img/Lente2.png);
+	background-image: url(img/Lente.png);
 	background-size: 50px 50px;
 	background-repeat: no-repeat;
 	background-position:center;
 	
 	height:50px;
 	width:50px;
-	border-radius:999em;
+	
+	/*border-radius:999em;
 	-moz-border-radius:999em;
 	-webkit-border-radius:999em;
 	-o-border-radius: 999em;
 	
 	-webkit-box-shadow: 0px 0px 0.5px 1.5px #000;
 	-moz-box-shadow: 0px 0px 0.5px 1.5px #000;
-	box-shadow: 0px 0px 0.5px 1.5px #000;
+	box-shadow: 0px 0px 0.5px 1.5px #000;*/
 }
 
 .idea:active {
@@ -396,8 +423,136 @@ iframe {
 .collegamento {
 	text-decoration: none;
 }
+
+.draffa {
+	font-family: Arial;
+	color: #000000;
+	font-size: 18px;
+	padding: 5px 20px 5px 20px;
+	border: solid #000 2px;
+	text-decoration: none;
+}
+
+.draffa:active {
+	background: #ebd8dc;
+	background-image: -webkit-linear-gradient(top, #ebd8dc, #ebd8dc);
+	background-image: -moz-linear-gradient(top, #ebd8dc, #ebd8dc);
+	background-image: -ms-linear-gradient(top, #ebd8dc, #ebd8dc);
+	background-image: -o-linear-gradient(top, #ebd8dc, #ebd8dc);
+	background-image: linear-gradient(to bottom, #ebd8dc, #ebd8dc);
+	text-decoration: none;
+
+}
+
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
 </style>
 
+<style type="text/css">
+	
+	
+	html {
+		-ms-touch-action: none;
+	}
+
+body,ul,li {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+body {
+	overflow: hidden; /* this is important to prevent the whole page to bounce */
+	background: #ebd8dc;
+}
+
+#header {
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 52px;
+	line-height: 45px;
+	padding: 0;
+	color: #000;
+	font-size: 20px;
+	text-align: center;
+	font-weight: bold;
+}
+
+#myfooter {
+	position: absolute;
+	z-index: 2;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 52px;
+	background: #000;
+	padding: 0;
+	border-top: 0px solid #444;
+}
+
+#wrapper {
+	position: absolute;
+	z-index: 1;
+	top: 45px;
+	bottom: 5px;
+	left: 0;
+	width: 100%;
+	background: #ebd8dc;
+	overflow: hidden;
+}
+
+#scroller {
+	position: absolute;
+	z-index: 1;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	width: 100%;
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+}
+
+#scroller ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	text-align: left;
+}
+
+#scroller li {
+	padding: 0 10px;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px solid #ccc;
+	border-top: 1px solid #fff;
+	background-color: #fff;
+	font-size: 14px;
+}
+
+.fontegrande {
+	text-decoration: none;
+	font-size: 20px;
+}
+
+	</style>
 
 </head>
 
@@ -421,22 +576,32 @@ iframe {
 </div>
 
 
-<div data-role="page" id="article1" class="div2">
+<div data-role="page" id="article1" class="div5">
   <div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div1">
 	  <table width="100%" height="52px" border="0" valign="center">
 				<tr>
-					<td width="33%" align="left"><a id="indietro" href="swip4.html" rel="external" class="collegamento"><font color="#FFF"><img src="img/arrowS.png" width="18">&nbsp;Back</font></a></td>
+					<td width="33%" align="left"><a id="indietro" href="#" rel="external" class="draffa"><font color="#FFF"><img src="img/arrowS.png" width="18">&nbsp;Back</font></a></td>
 					<td width="33%" align="center"><font color="#FFF">Pitch</font></td>
 					<td width="33%" align="right"><font color="#FFF">&nbsp;&nbsp;</font></td>
 				</tr></table>
   </div>
   
-  <div class="spinner" id="spinner"></div>
+
   
+<div class="spinner" id="spinner"></div>
+<form name="formia" action="entra.asp" method="post">
+
+  <div id="wrapper">
+	  <div id="scroller">
   <div id="contenuto"></div>
   
   <div id="selector" class="trtabella"></div>
 
+	  </div>
+  </div>
+  
+
+</form>
   <!-- Pitch
   <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	  <tr>
@@ -479,23 +644,22 @@ iframe {
 	<!--<a href="#popupMap" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Open Map</a>-->
 	<!--<div data-role="popup" id="popupMap" data-overlay-theme="d" data-theme="c" data-corners="false" data-tolerance="15,15">
 		<!--<a href="#" data-rel="back" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>-->
-		<!--<iframe src="swip6.html" width="600px" height="400px" seamless=""></iframe>
+		<!--<iframe src="swip6.html" width="600px" height="400px" seamless=""></iframe>style="display:none"
 	</div>-->
-
 
 </div> 
 
 
-<div id="jq-dropdown-1" class="jq-dropdown jq-dropdown-tip" >
-        <ul class="jq-dropdown-menu">
-            <li><a href="quill/examples/advanced.html" rel="external">Drafts</a></li>
-			 <li class="jq-dropdown-divider"></li>
-			<li><a href="swip2.html" rel="external">Finisched</a></li>
-			 <li class="jq-dropdown-divider"></li>
-			<li><a href="#1">Trash</a></li>
-        </ul>
-    </div>
-    
+<div id="jq-dropdown-3" class="jq-dropdown jq-dropdown-tip jq-dropdown-scroll">
+	<ul class="jq-dropdown-menu">
+		<li><a href="#1">Item 1</a></li>
+		<li><a href="#2">Item 2</a></li>
+		<li><a href="#3">Item 3</a></li>
+		<li><a href="#4">Item 4</a></li>
+		<li><a href="#5">Item 5</a></li>
+	</ul>
+</div>
+
     <div id="jq-dropdown-2" class="jq-dropdown jq-dropdown-tip jq-dropdown-tip">
     	<div class="jq-dropdown-panel">
         	You can put whatever HTML you want in a panel!
@@ -512,14 +676,27 @@ iframe {
 	
 	<script src="jquery.raty.js"></script>
 	
-	<script>
-		$('#rati1').raty({
-						 score: 3,
-						 click: function(score, evt) {
-						 //alert('ID: ' + this.id + "\nscore: " + score + "\nevent: " + evt);
-						 }
-						 });
+	<script type="text/javascript" src="js/iscroll.js"></script>
+	
+	<script type="text/javascript">
+		
+		var myScroll;
+		
+		function loaded () {
+			myScroll = new IScroll('#wrapper', { click: true });
+			setTimeout (function(){
+				myScroll.refresh();
+			}, 1500);
+						
+		}
+	
+	document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
+	
+	document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	
+		</script>
+	
+	
 
-	</script>
 </body>
 </html>

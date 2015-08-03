@@ -4,13 +4,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 		
 		<link type="text/css" rel="stylesheet" href="jquery.dropdown.min.css" />
-		<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.2.min.css" />
+		<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.5.min.css" />
 		<link rel="stylesheet" href="themes/BetaApp.css" />
-		<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+		<link rel="stylesheet" href="themes/jquery.mobile.icons-1.4.5.min.css" />
 		<link rel="stylesheet" href="css/spinner.css" />
 		<link rel="stylesheet" href="css/main.css" />
-		
-		
 
 <style>
 	.div1 {
@@ -673,6 +671,7 @@ right: 0;
 	background-color: inherit;
 	overflow: auto;
 	outline: none;
+	font-size: 18px;
 }
 
 .salva {
@@ -705,148 +704,173 @@ right: 0;
 	-moz-box-shadow: 0px 0px 0.5px 1px #000;
 	box-shadow: 0px 0px 0.5px 1px #000;
 }
+
+.draffa {
+	font-family: Arial;
+	color: #000000;
+	font-size: 18px;
+	padding: 5px 20px 5px 20px;
+	border: solid #000 2px;
+	text-decoration: none;
+}
+
+.draffa:active {
+	background: #ebd8dc;
+	background-image: -webkit-linear-gradient(top, #ebd8dc, #ebd8dc);
+	background-image: -moz-linear-gradient(top, #ebd8dc, #ebd8dc);
+	background-image: -ms-linear-gradient(top, #ebd8dc, #ebd8dc);
+	background-image: -o-linear-gradient(top, #ebd8dc, #ebd8dc);
+	background-image: linear-gradient(to bottom, #ebd8dc, #ebd8dc);
+	text-decoration: none;
+
+}
+
+.fontegrande {
+	text-decoration: none;
+	font-size: 20px;
+}
 </style>
 
+<style type="text/css">
+	
+	
+	html {
+		-ms-touch-action: none;
+	}
+
+body,ul,li {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+body {
+	overflow: hidden; /* this is important to prevent the whole page to bounce */
+	background: #ebd8dc;
+}
+
+#header {
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 52px;
+	line-height: 45px;
+	padding: 0;
+	color: #000;
+	font-size: 20px;
+	text-align: center;
+	font-weight: bold;
+}
+
+#myfooter {
+	position: absolute;
+	z-index: 2;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 52px;
+	background: #000;
+	padding: 0;
+	border-top: 0px solid #444;
+}
+
+#wrapper {
+	position: absolute;
+	z-index: 1;
+	top: 45px;
+	bottom: 48px;
+	left: 0;
+	width: 100%;
+	background: #ebd8dc;
+	overflow: hidden;
+}
+
+#scroller {
+	position: absolute;
+	z-index: 1;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	width: 100%;
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+}
+
+#scroller ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	text-align: left;
+}
+
+#scroller li {
+	padding: 0 10px;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px solid #ccc;
+	border-top: 1px solid #fff;
+	background-color: #fff;
+	font-size: 14px;
+}
+
+	</style>
 
 </head>
 
 <body>
-<div id="menu" style="display: none;">
-	<table width="50px">
-	<tr><td width="5px"></td>
-	<td>
-		<table>
-			<tr><td><br></td></tr>
-			<tr><td><a href="swip.html" rel="external"><div width="38px" class="home1"></div></a></td></tr>
-			<tr><td><br></td></tr>
-			<tr><td><a id="badde" class="badge1" data-badge="1"><div width="38px" class="messaggio"></div></a></td></tr>
-			<tr><td><br></td></tr>
-			<tr><td><a href="swip.html" rel="external"><div width="38px" class="altro"></div></a></td></tr>
-			<tr><td><br></td></tr>
-			<tr><td><a href="javascript:LogOut()">LogOut</a></td></tr>
-		</table>
-	</td></tr>
-	</table>
-</div>
-
 
 <div data-role="page" id="article1" class="div2">
   <div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div1">
    <table width="100%" height="52px" border="0" valign="center">
 				<tr>
-					<td width="33%" align="left"><a id="indietro" href="#" rel="external" class="collegamento"><font color="#FFF"><img src="img/arrowS.png" width="18">&nbsp;Back</font></a></td>
+					<td width="33%" align="left"><a id="indietro" href="#" rel="external" class="draffa"><font color="#FFF"><img src="img/arrowS.png" width="18">&nbsp;Back</font></a></td>
 					<td width="33%" align="center"><font color="#FFF">Outline</font></td>
-					<td width="33%" align="right"><a id="avanti" href="#" rel="external" class="collegamento"><font color="#FFF">Next&nbsp;<img src="img/arrowD.png" width="18"></font></td>
+					<td width="33%" align="right"><a id="avanti" href="#" rel="external" class="draffa"><font color="#FFF">Next&nbsp;<img src="img/arrowD.png" width="18"></font></td>
 				</tr></table>
   </div>
 
-  <!-- outline
-  <table width="100%" border="0" cellpadding="0" cellspacing="0">
-	  <tr><td class="trtabella2" colspan="4"><br><br></td></tr>
-	  <tr>
-		  <td class="trtabella" width="95%">
-			  <table width="90%" border="0"><tr><td width="10%"></td><td width="90%" align="left">
-				  <b>Hollow Hill</b></td></tr>
-			      <tr><td width="10%"></td><td width="90%" align="left">
-				  Ehendebi squamus tionseq uaspici ipid quad esed mo conseque doloreferum unt essi rent recerib eaquas ex expla ipit magnimendus, occatiam nobit audante.Ehendebi squamus tionseq uaspici ipid quad esed mo conseque doloreferum unt essi rent recerib eaquas ex expla ipit magnimendus, occatiam nobit audante.</td></tr>
-			  </table>
-		  </td>
-		  <td class="trtabella" width="15%" align="center"></td>
-	  </tr>
-	  <tr><td class="trtabella2" colspan="4"><hr></td></tr>
-	  <tr><td class="trtabella2" colspan="4"><br><br></td></tr>
-	  <tr>
-		  <td class="trtabella" width="95%">
-			  <table width="90%" border="0"><tr><td width="10%"></td><td width="90%" align="left">
-				  <b>1 Int. Kitchen - Day (down)</b></td></tr>
-			  <tr><td width="10%"></td><td width="90%" align="left">
-				 Ehendebi squamus tionseq uaspici ipid quad esed mo conseque doloreferum unt essi rent recerib eaquas ex expla ipit magnimendus, occatiam nobit audante. Ehendebi squamus tionseq uaspici ipid quad esed mo conseque doloreferum unt essi rent recerib eaquas ex expla ipit magnimendus, occatiam nobit audante.</td></tr>
-			  <tr><td width="10%"></td><td width="90%" align="left"><br></td></tr>
-			  <tr>
-				  <td width="10%"></td><td width="95%" align="left">
-					  <table width="100%" border="0"><tr>
-						  <td width="15%">
-							  <a href="swip4.html" rel="external"><div width="52px" class="sinistra"></div></a>
-						  </td>
-						   <td width="15%" align="left">
-							  <a href="swip4.html" rel="external"><div width="52px" class="destra"></div></a>
-						   </td>
-							<td width="70%" align="right">
-								 <table width="50%" border="0"><tr><td align="right" valign="center">
-								 <a href="#" rel="external"><div width="30px" class="plus"></div></a>
-								 </td><td align="center" valign="center">
-								 <a href="#" rel="external"><div width="30px" class="minus"></div></a>
-								 </td></tr></table>
-							</td>
-							<td width="10%"></td>
-					  </tr>
-					  </table>
-				  </td>
-			  </tr>
-			  
-			  </table>
-		  </td>
-		  <td class="trtabella" width="15%" align="center"></td>
-	  </tr>
-	  <tr><td class="trtabella2" colspan="4"><hr></td></tr>
-	  <tr><td class="trtabella2" colspan="4"><br><br></td></tr>
-	  <tr>
-		  <td class="trtabella" width="95%">
-			  <table width="90%" border="0"><tr><td width="10%"></td><td width="90%" align="left">
-				  <b>1 Int. Kitchen - Day (down)</b></td></tr>
-			  <tr><td width="10%"></td><td width="90%" align="left">
-				  Ehendebi squamus tionseq uaspici ipid quad esed mo conseque doloreferum unt essi rent recerib eaquas ex expla ipit magnimendus, occatiam nobit audante. Ehendebi squamus tionseq uaspici ipid quad esed mo conseque doloreferum unt essi rent recerib eaquas ex expla ipit magnimendus, occatiam nobit audante.</td></tr>
-			  <tr><td width="10%"></td><td width="90%" align="left"><br></td></tr>
-			  <tr>
-				  <td width="10%"></td><td width="95%" align="left">
-					  <table width="100%" border="0"><tr>
-						  <td width="15%">
-							  <a href="swip4.html" rel="external"><div width="52px" class="sinistra"></div></a>
-						  </td>
-						  <td width="15%" align="left">
-							  <a href="swip4.html" rel="external"><div width="52px" class="destra"></div></a>
-						  </td>
-						  <td width="70%" align="right">
-								 <table width="50%" border="0"><tr><td align="right" valign="center">
-									 <a href="#" rel="external"><div width="30px" class="plus"></div></a>
-								 </td><td align="center" valign="center">
-									 <a href="#" rel="external"><div width="30px" class="minus"></div></a>
-								 </td></tr></table>
-						  </td>
-						  <td width="10%"></td>
-					  </tr>
-					  </table>
-				  </td>
-			  </tr>
-			  
-			  </table>
-		  </td>
-		  <td class="trtabella" width="15%" align="center"></td>
-	  </tr>
-
-
-  </table>-->
   
   <div class="spinner" id="spinner"></div>
   
   <form name="formia" action="entra.asp" method="post">
-	  
+	  <div id="wrapper">
+		  <div id="scroller">
+			  
 	  <input name="contaout" id="contaout" type="hidden">
 	  <div id="contenuto"></div>
-
-
-<div id="bolla" class="bubble" style="display:none" align="center" valign="center">
-	<div style="width:380px; height:230px; overflow: auto;" valign="center">
-		<div id="bollicina"></div>
+	  
+		</div>
 	</div>
-</div>
+
+</form>
+
   <div id="myfooter" data-role="footer" data-theme="c" data-position="fixed" data-tap-toggle="false">
+	  <div id="bolla" class="bubble" style="display:none" align="center" valign="center">
+		  <div style="width:380px; height:230px; overflow: auto;" valign="center">
+			  <div id="bollicina"></div>
+			  <!--<font color="#000">Ciao</font>-->
+		  </div>
+	  </div>
 	  <center>
 		  <table width="100%" height="52px">
 			  <tr>
 				  <td width="10%"></td>
 				  <td width="20%" align="left"> </td>
-				  <td width="40%" align="center"><a id="visbollicina" href="javascript:visbolla()" rel="external" class="collegamento"><font color="#fff">12 Step</font></a></td>
+				  <td width="40%" align="center"><a id="visbollicina" href="javascript:visbolla()" rel="external" class="collegamento"><font color="#fff">12 Step <img src="img/arrowSU.png" height="23"></font></a></td>
 				  <td width="20%" align="right">29c | 5W</td>
 				  <td width="10%"></td>
 				  <!-- <a id="salvataggio" href='javascript:salva()'><div width='52px' class='salva'></div></a> -->
@@ -854,35 +878,36 @@ right: 0;
 			</table>
 	  </center>
   </div>
-  
-</form>
 
 </div> 
 
 
-<div id="jq-dropdown-1" class="jq-dropdown jq-dropdown-tip" >
-        <ul class="jq-dropdown-menu">
-            <li><a href="quill/examples/advanced.html" rel="external">Drafts</a></li>
-			 <li class="jq-dropdown-divider"></li>
-			<li><a href="swip2.html" rel="external">Finisched</a></li>
-			 <li class="jq-dropdown-divider"></li>
-			<li><a href="#1">Trash</a></li>
-        </ul>
-    </div>
-    
-    <div id="jq-dropdown-2" class="jq-dropdown jq-dropdown-tip jq-dropdown-tip">
-    	<div class="jq-dropdown-panel">
-        	You can put whatever HTML you want in a panel!
-    	</div>
-	</div>
-	
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/swip5.js"></script>
-	<script src="jquery-1.11.1.min.js"></script>
-	<script type="text/javascript" src="jquery.dropdown.min.js"></script>
+	<script src="jquery-1.11.3.min.js"></script>
+	<script src="js/jquery.finger.js"></script>
 	
-	<script src="js/jquery.mobile-1.4.2.min.js"></script>
-	<script type="text/javascript" src="js/app.js"></script>
+	<script src="js/jquery.mobile-1.4.5.min.js"></script>
+	
+	<script type="text/javascript" src="js/iscroll.js"></script>
+	
+	<script type="text/javascript">
+		
+		var myScroll;
+		
+		function loaded () {
+			myScroll = new IScroll('#wrapper', { click: true });
+			setTimeout (function(){
+				myScroll.refresh();
+			}, 1000);
+						
+		}
+	
+	document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
+	
+	document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	
+		</script>
 	
 </body>
 </html>
