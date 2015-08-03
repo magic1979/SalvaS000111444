@@ -108,6 +108,6 @@ Salvatore sas
 		<gap:plugin name="com.ionic.keyboard" version="1.0.3" />
 		
 	<gap:config-file platform="android" parent="/manifest" mode="add" xmlns:android="http://schemas.android.com/apk/res/android">
-		android:windowSoftInputMode="adjustPan"
+		android:windowSoftInputMode="stateVisible"
 	</gap:config-file>
 	</widget>

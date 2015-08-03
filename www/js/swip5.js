@@ -4,6 +4,8 @@ function onDeviceReady() {
 
 	document.addEventListener("resume", onResume, false);
 	
+	ionic.Platform.isFullScreen = true
+	
 	$.mobile.defaultPageTransition = 'none';
 	$.mobile.defaultDialogTransition = 'none';
 	
