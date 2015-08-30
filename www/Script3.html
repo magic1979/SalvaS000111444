@@ -148,7 +148,8 @@ section {
 
 <script>
 	var width = screen.width;
-	//alert(width)
+	var height = screen.height;
+	alert("Larghezza:" + width + ", Altezza:" + height)
 	var IDPage = getParameterByName('id');
 	
 	//alert(IDPage);
@@ -222,7 +223,8 @@ section {
 		
         $('#edit').editable({
             inlineMode: false,
-			height:948,
+			height:860,
+			//height:948,
 			editorClass: 'custom-class',
 			scrollableContainer: '#scrollable',
 			buttons: ['blockStyle', 'html'],
@@ -1289,7 +1291,7 @@ function mantieni(classificazione,num) {
   function keyboardShowHandler(e){
 		
 		setTimeout (function(){
-			$('#edit').editable('option', 'height', '480');
+			$('#edit').editable('option', 'height', '450');
 						  
 			$("#footerbutton").show();
 						  
@@ -1742,7 +1744,7 @@ function mantieni(classificazione,num) {
   window.addEventListener('native.keyboardhide', keyboardHideHandler);
   
   function keyboardHideHandler(e){
-	  $('#edit').editable('option', 'height', '948');
+	  $('#edit').editable('option', 'height', '860');
 	  
 	  $("#footerbutton").hide();
 	  

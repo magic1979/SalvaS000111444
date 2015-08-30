@@ -11,10 +11,6 @@ function onDeviceReady() {
 	$.mobile.defaultPageTransition = 'none';
 	$.mobile.defaultDialogTransition = 'none';
 	
-	$(function() {
-	  FastClick.attach(document.body);
-	});
-
     $(".spinner").hide();
 	var lista;
 	var vuoto = 0;
@@ -125,7 +121,6 @@ function listaStory() {
 		   });
 		   
 		   
-		   
 		   lista = lista + "</table>"
 		   
 		   $("#contenuto").html(lista);
@@ -135,7 +130,7 @@ function listaStory() {
 		   $(".spinner").hide();
 		   $("#Titolotbl").html("List Stories");
 		   
-		   $("span").on("swipeleft",function(){
+		   /*$("span").on("swipeleft",function(){
 				var numlist = this.id
 				 numlist = numlist.substring(6)
 							
@@ -153,8 +148,42 @@ function listaStory() {
 							
 				$("#swippe"+ numlist +"").hide();
 				$("#delete"+ numlist +"").fadeIn();
-			});
-		   
+			});*/
+			
+			
+		$(function() {      
+      	//Enable swiping...
+      	$("#span").swipe( {
+        //Generic swipe handler for all directions
+          swipe:function(event, direction, distance, duration, fingerCount, fingerData) 
+		  {
+          	alert("You swiped " + direction );  
+			
+			 if (direction == "right") {
+                    var numlist = this.id
+				 	numlist = numlist.substring(6)
+							
+				 	//alert(numlist);
+							
+					$("#swippe"+ numlist +"").hide();
+					$("#delete"+ numlist +"").fadeIn();
+              } else if (direction == "left") {
+                   var numlist = this.id
+				 	numlist = numlist.substring(6)
+							
+				 	//alert(numlist);
+							
+					$("#delete"+ numlist +"").hide();
+					$("#swippe"+ numlist +"").fadeIn();
+              }
+			  else{}
+          },
+        	//Default is 75px, set to 0 for demo so any distance triggers swipe
+         	threshold:0
+     	  });
+         });
+			
+	
 		   
 		   /*for ( k=1; k < conta; k++ )
 		   {
