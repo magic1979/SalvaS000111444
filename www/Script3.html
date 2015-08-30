@@ -67,7 +67,7 @@ section {
 }
 .topo {
 	background-color: #000;
-	width:768px;
+	width:100%;
 	height: 52px;
 	vertical-align: middle;
 	
@@ -79,7 +79,7 @@ section {
 }
 .topo1 {
 	background-color: #000;
-	width:768px;
+	width:100%;
 	height: 52px;
 	vertical-align: middle;
 	
@@ -98,7 +98,7 @@ section {
 	color: #FFF;
 	text-decoration: none;
 	text-transform: none;
-	font-size: 18px;
+	font-size: 10px;
 	padding: 6px 8px 6px 8px;
 
 }
@@ -107,7 +107,7 @@ section {
 	color: #00FFFF;
 	text-decoration: none;
 	text-transform: none;
-	font-size: 18px;
+	font-size: 10px;
 	padding: 6px 8px 6px 8px;
 
 }
@@ -223,7 +223,7 @@ section {
 		
         $('#edit').editable({
             inlineMode: false,
-			height:860,
+			height:900,
 			//height:948,
 			editorClass: 'custom-class',
 			scrollableContainer: '#scrollable',
@@ -1744,7 +1744,7 @@ function mantieni(classificazione,num) {
   window.addEventListener('native.keyboardhide', keyboardHideHandler);
   
   function keyboardHideHandler(e){
-	  $('#edit').editable('option', 'height', '860');
+	  $('#edit').editable('option', 'height', '900');
 	  
 	  $("#footerbutton").hide();
 	  

@@ -149,39 +149,52 @@ function listaStory() {
 				$("#swippe"+ numlist +"").hide();
 				$("#delete"+ numlist +"").fadeIn();
 			});*/
+		
+		var imgs;
 			
-			
-		$(function() {      
-      	//Enable swiping...
-      	$("#span").swipe( {
-        //Generic swipe handler for all directions
-          swipe:function(event, direction, distance, duration, fingerCount, fingerData) 
-		  {
-          	alert("You swiped " + direction );  
-			
-			 if (direction == "right") {
-                    var numlist = this.id
-				 	numlist = numlist.substring(6)
-							
-				 	//alert(numlist);
-							
-					$("#swippe"+ numlist +"").hide();
-					$("#delete"+ numlist +"").fadeIn();
-              } else if (direction == "left") {
-                   var numlist = this.id
-				 	numlist = numlist.substring(6)
-							
-				 	//alert(numlist);
-							
-					$("#delete"+ numlist +"").hide();
-					$("#swippe"+ numlist +"").fadeIn();
-              }
-			  else{}
-          },
-        	//Default is 75px, set to 0 for demo so any distance triggers swipe
-         	threshold:0
-     	  });
-         });
+		var swipeOptions = {
+            triggerOnTouchEnd: true,
+            swipeStatus: swipeStatus,
+            allowPageScroll: "vertical",
+            threshold: 0
+	
+        };
+		
+		$(function () {
+            imgs = $("span");
+            imgs.swipe(swipeOptions);
+        });
+		
+		alert(threshold)
+		
+		function swipeStatus(event, phase, direction, distance) {
+            //If we are moving before swipe, and we are going L or R in X mode, or U or D in Y mode then drag.
+            if (phase == "move" && (direction == "left" || direction == "right")) {
+                var duration = 0;
+
+                if (direction == "left") {
+                    //scrollImages((IMG_WIDTH * currentImg) + distance, duration);
+					
+                } else if (direction == "right") {
+                    //scrollImages((IMG_WIDTH * currentImg) - distance, duration);
+					
+                }
+				
+				alert("1." + direction)
+
+            } else if (phase == "cancel") {
+                //scrollImages(IMG_WIDTH * currentImg, speed);
+            } else if (phase == "end") {
+				
+				alert("2." + direction)
+				
+                if (direction == "right") {
+                    //previousImage();
+                } else if (direction == "left") {
+                    //nextImage();
+                }
+            }
+        }
 			
 	
 		   
