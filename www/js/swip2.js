@@ -150,51 +150,29 @@ function listaStory() {
 				$("#delete"+ numlist +"").fadeIn();
 			});*/
 		
-		var imgs;
+	$(function() {      
+      $("span").swipe( {
+        swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
 			
-		var swipeOptions = {
-            triggerOnTouchEnd: true,
-            swipeStatus: swipeStatus,
-            allowPageScroll: "vertical",
-            threshold: 0
-	
-        };
+           var numlist = this.id
+		   numlist = numlist.substring(6)
+ 				
+		   $("#delete"+ numlist +"").hide();
+		   $("#swippe"+ numlist +"").fadeIn();
+		  
+		  navigator.notification.alert(
+										'You swiped ' + direction + ' with ' + fingerCount + ' fingers',  // message
+										alertDismissed,         // callback
+										'Error',            // title
+										'OK'                  // buttonName
+										);
+		  
+        },
 		
-		$(function () {
-            imgs = $("span");
-            imgs.swipe(swipeOptions);
-        });
-		
-		alert(threshold)
-		
-		function swipeStatus(event, phase, direction, distance) {
-            //If we are moving before swipe, and we are going L or R in X mode, or U or D in Y mode then drag.
-            if (phase == "move" && (direction == "left" || direction == "right")) {
-                var duration = 0;
-
-                if (direction == "left") {
-                    //scrollImages((IMG_WIDTH * currentImg) + distance, duration);
-					
-                } else if (direction == "right") {
-                    //scrollImages((IMG_WIDTH * currentImg) - distance, duration);
-					
-                }
-				
-				alert("1." + direction)
-
-            } else if (phase == "cancel") {
-                //scrollImages(IMG_WIDTH * currentImg, speed);
-            } else if (phase == "end") {
-				
-				alert("2." + direction)
-				
-                if (direction == "right") {
-                    //previousImage();
-                } else if (direction == "left") {
-                    //nextImage();
-                }
-            }
-        }
+        threshold:0,
+        fingers:'all'
+      });
+    });
 			
 	
 		   
