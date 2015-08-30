@@ -1,7 +1,7 @@
 document.addEventListener('deviceready', onDeviceReady, false);
 
 function onDeviceReady() {
-	document.addEventListener("resume", onResume, false);
+	//document.addEventListener("resume", onResume, false);
 	
 	var hoverDelay = $.mobile.buttonMarkup.hoverDelay = 0;
 	
@@ -26,8 +26,6 @@ function onDeviceReady() {
 	
 	setTimeout (function(){
 		//document.getElementById("test1").click();
-				
-		//$("#framme").html("<div class='iframme' data-role='popup' id='popupMap' data-overlay-theme='d' data-theme='c' data-corners='false' data-tolerance='15,15'><a href='javascript:novedi()' data-rel='back' class='ui-btn ui-btn-b ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right'>Close</a><iframe src='setting.html' width='600px' height='760px' seamless=''></iframe></div>")
 	}, 500);
 	
 	var IDPage = getParameterByName('id');
@@ -36,16 +34,18 @@ function onDeviceReady() {
 	connectionStatus = navigator.onLine ? 'online' : 'offline';
 	
 	if(connectionStatus=='online'){
-		//Verifica Token
+		verificatoken()
+		$("#VerConnessione").hide()
 		
 		notifiche()
 		
 		if (IDPage==2){
 			vedicrediti()
 		}
+		else{
+			listaStory()
+		}
 
-		verificatoken()
-		Token = localStorage.getItem("Token");
 		
 		setTimeout (function(){
 			$("#menu1").fadeIn()
@@ -53,7 +53,14 @@ function onDeviceReady() {
 		
 	}
 	else{
-	 // Che Faccio
+		navigator.notification.alert(
+										'possible network error',  // message
+									    alertDismissed,         // callback
+										'Error',            // title
+										'OK'                  // buttonName
+										);
+		
+		$("#VerConnessione").show()
 	}
 	
 	$(function() {
@@ -126,7 +133,7 @@ function onPrompt(results) {
 		/*$(".spinner").show();
 		$.ajax({
 			   type:"GET",
-			   url:"https://dev.storymatch.co/storymatch/userstories/create",
+			   url:"https://staging.storymatch.co/storymatch/userstories/create",
 			   data: {token:localStorage.getItem("Token"),title:results.input1},
 			   contentType: "application/json; charset=utf-8",
 			   json: 'callback',
@@ -168,9 +175,14 @@ function onPrompt(results) {
 			   },
 			   dataType:"json"});*/
 		
+		var connectionStatus = false;
+		connectionStatus = navigator.onLine ? 'online' : 'offline';
+		
+		if(connectionStatus=='online'){
+		
 		$(".spinner").show();
 		$.ajax({
-			   url: "https://dev.storymatch.co/storymatch/userstories/create",
+			   url: "https://staging.storymatch.co/storymatch/userstories/create",
 			   dataType: "json",
 			   type: "post",
 			   contentType: "application/json",
@@ -207,7 +219,7 @@ function onPrompt(results) {
 			   alert(errorThrown)
 			   
 			   navigator.notification.alert(
-											'possible network error',  // message
+											'possible network error 3',  // message
 											alertDismissed,         // callback
 											'Error',            // title
 											'OK'                  // buttonName
@@ -216,7 +228,15 @@ function onPrompt(results) {
 			   },
 			   dataType:"json"});
 		
-		
+		}
+		else{
+			navigator.notification.alert(
+											'possible network error 4',  // message
+											alertDismissed,         // callback
+											'Error',            // title
+											'OK'                  // buttonName
+											);
+		}
 		
 	}
 	
@@ -224,12 +244,12 @@ function onPrompt(results) {
 
 
 function verificatoken() {
-	Token = localStorage.getItem("Token");
+	var Token = localStorage.getItem("Token");
 	
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://dev.storymatch.co/storymatch/authentication/validatetoken",
+		   url:"https://staging.storymatch.co/storymatch/authentication/validatetoken",
 		   data: {token:Token},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -240,6 +260,8 @@ function verificatoken() {
 			 //OK
 			 $(".spinner").hide();
 			 $("#emailutente").html(localStorage.getItem("email"));
+		   
+			 
 		   
 		   }
 		   else{
@@ -258,7 +280,7 @@ function verificatoken() {
 		   $(".spinner").hide();
 		   
 		   navigator.notification.alert(
-										'possible network error',  // message
+										'possible network error 5',  // message
 										alertDismissed,         // callback
 										'Error',            // title
 										'OK'                  // buttonName
@@ -316,7 +338,7 @@ function esempio(){
 		   $(".spinner").hide();
 		   
 		   navigator.notification.alert(
-										'possible network error',  // message
+										'possible network error 6',  // message
 										alertDismissed,         // callback
 										'Error',            // title
 										'OK'                  // buttonName
@@ -347,7 +369,7 @@ function LogOut() {
 	
 	$(".spinner").show();
 	$.ajax({
-		   url: "https://dev.storymatch.co/storymatch/authentication/logout",
+		   url: "https://staging.storymatch.co/storymatch/authentication/logout",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
@@ -381,7 +403,7 @@ function LogOut() {
 		   $(".spinner").hide();
 		   
 		   navigator.notification.alert(
-										'possible network error',  // message
+										'possible network error 7',  // message
 										alertDismissed,         // callback
 										'Error',            // title
 										'OK'                  // buttonName
@@ -484,12 +506,16 @@ function novedi() {
 	$("#framme").hide()
 }
 
+function VerificaConnessione() {
+	onDeviceReady();
+}
+
 function notifiche() {
 	
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://dev.storymatch.co/storymatch/notify/check",
+		   url:"https://staging.storymatch.co/storymatch/notify/check",
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
 		   crossDomain: true,
@@ -544,3 +570,51 @@ function getParameterByName(name) {
 						  results = regex.exec(location.search);
 						  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 						  }
+						  
+						  
+						  function listaStory() {
+						  
+						  
+						  $(".spinner").show();
+						  $.ajax({
+								 type:"GET",
+								 url:"https://staging.storymatch.co/storymatch/userstories/list",
+								 data: {token:localStorage.getItem("Token")},
+								 contentType: "application/json; charset=utf-8",
+								 json: 'callback',
+								 crossDomain: true,
+								 success:function(result){
+								 
+								 $.each(result, function(i,item){
+										
+									if (result.id!=0){
+										//alert("go 2")
+										window.location.href = "swip2.html";
+									}
+									else{
+										//listaShare();
+									}
+										
+										
+								});
+								 
+								 
+								 $(".spinner").hide();
+
+								 
+								 },
+								 error: function(){
+								 $(".spinner").hide();
+								 
+								 navigator.notification.alert(
+															  'possible network error 1',  // message
+															  alertDismissed,         // callback
+															  'Error',            // title
+															  'OK'                  // buttonName
+															  );
+								 
+								 },
+								 dataType:"json"});
+						  
+						  }
+

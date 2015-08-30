@@ -355,9 +355,9 @@ iframe {
   
   <div class="spinner" id="spinner"></div>
   
-  <div id="menu">
+  <div id="menu" style="position:fixed;">
 	  <table height="60px" border="0"><tr><td>&nbsp;</td></tr></table>
-	  <table height="1024" width="50px" border="0">
+	  <table height="100%" width="50px" border="0">
 		  <tr><td width="10px">&nbsp;&nbsp;</td>
 			  <td valign="top">
 				  <table id="menu1" style="display: none;">
@@ -389,8 +389,11 @@ iframe {
   </div>-->
   
   <table id="myTable" class="myTableStyle" border="0" >
+	  <tr id="VerConnessione" style="display: none;">
+		  <td align="center"><a href="javascript:VerificaConnessione()" rel="external" class="btn"><font color="#FFF">Verify Connection</font></a></td>
+	  </tr>
 	  <tr id="num1">
-		  <td align="center" style="text-decoration: none"><font size="4" color="#FFF" class="testo">You have nit create any stories yet</font></td>
+		  <td align="center" style="text-decoration: none"><font size="4" color="#FFF" class="testo">You have not create any stories yet</font></td>
 	  </tr>
 	  <tr id="num2">
 		  <td align="center"><a href="javascript:createstory()" rel="external" class="btn"><font color="#FFF">Start your first story</font></a></td>
@@ -421,7 +424,7 @@ iframe {
 				  
 				  <tr><td colspan="3"><hr></td></tr>
 				  
-				 <tr>
+				 <!--<tr>
 					  <td class="trtabella3" width="33%">
 						  <table width="100%"><tr><td width="25%"></td><td width="85%" align="left">
 							  <font color="red">Your profile</font>
@@ -439,8 +442,8 @@ iframe {
 						  </table>
 					  </td>
 				  </tr>
-				  <tr><td colspan="3"><hr></td></tr>
-				  <tr>
+				  <tr><td colspan="3"><hr></td></tr>-->
+				 <!-- <tr>
 					  <td class="trtabella3" width="33%">
 						  <table width="100%"><tr><td width="25%"></td><td width="85%" align="left">
 							  Picture
@@ -458,17 +461,17 @@ iframe {
 						  </table>
 					  </td>
 				  </tr>
-				  <tr><td colspan="3"><hr></td></tr>
+				  <tr><td colspan="3"><hr></td></tr>-->
 				  <tr>
 					  <td class="trtabella3" width="33%">
 						  <table width="100%"><tr><td width="25%"></td><td width="85%" align="left">
-							  <font size="2" color="#000">Show Email</font>
+							  <font size="3" color="#000">Email Utente</font>
 						  </td></tr>
 						  </table>
 					  </td>
 					  <td class="trtabella3" width="33%">
 						  <table width="100%"><tr><td width="90%" align="left">
-							  <span id="emailutente"></span></td><td width="10%"></td></tr>
+							  <font size="3" color="#000"><span id="emailutente"></span></font></td><td width="10%"></td></tr>
 						  </table>
 					  </td>
 					  <td class="trtabella3" width="33%">
@@ -500,7 +503,7 @@ iframe {
 				  <tr id="riga">
 					  <td class="trtabella3" width="33%">
 						  <table width="100%"><tr><td width="25%"></td><td width="85%" align="left">
-							  Go premium
+							  <b>Go premium</b>
 						  </td></tr>
 						  </table>
 					  </td>
@@ -535,7 +538,7 @@ iframe {
 					  </td>
 				  </tr>
 				  <tr><td colspan="3"><hr></td></tr>
-				  <tr>
+				 <!-- <tr>
 					  <td class="trtabella3" width="33%">
 						  <table width="100%"><tr><td width="25%"></td><td width="85%" align="left">
 							  Lorem ipsum
@@ -553,8 +556,8 @@ iframe {
 						  </table>
 					  </td>
 				  </tr>
-				  <tr><td colspan="3"><hr></td></tr>
-				  <tr>
+				  <tr><td colspan="3"><hr></td></tr>-->
+				  <!--<tr>
 					  <td class="trtabella3" width="33%">
 						  <table width="100%"><tr><td width="25%"></td><td width="85%" align="left">
 							  Sic amet
@@ -572,11 +575,11 @@ iframe {
 						  </table>
 					  </td>
 				  </tr>
-				  <tr><td colspan="3"><hr></td></tr>
+				  <tr><td colspan="3"><hr></td></tr>-->
 				  <tr>
 					  <td class="trtabella3" width="33%">
 						  <table width="100%"><tr><td width="25%"></td><td width="85%" align="left">
-							  <a href="#popupMap2" data-rel="popup" data-position-to="window" class="collegamento"><font color="red">About</font></a>
+							  <a href="#" class="collegamento"><font color="red">About</font></a>
 						  </td></tr>
 						  </table>
 					  </td>
@@ -713,6 +716,7 @@ iframe {
 
 		  </td>
 	  </tr>
+	  
 	  <tr id="abbonamento" style="display: none;">
 		  <td>
 			  <table class="div5" width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -783,7 +787,7 @@ iframe {
         <ul class="jq-dropdown-menu">
             <li><a href="swip2.html" rel="external">Drafts</a></li>
 			 <li class="jq-dropdown-divider"></li>
-			<li><a href="javascript:confirmLogout()">Finisched</a></li>
+			<li><a href="javascript:confirmLogout()">Finished</a></li>
 			 <li class="jq-dropdown-divider"></li>
 			<li><a href="swip2.html?id=1" rel="external">Trash</a></li>
         </ul>

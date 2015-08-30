@@ -1,9 +1,8 @@
 document.addEventListener('deviceready', onDeviceReady, false);
 
 function onDeviceReady() {
-
-	document.addEventListener("resume", onResume, false);
-
+	
+	window.addEventListener('native.keyboardhide', keyboardHideHandler);
 	
 	$.mobile.defaultPageTransition = 'none';
 	$.mobile.defaultDialogTransition = 'none';
@@ -26,28 +25,55 @@ function onDeviceReady() {
 	var Addvariabile="";
 	var Rimvariabile="";
 	
+	var connectionStatus = false;
+	connectionStatus = navigator.onLine ? 'online' : 'offline';
+	
+	if(connectionStatus=='online'){
+	
 	var IDStep = getParameterByName('id');
 	$("#salvataggio").attr("href", "javascript:salva("+ IDStep +")");
+		
+	verificatoken(IDStep)
 	//$("#indietro").attr("href", "swip4.html?id="+ IDStep +"&idPitch=0");
 	
-	//$("#avanti").attr("href", "javascript:salva("+ IDStep +",0,0)");
-	
-	$(document).on("click touch", "#avanti", function(e){
+	$(document).on("click touchstart", "#avanti", function(e){
+		e.preventDefault();
 		salva(IDStep,0,0)
 	});
 	
-	$(document).on("click touch", "#indietro", function(e){
-		window.location.href = "swip4.html?id="+ IDStep +"&idPitch=0";
+	$(document).on("click touchstart", "#indietro", function(e){
+		e.preventDefault();
+		salva(IDStep,9,0)
+		
 	});
+		
+	$(document).on("click touchstart", "#visbollicina", function(e){
+		e.preventDefault();
+		visbolla()
+	});
+		
+	$(document).on("click touchstart", "#visbollicina2", function(e){
+		e.preventDefault();
+		NOvedi()
+	});
+		
 	
-	verificatoken(IDStep)
+	}
+	else{
+		navigator.notification.alert(
+										'possible network error',  // message
+									    alertDismissed,         // callback
+										'Error',            // title
+										'OK'                  // buttonName
+										);
+	}
 	
     $(".spinner").hide();
 
 }
 
 
-function buildout(id) {
+function buildout(id,prov) {
 	
 	var outi = 1;
 	var conto = 1;
@@ -58,7 +84,7 @@ function buildout(id) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://dev.storymatch.co/storymatch/search/stepsbyid",
+		   url:"https://staging.storymatch.co/storymatch/search/stepsbyid",
 		   data: {ID:id, token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -72,17 +98,15 @@ function buildout(id) {
 		  $.each(result.characters, function(i,item){
 				 var idOutline = item.detail["outline"]
 				 
-
 				 for ( i=0; i < idOutline.length; i++ )
 				 {
 				  
 				  document.getElementById("contaout").value=conto;
 				 
-				  out = out + "<table width='100%' border='0' cellpadding='0' cellspacing='0' style='background-color: #ebd8dc;'><tr><td class='trtabella2' colspan='5'><hr></td></tr><tr><td class='trtabella' width='95%'><table width='90%' border='0'><tr><td width='10%'></td><td width='90%' align='left'>"+ outi +"</td></tr><tr><td width='10%'></td><td width='90%' align='left' valign='middle'><input id='idLine"+ outi +"' value='"+ idOutline[i]["id"] +"' type='hidden'><textarea name='myTextarea"+ outi +"' id='myTextarea"+ outi +"' rows='4' cols='60' class='textarea1' placeholder='Write Outline' style='background-color: transparent;'>"+ idOutline[i]["outline"] +"</textarea></td></tr><tr><td width='10%'></td><td width='90%' align='left'><br></td></tr><tr><td width='10%'></td><td width='95%' align='left'><table width='100%' border='0'><tr><td width='15%'><a href='javascript:undor()' rel='external'><div width='52px' class='sinistra'></div></a></td><td width='15%' align='left'><a href='javascript:redor()' rel='external'><div width='52px' class='destra'></div></a></td><td width='70%' align='right'><table id='swippe"+ outi +"' width='50%' border='0'><tr><td align='right' valign='center'><a href='javascript:salva("+ id +",1,"+ outi +")' rel='external'><div width='30px' class='plus'></div></a></td><td align='center' valign='center'><a href='javascript:salva("+ id +",2,"+ outi +")' rel='external'><div width='30px' class='minus'></div></a></td></tr></table><table id='delete"+outi+"' width='50%' height='38px' border='0' style='display: none;'><tr><td align='right' valign='center' colspan='2'><a href='javascript:cancella("+ id +","+ outi +")' rel='external' class='btn'><font color='#000000'>Cancel</font></a></td></tr></table></td><td width='10%' valign='middle'></td></tr></table></td></tr></table></td><td class='trtabella' width='15%' align='center' valign='middle'></td></tr></table>";
+				  out = out + "<table width='100%' border='0' cellpadding='0' cellspacing='0' style='background-color: #ebd8dc;'><tr><td class='trtabella2' colspan='5'><hr></td></tr><tr><td class='trtabella' width='95%'><table width='90%' border='0'><tr><td width='10%'></td><td width='90%' align='left'>"+ outi +"</td></tr><tr><td width='10%'></td><td width='90%' align='left' valign='middle'><input id='idLine"+ outi +"' value='"+ idOutline[i]["id"] +"' type='hidden'><textarea name='myTextarea"+ outi +"' id='myTextarea"+ outi +"' rows='3' cols='60' class='textarea1' placeholder='Write Outline' style='background-color: transparent;' maxlength='200' onkeyup='countChar(this)'>"+ idOutline[i]["outline"] +"</textarea></td></tr><tr><td width='10%'></td><td width='90%' align='left'><br></td></tr><tr><td width='10%'></td><td width='95%' align='left'><table width='100%' border='0'><tr><td width='15%'><a href='javascript:undor()' rel='external'><div width='38px' class='sinistra'></div></a></td><td width='15%' align='left'><a href='javascript:redor()' rel='external'><div width='38px' class='destra'></div></a></td><td width='70%' align='right'><span id='swippe"+ outi +"'><table width='50%' border='0'><tr><td align='right' valign='center'><a onclick='javascript:salva("+ id +",1,"+ outi +")' rel='external'><div width='30px' class='plus'></div></a></td><td align='center' valign='center'><a href='javascript:salva("+ id +",2,"+ outi +")' rel='external'><div width='30px' class='minus'></div></a></td></tr></table></span><span id='delete"+outi+"' style='display: none;'><table width='50%' height='38px' border='0' ><tr><td align='right' valign='center' colspan='2'><a onclick='javascript:cancella("+ id +","+ outi +")' rel='external' class='btn'><font color='#000000'>Cancel</font></a></td></tr></table></span></td><td width='10%' valign='middle'></td></tr></table></td></tr></table></td><td class='trtabella' width='15%' align='center' valign='middle'></td></tr></table>";
 				 
 				 //<table id='delete"outi"' width='50%' border='1' style='display: none;'><tr><td align='right' valign='center' colspan='2'><a href='javascript:cancella("+ id +","+ outi +")' rel='external'><div width='30px' class='plus'></div></a></td></tr></table>
 				 
-
 				  conto = conto+1;
 				  outi = outi+1;
 				 
@@ -93,7 +117,6 @@ function buildout(id) {
 				 
 				 //buildjson(id)
 				 
-
 			});
 		   
 		   
@@ -104,25 +127,45 @@ function buildout(id) {
 		   
 		   //var list = document.getElementById("textarea");
 		   //new SwipeOut(list);
-			myScroll.refresh();
+			//myScroll.refresh();
 		   
+		  /* for ( i=0; i < conto; i++ )
+		   {
+			  $("#myTextarea"+i+"").focus(function() {
+			      alert("#myTextarea"+i+"");
+				  $("#myTextarea"+i+"").keyup()
+			  });
+		   }*/
 		   
-		   
-		   $("textarea").on("swipeleft",function(){
+		   $("textarea").focus(function() {
 				var numlist = String(this.id)
-				 numlist = numlist.substring(10)
+				numlist = numlist.substring(10)
+							   
+				$("#myTextarea"+numlist+"").keyup()
 				
-				alert(numlist);
+			});
+		   
+		   myScroll.refresh();
+		   
+		   if(prov==1){
+			 myScroll.scrollTo(0, myScroll.maxScrollY, 0);
+		   }
+
+		   $("span").on("swipeleft",function(){
+				var numlist = String(this.id)
+				 numlist = numlist.substring(6)
+				
+				//alert(numlist);
 				
 				$("#swippe"+ numlist +"").hide();
 				$("#delete"+ numlist +"").show();
 		   });
 		   
-		   $("textarea").on("swiperight",function(){
+		   $("span").on("swiperight",function(){
 				var numlist = String(this.id)
-				 numlist = numlist.substring(10)
+				 numlist = numlist.substring(6)
 							
-				alert(numlist);
+				//alert(numlist);
 							
 				$("#swippe"+ numlist +"").show();
 				$("#delete"+ numlist +"").hide();
@@ -154,7 +197,7 @@ function buildjson(id) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://dev.storymatch.co/storymatch/search/stepsbyid",
+		   url:"https://staging.storymatch.co/storymatch/search/stepsbyid",
 		   data: {ID:id, token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -208,7 +251,7 @@ function aggiungi(id,outo) {
 	
 	$(".spinner").show();
 	$.ajax({
-		   url: "https://dev.storymatch.co/storymatch/userstories/save/outline",
+		   url: "https://staging.storymatch.co/storymatch/userstories/save/outline",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
@@ -220,7 +263,7 @@ function aggiungi(id,outo) {
 		   if (result.ID==1024){
 		   //OK
 		   
-		   buildout(id)
+		   buildout(id,1)
 		   }
 		   else{
 		   navigator.notification.alert(
@@ -273,7 +316,7 @@ function rimuovi(id,outo) {
 	
 	$(".spinner").show();
 	$.ajax({
-		   url: "https://dev.storymatch.co/storymatch/userstories/save/outline",
+		   url: "https://staging.storymatch.co/storymatch/userstories/save/outline",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
@@ -284,7 +327,7 @@ function rimuovi(id,outo) {
 		   
 		   if (result.ID==1024){
 		   //OK
-		   buildout(id)
+		   buildout(id,1)
 		   }
 		   else{
 		   navigator.notification.alert(
@@ -323,7 +366,7 @@ function cancella(id,outo) {
 	
 	$(".spinner").show();
 	$.ajax({
-		   url: "https://dev.storymatch.co/storymatch/userstories/delete/outline",
+		   url: "https://staging.storymatch.co/storymatch/userstories/delete/outline",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
@@ -335,7 +378,7 @@ function cancella(id,outo) {
 		   if (result.ID==1024){
 		   //OK
 		   
-		   buildout(id)
+		   buildout(id,1)
 		   }
 		   else{
 		   navigator.notification.alert(
@@ -374,7 +417,7 @@ function editstory2(id) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://dev.storymatch.co/storymatch/search/stepsbyid",
+		   url:"https://staging.storymatch.co/storymatch/search/stepsbyid",
 		   data: {ID:id, token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -406,7 +449,7 @@ function editstory2(id) {
 				  
 				  $("#bollicina").html(bollicina);
 				  
-				  myScroll.refresh();
+				  //myScroll.refresh();
 				  
 				  
 				  $('#bollicina').bind("touchmove",function(e){
@@ -469,17 +512,18 @@ function salva(id,prov,outo) {
 	
 	//alert(stringa);
 	
+	if (stringa!="[]"){
 	
 	$(".spinner").show();
 	$.ajax({
 		   /*type:"GET",
-		   url:"https://dev.storymatch.co/storymatch/userstories/update/outlines?outline="+stringa+"",
+		   url:"https://staging.storymatch.co/storymatch/userstories/update/outlines?outline="+stringa+"",
 		   data: {token:localStorage.getItem("Token"),storyid:id},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
 		   crossDomain: true,*/
 		   
-		   url: "https://dev.storymatch.co/storymatch/userstories/update/outlines",
+		   url: "https://staging.storymatch.co/storymatch/userstories/update/outlines",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
@@ -498,6 +542,9 @@ function salva(id,prov,outo) {
 		   
 		   if(prov==0){
 		     window.location.href = "Script3.html?id="+ id +"";
+		   }
+		   else if(prov==9){
+			 window.location.href = "swip4.html?id="+ id +"&idPitch=0";
 		   }
 		   else if(prov==1){
 			aggiungi(id,outo)
@@ -532,7 +579,19 @@ function salva(id,prov,outo) {
 		   
 		   },
 		   dataType:"json"});
-	
+	 }
+	else{
+		if(prov==0){
+			window.location.href = "Script3.html?id="+ id +"";
+		}
+		else if(prov==9){
+			window.location.href = "swip4.html?id="+ id +"&idPitch=0";
+		}
+		else{
+		
+		}
+
+	}
 	//[{%22id%22:181,%22outline%22:%22questa%20e%20la%20modifica%22},{%22id%22:182,%22outline%22:%22questa%20e%20la%20creazione%22},{%22id%22:null,%22outline%22:%22questa%20e%20la%20modifica%20del%20null%22}]
 	
 }
@@ -571,12 +630,25 @@ function alertDismissed() {
 
 function visbolla() {
 	 $("#bolla").fadeIn();
-	 $("#visbollicina").attr("href", "javascript:NOvedi()");
+	
+	$("#visbollicina").hide();
+	$("#visbollicina2").show();
+	
+	
+	//$("#visbollicina").attr("href", "javascript:NOvedi()");
 }
 
 function NOvedi() {
 	$("#bolla").fadeOut()
-	$("#visbollicina").attr("href", "javascript:visbolla()");
+	$("#visbollicina2").hide();
+	$("#visbollicina").show();
+	
+	
+}
+
+function keyboardHideHandler(e){
+	//$("#charNum").text(200);
+	
 }
 
 function getParameterByName(name) {
@@ -605,7 +677,7 @@ function getParameterByName(name) {
 						  $(".spinner").show();
 						  $.ajax({
 								 type:"GET",
-								 url:"https://dev.storymatch.co/storymatch/authentication/validatetoken",
+								 url:"https://staging.storymatch.co/storymatch/authentication/validatetoken",
 								 data: {token:Token},
 								 contentType: "application/json; charset=utf-8",
 								 json: 'callback',
@@ -614,7 +686,7 @@ function getParameterByName(name) {
 								 
 								 if (result.ID==1024){
 								 //OK
-								   buildout(IDStep)
+								   buildout(IDStep,0)
 								   editstory2(IDStep)
 								 }
 								 else{

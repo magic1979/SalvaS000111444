@@ -5,7 +5,7 @@
  */
 .froala-view {
 	font-family: "Courier New", Courier, monospace;
-	font-size: 12pt;
+	font-size: 10.5pt;
 	
 }
 
@@ -69,25 +69,33 @@ h6.fr-tag {
 }
 
 .heading {
-	
+	margin-right: 0.2in;
 	text-transform: uppercase;
+	color: #000000;
 	display:block;
 }
 
 .action {
-	
+	margin-right: 0.15in;
+	color: #000000;
 	display:block;
+
 }
 
 .character {
 	margin-bottom: 1px;
+	color: #000000;
 	text-transform: uppercase;
 	margin-left: 2in; /*3.7*/
+	margin-right: 0.2in;
 	display:block;
 }
+
 .dialog {
 	margin-top: 1px;
+	color: #000000;
 	margin-left: 1in; /*2.5*/
+	margin-right: 1.4in;
 	display:block;
 	margin-bottom: 1px;
 }
@@ -95,7 +103,9 @@ h6.fr-tag {
 
 .parenthetical {
 	margin-top: 1px;
+	color: #000000;
 	margin-left: 1.5in; /*3.2*/
+	margin-right: 1.7in;
 	display:block;
 	margin-bottom: 1px;
 }
@@ -109,13 +119,17 @@ h6.fr-tag {
 }
 
 .transition {
-	
+	margin-right: 0.5in;
+	color: #000000;
+	margin-left: 3.6in;
 	text-transform: uppercase;
 	text-align: right;
 	display:block;
 }
 
 .text {
+	margin-right: 0.15in;
+	color: #000000;
 	margin-top: 1px;
 	text-transform: none;
 	text-decoration: none;
@@ -123,18 +137,21 @@ h6.fr-tag {
 }
 
 .shot {
+	margin-right: 0.1in;
+	color: #000000;
 	text-transform: uppercase;
 	display:block;
 	margin-bottom: 1px;
 }
 
 .custom-class {
-	
+	color: #000000;
 	margin-left: 1in; /*1.5*/
 	margin-right: 1in;
 	
 	display:block;
 }
+
 
 ::-webkit-scrollbar{
 	

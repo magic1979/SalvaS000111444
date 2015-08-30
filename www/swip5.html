@@ -377,21 +377,22 @@ body .ui-body-c, body .ui-overlay-c
 
 .sinistra {
 	background-color: #ebd8dc;
-	background-image: url(img/Sinistra2.png);
-	background-size: 50px 50px;
+	background-image: url(img/Sinistra.png);
+	background-size: 38px 38px;
 	background-repeat: no-repeat;
 	background-position:center;
 	
 	height:50px;
 	width:50px;
-	border-radius:999em;
+	
+	/*border-radius:999em;
 	-moz-border-radius:999em;
 	-webkit-border-radius:999em;
 	-o-border-radius: 999em;
 	
 	-webkit-box-shadow: 0px 0px 0.5px 1.5px #000;
 	-moz-box-shadow: 0px 0px 0.5px 1.5px #000;
-	box-shadow: 0px 0px 0.5px 1.5px #000;
+	box-shadow: 0px 0px 0.5px 1.5px #000;*/
 }
 
 .sinistra:active {
@@ -408,21 +409,22 @@ body .ui-body-c, body .ui-overlay-c
 
 .destra {
 	background-color: #ebd8dc;
-	background-image: url(img/Destra2.png);
-	background-size: 50px 50px;
+	background-image: url(img/Destra.png);
+	background-size: 38px 38px;
 	background-repeat: no-repeat;
 	background-position:center;
 	
 	height:50px;
 	width:50px;
-	border-radius:999em;
+	
+	/*border-radius:999em;
 	-moz-border-radius:999em;
 	-webkit-border-radius:999em;
 	-o-border-radius: 999em;
 	
 	-webkit-box-shadow: 0px 0px 0.5px 1.5px #000;
 	-moz-box-shadow: 0px 0px 0.5px 1.5px #000;
-	box-shadow: 0px 0px 0.5px 1.5px #000;
+	box-shadow: 0px 0px 0.5px 1.5px #000;*/
 }
 
 .destra:active {
@@ -709,20 +711,21 @@ right: 0;
 	font-family: Arial;
 	color: #000000;
 	font-size: 18px;
-	padding: 5px 20px 5px 20px;
+	padding: 5px 5px 5px 5px;
 	border: solid #000 2px;
 	text-decoration: none;
 }
 
 .draffa:active {
-	background: #ebd8dc;
-	background-image: -webkit-linear-gradient(top, #ebd8dc, #ebd8dc);
-	background-image: -moz-linear-gradient(top, #ebd8dc, #ebd8dc);
-	background-image: -ms-linear-gradient(top, #ebd8dc, #ebd8dc);
-	background-image: -o-linear-gradient(top, #ebd8dc, #ebd8dc);
-	background-image: linear-gradient(to bottom, #ebd8dc, #ebd8dc);
+	background: #585858;
+	color: #000;
+	background-image: -webkit-linear-gradient(top, #585858, #585858);
+	background-image: -moz-linear-gradient(top, #585858, #585858);
+	background-image: -ms-linear-gradient(top, #585858, #585858);
+	background-image: -o-linear-gradient(top, #585858, #585858);
+	background-image: linear-gradient(to bottom, #585858, #585858);
+	border: solid #FFF 1px;
 	text-decoration: none;
-
 }
 
 .fontegrande {
@@ -829,6 +832,41 @@ body {
 
 	</style>
 
+<script type="text/javascript" src="js/swip5.js"></script>
+<script src="jquery-1.11.3.min.js"></script>
+<script src="js/jquery.finger.js"></script>
+
+<script src="js/jquery.mobile-1.4.5.min.js"></script>
+
+<script type="text/javascript" src="js/iscroll.js"></script>
+
+<script type="text/javascript">
+	
+	var myScroll;
+	
+	function loaded () {
+		myScroll = new IScroll('#wrapper', { click: true });
+		setTimeout (function(){
+					myScroll.refresh();
+					}, 1000);
+					
+	}
+
+document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
+
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+function countChar(val) {
+	var len = val.value.length;
+	if (len >= 200) {
+		val.value = val.value.substring(0, 200);
+	} else {
+		$('#charNum').text(200 - len);
+	}
+};
+
+	</script>
+
 </head>
 
 <body>
@@ -836,11 +874,12 @@ body {
 <div data-role="page" id="article1" class="div2">
   <div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div1">
    <table width="100%" height="52px" border="0" valign="center">
-				<tr>
-					<td width="33%" align="left"><a id="indietro" href="#" rel="external" class="draffa"><font color="#FFF"><img src="img/arrowS.png" width="18">&nbsp;Back</font></a></td>
-					<td width="33%" align="center"><font color="#FFF">Outline</font></td>
-					<td width="33%" align="right"><a id="avanti" href="#" rel="external" class="draffa"><font color="#FFF">Next&nbsp;<img src="img/arrowD.png" width="18"></font></td>
-				</tr></table>
+	   <tr>
+			<td width="33%" align="left"><img src="img/arrowS.png" width="18"><a id="indietro" href="#" class="draffa"><font color="#FFF">Back</font></a></td>
+			<td width="33%" align="center"><font color="#FFF">Outline</font></td>
+			<td width="33%" align="right"><a id="avanti" href="#" class="draffa"><font color="#FFF">Next</font></a><img src="img/arrowD.png" width="18"></td>
+		</tr>
+   </table>
   </div>
 
   
@@ -870,8 +909,10 @@ body {
 			  <tr>
 				  <td width="10%"></td>
 				  <td width="20%" align="left"> </td>
-				  <td width="40%" align="center"><a id="visbollicina" href="javascript:visbolla()" rel="external" class="collegamento"><font color="#fff">12 Step <img src="img/arrowSU.png" height="23"></font></a></td>
-				  <td width="20%" align="right">29c | 5W</td>
+				  <td width="40%" align="center"><a id="visbollicina" href="#" class="draffa"><font color="#fff">12 Step <img src="img/arrowSU.png" height="23"></font></a>
+				  <a id="visbollicina2" href="#" class="draffa" style="display: none;"><font color="#fff">12 Step <img src="img/arrowSU.png" height="23"></font></a>
+				  </td>
+				  <td width="20%" align="right">C:<span id="charNum">200</span></td>
 				  <td width="10%"></td>
 				  <!-- <a id="salvataggio" href='javascript:salva()'><div width='52px' class='salva'></div></a> -->
 			 </tr>
@@ -883,31 +924,7 @@ body {
 
 
 	<script type="text/javascript" src="cordova.js"></script>
-	<script type="text/javascript" src="js/swip5.js"></script>
-	<script src="jquery-1.11.3.min.js"></script>
-	<script src="js/jquery.finger.js"></script>
-	
-	<script src="js/jquery.mobile-1.4.5.min.js"></script>
-	
-	<script type="text/javascript" src="js/iscroll.js"></script>
-	
-	<script type="text/javascript">
-		
-		var myScroll;
-		
-		function loaded () {
-			myScroll = new IScroll('#wrapper', { click: true });
-			setTimeout (function(){
-				myScroll.refresh();
-			}, 1000);
-						
-		}
-	
-	document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
-	
-	document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-	
-		</script>
+
 	
 </body>
 </html>

@@ -218,14 +218,14 @@ table.fr-tag {
 }
 .froala-view table td,
 table.fr-tag td {
-  border: solid 1px #cccccc;
+  border: solid 0px #cccccc;
   padding: 5px;
   vertical-align: top;
 }
 .froala-view table th,
 table.fr-tag th {
   background: #e6e6e6;
-  border: solid 1px #cccccc;
+  border: solid 0px #cccccc;
   padding: 5px;
   vertical-align: top;
 }
@@ -241,7 +241,7 @@ pre.fr-tag {
   /* Opera 7 */
   word-wrap: break-word;
   /* Internet Explorer 5.5+ */
-  border: solid 1px #cccccc;
+  border: solid 0px #cccccc;
   background: #fcfcfc;
   padding: 10px;
   border-radius: 4px;
@@ -482,7 +482,7 @@ hr.fr-tag {
   position: absolute;
   height: 8px;
   width: 8px;
-  border: solid 1px #ffffff !important;
+  border: solid 0px #ffffff !important;
   background: #2c82c9;
   z-index: 2;
   margin: auto;
@@ -558,7 +558,7 @@ hr.fr-tag {
   cursor: pointer;
 }
 .froala-box .froala-element .f-video-editor.active:after {
-  border: solid 1px #252525;
+  border: solid 0px #252525;
 }
 .froala-box .froala-element .f-video-editor.active > * {
   z-index: 2;
@@ -623,7 +623,7 @@ hr.fr-tag {
 .froala-editor {
   text-align: left;
   background: #ffffff;
-  border: solid 1px #252525;
+  border: solid 0px #252525;
   border-top: solid 5px #252525;
   padding: 0;
   user-select: none;
@@ -717,7 +717,7 @@ hr.fr-tag {
   top: 35px;
   margin-top: 0;
   padding: 0;
-  border: solid 1px #252525;
+  border: solid 0px #252525;
   z-index: 1000;
   -webkit-overflow-scrolling: touch;
 }
@@ -940,7 +940,7 @@ hr.fr-tag {
   top: 0;
   background: #ffffff;
   color: #444444;
-  border: solid 1px #252525;
+  border: solid 0px #252525;
   line-height: 0;
   padding: 0;
   margin: 0;
@@ -955,7 +955,7 @@ hr.fr-tag {
   top: 0;
   background: #ffffff;
   color: #444444;
-  border: solid 1px #252525;
+  border: solid 0px #252525;
   line-height: 0;
   padding: 5px;
   white-space: nowrap;
@@ -976,12 +976,12 @@ hr.fr-tag {
   display: inline-block;
   width: 12px;
   height: 12px;
-  border: solid 1px #cccccc;
+  border: solid 0px #cccccc;
 }
 .froala-editor .fr-dropdown .fr-dropdown-menu.fr-table > li > div > span:hover > span,
 .froala-editor .fr-dropdown .fr-dropdown-menu.fr-table > li > div > span.hover > span {
   background: rgba(61, 142, 185, 0.3);
-  border: solid 1px #3d8eb9;
+  border: solid 0px #3d8eb9;
 }
 .froala-editor .fr-dropdown .fr-dropdown-menu.fr-table > li > div .new-line {
   content: "";
@@ -1166,7 +1166,7 @@ hr.fr-tag {
 .froala-editor .froala-popup div.f-popup-line input[type="text"] {
   font-size: 12px;
   width: 250px;
-  border: solid 1px #cccccc;
+  border: solid 0px #cccccc;
   margin: 0 5px !important;
   height: 25px;
   line-height: 21px;
@@ -1188,7 +1188,7 @@ hr.fr-tag {
   outline: 0;
 }
 .froala-editor .froala-popup div.f-popup-line input[type="text"]:focus {
-  border: solid 1px #54acd2;
+  border: solid 0px #54acd2;
 }
 .froala-editor .froala-popup div.f-popup-line input[type="checkbox"] {
   float: left;
@@ -1200,7 +1200,7 @@ hr.fr-tag {
   padding: 5px;
   font-size: 12px;
   margin: 0;
-  border: solid 1px #cccccc;
+  border: solid 0px #cccccc;
   width: 100%;
   height: 50px;
   -webkit-box-sizing: border-box;
@@ -1221,7 +1221,7 @@ hr.fr-tag {
   outline: 0;
 }
 .froala-editor .froala-popup div.f-popup-line textarea:focus {
-  border: solid 1px #54acd2;
+  border: solid 0px #54acd2;
   outline: 0;
 }
 .froala-popup.froala-image-popup div.f-popup-line.drop-upload,
@@ -1403,7 +1403,7 @@ hr.fr-tag {
   top: 35px;
   left: 0px;
   right: 0px;
-  border: solid 1px #cccccc;
+  border: solid 0px #cccccc;
   border-top: 0;
   display: none;
   max-height: 100px;
@@ -1497,7 +1497,7 @@ hr.fr-tag {
   background: #ffffff;
   min-width: 300px;
   text-align: center;
-  border: solid 1px #252525;
+  border: solid 0px #252525;
   border-top: solid 5px #252525;
 }
 .froala-modal .f-modal-wrapper .f-preloader {
@@ -1800,7 +1800,7 @@ hr.fr-tag {
 
 /*SFONDO*/
 .froala-wrapper.f-basic {
-  border: solid 1px #252525;
+  border: solid 0px #252525;
   position: relative;
   background: #ebd8dc;
 }

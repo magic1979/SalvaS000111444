@@ -20,7 +20,7 @@
 	}
 
 .div2 {
-
+height: 100%;
 /* Note: This gradient may render differently in browsers that don't support the unprefixed gradient syntax */
 
 /* IE10 Consumer Preview */
@@ -67,7 +67,7 @@ background-image: linear-gradient(to bottom right, #BD8699 0%, #A390A4 50%, #C6A
 }
 
 .table {
-  background: #ffffff;
+  background: #ebd8dc;
   background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
   background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
   background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
@@ -79,13 +79,12 @@ background-image: linear-gradient(to bottom right, #BD8699 0%, #A390A4 50%, #C6A
 .myTableStyle
 {
 	background-color: #ebd8dc;
-	width: 700px;
+	width: 100%;
 	
 	position: absolute;
 	top: 52px;
-	left: 50%;
-	margin-left: -304px;
-	
+	left: 80px;
+
 	
 }
 
@@ -311,14 +310,15 @@ iframe {
 }
 
 .draffa:active {
-	background: #ebd8dc;
-	background-image: -webkit-linear-gradient(top, #ebd8dc, #ebd8dc);
-	background-image: -moz-linear-gradient(top, #ebd8dc, #ebd8dc);
-	background-image: -ms-linear-gradient(top, #ebd8dc, #ebd8dc);
-	background-image: -o-linear-gradient(top, #ebd8dc, #ebd8dc);
-	background-image: linear-gradient(to bottom, #ebd8dc, #ebd8dc);
+	background: #585858;
+	color: #000;
+	background-image: -webkit-linear-gradient(top, #585858, #585858);
+	background-image: -moz-linear-gradient(top, #585858, #585858);
+	background-image: -ms-linear-gradient(top, #585858, #585858);
+	background-image: -o-linear-gradient(top, #585858, #585858);
+	background-image: linear-gradient(to bottom, #585858, #585858);
+	border: solid #FFF 1px;
 	text-decoration: none;
-
 }
 
 #contenuto{
@@ -333,6 +333,12 @@ left: 0;
 }
 
 .collegamento {
+	text-decoration: none;
+}
+
+.collegamento2 {
+	text-transform: lowercase;
+	font-weight: normal;
 	text-decoration: none;
 }
 </style>
@@ -353,8 +359,8 @@ left: 0;
 	<table width="100%" height="52px" border="0" valign="center">
 		<tr>
 			<td width="33%" align="left"></td>
-			<td width="33%" align="center"><a href="#" data-jq-dropdown="#jq-dropdown-1" style="text-decoration: none" class="draffa"><font color="#FFF">Draft <img src="img/arrowGIU.png" height="23"></font></a></td>
-			<td width="33%" align="center"><a id="creaimg" href="javascript:createstory()" rel="external" ><img src="img/Plus.png" width="22"></a><a id="creamsg" href="javascript:createmessaggio()" rel="external" style="display: none;"><img src="img/upload.png" width="22"></a></td>
+			<td width="33%" align="center"><a href="#" data-jq-dropdown="#jq-dropdown-1" style="text-decoration: none" class="draffa"><font color="#FFF"><span id="intestazione">Drafts</span> <img src="img/arrowGIU.png" height="23"></font></a></td>
+			<td width="33%" align="center"><a id="creaimg" href="javascript:createstory()" rel="external" ><img src="img/Plus.png" width="24"></a><a id="creamsg" href="#" rel="external" style="display: none;"><img src="img/upload.png" width="24"></a></td>
 		</tr>
 	</table>
   </div>
@@ -363,7 +369,7 @@ left: 0;
   
   <div id="menu" style="position:fixed;">
 	  <table height="60px" border="0"><tr><td>&nbsp;</td></tr></table>
-	  <table height="1024" width="50px" border="0">
+	  <table height="100%" width="50px" border="0">
 		  <tr><td width="10px">&nbsp;&nbsp;</td>
 			  <td valign="top">
 				  <table id="menu1" style="display: none;">
@@ -378,21 +384,30 @@ left: 0;
 			  </td></tr>
 	  </table>
   </div>
-
+  
   <table id="myTable" class="myTableStyle" border="0" >
+	  <!--<tr>
+		  <td height="52px" align="center">
+			  <table width='95%' border='0' cellpadding='0' cellspacing='0'>
+				  <tr><td width='90%' class='trtabella2'><font size="4"><b><div id="Titolotbl">Drafts</div></b></font></td></tr>
+			  </table>
+		  </td>
+	  </tr>-->
+	  <tr id="VerConnessione" style="display: none;">
+		  <td align="center"><a href="javascript:VerificaConnessione()" rel="external" class="btn"><font color="#FFF">Verify Connection</font></a></td>
+	  </tr>
 	  <tr id="babbo0" style="display: none;">
-		   <td align="center">
-			   <table width="90%" align="center"><tr><td>
+		   <td align="left">
+			   <table width="460" align="center" border="0"><tr><td>
 				   <form id='formia0' name='formia0' action='entra.asp' method='post'><input placeholder='Email address' id='email0' type='text' name='email0' size='30' data-theme="b"><br><textarea rows='5' cols='30' id='messaggio0' name='messaggio0' data-theme="b"></textarea><br><a href='javascript:closemessaggio(0)' class='btn'><font color='#000'>Cancella</font></a><a href='javascript:mandamessaggio(0)' class='btn'><font color='#000'>Invia</font></a></form></td></tr>
-			    <tr><td><hr></td></tr>
 			   </table>
 		   </td>
 	  </tr>
+
 	  <tr>
 		  <td align="center" ><div id="contenuto" style="display: none;"></div></td>
 	  </tr>
   </table>
-
 
 <!--<div data-role="popup" id="popupDialog" data-overlay-theme="b" data-theme="c" data-dismissible="false" style="max-width:601px;">
 	<a href="#" data-rel="back" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
@@ -418,7 +433,7 @@ left: 0;
         <ul class="jq-dropdown-menu">
             <li><a href="swip2.html" rel="external">Drafts</a></li>
 			 <li class="jq-dropdown-divider"></li>
-			<li><a href="javascript:confirmLogout()">Finisched</a></li>
+			<li><a href="javascript:confirmLogout()">Finished</a></li>
 			 <li class="jq-dropdown-divider"></li>
 			<li><a href="javascript:cestino()" rel="external">Trash</a></li>
         </ul>

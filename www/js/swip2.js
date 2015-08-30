@@ -1,7 +1,7 @@
 document.addEventListener('deviceready', onDeviceReady, false);
 
 function onDeviceReady() {
-	document.addEventListener("resume", onResume, false);
+	//document.addEventListener("resume", onResume, false);
 	
 	$.support.cors = true;
 	$.mobile.allowCrossDomainPages = true;
@@ -17,26 +17,23 @@ function onDeviceReady() {
 
     $(".spinner").hide();
 	var lista;
+	var vuoto = 0;
 	
 	//listaStory()
 	
-	/*$('body').bind("touchmove",function(event){
-	  event.preventDefault();
-	});
-		
-	
-	$('#contenuto').bind("touchmove",function(e){
-		e.stopPropagation();
-	});*/
-	
 	var IDPage = getParameterByName('id');
-	
 	
 	
 	var connectionStatus = false;
 	connectionStatus = navigator.onLine ? 'online' : 'offline';
 	
 	if(connectionStatus=='online'){
+		$("#VerConnessione").hide()
+		
+		$(document).on("click touchstart", "#creamsg", function(e){
+			e.preventDefault();
+			createmessaggio();
+		});
 		
 		notifiche()
 		
@@ -56,43 +53,63 @@ function onDeviceReady() {
 			verificatoken(0)
 		}
 		
-		Token = localStorage.getItem("Token");
+		var Token = localStorage.getItem("Token");
 		//document.getElementById("email").value = localStorage.getItem("email");
 		
 		//listaStory()
 	}
 	else{
-	 // Che Faccio @
+		navigator.notification.alert(
+										'possible network error',  // message
+									     alertDismissed,         // callback
+										'Error',            // title
+										'OK'                  // buttonName
+										);
+		$("#VerConnessione").show()
+		
 	}
-
 
 }
 
 function listaStory() {
+	
 	Token = localStorage.getItem("Token");
 	$("#creamsg").hide();
 	$("#creaimg").show();
+	
+	var vuoto;
+	var conta = 1;
 
 	
 	//QUI@
-	 lista = "<table id='storie' width='100%' border='0' cellpadding='0' cellspacing='0'>"
+	lista = " <table height='52px' width='60%' border='0' cellpadding='0' cellspacing='0'><tr><td width='90%' class='trtabella2' align='right'><font size='4' color='#a4a4a4'><div id='Titolotbl'>Drafts</div></font></td></tr></table><table id='storie' width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella2' colspan='3'><hr></td></tr>"
+	
 	
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://dev.storymatch.co/storymatch/userstories/list",
+		   url:"https://staging.storymatch.co/storymatch/userstories/list",
 		   data: {token:Token},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
 		   crossDomain: true,
 		   success:function(result){
 		   
-		$.each(result, function(i,item){
+		   if(result === null || typeof(result) == 'undefined' || result ==""){
+			 vuoto = 1;
+		   }
+		   else{
+			 vuoto = 0;
+		   }
+		   
+		   $.each(result, function(i,item){
 		   
 		   if (result.id!=0){
 			   //alert(item.id)
 		   
-			  lista = lista + "<tr><td class='trtabella' width='20%'><a href='swip4.html?id="+ item.id +"&idPitch=0' rel='external' class='testo'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><b><font color='#000'>"+ item.title +"</b><br></font><font size='1' color='#000'>Today 00:00 pm</font></td></tr></table></a></td><td class='trtabella' width='5%' align='center'><a href='swip4.html?id="+ item.id +"&idPitch=0' rel='external' class='testo'><img src='img/user.png' width='20'></a></td><td class='trtabella' width='65%' align='left'><span id='swippe"+ item.id +"' style='display: none;'><table width='80%' height='80px' align='center' border='0'><tr><td width='30%' align='center'><a href='javascript:clonestory("+ item.id +")' class='btn'><font color='#000000'>Duplicate</font></a></td><td width='30%' align='center'><a href='javascript:share("+ item.id +")' class='btn'><font color='#000000'>Share</font></a></td><td width='30%' align='center'><a href='javascript:deletestory("+ item.id +")' class='btn'><font color='#000000'>Trash</font></a></td><td width='10%' align='left'></td></tr></table></span><span id='delete"+ item.id +"'><table width='80%' height='80px' align='center' border='0'><tr><td width='30%' align='center'></td><td width='30%' align='center'></td><td width='10%' align='center'></td><td width='30%' align='left'>|||</td></tr></table></span></td></tr><tr><td class='trtabella2' colspan='3'><hr></td></tr>"
+			  lista = lista + "<tr id='riga"+ item.id +"'><td class='trtabella' width='20%'><a href='swip4.html?id="+ item.id +"&idPitch=0' rel='external' class='testo'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><b><font color='#000'>"+ item.title +"</b><br></font><font size='1.5' color='#000'>"+ item.day +"."+ item.month +"."+ item.year +"</font></td></tr></table></a></td><td class='trtabella' width='5%' align='center'><a href='swip4.html?id="+ item.id +"&idPitch=0' rel='external' class='testo'><img src='img/user.png' width='20'></a></td><td class='trtabella' width='65%' align='left'><span id='swippe"+ item.id +"' style='display: none;'><input id='idLine"+ conta +"' value='"+ item.id +"' type='hidden'><table width='80%' height='80px' align='center' border='0'><tr><td width='30%' align='center'><a href='javascript:clonestory("+ item.id +")' class='btn'><font color='#000000'>Duplicate</font></a></td><td width='30%' align='center'><a href='javascript:share("+ item.id +")' class='btn'><font color='#000000'>Share</font></a></td><td width='30%' align='center'><a href='javascript:deletestory("+ item.id +")' class='btn'><font color='#000000'>Trash</font></a></td><td width='10%' align='left'></td></tr></table></span><span id='delete"+ item.id +"'><table width='80%' height='80px' align='center' border='0'><tr><td width='30%' align='center'></td><td width='30%' align='center'></td><td width='10%' align='center'></td><td width='30%' align='left'>|||</td></tr></table></span></td></tr><tr><td class='trtabella2' colspan='3'><hr></td></tr>"
+				  
+				  conta = conta + 1;
 		   
 		   }
 		   else{
@@ -105,7 +122,9 @@ function listaStory() {
 		   }
 
 			   
-		});
+		   });
+		   
+		   
 		   
 		   lista = lista + "</table>"
 		   
@@ -114,6 +133,7 @@ function listaStory() {
 		   $("#contenuto").fadeIn();
 		   
 		   $(".spinner").hide();
+		   $("#Titolotbl").html("List Stories");
 		   
 		   $("span").on("swipeleft",function(){
 				var numlist = this.id
@@ -136,7 +156,30 @@ function listaStory() {
 			});
 		   
 		   
-		   listaShare();
+		   /*for ( k=1; k < conta; k++ )
+		   {
+
+		     iddOut = document.getElementById("idLine"+ contasalva +"").value
+			 alert(iddOut)
+		   
+			 $("#riga"+ iddOut +"").on("click", function() {
+				alert(iddOut)
+				window.location.href = "swip4.html?id="+ iddOut +"&idPitch=0";
+			 
+			 });
+		   
+		   $(document).on("click", "#riga"+ iddOut +"", function(e){
+				e.preventDefault();
+				alert(iddOut)
+				window.location.href = "swip4.html?id="+ iddOut +"&idPitch=0";
+			});
+		   
+		   contasalva = contasalva + 1;
+
+		   }*/
+		   
+		   
+		   listaShare(vuoto);
 		   
 		   
 		   },
@@ -144,7 +187,7 @@ function listaStory() {
 		   $(".spinner").hide();
 		   
 		   navigator.notification.alert(
-										'possible network error',  // message
+										'possible network error 2',  // message
 										alertDismissed,         // callback
 										'Error',            // title
 										'OK'                  // buttonName
@@ -155,11 +198,11 @@ function listaStory() {
 	
 }
 
-function listaShare() {
+function listaShare(vuoto) {
 	Token = localStorage.getItem("Token");
 	$("#creamsg").hide();
 	$("#creaimg").show();
-	//alert();
+	//alert(vuoto);
 	
 	//QUI@
 	lista = "<table id='storie' width='100%' border='0' cellpadding='0' cellspacing='0'>"
@@ -167,19 +210,27 @@ function listaShare() {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://dev.storymatch.co/storymatch/userstories/listshared",
+		   url:"https://staging.storymatch.co/storymatch/userstories/listshared",
 		   data: {token:Token},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
 		   crossDomain: true,
 		   success:function(result){
 		   
+		   if(result === null || typeof(result) == 'undefined' || result ==""){
+		     //alert("Vuoto");
+			  if(vuoto==1){
+		        window.location.href = "swip.html";
+			  }
+		   }
+		   else{
+		   
 		   $.each(result, function(i,item){
 				  
 				  if (result.id!=0){
-			   //alert(item.id)
+			      //alert(item.id)
 				  
-				  lista = lista + "<tr><td class='trtabella' width='20%'><a href='swip4.html?id="+ item.id +"&idPitch=0' rel='external' class='testo'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><b><font color='#000'>"+ item.title +"</b><br></font><font size='1' color='#000'>Today 00:00 pm</font></td></tr></table></a></td><td class='trtabella' width='5%' align='center'><a href='swip4.html?id="+ item.id +"&idPitch=0' rel='external' class='testo'><img src='img/users.png' width='25'></a></td><td class='trtabella' width='65%' align='left'><span id='swippe"+ item.id +"' style='display: none;'><table width='80%' height='80px' align='center' border='0'><tr><td width='30%' align='center'><a href='javascript:clonestory("+ item.id +")' class='btn'><font color='#000000'>Duplicate</font></a></td><td width='30%' align='center'><a href='javascript:share("+ item.id +")' class='btn'><font color='#000000'>Share</font></a></td><td width='30%' align='center'><a href='javascript:deletestory("+ item.id +")' class='btn'><font color='#000000'>Trash</font></a></td><td width='10%' align='left'></td></tr></table></span><span id='delete"+ item.id +"'><table width='80%' height='80px' align='center' border='0'><tr><td width='30%' align='center'></td><td width='30%' align='center'></td><td width='10%' align='center'></td><td width='30%' align='left'>|||</td></tr></table></span></td></tr><tr><td class='trtabella2' colspan='3'><hr></td></tr>"
+				  lista = lista + "<tr><td class='trtabella' width='20%'><a href='swip4.html?id="+ item.id +"&idPitch=0' rel='external' class='testo'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><b><font color='#000'>"+ item.title +"</b><br></font><font size='1.5' color='#000'>"+ item.day +"."+ item.month +"."+ item.year +"</font></td></tr></table></a></td><td class='trtabella' width='5%' align='center'><a href='swip4.html?id="+ item.id +"&idPitch=0' rel='external' class='testo'><img src='img/users.png' width='25'></a></td><td class='trtabella' width='65%' align='left'><span id='swippe"+ item.id +"' style='display: none;'><table width='80%' height='80px' align='center' border='0'><tr><td width='30%' align='center'><a href='javascript:clonestory("+ item.id +")' class='btn'><font color='#000000'>Duplicate</font></a></td><td width='30%' align='center'><a href='javascript:share("+ item.id +")' class='btn'><font color='#000000'>Share</font></a></td><td width='30%' align='center'><a href='javascript:deletestory("+ item.id +")' class='btn'><font color='#000000'>Trash</font></a></td><td width='10%' align='left'></td></tr></table></span><span id='delete"+ item.id +"'><table width='80%' height='80px' align='center' border='0'><tr><td width='30%' align='center'></td><td width='30%' align='center'></td><td width='10%' align='center'></td><td width='30%' align='left'>|||</td></tr></table></span></td></tr><tr><td class='trtabella2' colspan='3'><hr></td></tr>"
 				  
 				  }
 				  else{
@@ -192,7 +243,9 @@ function listaShare() {
 				  }
 				  
 			   
-				  });
+			});
+		   
+		   }
 		   
 		   lista = lista + "</table>"
 		   
@@ -226,7 +279,7 @@ function listaShare() {
 		   $(".spinner").hide();
 		   
 		   navigator.notification.alert(
-										'possible network error',  // message
+										'possible network error 3',  // message
 										alertDismissed,         // callback
 										'Error',            // title
 										'OK'                  // buttonName
@@ -240,14 +293,20 @@ function listaShare() {
 function cestino() {
 	$("#creamsg").hide();
 	$("#creaimg").show();
+	$("#babbo0").hide();
+	$("#intestazione").html("Trash");
+	
+	
+	//window.onscroll=function(){window.scrollTo(52, 52);};
 	
 	//QUI@
-	lista = "<table id='storie' width='100%' border='0' cellpadding='0' cellspacing='0'>"
+	lista = " <table height='52px' width='60%' border='0' cellpadding='0' cellspacing='0'><tr><td width='90%' class='trtabella2' align='right'><font size='4' color='#a4a4a4'><div id='Titolotbl'>Drafts</div></font></td></tr></table><table id='storie' width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella2' colspan='3'><hr></td></tr>"
+	
 	
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://dev.storymatch.co/storymatch/userstories/listtrash",
+		   url:"https://staging.storymatch.co/storymatch/userstories/listtrash",
 		   //data: {token:Token},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -257,9 +316,9 @@ function cestino() {
 		   $.each(result, function(i,item){
 				  
 				  if (result.id!=0){
-				  //alert(item.id)
+				  //alert(item.id) AGGIUNGERE LA DATA.
 				  
-				  lista = lista + "<tr><td class='trtabella' width='20%'><a href='swip4.html?id="+ item.id +"&idPitch=0' rel='external' class='testo'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><b><font color='#000'>"+ item.title +"</b><br></font><font size='1' color='#000'>Today 00:00 pm</font></td></tr></table></a></td><td class='trtabella' width='5%' align='center'><a href='swip4.html?id="+ item.id +"&idPitch=0' rel='external' class='testo'><img src='img/Comunity2.png' width='25'></a></td><td class='trtabella' width='65%' align='left'><span id='swippe"+ item.id +"' style='display: none;'><table width='80%' height='80px' align='center' border='0'><tr><td width='30%' align='center'><a href='javascript:clonestory("+ item.id +")' class='btn'><font color='#000000'>Duplicate</font></a></td><td width='30%' align='center'><a href='javascript:share("+ item.id +")' class='btn'><font color='#000000'>Share</font></a></td><td width='30%' align='center'><a href='javascript:deletestory("+ item.id +")' class='btn'><font color='#000000'>Trash</font></a></td><td width='10%' align='left'></td></tr></table></span><span id='delete"+ item.id +"'><table width='80%' height='80px' align='center' border='0'><tr><td width='30%' align='center'></td><td width='30%' align='center'></td><td width='10%' align='center'></td><td width='30%' align='left'></td></tr></table></span></td></tr><tr><td class='trtabella2' colspan='3'><hr></td></tr>"
+				  lista = lista + "<tr><td class='trtabella' width='20%'><a href='swip4.html?id="+ item.id +"&idPitch=0' rel='external' class='testo'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><b><font color='#000'>"+ item.title +"</b><br></font><font size='1.5' color='#000'>"+ item.day +"."+ item.month +"."+ item.year +"</font></td></tr></table></a></td><td class='trtabella' width='5%' align='center'><a href='swip4.html?id="+ item.id +"&idPitch=0' rel='external' class='testo'><img src='img/delete.png' width='25'></a></td><td class='trtabella' width='65%' align='left'><span id='swippe"+ item.id +"' style='display: none;'><table width='80%' height='80px' align='center' border='0'><tr><td width='30%' align='center'><a href='javascript:clonestory("+ item.id +")' class='btn'><font color='#000000'>Duplicate</font></a></td><td width='30%' align='center'><a href='javascript:share("+ item.id +")' class='btn'><font color='#000000'>Share</font></a></td><td width='30%' align='center'><a href='javascript:deletestory("+ item.id +")' class='btn'><font color='#000000'>Trash</font></a></td><td width='10%' align='left'></td></tr></table></span><span id='delete"+ item.id +"'><table width='80%' height='80px' align='center' border='0'><tr><td width='30%' align='center'></td><td width='30%' align='center'></td><td width='10%' align='center'></td><td width='30%' align='left'></td></tr></table></span></td></tr><tr><td class='trtabella2' colspan='3'><hr></td></tr>"
 				  
 				  }
 				  else{
@@ -278,10 +337,10 @@ function cestino() {
 		   
 		   $("#contenuto").html(lista);
 		   
-		   $("#contenuto").fadeOut();
 		   $("#contenuto").fadeIn();
 		   
 		   $(".spinner").hide();
+		   $("#Titolotbl").html("Story Eliminated");
 		   
 		   $("span").on("swipeleft",function(){
 						var numlist = this.id
@@ -327,15 +386,19 @@ function alertDismissed() {
 function verificatoken(id) {
 	Token = localStorage.getItem("Token");
 	
+	//alert(id);
+	
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://dev.storymatch.co/storymatch/authentication/validatetoken",
+		   url:"https://staging.storymatch.co/storymatch/authentication/validatetoken",
 		   data: {token:Token},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
 		   crossDomain: true,
 		   success:function(result){
+		   
+		   //alert(result.ID)
 		   
 		   if (result.ID==1024){
 		   //OK
@@ -366,7 +429,7 @@ function verificatoken(id) {
 		   $(".spinner").hide();
 		   
 		   navigator.notification.alert(
-										'possible network error',  // message
+										'possible network error 1',  // message
 										alertDismissed,         // callback
 										'Error',            // title
 										'OK'                  // buttonName
@@ -382,7 +445,7 @@ function deletestory(id) {
 	
 	$(".spinner").show();
 	$.ajax({
-		   url: "https://dev.storymatch.co/storymatch/userstories/delete",
+		   url: "https://staging.storymatch.co/storymatch/userstories/delete",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
@@ -435,7 +498,7 @@ function clonestory(id) {
 	
 	$(".spinner").show();
 	$.ajax({
-		   url: "https://dev.storymatch.co/storymatch/userstories/clone",
+		   url: "https://staging.storymatch.co/storymatch/userstories/clone",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
@@ -488,7 +551,7 @@ function notifiche() {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://dev.storymatch.co/storymatch/notify/check",
+		   url:"https://staging.storymatch.co/storymatch/notify/check",
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
 		   crossDomain: true,
@@ -512,7 +575,7 @@ function notifiche() {
 		   $(".spinner").hide();
 		   
 		   navigator.notification.alert(
-										'possible network error',  // message
+										'possible network error 4',  // message
 										alertDismissed,         // callback
 										'error',            // title
 										'OK'                  // buttonName
@@ -535,29 +598,39 @@ function notifichelist() {
 	
 	$("#creaimg").hide();
 	$("#creamsg").show();
+	$("#Titolotbl").html("My Messagge");
 	
-	
-	lista = "<table id='storie' width='100%' border='0' cellpadding='0' cellspacing='0'>"
+	lista = "<table height='52px' width='60%' border='0' cellpadding='0' cellspacing='0'><tr><td width='90%' class='trtabella2' align='right'><font size='4' color='#a4a4a4'><div id='Titolotbl'>Drafts</div></font></td></tr></table><table id='storie' width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella2' colspan='3'><hr></td></tr>"
 	var conto = 1;
 	
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://dev.storymatch.co/storymatch/notify/list",
+		   url:"https://staging.storymatch.co/storymatch/notify/list",
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
 		   crossDomain: true,
 		   success:function(result){
+
+		   if(result.obj === null || typeof(result.obj) == 'undefined' || result.obj==""){
+			//verificatoken(0)
+		    createmessaggio()
+			//document.getElementById("email0").value = localStorage.getItem("email")
+		   
+			//lista = lista + "<tr id='babbo"+ conto +"'><td colspan='2' align='center'><form id='formia"+ conto +"' name='formia"+ conto +"' action='entra.asp' method='post'><input placeholder='Email address' id='email"+ conto +"' type='text' name='email"+ conto +"' size='60' value='"+ localStorage.getItem("email") +"'><br><textarea rows='4' cols='60' id='messaggio"+ conto +"' name='messaggio"+ conto +"'></textarea><br><a href='javascript:verificatoken(0)' class='btn'><font color='#000'>Cancella</font></a><a href='javascript:mandamessaggio("+ conto +")' class='btn'><font color='#000'>Invia</font></a></form><br><hr></td></tr>"
+		   }
+		   else{
 		   
 		   $.each(result.obj, function(i,item){
-				  
 
-				  lista = lista + "<tr><td class='trtabella' width='20%'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><a href='javascript:riepiemail("+ conto +")' class='collegamento'><b><font size='2' color='#000'>"+ item.fromuser +"</font></b></a></td></tr></table></td><td class='trtabella' width='65%' align='left'><a href='javascript:riepiemail("+ conto +")' class='collegamento'><font size='2' color='#000'>"+ item.message +"</font></a></td><td class='trtabella' width='15%'><a href='javascript:riepiemail("+ conto +")'><img src='img/letter.png' width='20px'></a><td></tr><tr><td class='trtabella2' colspan='3'><hr></td></tr><tr id='babbo"+ conto +"' style='display: none;'><td colspan='2' align='center'><form id='formia"+ conto +"' name='formia"+ conto +"' action='entra.asp' method='post'><input placeholder='Email address' id='email"+ conto +"' type='text' name='email"+ conto +"' size='60' value='"+ item.fromuser +"'><br><textarea rows='4' cols='60' id='messaggio"+ conto +"' name='messaggio"+ conto +"'></textarea><br><a href='javascript:closemessaggio("+ conto +")' class='btn'><font color='#000'>Cancella</font></a><a href='javascript:mandamessaggio("+ conto +")' class='btn'><font color='#000'>Invia</font></a></form><br><hr></td></tr>"
+				lista = lista + "<tr><td class='trtabella' width='70%'><table width='90%'><tr><td width='10%'><font size='2' color='#000'>Da:</font></td><td width='90%' align='left'><a href='javascript:riepiemail("+ conto +")' class='collegamento'><b><font size='2' color='#000'>"+ item.fromuser +"</font></b></a></td></tr><tr><td width='10%'><font size='2' color='#000'>R:</font></td><td width='90%' align='left'><a href='javascript:riepiemail("+ conto +")' class='collegamento2'><font size='2' color='#000' class='collegamento2'>"+ item.message +"</font></a></td></tr></table></td><td class='trtabella' width='10%' align='left'> </td><td class='trtabella' width='20%'><a href='javascript:riepiemail("+ conto +")'><img src='img/letter.png' width='20px'></a><td></tr><tr><td class='trtabella2' colspan='3'><hr></td></tr><tr id='babbo"+ conto +"' style='display: none;'><td colspan='2' align='center'><form id='formia"+ conto +"' name='formia"+ conto +"' action='entra.asp' method='post'><input placeholder='Email address' id='email"+ conto +"' type='text' name='email"+ conto +"' size='60' value='"+ item.fromuser +"'><br><textarea rows='4' cols='60' id='messaggio"+ conto +"' name='messaggio"+ conto +"'></textarea><br><a href='javascript:closemessaggio("+ conto +")' class='btn'><font color='#000'>Cancella</font></a><a href='javascript:mandamessaggio("+ conto +")' class='btn'><font color='#000'>Invia</font></a></form><br><hr></td></tr>"
 				  
 				conto = conto+1
+
 			});
 		   
-		   
+		   }
+
 		   /*if (result.ID==1024){
 			//OK
 			navigator.notification.alert(
@@ -585,13 +658,21 @@ function notifichelist() {
 		   
 		   $(".spinner").hide();
 		   
+		   $("#Titolotbl").html("My messages");
+		   
+		   
+		   setTimeout (function(){
+			 notifiche()
+		   }, 1000);
+		   
+		   
 		   
 		   },
 		   error: function(){
 		   $(".spinner").hide();
 		   
 		   navigator.notification.alert(
-										'possible network error',  // message
+										'possible network error 5',  // message
 										alertDismissed,         // callback
 										'error',            // title
 										'OK'                  // buttonName
@@ -622,6 +703,10 @@ function LogOut() {
 }
 
 function onResume() {
+	onDeviceReady();
+}
+
+function VerificaConnessione() {
 	onDeviceReady();
 }
 
@@ -671,7 +756,7 @@ function sharestory(results) {
 		
 		$(".spinner").show();
 		$.ajax({
-			   url: "https://dev.storymatch.co/storymatch/userstories/share",
+			   url: "https://staging.storymatch.co/storymatch/userstories/share",
 			   dataType: "json",
 			   type: "post",
 			   contentType: "application/json",
@@ -799,7 +884,7 @@ function creastoria(results) {
 		/*$(".spinner").show();
 		$.ajax({
 			   type:"GET",
-			   url:"https://dev.storymatch.co/storymatch/userstories/create",
+			   url:"https://staging.storymatch.co/storymatch/userstories/create",
 			   data: {token:localStorage.getItem("Token"),title:results.input1},
 			   contentType: "application/json; charset=utf-8",
 			   json: 'callback',
@@ -844,10 +929,11 @@ function creastoria(results) {
 			   
 			   },
 			   dataType:"json"});*/
+
 		
 		$(".spinner").show();
 		$.ajax({
-			   url: "https://dev.storymatch.co/storymatch/userstories/create",
+			   url: "https://staging.storymatch.co/storymatch/userstories/create",
 			   dataType: "json",
 			   type: "post",
 			   contentType: "application/json",
@@ -1041,7 +1127,7 @@ function getParameterByName(name) {
 						  
 						  $(".spinner").show();
 						  $.ajax({
-								 url: "https://dev.storymatch.co/storymatch/notify/sendmessage",
+								 url: "https://staging.storymatch.co/storymatch/notify/sendmessage",
 								 dataType: "json",
 								 type: "post",
 								 contentType: "application/json",
@@ -1058,6 +1144,8 @@ function getParameterByName(name) {
 															  'OK'                  // buttonName
 															  );
 								 
+								 
+								 
 								 }
 								 else{
 								 navigator.notification.alert(
@@ -1069,7 +1157,10 @@ function getParameterByName(name) {
 								 }
 								 $(".spinner").hide();
 
-								 $("#babbo"+ num +"").hide();
+								 
+								 if(num!=0){
+									$("#babbo"+ num +"").hide();
+								 }
 								 
 
 								 },
@@ -1099,6 +1190,10 @@ function getParameterByName(name) {
 						  function closemessaggio(mail) {
 
 							$("#babbo"+ mail +"").hide();
+						  
+						    if(mail==0){
+							  verificatoken(0)
+							}
 
 						  }
 						  

@@ -37,8 +37,32 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
+		screen.lockOrientation('portrait');
 		
 		var hoverDelay = $.mobile.buttonMarkup.hoverDelay = 0;
+		
+		var last_click_time = new Date().getTime();
+		
+		document.addEventListener('click', function (e) {
+								  
+								  
+								  var click_time = e['timeStamp'];
+								  
+								  //alert(click_time - last_click_time)
+								  
+								  if (click_time && (click_time - last_click_time) < 10000) { e.stopImmediatePropagation();
+								  
+								  e.preventDefault();
+								  
+							   //alert("Stop")
+								  
+								  return false;
+								  
+								  }
+								  
+								  last_click_time = click_time;
+								  
+								  }, true);
 		
 		$.support.cors = true;
 		$.mobile.allowCrossDomainPages = true;
@@ -48,42 +72,83 @@ var app = {
 		$.mobile.defaultPageTransition = 'none';
 		$.mobile.defaultDialogTransition = 'none';
 		
-		$(function() {
-          FastClick.attach(document.body);
+		
+		$(document).on("click touchstart", "#loginbutton", function(e){
+			e.preventDefault();
+			Login();
+			e.stopPropagation()
+		});
+		
+		$(document).on("click touchstart", "#sigbutton", function(e){
+			e.preventDefault();
+			vai();
+			e.stopPropagation()
+		});
+		
+		$(document).on("click touchstart", "#getbutton", function(e){
+			e.preventDefault();
+			VerificaLogin();
+			e.stopPropagation()
+		});
+		
+		$(document).on("click touchstart", "#getbutton2", function(e){
+			e.preventDefault();
+			VerificaLogin();
+			e.stopPropagation()
+		});
+		
+		$(document).on("click touchstart", "#siguppo", function(e){
+			e.preventDefault();
+			window.location.href = "#article3";
+			e.stopPropagation()
+		});
+		
+		$(document).on("click touchstart", "#loginno", function(e){
+			e.preventDefault();
+			window.location.href = "#article4";
+			e.stopPropagation()
+		});
+		
+		$(document).on("click touchstart", "#showHide", function(e){
+			e.preventDefault();
+					   if ($(".password").attr("type") == "password") {
+								$(".password").attr("type", "text");
+							 
+								} else {
+							 $(".password").attr("type", "password");
+								}
+		});
+		
+		$(document).on("click touchstart", "#For", function(e){
+			e.preventDefault();
+			forgot()
+			e.stopPropagation()
 		});
 
-		$('body').on('touchmove', function (e) {
-			e.preventDefault();
-		});
-		
-		
-		// Per il video.
+		// Per il video.@
 		
 		//setTimeout (function(){
-			$("#myTable").show();
-			VerificaLogin()
+		$("#myTable").show();
+		VerificaLogin()
 		//}, 5500);
 		
+		
+		$(".spinner").hide();
+		
+		//$(document).keydown(function (eventObj){
+		//getKey(eventObj);
+		//});
+		
+		//$("#showHide").click(function() {
+							
+							// });
+		
+		
+		var parentElement = document.getElementById(id);
 		
 
 		$(".spinner").hide();
 
-		//$(document).keydown(function (eventObj){
-							//getKey(eventObj);
-		//});
-		
-						  $("#showHide").click(function() {
-							if ($(".password").attr("type") == "password") {
-								$(".password").attr("type", "text");
-											   
-								} else {
-									$(".password").attr("type", "password");
-								}
-							});
-		
-		
-        var parentElement = document.getElementById(id);
-		
 
 
     }
@@ -108,6 +173,12 @@ function getKey(key){
 }
 
 function vai(){
+	
+	var connectionStatus = false;
+	connectionStatus = navigator.onLine ? 'online' : 'offline';
+	
+	if(connectionStatus=='online'){
+	
 	var emailreg = self.document.formia.email.value.toLowerCase();
 	var pinreg = self.document.formia.myInput.value;
 	
@@ -155,12 +226,13 @@ function vai(){
 	
 	$(".spinner").show();
 	$.ajax({
-		   url: "https://dev.storymatch.co/storymatch/authentication/signup",
+		   url: "https://staging.storymatch.co/storymatch/authentication/signup",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
 		   data: JSON.stringify( { "username": ""+ emailreg +"", "password": ""+ pinreg +"", "name":"","surname":"" } ),
 		   processData: false,
+		   timeout: 7000,
 		   crossDomain: true,
 		   success:function(result){
 		   
@@ -196,58 +268,31 @@ function vai(){
 										   'Error',            // title
 										   'OK'                  // buttonName
 										   );
+		   $(".spinner").hide();
 		   
 		   },
 		   dataType:"json"});
 
-	
-
-}
-
-function esempio(){
-	$(".spinner").show();
-	$.ajax({
-		   type:"GET",
-		   url:"http://5.249.157.197:9000/storymatch/testjson/story",
-		   data: {ID:1},
-		   contentType: "application/json; charset=utf-8",
-		   json: 'callback',
-		   crossDomain: true,
-		   success:function(result){
-		   
-			//alert(result.title);
-		   
-		    $.each(result.characters, function(i,item){
-				   var fruits = item.detail["steps"]
-				   
-				   alert(fruits[0]["id"]);
-				   
-				   for ( i=0; i < fruits.length; i++ )
-				   {
-					  if(fruits[i]["id"]==12){
-					     alert(fruits[i]["step"]);
-				      }
-				   }
-				   
-				   //alert(item.detail["steps"]);
-			});
-		   
-		   },
-		   error: function(){
-		   $(".spinner").hide();
-		   
-		   navigator.notification.alert(
+	}
+	else{
+		navigator.notification.alert(
 										'possible network error',  // message
-										alertDismissed,         // callback
+									 alertDismissed,         // callback
 										'Error',            // title
 										'OK'                  // buttonName
 										);
-		   
-		},
-	dataType:"json"});
+	}
+
 }
 
+
 function Login(){
+	
+	var connectionStatus = false;
+	connectionStatus = navigator.onLine ? 'online' : 'offline';
+	
+	if(connectionStatus=='online'){
+	
 	var emailreg = self.document.formia2.emailL.value.toLowerCase();
 	var pinreg = self.document.formia2.myInputL.value.toLowerCase();
 	
@@ -295,7 +340,7 @@ function Login(){
 	/*$(".spinner").show();
 	$.ajax({
 		   type:"POST",
-		   url:"https://dev.storymatch.co/storymatch/authentication/login",
+		   url:"https://staging.storymatch.co/storymatch/authentication/login",
 		   data: {username:emailreg,password:pinreg},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -336,17 +381,19 @@ function Login(){
 	
 	$(".spinner").show();
 	$.ajax({
-		   url: "https://dev.storymatch.co/storymatch/authentication/login",
+		   url: "https://staging.storymatch.co/storymatch/authentication/login",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
 		   data: JSON.stringify( { "username": ""+ emailreg +"", "password": ""+ pinreg +"" } ),
 		   processData: false,
+		   timeout: 7000,
 		   crossDomain: true,
 		   success: function( result, textStatus, jQxhr ){
 		   if (result.ID==1024){
 			  //alert(result.token);
 			  localStorage.setItem("email", emailreg);
+		   localStorage.setItem("emailMemoria", emailreg);
 			  localStorage.setItem("Token", result.token);
 			  window.location.href = "swip.html";
 			  
@@ -368,10 +415,21 @@ function Login(){
 										alertDismissed,         // callback
 										'Error',            // title
 										'OK'                  // buttonName
-										);		   }
+										);
+		   $(".spinner").hide();
+		   }
 		   });
 
+	}
+	else{
+		navigator.notification.alert(
+										'possible network error',  // message
+									 alertDismissed,         // callback
+										'Error',            // title
+										'OK'                  // buttonName
+										);
 	
+	}
 
 }
 
@@ -385,9 +443,15 @@ function LogOut() {
 }
 
 function VerificaLogin(){
+	
+	var connectionStatus = false;
+	connectionStatus = navigator.onLine ? 'online' : 'offline';
+	
+	if(connectionStatus=='online'){
 
 	if (localStorage.getItem("email") === null || typeof(localStorage.getItem("email")) == 'undefined' || localStorage.getItem("email")==0) {
 		
+		self.document.formia2.emailL.value = localStorage.getItem("emailMemoria");
 		window.location.href = "#article4";
 		$(".spinner").hide();
 	}
@@ -396,6 +460,16 @@ function VerificaLogin(){
 		//alert(localStorage.getItem("email") + "-" + localStorage.getItem("Token"));
 		verificatoken()
 	}
+		
+	}
+	else{
+		navigator.notification.alert(
+										'possible network error',  // message
+										 alertDismissed,         // callback
+										'Error',            // title
+										'OK'                  // buttonName
+										);
+	}
 }
 
 function verificatoken() {
@@ -403,10 +477,11 @@ function verificatoken() {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://dev.storymatch.co/storymatch/authentication/validatetoken",
+		   url:"https://staging.storymatch.co/storymatch/authentication/validatetoken",
 		   data: {token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
+		   timeout: 7000,
 		   crossDomain: true,
 		   success:function(result){
 		   
@@ -419,7 +494,7 @@ function verificatoken() {
 		   else{
 			//alert(result.msg);
 		    //window.location.href = "Froala/basic.html";
-		    self.document.formia2.emailL.value = localStorage.getItem("email");
+		    self.document.formia2.emailL.value = localStorage.getItem("emailMemoria");
 			window.location.href = "#article4";
 		   }
 		   
@@ -485,7 +560,7 @@ function onPrompt(results) {
 		
 		$(".spinner").show();
 		$.ajax({
-			   url: "https://dev.storymatch.co/storymatch/authentication/asktoreset",
+			   url: "https://staging.storymatch.co/storymatch/authentication/asktoreset",
 			   dataType: "json",
 			   type: "post",
 			   contentType: "application/json",
@@ -531,4 +606,7 @@ function onPrompt(results) {
 	}
 	
 }
+
+
+
 

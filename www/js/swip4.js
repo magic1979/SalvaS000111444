@@ -1,7 +1,8 @@
 document.addEventListener('deviceready', onDeviceReady, false);
 
 function onDeviceReady() {
-	document.addEventListener("resume", onResume, false);
+	//document.addEventListener("resume", onResume, false);
+	//window.addEventListener('native.keyboardhide', keyboardHideHandler);
 	
 	$.mobile.defaultPageTransition = 'none';
 	$.mobile.defaultDialogTransition = 'none';
@@ -19,52 +20,62 @@ function onDeviceReady() {
 		$('#myfooter').css({ 'position': 'fixed' });
 	});
 	
-	
 	var story;
     $(".spinner").hide();
 	var IDPage;
 	var IDPitch;
 	
-	$(".spinner").hide();
+	var connectionStatus = false;
+	connectionStatus = navigator.onLine ? 'online' : 'offline';
+	
+	if(connectionStatus=='online'){
+	$("#VerConnessione").hide()
 	
 	verificatoken()
 	
 	IDPage = getParameterByName('id');
 	IDPitch = getParameterByName('idPitch');
-	
-	//alert(IDPage)
 
-	//$("#ispirazione").attr("href", "swip3.html?IDPage="+ IDPage +"");
-	$("#salvatutto").attr("href", "javascript:salvasteps("+ IDPage +")");
-	//$("#totalshuffle").attr("href", "javascript:shuffletotal("+ IDPage +")");
-	//$("#ava").attr("href", "javascript:salvasteps("+ IDPage +",2)");
 	
-	$(document).on("click touch", "#ava", function(e){
+	$(document).on("click touchstart", "#ava", function(e){
+	    e.preventDefault();
+		//alert("Ava")
 		salvasteps(IDPage,2)
 	});
 	
-	$(document).on("click touch", "#indi", function(e){
-		window.location.href = "swip2.html";
+	$(document).on("click touchstart", "#indi", function(e){
+		e.preventDefault();
+		//alert("Ind")
+		salvasteps(IDPage,9)
 	});
 	
-	$(document).on("click touch", "#ispirazione", function(e){
-		window.location.href = "swip3.html?IDPage="+IDPage;
+	$(document).on("click touchstart", "#ispirazione", function(e){
+		e.preventDefault();
+		salvasteps(IDPage,8)
+		//window.location.href = "swip3.html?IDRated=0&IDPage="+IDPage;
+	});
+		
+	$(document).on("click touchstart", "#ispirazione2", function(e){
+		e.preventDefault();
+		//alert("Idea")
+		window.location.href = "swip3.html?IDRated=0&IDPage="+IDPage;
 	});
 	
-	$(document).on("click touch", "#totalshuffle", function(e){
-		javascript:shuffletotal(IDPage)
+	$(document).on("click touchstart", "#totalshuffle", function(e){
+		e.preventDefault();
+		//alert("Shuffle")
+				   
+		shuffletotal(IDPage)
+	});
+		
+	$(document).on("click touchstart", "#totalshuffle2", function(e){
+		e.preventDefault();
+		//alert("Shuffle")
+				   
+		shuffletotal(IDPage)
 	});
 	
-	
-	/*$( "#ava" ).bind( "tap", function( e ){
-		salvasteps("+ id +",2);
-	});
-	
-	$( "#dietro" ).bind( "tap", function( e ){
-		 window.location.href = "swip2.html";
-	});*/
 
-	
 	if (IDPitch==0){
 		editstory(IDPage,IDPitch)
 		
@@ -102,10 +113,19 @@ function onDeviceReady() {
 		
 		//locco1 = localStorage.getItem("locco1");
 	}
+		
+	}
 	
-	
-	//settare campo
-	//document.getElementById("email").value = item.Email;
+	else{
+		navigator.notification.alert(
+										'possible network error',  // message
+									    alertDismissed,         // callback
+										'Error',            // title
+										'OK'                  // buttonName
+										);
+		
+		$("#VerConnessione").show()
+	}
 
 }
 
@@ -120,7 +140,7 @@ function buildstory() {
 	for (var i = 0; i < length; i++) {
 		//alert(conto)
 		
-		story = story + "<tr><td class='trtabella' width='90%'><table width='100%' border='0'><tr><td width='10%'></td><td width='90%' align='left'><b>"+ conto +"</b></td></tr><tr><td width='10%'></td><td width='90%' align='left'><textarea name='myTextarea"+ conto +"' id='myTextarea"+ conto +"' rows='4' cols='60' class='textarea1' style='background-color: transparent;'>Write your 1 step.</textarea></td></tr><tr><td width='10%'></td><td width='90%' align='left'><br></td></tr><tr><td width='10%'></td><td width='90%' align='left'><table width='100%'><tr><td width='55px'><a id='sin"+ conto +"' href='#' rel='external'><div width='52px' class='sinistra'></div></a></td><td width='55px'><a id='des"+ conto +"' href='#' rel='external'><div width='52px' class='destra'></div></a></td><td width='55px'><a href='javascript:abilita"+ conto +"()' rel='external'><div width='52px' class='edita'></div></a></td><td width='55px'><a href='#' rel='external'><div width='52px' class='lucchetto'></div></a></td><td width='55px'><a href='#' rel='external'><div width='52px' class='infinito'></div></a></td><td width='55px'><a href='javascript:salva()' rel='external'><div width='52px' class='salva'></div></a></td></tr></table></td></tr></table></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
+		story = story + "<tr><td class='trtabella' width='90%'><table width='100%' border='0'><tr><td width='10%'></td><td width='90%' align='left'><b>"+ conto +"</b></td></tr><tr><td width='10%'></td><td width='90%' align='left'><textarea name='myTextarea"+ conto +"' id='myTextarea"+ conto +"' rows='4' cols='60' class='textarea1' style='background-color: transparent;'></textarea></td></tr><tr><td width='10%'></td><td width='90%' align='left'><br></td></tr><tr><td width='10%'></td><td width='90%' align='left'><table width='100%'><tr><td width='55px'><a id='sin"+ conto +"' href='#' rel='external'><div width='52px' class='sinistra'></div></a></td><td width='55px'><a id='des"+ conto +"' href='#' rel='external'><div width='52px' class='destra'></div></a></td><td width='55px'><a href='javascript:abilita"+ conto +"()' rel='external'><div width='52px' class='edita'></div></a></td><td width='55px'><a href='#' rel='external'><div width='52px' class='lucchetto'></div></a></td><td width='55px'><a href='#' rel='external'><div width='52px' class='infinito'></div></a></td><td width='55px'><a href='javascript:salva()' rel='external'><div width='52px' class='salva'></div></a></td></tr></table></td></tr></table></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
 		
 		conto = conto+1;
 	}
@@ -129,11 +149,7 @@ function buildstory() {
 	
 	$("#contenuto").html(story);
 	
-	$("#ava").attr("href", "javascript:salvasteps(0)");
-	
-	$( "#ava" ).bind( "tap", function( e ){
-		 salvasteps(0);
-	});
+
 	
 }
 
@@ -149,7 +165,7 @@ function editstory(id,IDPitch) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://dev.storymatch.co/storymatch/search/stepsbyid",
+		   url:"https://staging.storymatch.co/storymatch/search/stepsbyid",
 		   data: {ID:id, token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -184,26 +200,6 @@ function editstory(id,IDPitch) {
 				  for ( i=0; i < fruits.length; i++ )
 				  {
 				  
-					//if(fruits[i]["id"]==12){
-					  //alert(fruits[i]["step"]);
-					//}
-				  
-				  if((conto==1)||(conto==2)||(conto==3)||(conto==6)||(conto==7)){
-				  //alert(conto);
-				  //alert(fruits[i]["step"].replace("'",""));
-				  
-				  if (crea==1){
-					   if(conto==7){
-					   pitcho = pitcho + " and " + fruits[i]["step"].replace("'","")
-					   }
-					   else{
-					    pitcho = pitcho + " " + fruits[i]["step"].replace("'","")
-					    }
-					 }
-				  }
-				  
-				  //alert(localStorage.getItem("myTextarea"+ conto +""))
-				  
 				  if(localStorage.getItem("myTextarea"+ conto +"")!=0){
 					steppo = localStorage.getItem("myTextarea"+ conto +"")
 				  }
@@ -211,7 +207,23 @@ function editstory(id,IDPitch) {
 					steppo = fruits[i]["step"].replace("'","")
 				  }
 				  
-				  story = story + "<tr><td class='trtabella' width='90%'><table width='100%' border='0'><tr><td width='10%'></td><td width='90%' align='left'><b>"+ conto +"</b></td></tr><tr><td width='10%'></td><td width='90%' align='left'><input id='idLine"+ conto +"' value='"+ fruits[i]["id"] +"' type='hidden'><textarea name='myTextarea"+ conto +"' id='myTextarea"+ conto +"' rows='4' cols='60' class='textarea1' style='background-color: transparent;' placeholder='Write Step'>"+ steppo +"</textarea></td></tr><tr><td width='10%'></td><td width='90%' align='left'><br></td></tr><tr><td width='10%'></td><td width='90%' align='left'><table width='100%'><tr><td width='55px'><a id='sin"+ conto +"' href='#' rel='external'><div width='52px' class='sinistra'></div></a></td><td width='55px'><a id='des"+ conto +"' href='#' rel='external'><div width='52px' class='destra'></div></a></td><td width='55px'><a href='javascript:abilita"+ conto +"()' rel='external'><div id='edit"+ conto +"' width='52px' class='edita'></div></a></td><td width='55px'><a href='javascript:lucchetto("+ fruits[i]["id"] +","+ conto +","+ id +","+ IDPitch +")' rel='external'><div id='lock"+ conto +"' width='52px' class='lucchetto'></div></a></td><td width='55px'><a href='javascript:shuffle("+ fruits[i]["id"] +","+ conto +","+ id +","+ IDPitch +")' rel='external'><div width='52px' class='infinito'></div></a></td><td width='55px'></td></tr></table></td></tr></table></td></tr><tr><td class='trtabella2' colspan='4'><input type='hidden' id='locco"+ conto +"' name='locco"+ conto +"' value='0'><hr></td></tr>"
+				  if((conto==1)||(conto==2)||(conto==3)||(conto==6)||(conto==7)){
+				  //alert(conto);
+				  //alert(fruits[i]["step"].replace("'",""));
+				  
+				  if (crea==1){
+					   if(conto==7){
+					   pitcho = pitcho + " and " + steppo
+					   }
+					   else{
+					    pitcho = pitcho + " " + steppo
+					    }
+					 }
+				  }
+				  
+				  //alert(localStorage.getItem("myTextarea"+ conto +""))
+				  
+				  story = story + "<tr><td class='trtabella' width='90%'><table width='100%' border='0'><tr><td width='10%'></td><td width='90%' align='left'><b>"+ conto +"</b></td></tr><tr><td width='10%'></td><td width='90%' align='left'><input id='idLine"+ conto +"' value='"+ fruits[i]["id"] +"' type='hidden'><textarea name='myTextarea"+ conto +"' id='myTextarea"+ conto +"' rows='3' cols='60' class='textarea1' style='background-color: transparent;' placeholder='Write Step' maxlength='200' onkeyup='countChar(this)'>"+ steppo +"</textarea></td></tr><tr><td width='10%'></td><td width='90%' align='left'><br></td></tr><tr><td width='10%'></td><td width='90%' align='left'><table width='100%' border='0'><tr><td width='55px'><a id='sin"+ conto +"' href='#' rel='external'><div width='38px' class='sinistra'></div></a></td><td width='55px'><a id='des"+ conto +"' href='#' rel='external'><div width='38px' class='destra'></div></a></td><td width='55px'><a id='abilita"+ conto +"' href='javascript:abilita"+ conto +"()'><div id='edit"+ conto +"' width='38px' class='edita'></div></a></td><td width='55px'><a href='javascript:lucchetto("+ fruits[i]["id"] +","+ conto +","+ id +","+ IDPitch +")' rel='external'><div id='lock"+ conto +"' width='38px' class='lucchetto'></div></a></td><td width='55px'><a href='javascript:shuffle("+ fruits[i]["id"] +","+ conto +","+ id +","+ IDPitch +")' rel='external'><div width='38px' class='infinito'></div></a></td><td width='55px'></td></tr></table></td></tr></table></td></tr><tr><td class='trtabella2' colspan='4'><input type='hidden' id='locco"+ conto +"' name='locco"+ conto +"' value='0'><hr></td></tr>"
 				  
 				  
 				  conto = conto+1;
@@ -238,16 +250,24 @@ function editstory(id,IDPitch) {
 				  document.getElementById("myTextarea10").readOnly = true;
 				  document.getElementById("myTextarea11").readOnly = true;
 				  document.getElementById("myTextarea12").readOnly = true;
-				  
+
 				  $(".spinner").hide();
 				  
 				  if(IDPitch!=0){
-					editstory2(IDPitch);
-					//changestep()
+					
+					editstory2(IDPitch,id);
+					
+					/*setTimeout (function(){
+						alert("refresh pich")
+						shuffletotal2(id)
+					}, 1000);*/
+					
+					
+				  //changestep()
 				  }
 				  
 				  myScroll.refresh();
-	  
+				  
 				  
 				  });
 		   
@@ -268,11 +288,63 @@ function editstory(id,IDPitch) {
 		conto = conto+1;
 	}*/
 	
+
+//----------
+	/*$(document).on("click touchstart", "#abilita1", function(e){
+		e.preventDefault();
+		abilita1();
+	});
+	$(document).on("click touchstart", "#abilita2", function(e){
+				   e.preventDefault();
+				   abilita2();
+				   });
+	$(document).on("click touchstart", "#abilita3", function(e){
+				   e.preventDefault();
+				   abilita3();
+				   });
+	$(document).on("click touchstart", "#abilita4", function(e){
+				   e.preventDefault();
+				   abilita4();
+				   });
+	$(document).on("click touchstart", "#abilita5", function(e){
+				   e.preventDefault();
+				   abilita5();
+				   });
+	$(document).on("click touchstart", "#abilita6", function(e){
+				   e.preventDefault();
+				   abilita6();
+				   });
+	$(document).on("click touchstart", "#abilita7", function(e){
+				   e.preventDefault();
+				   abilita7();
+				   });
+	$(document).on("click touchstart", "#abilita8", function(e){
+				   e.preventDefault();
+				   abilita8();
+				   });
+	$(document).on("click touchstart", "#abilita9", function(e){
+				   e.preventDefault();
+				   abilita9();
+				   });
+	$(document).on("click touchstart", "#abilita10", function(e){
+				   e.preventDefault();
+				   abilita10();
+				   });
+	$(document).on("click touchstart", "#abilita11", function(e){
+				   e.preventDefault();
+				   abilita11();
+				   });
+	$(document).on("click touchstart", "#abilita12", function(e){
+				   e.preventDefault();
+				   abilita12();
+				   });*/
+//-------
+	
 	
 	
 }
 
-function editstory2(id) {
+function editstory2(id,storia) {
 	
 	var length = 2,
 	element = null;
@@ -281,7 +353,7 @@ function editstory2(id) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://dev.storymatch.co/storymatch/search/stepsbyid",
+		   url:"https://staging.storymatch.co/storymatch/search/stepsbyid",
 		   data: {ID:id, token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -310,16 +382,24 @@ function editstory2(id) {
 				  for ( i=0; i < fruits.length; i++ )
 				  {
 				  
+				  if(localStorage.getItem("myTextarea"+ conto +"")!=0){
+					steppo = localStorage.getItem("myTextarea"+ conto +"")
+				  }
+				  else{
+					steppo = fruits[i]["step"].replace("'","")
+				  }
+				  
+				  
 				  if((conto==1)||(conto==2)||(conto==3)||(conto==6)||(conto==7)){
 				  //alert(conto);
 				  //alert(fruits[i]["step"].replace("'",""));
 				  
 				  if (crea==1){
 				  if(conto==7){
-				  pitcho = pitcho + " and " + fruits[i]["step"].replace("'","")
+				  pitcho = pitcho + " and " + steppo
 				  }
 				  else{
-				  pitcho = pitcho + " " + fruits[i]["step"].replace("'","")
+				  pitcho = pitcho + " " + steppo
 				  }
 					 }
 				  }
@@ -332,10 +412,7 @@ function editstory2(id) {
 					$("#lock"+ conto +"").removeClass('lucchetto').addClass('lucchetto2');
 					document.getElementById("locco"+ conto +"").value = 1;
 				  }
-
-				  //story = story + "<tr><td class='trtabella' width='90%'><table width='100%' border='0'><tr><td width='10%'></td><td width='90%' align='left'><b>"+ conto +"</b></td></tr><tr><td width='10%'></td><td width='90%' align='left'><textarea name='myTextarea"+ conto +"' id='myTextarea"+ conto +"' rows='4' cols='60' class='textarea1' style='background-color: transparent;' >"+ fruits[i]["step"].replace("'","") +"</textarea></td></tr><tr><td width='10%'></td><td width='90%' align='left'><br></td></tr><tr><td width='10%'></td><td width='90%' align='left'><table width='100%'><tr><td width='55px'><a id='sin"+ conto +"' href='#' rel='external'><div width='52px' class='sinistra'></div></a></td><td width='55px'><a id='des"+ conto +"' href='#' rel='external'><div width='52px' class='destra'></div></a></td><td width='55px'><a href='javascript:abilita"+ conto +"()' rel='external'><div width='52px' class='edita'></div></a></td><td width='55px'><a href='javascript:lucchetto("+ conto +")' rel='external'><div id='lock"+ conto +"' width='52px' class='lucchetto'></div></a></td><td width='55px'><a href='javascript:shuffle("+ conto +")' rel='external'><div width='52px' class='infinito'></div></a></td><td width='55px'><a href='javascript:salva("+ fruits[i]["id"] +","+ conto +","+ id +")' rel='external'><div width='52px' class='salva'></div></a></td></tr></table></td></tr></table></td></tr><tr><td class='trtabella2' colspan='4'><input type='hidden' id='locco"+ conto +"' name='locco"+ conto +"' value='0'><hr></td></tr>"
-				  
-				  
+ 
 				  conto = conto+1;
 				  
 				  }
@@ -344,10 +421,14 @@ function editstory2(id) {
 				  $("#pitcho").html(pitcho);
 				  localStorage.setItem("pitcho", pitcho);
 				  
+				  
 				  myScroll.refresh();
 				  
 				  
-				  //salvasteps(id,3)
+				  if(storia!=0){
+					shuffletotal2(storia)
+				  }
+
 				  
 				  });
 		   
@@ -372,7 +453,7 @@ function editstory3(id) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://dev.storymatch.co/storymatch/search/stepsbyid",
+		   url:"https://staging.storymatch.co/storymatch/search/stepsbyid",
 		   data: {ID:id, token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -457,7 +538,7 @@ function editstory4(id) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://dev.storymatch.co/storymatch/search/stepsbyid",
+		   url:"https://staging.storymatch.co/storymatch/search/stepsbyid",
 		   data: {ID:id, token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -537,6 +618,89 @@ function editstory4(id) {
 	
 }
 
+function editstory7(id) {
+	
+	var length = 2,
+	element = null;
+	var conto = 1;
+	
+	$(".spinner").show();
+	$.ajax({
+		   type:"GET",
+		   url:"https://staging.storymatch.co/storymatch/search/stepsbyid",
+		   data: {ID:id, token:localStorage.getItem("Token")},
+		   contentType: "application/json; charset=utf-8",
+		   json: 'callback',
+		   crossDomain: true,
+		   success:function(result){
+		   
+		   
+		   $.each(result.characters, function(i,item){
+				  var fruits = item.detail["steps"]
+				  var pitcho = "";
+				  var crea=0;
+				  var steppo;
+				  var chiuso;
+				  
+				  if(conto==1){
+				  pitcho = item.detail["pitch"].replace("'","");
+				  story = story + "<tr><td width='10%'></td><td width='90%' align='left'><font class='fontegrande'><div id='pitcho' style='fontegrande'>"+ item.detail["pitch"].replace("'","") +"</div></font></td></tr></table></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr> <tr><td class='trtabella2' colspan='4'><br><br></td></tr>"
+				  }
+				  
+				  
+				  if ((pitcho=="")||(!pitcho)){
+				  crea=1;
+				  }
+				  
+				  
+				  for ( i=0; i < fruits.length; i++ )
+				  {
+				  
+				  if((conto==1)||(conto==2)||(conto==3)||(conto==6)||(conto==7)){
+				  
+				  if (crea==1){
+				  if(conto==7){
+				  pitcho = pitcho + " and " + fruits[i]["step"].replace("'","")
+				  }
+				  else{
+				  pitcho = pitcho + " " + fruits[i]["step"].replace("'","")
+				  }
+					 }
+				  }
+				  
+				  
+				  if(localStorage.getItem("locco"+ conto +"")==0){
+					 document.getElementById("myTextarea"+ conto +"").value = fruits[i]["step"].replace("'","");
+				  }
+				  else{
+				  $("#lock"+ conto +"").removeClass('lucchetto').addClass('lucchetto2');
+				  document.getElementById("locco"+ conto +"").value = 1;
+				  }
+				  
+				  
+				  conto = conto+1;
+				  
+				  }
+				  
+				  $(".spinner").hide();
+				  $("#pitcho").html(pitcho);
+				  localStorage.setItem("pitcho", pitcho);
+
+				  
+				  myScroll.refresh();
+				  
+				  });
+		   
+		   },
+		   error: function(){
+		   $(".spinner").hide();
+		   
+		   alert("error");
+		   
+		   },
+		   dataType:"json"});
+}
+
 
 function salvasteps(id,prov) {
 	$(".spinner").show();
@@ -579,7 +743,7 @@ function salvasteps(id,prov) {
 	/*$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://dev.storymatch.co/storymatch/userstories/update/steps?steps="+stringa+"",
+		   url:"https://staging.storymatch.co/storymatch/userstories/update/steps?steps="+stringa+"",
 		   data: {token:localStorage.getItem("Token"),storyid:id},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -593,7 +757,6 @@ function salvasteps(id,prov) {
 										'Steps',            // title
 										'OK'                  // buttonName
 										);
-		   editstory2(id)
 		   }
 		   else{
 		   navigator.notification.alert(
@@ -623,7 +786,7 @@ function salvasteps(id,prov) {
 	
 	
 	$.ajax({
-		   url: "https://dev.storymatch.co/storymatch/userstories/update/steps",
+		   url: "https://staging.storymatch.co/storymatch/userstories/update/steps",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
@@ -641,11 +804,20 @@ function salvasteps(id,prov) {
 										);*/
 		   
 		   if(prov==0){
-		     editstory2(id)
+		     editstory(id,0)
 		   }
 		   else if(prov==3){
-		   alert("1");
+		    //alert("1");
 			editstory4(id)
+		   }
+		   else if(prov==7){
+			 editstory7(id)
+		   }
+		   else if(prov==8){
+			window.location.href = "swip3.html?IDPage="+id+"&IDRated=0";
+		   }
+		   else if(prov==9){
+			window.location.href = "swip2.html";
 		   }
 		   else{
 		     window.location.href = "swip5.html?id="+ id +"";
@@ -666,6 +838,9 @@ function salvasteps(id,prov) {
 		   }
 		   
 		   $(".spinner").hide();
+		   
+		   $("#charNum").text(200);
+		   
 		   buildout(id)
 		   
 		   },
@@ -699,16 +874,15 @@ if (localStorage.getItem("myTextarea"+ conto +"")!=0){
 }*/
 
 
-function getParameterByName(name) {
-	name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-						  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-						  results = regex.exec(location.search);
-						  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
+
 
 
 function alertDismissed() {
 	
+}
+						  
+function VerificaConnessione() {
+	onDeviceReady();
 }
 
 function LogOut() {
@@ -727,13 +901,6 @@ function onResume() {
 	onDeviceReady();
 }
 
-function alertDismissed() {
-	
-	
-}
-
-
-
 function undor() {
 	
 	document.execCommand('undo', false, null);
@@ -746,7 +913,6 @@ function redor() {
 	
 }
 
-
 function salva(id,conto,idstory,idpitch) {
 	//alert(id)
 	//alert(conto)
@@ -758,7 +924,7 @@ function salva(id,conto,idstory,idpitch) {
 						  
 						  $(".spinner").show();
 						  $.ajax({
-								 url: "https://dev.storymatch.co/storymatch/userstories/update/step",
+								 url: "https://staging.storymatch.co/storymatch/userstories/update/step",
 								 dataType: "json",
 								 type: "post",
 								 contentType: "application/json",
@@ -766,6 +932,8 @@ function salva(id,conto,idstory,idpitch) {
 								 processData: false,
 								 crossDomain: true,
 								 success:function(result){
+								 
+								 //alert(result.ID)
 								 
 								 if (result.ID==1024){
 
@@ -807,7 +975,7 @@ var conto2 = conto-1;
 						  $(".spinner").show();
 						  $.ajax({
 								 type:"GET",
-								 url:"https://dev.storymatch.co/storymatch/search/steprnd",
+								 url:"https://staging.storymatch.co/storymatch/search/steprnd",
 								 data: {token:localStorage.getItem("Token"),stepnum:conto2},
 								 contentType: "application/json; charset=utf-8",
 								 json: 'callback',
@@ -817,6 +985,8 @@ var conto2 = conto-1;
 								 if (result.id!=0){
 									if(locco==0){
 										document.getElementById("myTextarea"+ conto +"").value = result.step;
+										$("myTextarea"+ conto +"").keyup()
+								 
 										salva(id,conto,idstory,idpitch)
 									}
 								 }
@@ -830,6 +1000,7 @@ var conto2 = conto-1;
 								 }
 								 
 								 $(".spinner").hide();
+
 								 
 								 },
 								 error: function(){
@@ -849,7 +1020,6 @@ var conto2 = conto-1;
 						  
 	//alert(step1)
  }
-						  
 
 function shuffletotal(id) {
 	//var locco1 =  document.getElementById("locco1").value;
@@ -858,18 +1028,16 @@ function shuffletotal(id) {
 			$(".spinner").show();
 			$.ajax({
 				type:"GET",
-				url:"https://dev.storymatch.co/storymatch/search/stepsrnd",
+				//url:"https://staging.storymatch.co/storymatch/search/stepsrnd",
+				url:"https://staging.storymatch.co/storymatch/search/shuffle",
 				data: {token:localStorage.getItem("Token")},
 				contentType: "application/json; charset=utf-8",
 				json: 'callback',
 				crossDomain: true,
 				success:function(result){
 
-					//alert(result.ID);
-					//alert(result.obj["year"]);
-				    var fruits = result.obj["steps"]
+				   var fruits = result.obj["steps"]
 				   
-
 				   for ( i=0; i < fruits.length; i++ )
 				   {
 				   
@@ -879,7 +1047,6 @@ function shuffletotal(id) {
 					      document.getElementById("myTextarea"+ conto +"").value = fruits[i]["step"].replace("'","");
 					   }
 				   //
-				   
 				   
 				   conto = conto+1;
 				   
@@ -902,6 +1069,57 @@ function shuffletotal(id) {
 								 dataType:"json"});
 
 }
+						  
+function shuffletotal2(id) {
+
+					var conto = 1;
+					//alert("Shuffle2: " + id)
+						  
+					$(".spinner").show();
+					$.ajax({
+								 type:"GET",
+								 //url:"https://staging.storymatch.co/storymatch/search/stepsrnd",
+								 url:"https://staging.storymatch.co/storymatch/search/shuffle",
+								 data: {token:localStorage.getItem("Token")},
+								 contentType: "application/json; charset=utf-8",
+								 json: 'callback',
+								 crossDomain: true,
+								 success:function(result){
+								 
+								 var fruits = result.obj["steps"]
+								 
+								 for ( i=0; i < fruits.length; i++ )
+								 {
+								
+
+							     if(document.getElementById("locco"+ conto +"").value==0){
+						   
+							        document.getElementById("myTextarea"+ conto +"").value = document.getElementById("myTextarea"+ conto +"").value;
+									//alert(conto + " step:" + document.getElementById("myTextarea"+ conto +"").value);
+							     }
+
+									conto = conto+1;
+								 
+								 }
+						   
+								 $(".spinner").hide();
+								 salvasteps(id,0)
+								 
+								 },
+								 error: function(){
+								 $(".spinner").hide();
+								 
+								 navigator.notification.alert(
+															  'possible network error',  // message
+															  alertDismissed,         // callback
+															  'error',            // title
+															  'OK'                  // buttonName
+															  );
+								 
+								 },
+					dataType:"json"});
+						  
+}
 
 						  
 
@@ -917,6 +1135,7 @@ function lucchetto(id,conto,idstory,idpitch) {
 	   localStorage.setItem("locco"+ conto +"", 1);
 	   localStorage.setItem("myTextarea"+ conto +"", document.getElementById("myTextarea"+ conto +"").value);
 	   document.getElementById("myTextarea"+ conto +"").readOnly = true;
+	   $("#charNum").text(200);
 	   salva(id,conto,idstory,idpitch)
 						  
 	   //alert(localStorage.getItem("locco"+ conto +""))
@@ -940,7 +1159,8 @@ function lucchetto(id,conto,idstory,idpitch) {
 						  
 						  
 						  function abilita1() {
-						  
+						  $("#charNum").text(200);
+							  
 						  var locco =  document.getElementById("locco1").value;
 						  
 						  if(locco==0){
@@ -953,6 +1173,9 @@ function lucchetto(id,conto,idstory,idpitch) {
 							$("#myTextarea1").focus();
 							$("#myTextarea1").val(data + emoticon);
 						  });
+							  
+						   $("#myTextarea1").keyup()
+
 						  
 						  $("#sin1").attr("href", "javascript:undor()");
 						  $("#des1").attr("href", "javascript:redor()");
@@ -1009,6 +1232,7 @@ function lucchetto(id,conto,idstory,idpitch) {
 						  }
 						  
 						  function abilita2() {
+						  $("#charNum").text(200);
 						  var locco =  document.getElementById("locco2").value;
 						  
 						  if(locco==0){
@@ -1021,6 +1245,8 @@ function lucchetto(id,conto,idstory,idpitch) {
 							$("#myTextarea2").focus();
 							$("#myTextarea2").val(data + emoticon);
 							});
+							  
+							$("#myTextarea2").keyup()
 						  
 						  $("#sin2").attr("href", "javascript:undor()");
 						  $("#des2").attr("href", "javascript:redor()");
@@ -1075,6 +1301,9 @@ function lucchetto(id,conto,idstory,idpitch) {
 						  }
 						  
 						  function abilita3() {
+  
+						  $("#charNum").text(200);
+							  
 						  var locco =  document.getElementById("locco3").value;
 						  
 						  if(locco==0){
@@ -1087,6 +1316,8 @@ function lucchetto(id,conto,idstory,idpitch) {
 							$("#myTextarea3").focus();
 							$("#myTextarea3").val(data + emoticon);
 							});
+							  
+							$("#myTextarea3").keyup()
 						  
 						  $("#sin3").attr("href", "javascript:undor()");
 						  $("#des3").attr("href", "javascript:redor()");
@@ -1141,6 +1372,8 @@ function lucchetto(id,conto,idstory,idpitch) {
 						  }
 						  
 						  function abilita4() {
+							   $("#charNum").text(200);
+							  
 						  var locco =  document.getElementById("locco4").value;
 						  
 						  if(locco==0){
@@ -1153,12 +1386,9 @@ function lucchetto(id,conto,idstory,idpitch) {
 							$("#myTextarea4").focus();
 							$("#myTextarea4").val(data + emoticon);
 							});
+							  
+							  $("#myTextarea4").keyup()
 						  
-						  $(function() {
-							var data = $("#myTextarea4").val();
-							$("#myTextarea4").focus();
-							$("#myTextarea4").val(data);
-							});
 						  
 						  $("#sin4").attr("href", "javascript:undor()");
 						  $("#des4").attr("href", "javascript:redor()");
@@ -1213,6 +1443,8 @@ function lucchetto(id,conto,idstory,idpitch) {
 						  }
 						  
 						  function abilita5() {
+							  $("#charNum").text(200);
+							  
 						  var locco =  document.getElementById("locco5").value;
 						  
 						  if(locco==0){
@@ -1229,6 +1461,8 @@ function lucchetto(id,conto,idstory,idpitch) {
 							$("#myTextarea5").focus();
 							$("#myTextarea5").val(data + emoticon);
 							});
+							  
+							  $("#myTextarea5").keyup()
 						  
 						  document.getElementById("myTextarea2").readOnly = true;
 						  document.getElementById("myTextarea1").readOnly = true;
@@ -1279,6 +1513,8 @@ function lucchetto(id,conto,idstory,idpitch) {
 						  }
 						  
 						  function abilita6() {
+							  $("#charNum").text(200);
+							  
 						  var locco =  document.getElementById("locco6").value;
 						  
 						  if(locco==0){
@@ -1291,6 +1527,8 @@ function lucchetto(id,conto,idstory,idpitch) {
 							$("#myTextarea6").focus();
 							$("#myTextarea6").val(data + emoticon);
 							});
+							  
+							  $("#myTextarea6").keyup()
 						  
 						  $("#sin6").attr("href", "javascript:undor()");
 						  $("#des6").attr("href", "javascript:redor()");
@@ -1345,6 +1583,8 @@ function lucchetto(id,conto,idstory,idpitch) {
 						  }
 						  
 						  function abilita7() {
+							  $("#charNum").text(200);
+							  
 						  var locco =  document.getElementById("locco7").value;
 						  
 						  if(locco==0){
@@ -1357,6 +1597,8 @@ function lucchetto(id,conto,idstory,idpitch) {
 							$("#myTextarea7").focus();
 							$("#myTextarea7").val(data + emoticon);
 							});
+							  
+							  $("#myTextarea7").keyup()
 						  
 						  $("#sin7").attr("href", "javascript:undor()");
 						  $("#des7").attr("href", "javascript:redor()");
@@ -1411,6 +1653,8 @@ function lucchetto(id,conto,idstory,idpitch) {
 						  }
 						  
 						  function abilita8() {
+							  $("#charNum").text(200);
+							  
 						  $("#edit8").removeClass('edita').addClass('edita2');
 						  var locco =  document.getElementById("locco8").value;
 						  
@@ -1420,6 +1664,8 @@ function lucchetto(id,conto,idstory,idpitch) {
 							$("#myTextarea8").focus();
 							$("#myTextarea8").val(data + emoticon);
 							});
+							  
+							   $("#myTextarea8").keyup()
 						  
 						  if(locco==0){
 						  document.getElementById("myTextarea8").readOnly = false;
@@ -1477,6 +1723,8 @@ function lucchetto(id,conto,idstory,idpitch) {
 						  }
 						  
 						  function abilita9() {
+							   $("#charNum").text(200);
+							  
 						  var locco =  document.getElementById("locco9").value;
 						  
 						  if(locco==0){
@@ -1489,6 +1737,8 @@ function lucchetto(id,conto,idstory,idpitch) {
 							$("#myTextarea9").focus();
 							$("#myTextarea9").val(data + emoticon);
 							});
+							  
+							   $("#myTextarea9").keyup()
 						  
 						  $("#sin9").attr("href", "javascript:undor()");
 						  $("#des9").attr("href", "javascript:redor()");
@@ -1543,6 +1793,8 @@ function lucchetto(id,conto,idstory,idpitch) {
 						  }
 						  
 						  function abilita10() {
+							  $("#charNum").text(200);
+							  
 						  var locco =  document.getElementById("locco10").value;
 						  
 						  if(locco==0){
@@ -1555,6 +1807,8 @@ function lucchetto(id,conto,idstory,idpitch) {
 							$("#myTextarea10").focus();
 							$("#myTextarea10").val(data + emoticon);
 							});
+							  
+							  $("#myTextarea10").keyup()
 						  
 						  $("#sin10").attr("href", "javascript:undor()");
 						  $("#des10").attr("href", "javascript:redor()");
@@ -1609,6 +1863,8 @@ function lucchetto(id,conto,idstory,idpitch) {
 						  }
 						  
 						  function abilita11() {
+							   $("#charNum").text(200);
+							  
 						  var locco =  document.getElementById("locco11").value;
 						  
 						  if(locco==0){
@@ -1621,6 +1877,8 @@ function lucchetto(id,conto,idstory,idpitch) {
 							$("#myTextarea11").focus();
 							$("#myTextarea11").val(data + emoticon);
 							});
+							  
+							   $("#myTextarea11").keyup()
 						  
 						  $("#sin11").attr("href", "javascript:undor()");
 						  $("#des11").attr("href", "javascript:redor()");
@@ -1675,6 +1933,8 @@ function lucchetto(id,conto,idstory,idpitch) {
 						  }
 						  
 						  function abilita12() {
+							   $("#charNum").text(200);
+							  
 						  var locco =  document.getElementById("locco12").value;
 						  
 						  if(locco==0){
@@ -1687,6 +1947,8 @@ function lucchetto(id,conto,idstory,idpitch) {
 							$("#myTextarea12").focus();
 							$("#myTextarea12").val(data + emoticon);
 							});
+							  
+							  $("#myTextarea12").keyup()
 						  
 						  $("#sin12").attr("href", "javascript:undor()");
 						  $("#des12").attr("href", "javascript:redor()");
@@ -1747,7 +2009,7 @@ function lucchetto(id,conto,idstory,idpitch) {
 						  $(".spinner").show();
 						  $.ajax({
 								 type:"GET",
-								 url:"https://dev.storymatch.co/storymatch/authentication/validatetoken",
+								 url:"https://staging.storymatch.co/storymatch/authentication/validatetoken",
 								 data: {token:Token},
 								 contentType: "application/json; charset=utf-8",
 								 json: 'callback',
@@ -1790,8 +2052,21 @@ function lucchetto(id,conto,idstory,idpitch) {
 						  window.location.href = "index.html";
 						  }
 
+function keyboardHideHandler(e){
+	//$("#charNum").text(200);
+	
+}
 
 
+function getParameterByName(name) {
+	name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+						  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+						  results = regex.exec(location.search);
+						  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+						  }
+
+
+						  
 
 
 
