@@ -146,8 +146,8 @@ h6.fr-tag {
 
 .custom-class {
 	color: #000000;
-	margin-left: 1in; /*1.5*/
-	margin-right: 1in;
+	margin-left: 0.5in; /*1.5*/
+	margin-right: 0.5in;
 	
 	display:block;
 }
