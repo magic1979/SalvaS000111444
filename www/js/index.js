@@ -37,33 +37,9 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-		screen.lockOrientation('portrait');
 		
 		var hoverDelay = $.mobile.buttonMarkup.hoverDelay = 0;
-		
-		var last_click_time = new Date().getTime();
-		
-		document.addEventListener('click', function (e) {
-								  
-								  
-								  var click_time = e['timeStamp'];
-								  
-								  //alert(click_time - last_click_time)
-								  
-								  if (click_time && (click_time - last_click_time) < 10000) { e.stopImmediatePropagation();
-								  
-								  e.preventDefault();
-								  
-							   //alert("Stop")
-								  
-								  return false;
-								  
-								  }
-								  
-								  last_click_time = click_time;
-								  
-								  }, true);
-		
+	
 		$.support.cors = true;
 		$.mobile.allowCrossDomainPages = true;
 		$.mobile.phonegapNavigationEnabled = true
