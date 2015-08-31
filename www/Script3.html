@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
   <meta content='True' name='HandheldFriendly' />
   <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0' name='viewport' />
   <meta name="viewport" content="width=device-width" />
@@ -223,7 +223,7 @@ section {
 		
         $('#edit').editable({
             inlineMode: false,
-			height:900,
+			height:height,
 			//height:948,
 			editorClass: 'custom-class',
 			scrollableContainer: '#scrollable',
@@ -1289,9 +1289,10 @@ function mantieni(classificazione,num) {
   window.addEventListener('native.keyboardshow', keyboardShowHandler);
   
   function keyboardShowHandler(e){
+	  var altezza = height-460;
 		
 		setTimeout (function(){
-			$('#edit').editable('option', 'height', '420');
+			$('#edit').editable('option', 'height', altezza);
 						  
 			$("#footerbutton").show();
 						  

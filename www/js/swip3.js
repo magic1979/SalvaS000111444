@@ -581,17 +581,25 @@ function listapitch2(IDPage,page,genere) {
 
 
 function showmessagge() {
-	$("#ricerca").show();
+	$("#ricerca").show();			 
+	var typingTimer;                
+	var doneTypingInterval = 500;
 	
-	$('#example').donetyping(function(){
-							 
-							 if (document.getElementById("example").value.length >= 3){
-								mandamessaggio(document.getElementById("example").value);
-								//$('#example-output').text();
-							 }
-							 
-							 
-							 });
+	$(document).on('keyup', '#example', function() {
+			clearTimeout(typingTimer);
+			if ($('#example').val) {
+				typingTimer = setTimeout(function(){
+					//do stuff here e.g ajax call etc....
+					
+					 var v = $("#example").val();
+					 mandamessaggio(v);
+					 
+					 //$("#example-output").html(v);
+				}, doneTypingInterval);
+			}
+
+	});
+
 	
 }
 
