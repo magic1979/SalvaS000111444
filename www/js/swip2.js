@@ -153,31 +153,39 @@ function listaStory() {
 			$(function() {			
 					$("span").swipe( {
 					  swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-					  	    alert("You swiped " + direction + " with " + fingerCount + " fingers");
 						
 						    if (direction == "right") {
 				
 							   var numlist = this.id
 							   numlist = numlist.substring(6)
 										
-							  //alert(numlist);
+							  alert(numlist);
 										
 							  $("#swippe"+ numlist +"").hide();
 							  $("#delete"+ numlist +"").fadeIn();
 								
 							} 
 							
-							if (direction == "left") {
+							else if (direction == "left") {
 								
 							   var numlist = this.id
 							   numlist = numlist.substring(6)
 										
-							   //alert(numlist);
+							   alert(numlist);
 										
 							  $("#delete"+ numlist +"").hide();
 							  $("#swippe"+ numlist +"").fadeIn();
 								
 							}
+							else
+							{
+								alert("You swiped " + direction + " with " + fingerCount + " fingers");	
+							}
+							
+							 setTimeout (function(){
+								alert("You swiped " + direction + " with " + fingerCount + " fingers");
+							}, 1000);
+	
 
 					  },
 					  threshold:0,
