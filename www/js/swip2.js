@@ -149,39 +149,50 @@ function listaStory() {
 				$("#swippe"+ numlist +"").hide();
 				$("#delete"+ numlist +"").fadeIn();
 			});*/
-		
-	$(function() {      
-      $("span").swipe( {
-        swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
 			
-			if (direction == "right") {
+	 var swipeOptions = {
+            triggerOnTouchEnd: true,
+            swipeStatus: swipeStatus,
+            allowPageScroll: "vertical",
+            threshold: 0
+        };
+
+        $(function () {
+            imgs = $("span");
+            imgs.swipe(swipeOptions);
+        });
+		
+		 function swipeStatus(event, phase, direction, distance) {
+            //If we are moving before swipe, and we are going L or R in X mode, or U or D in Y mode then drag.
+            if (phase == "move" && (direction == "left" || direction == "right")) {
+                var duration = 0;
+
+                if (direction == "right") {
 				
                    var numlist = this.id
-				 numlist = numlist.substring(6)
+				   numlist = numlist.substring(6)
 							
-				 //alert(numlist);
+				  //alert(numlist);
 							
-				$("#swippe"+ numlist +"").hide();
-				$("#delete"+ numlist +"").fadeIn();
+				  $("#swippe"+ numlist +"").hide();
+				  $("#delete"+ numlist +"").fadeIn();
 					
-                } else if (direction == "left") {
+                } 
+				
+				if (direction == "left") {
 					
                    var numlist = this.id
-				 numlist = numlist.substring(6)
+				   numlist = numlist.substring(6)
 							
-				 //alert(numlist);
+				   //alert(numlist);
 							
-				$("#delete"+ numlist +"").hide();
-				$("#swippe"+ numlist +"").fadeIn();
+				  $("#delete"+ numlist +"").hide();
+				  $("#swippe"+ numlist +"").fadeIn();
 					
 				}
-				else{}
-		  
-        },
+            }
+        }
 		
-        threshold:0
-      });
-    });
 			
 	
 		   
