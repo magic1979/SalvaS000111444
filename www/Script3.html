@@ -1295,10 +1295,17 @@ function mantieni(classificazione,num) {
   window.addEventListener('native.keyboardshow', keyboardShowHandler);
   
   function keyboardShowHandler(e){
-	  	var height2 = screen.height;
+	  	var height2;
+		var height3;
+		var altezza2 =  window.innerHeight
+		
+		height2 = parseInt(altezza2)/2
+		height3 = parseInt(height2) + 52
+		
+		alert(height3)
 		
 		setTimeout (function(){
-			$('#edit').editable('option', 'height', '720');
+			$('#edit').editable('option', 'height', height3);
 						  
 			$("#footerbutton").show();
 						  
