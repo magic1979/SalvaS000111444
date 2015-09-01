@@ -149,7 +149,13 @@ section {
 <script>
 	var width = screen.width;
 	var height = screen.height;
-	alert("Larghezza:" + width + ", Altezza:" + height)
+	var altezzaW =  window.innerHeight
+	//alert("Larghezza:" + width + ", Altezza:" + height)
+	
+	 
+	alert("Larghezza:" + width + ", Altezza:" + height + "Larghezza windows:" + altezzaW)
+	
+	
 	var IDPage = getParameterByName('id');
 	
 	//alert(IDPage);
@@ -1292,7 +1298,7 @@ function mantieni(classificazione,num) {
 	  	var height2 = screen.height;
 		
 		setTimeout (function(){
-			$('#edit').editable('option', 'height', '700');
+			$('#edit').editable('option', 'height', '720');
 						  
 			$("#footerbutton").show();
 						  

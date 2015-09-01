@@ -103,7 +103,7 @@ function listaStory() {
 		   if (result.id!=0){
 			   //alert(item.id)
 		   
-			  lista = lista + "<tr id='riga"+ item.id +"'><td class='trtabella' width='20%'><a href='swip4.html?id="+ item.id +"&idPitch=0' rel='external' class='testo'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><b><font color='#000'>"+ item.title +"</b><br></font><font size='1.5' color='#000'>"+ item.day +"."+ item.month +"."+ item.year +"</font></td></tr></table></a></td><td class='trtabella' width='5%' align='center'><a href='swip4.html?id="+ item.id +"&idPitch=0' rel='external' class='testo'><img src='img/user.png' width='20'></a></td><td class='trtabella' width='65%' align='left'><span id='swippe"+ item.id +"' style='display: none;'><input id='idLine"+ conta +"' value='"+ item.id +"' type='hidden'><table id='ciccio2' width='80%' height='80px' align='center' border='0'><tr><td width='30%' align='center'><a href='javascript:clonestory("+ item.id +")' class='btn'><font color='#000000'>Duplicate</font></a></td><td width='30%' align='center'><a href='javascript:share("+ item.id +")' class='btn'><font color='#000000'>Share</font></a></td><td width='30%' align='center'><a href='javascript:deletestory("+ item.id +")' class='btn'><font color='#000000'>Trash</font></a></td><td width='10%' align='left'></td></tr></table></span><span id='delete"+ item.id +"'><table id='ciccio' width='80%' height='80px' align='center' border='0'><tr><td width='30%' align='center'></td><td width='30%' align='center'></td><td width='10%' align='center'></td><td width='30%' align='left'>|||</td></tr></table></span></td></tr><tr><td class='trtabella2' colspan='3'><hr></td></tr>"
+			  lista = lista + "<tr id='riga"+ item.id +"'><td class='trtabella' width='20%'><a href='swip4.html?id="+ item.id +"&idPitch=0' rel='external' class='testo'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><b><font color='#000'>"+ item.title +"</b><br></font><font size='1.5' color='#000'>"+ item.day +"."+ item.month +"."+ item.year +"</font></td></tr></table></a></td><td class='trtabella' width='5%' align='center'><a href='swip4.html?id="+ item.id +"&idPitch=0' rel='external' class='testo'><img src='img/user.png' width='20'></a></td><td class='trtabella' width='65%' align='left'><div id='swippe"+ item.id +"' style='display: none;'><input id='idLine"+ conta +"' value='"+ item.id +"' type='hidden'><table id='ciccio2' width='80%' height='80px' align='center' border='0'><tr><td width='30%' align='center'><a href='javascript:clonestory("+ item.id +")' class='btn'><font color='#000000'>Duplicate</font></a></td><td width='30%' align='center'><a href='javascript:share("+ item.id +")' class='btn'><font color='#000000'>Share</font></a></td><td width='30%' align='center'><a href='javascript:deletestory("+ item.id +")' class='btn'><font color='#000000'>Trash</font></a></td><td width='10%' align='left'></td></tr></table></div><div id='delete"+ item.id +"'><table id='ciccio' width='80%' height='80px' align='center' border='0'><tr><td width='30%' align='center'></td><td width='30%' align='center'></td><td width='10%' align='center'></td><td width='30%' align='left'>|||</td></tr></table></div></td></tr><tr><td class='trtabella2' colspan='3'><hr></td></tr>"
 				  
 				  conta = conta + 1;
 		   
@@ -151,20 +151,27 @@ function listaStory() {
 			});*/
 			
 			$(function() {			
-					$("#ciccio").swipe( {
+					$("div").swipe( {
+					  
 					  swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+						  	var numlist = this.id
+				 			numlist = numlist.substring(6)
 						
 						    if (direction == "right") {
 		
-							  $("#delete1").hide();
-							  $("#swippe1").fadeIn();
+							$("#delete"+ numlist +"").hide();
+							$("#swippe"+ numlist +"").show();
+							  
+							  alert("You swiped " + direction + " with " + fingerCount + " fingers");
 								
 							} 
 							
 							else if (direction == "left") {
 							
-							  $("#delete1").hide();
-							  $("#swippe1").fadeIn();
+							$("#swippe"+ numlist +"").hide();
+							$("#delete"+ numlist +"").show();
+							  
+							  alert("You swiped " + direction + " with " + fingerCount + " fingers");
 								
 							}
 							else
@@ -172,48 +179,15 @@ function listaStory() {
 								alert("You swiped " + direction + " with " + fingerCount + " fingers");	
 							}
 							
-							 setTimeout (function(){
+							 /*setTimeout (function(){
 								alert("You swiped " + direction + " with " + fingerCount + " fingers");
-							}, 1000);
+							 }, 1000);*/
 	
 					  },
 					  threshold:0,
 					  fingers:'all'
 					});
-				});
-				
-				$(function() {			
-					$("#ciccio2").swipe( {
-					  swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-						
-						    if (direction == "right") {
-		
-								$("#swippe1").hide();
-								$("#delete1").fadeIn();
-								
-							} 
-							
-							else if (direction == "left") {
-							
-								$("#swippe1").hide();
-								$("#delete1").fadeIn();
-								
-							}
-							else
-							{
-								alert("You swiped " + direction + " with " + fingerCount + " fingers");	
-							}
-							
-							 setTimeout (function(){
-								alert("You swiped " + direction + " with " + fingerCount + " fingers");
-							}, 1000);
-	
-					  },
-					  threshold:0,
-					  fingers:'all'
-					});
-				});
-			
+				});			
 
 		   
 		   /*for ( k=1; k < conta; k++ )
