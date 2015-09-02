@@ -151,7 +151,7 @@ function listaStory() {
 			});*/
 			var tocco=0;
 			
-			$(document).on("click touchstart", "span", function(e){
+			$(document).on("touchmove", "span", function(e){
 				e.preventDefault();
 				var numlist = this.id
 				numlist = numlist.substring(6)
