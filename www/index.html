@@ -604,16 +604,6 @@
 			
 			
 			<script>
-				$(document).on("pagecreate","#article1",function(){
-							   $("p").on("swipe",function(){
-										 $(this).hide();
-										 });
-							   
-							   $("li").on("swipe",function(){
-										  alert();
-										  });
-							   
-							   });
 							   
 							   $(document).on('swipeleft', '.ui-page', function(event){
 											  if(event.handled !== true) // This will prevent event triggering more then once

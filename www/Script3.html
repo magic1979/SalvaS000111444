@@ -87,7 +87,7 @@ section {
 	left:0px;
 	z-index:1000;
 	font-family:Roboto, sans-serif;
-	font-size: 9.5px;
+	/*font-size: 9.5px;*/
 }
 .froala-editor.f-basic {
 	display: none !important;
@@ -153,7 +153,7 @@ section {
 	//alert("Larghezza:" + width + ", Altezza:" + height)
 	
 	 
-	alert("Larghezza:" + width + ", Altezza:" + height + "Larghezza windows:" + altezzaW)
+	alert("Larghezza:" + width + ", Altezza:" + height + "altezza windows:" + altezzaW)
 	
 	
 	var IDPage = getParameterByName('id');
@@ -1302,10 +1302,10 @@ function mantieni(classificazione,num) {
 		height2 = parseInt(altezza2)/2
 		height3 = parseInt(height2) + 52
 		
-		alert(height3)
+		//alert(height3)
 		
 		setTimeout (function(){
-			$('#edit').editable('option', 'height', height3);
+			$('#edit').editable('option', 'height', 720);
 						  
 			$("#footerbutton").show();
 						  
