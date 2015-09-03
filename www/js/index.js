@@ -27,6 +27,8 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+		
+		
     },
     // deviceready Event Handler
     //
@@ -37,6 +39,13 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
+		
+		if(PushbotsPlugin.isiOS()){
+			PushbotsPlugin.initializeiOS("55e8c26e1779593a278b4567");
+		}
+		if(PushbotsPlugin.isAndroid()){
+			PushbotsPlugin.initializeAndroid("55e8c26e1779593a278b4567", "pokeranswer-1057");
+		}
 		
 		var hoverDelay = $.mobile.buttonMarkup.hoverDelay = 0;
 	
