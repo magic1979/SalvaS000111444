@@ -44,7 +44,7 @@ var app = {
 			PushbotsPlugin.initializeiOS("55e8c26e1779593a278b4567");
 		}
 		if(PushbotsPlugin.isAndroid()){
-			PushbotsPlugin.initializeAndroid("55e8c26e1779593a278b4567", "pokeranswer-1057");
+			PushbotsPlugin.initializeAndroid("55e8c26e1779593a278b4567", "37050399675");
 		}
 		
 		var hoverDelay = $.mobile.buttonMarkup.hoverDelay = 0;
