@@ -159,20 +159,20 @@ function listaStory() {
 				
 				var numero = document.getElementById("swippo"+ numlist +"").value
 				
-				alert(numlist);
-				
-				if (numero != 0){
-					$("#delete"+ numlist +"").hide();
-					$("#swippe"+ numlist +"").show();
-					document.getElementById("swippo"+ numlist +"").value = 0;
-				}
-				else{
-					$("#swippe"+ numlist +"").hide();
-					$("#delete"+ numlist +"").show();
-					document.getElementById("swippo"+ numlist +"").value = "swippo"+ numlist
-				}
-				
-				
+				//alert(numlist);
+				setTimeout (function(){
+					if (numero != 0){
+						$("#delete"+ numlist +"").hide();
+						$("#swippe"+ numlist +"").show();
+						document.getElementById("swippo"+ numlist +"").value = 0;
+					}
+					else{
+						$("#swippe"+ numlist +"").hide();
+						$("#delete"+ numlist +"").show();
+						document.getElementById("swippo"+ numlist +"").value = "swippo"+ numlist
+					}
+				}, 600);
+	
 			});	
 		   
 		   /*for ( k=1; k < conta; k++ )
@@ -279,18 +279,19 @@ function listaShare(vuoto) {
 				
 				var numero = document.getElementById("swippo"+ numlist +"").value
 				
-				alert(numlist);
-				
-				if (numero != 0){
-					$("#delete"+ numlist +"").hide();
-					$("#swippe"+ numlist +"").show();
-					document.getElementById("swippo"+ numlist +"").value = 0;
-				}
-				else{
-					$("#swippe"+ numlist +"").hide();
-					$("#delete"+ numlist +"").show();
-					document.getElementById("swippo"+ numlist +"").value = "swippo"+ numlist
-				}
+				//alert(numlist);
+				setTimeout (function(){
+					if (numero != 0){
+						$("#delete"+ numlist +"").hide();
+						$("#swippe"+ numlist +"").show();
+						document.getElementById("swippo"+ numlist +"").value = 0;
+					}
+					else{
+						$("#swippe"+ numlist +"").hide();
+						$("#delete"+ numlist +"").show();
+						document.getElementById("swippo"+ numlist +"").value = "swippo"+ numlist
+					}
+				}, 600);
 				
 				
 			});	
