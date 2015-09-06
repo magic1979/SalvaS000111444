@@ -130,7 +130,7 @@ function listaStory() {
 		   $(".spinner").hide();
 		   $("#Titolotbl").html("List Stories");
 		   
-		   /*$("span").on("swipeleft",function(){
+		   $("span").on("swipeleft",function(){
 				var numlist = this.id
 				 numlist = numlist.substring(6)
 							
@@ -148,10 +148,11 @@ function listaStory() {
 							
 				$("#swippe"+ numlist +"").hide();
 				$("#delete"+ numlist +"").fadeIn();
-			});*/
+			});
+			
 			var tocco=0;
 			
-			$(document).on("touchmove touchend", "span", function(e){
+			/*$(document).on("touchmove", "span", function(e){
 				e.preventDefault();
 				var numlist = this.id
 				numlist = numlist.substring(6)
@@ -172,7 +173,7 @@ function listaStory() {
 				}
 				
 				
-			});	
+			});	*/
 
 		   
 		   /*for ( k=1; k < conta; k++ )
@@ -272,7 +273,7 @@ function listaShare(vuoto) {
 		   
 		   $(".spinner").hide();
 		   
-		   $(document).on("touchmove touchend", "div", function(e){
+		   /*$(document).on("touchmove", "div", function(e){                      
 				e.preventDefault();
 				var numlist = this.id
 				numlist = numlist.substring(6)
@@ -293,7 +294,27 @@ function listaShare(vuoto) {
 				}
 				
 				
-			});	
+			});	*/
+			
+			$("div").on("swipeleft",function(){
+				var numlist = this.id
+				 numlist = numlist.substring(6)
+							
+				 //alert(numlist);
+							
+				$("#delete"+ numlist +"").hide();
+				$("#swippe"+ numlist +"").fadeIn();
+			});
+		   
+		   $("div").on("swiperight",function(){
+				var numlist = this.id
+				 numlist = numlist.substring(6)
+							
+				 //alert(numlist);
+							
+				$("#swippe"+ numlist +"").hide();
+				$("#delete"+ numlist +"").fadeIn();
+			});
 		   
 		   
 		   },
