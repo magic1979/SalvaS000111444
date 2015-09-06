@@ -158,7 +158,7 @@ function listaStory() {
 				
 				var numero = document.getElementById("swippo"+ numlist +"").value
 				
-				alert(numlist);
+				//alert(numlist);
 				
 				if (numero != 0){
 					$("#delete"+ numlist +"").hide();
@@ -279,7 +279,7 @@ function listaShare(vuoto) {
 				
 				var numero = document.getElementById("swippo"+ numlist +"").value
 				
-				alert(numlist);
+				//alert(numlist);
 				
 				if (numero != 0){
 					$("#delete"+ numlist +"").hide();
