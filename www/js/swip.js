@@ -3,6 +3,14 @@ document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady() {
 	//document.addEventListener("resume", onResume, false);
 	
+	var width = screen.width;
+	var height = screen.height;
+	
+	
+	if(width > 500 && width < 640){
+		$(".myTableStyle").attr("width", "200px")
+	}
+	
 	var hoverDelay = $.mobile.buttonMarkup.hoverDelay = 0;
 	
 	$.support.cors = true;

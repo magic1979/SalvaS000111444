@@ -485,7 +485,8 @@ function deletestory(id) {
 				'OK'                  // buttonName
 			);
 		   
-		   listaStory()
+		   window.location.href = "swip2.html?id=1";
+		   //listaStory()
 		   }
 		   else{
 		   navigator.notification.alert(
@@ -538,7 +539,9 @@ function clonestory(id) {
 										'OK'                  // buttonName
 										);
 		   
-		   listaStory()
+		    
+			window.location.href = "swip2.html?id=2";
+		   //listaStory()
 		   }
 		   else{
 		   navigator.notification.alert(

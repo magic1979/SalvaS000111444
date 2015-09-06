@@ -47,6 +47,8 @@ var app = {
 			PushbotsPlugin.initializeAndroid("55e8c26e1779593a278b4567", "37050399675");
 		}
 		
+		swipeFunc.init();
+		
 		var hoverDelay = $.mobile.buttonMarkup.hoverDelay = 0;
 	
 		$.support.cors = true;

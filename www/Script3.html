@@ -147,13 +147,11 @@ section {
 	</style>
 
 <script>
-	var width = screen.width;
-	var height = screen.height;
-	var altezzaW =  window.innerHeight
+
 	//alert("Larghezza:" + width + ", Altezza:" + height)
 	
 	 
-	alert("Larghezza:" + width + ", Altezza:" + height + "altezza windows:" + altezzaW)
+	//alert("Larghezza:" + width + ", Altezza:" + height + "altezza windows:" + altezzaW)
 	
 	
 	var IDPage = getParameterByName('id');
@@ -209,7 +207,15 @@ section {
   <script type="text/javascript" src="js/scrivi.js"></script>
 
   <script>
-	  
+	  	var width = screen.width;
+		var height = screen.height;
+		var altezzaW =  window.innerHeight
+
+	  	if(width > 500 && width < 640){
+			$(".froala-view").attr("font-size", "8.0")
+			$(".froala-view").attr("margin-left", "0.5")
+			$(".froala-view").attr("margin-right", "0.5")
+		}
 	 
 	  //$(".spinner").hide();
 	  

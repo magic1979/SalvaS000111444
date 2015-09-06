@@ -111,5 +111,7 @@ Salvatore sas
 		
 	<gap:config-file platform="android" parent="/manifest" mode="add" xmlns:android="http://schemas.android.com/apk/res/android">
 		android:windowSoftInputMode="stateVisible"
+		<uses-permission android:name="com.android.vending.BILLING" />
 	</gap:config-file>
+	
 	</widget>
