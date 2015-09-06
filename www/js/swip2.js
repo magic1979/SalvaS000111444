@@ -199,7 +199,7 @@ function listaStory() {
 		   }*/
 		   
 		   
-		   listaShare(vuoto);
+		   //listaShare(vuoto);
 		   
 		   
 		   },
