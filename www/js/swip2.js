@@ -171,7 +171,7 @@ function listaStory() {
 						$("#delete"+ numlist +"").show();
 						document.getElementById("swippo"+ numlist +"").value = "swippo"+ numlist
 					}
-				}, 600);
+				}, 300);
 	
 			});	
 		   
@@ -291,7 +291,7 @@ function listaShare(vuoto) {
 						$("#delete"+ numlist +"").show();
 						document.getElementById("swippo"+ numlist +"").value = "swippo"+ numlist
 					}
-				}, 600);
+				}, 300);
 				
 				
 			});	

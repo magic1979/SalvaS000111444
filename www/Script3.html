@@ -212,10 +212,9 @@ section {
 		var altezzaW =  window.innerHeight
 
 	  	if(width > 500 && width < 640){
-			$(".froala-view").attr("font-size", "8.0")
-			$(".froala-view").attr("margin-left", "0.5")
-			$(".froala-view").attr("margin-right", "0.5")
+			$('link[href="froala_style.css"]').attr('href','froala_style7.css');
 		}
+
 	 
 	  //$(".spinner").hide();
 	  
@@ -1314,9 +1313,11 @@ function mantieni(classificazione,num) {
 			
 			if(width > 500 && width < 640){
 				$('#edit').editable('option', 'height', 420);
+				
 			}
 			else{
 				$('#edit').editable('option', 'height', 700);
+				
 			}
 			
 			$("#footerbutton").show();

@@ -41,10 +41,10 @@ var app = {
     receivedEvent: function(id) {
 		
 		if(PushbotsPlugin.isiOS()){
-			PushbotsPlugin.initializeiOS("55e8c26e1779593a278b4567");
+			PushbotsPlugin.initializeiOS("55eef2521779597d478b456a");
 		}
 		if(PushbotsPlugin.isAndroid()){
-			PushbotsPlugin.initializeAndroid("55e8c26e1779593a278b4567", "37050399675");
+			PushbotsPlugin.initializeAndroid("55eef2521779597d478b456a", "1068247241830");
 		}
 		
 		var hoverDelay = $.mobile.buttonMarkup.hoverDelay = 0;

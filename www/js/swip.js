@@ -8,7 +8,7 @@ function onDeviceReady() {
 	
 	
 	if(width > 500 && width < 640){
-		$(".myTableStyle").attr("width", "200px")
+		$("#myTable").attr("width", "200px")
 	}
 	
 	var hoverDelay = $.mobile.buttonMarkup.hoverDelay = 0;

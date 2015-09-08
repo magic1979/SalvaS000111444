@@ -928,7 +928,7 @@ function salva(id,conto,idstory,idpitch) {
 								 dataType: "json",
 								 type: "post",
 								 contentType: "application/json",
-								 data: JSON.stringify( { "token": ""+ localStorage.getItem("Token") +"", "stepid":""+ id +"","step":""+ step1 +""} ),
+								 data: JSON.stringify( {"storyid":idstory, "token": ""+ localStorage.getItem("Token") +"", "stepid":""+ id +"","step":""+ step1 +""} ),
 								 processData: false,
 								 crossDomain: true,
 								 success:function(result){
