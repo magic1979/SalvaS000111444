@@ -542,11 +542,10 @@ function salva(id,prov,outo) {
 										
 			var width = screen.width;
 			var height = screen.height;
-			var altezzaW =  window.innerHeight
 		   
 		   if(prov==0){
 			 if(width > 500 && width < 640){
-				window.location.href = "Script7.html?id="+ IDPage +"";
+				window.location.href = "Script7.html?id="+ id +"";
 			 }
 			 else{
 		     	window.location.href = "Script3.html?id="+ id +"";
