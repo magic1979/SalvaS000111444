@@ -8,7 +8,7 @@
 
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
   <link href="Froala/css/froala_editor.css" rel="stylesheet" type="text/css">
-  <link id="pippo" href="Froala/css/froala_style.css" rel="stylesheet" type="text/css">
+  <link id="pippo" href="Froala/css/blue.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="css/spinner.css" />
 
 
@@ -156,7 +156,7 @@ section {
 	var IDPage = getParameterByName('id');
 	
 	if(width > 500 && width < 640){
-		window.location.href = "script7.html?id="+ IDPage +"";
+		//window.location.href = "script7.html?id="+ IDPage +"";
 			
 	}
 	
@@ -193,7 +193,7 @@ section {
 	  <tr><td width="100%" align="left" valign="center"><a id="Undo"><font color="#FFF" size="3">Cancel</font></a> <font color="#FFF" size="2">|</font> <a id="Redo"><font color="#FFF" size="3">Repeat</font></a></td>
 	  </tr>
 	  <tr>
-		  <td width="100%" align="center" valign="center" class="div3"><font color="#FFF"><p><a id="Heading" class="NoEdit"><font id="schena1" size="3">Scene Heading</font></a> | <a id="Action" class="NoEdit"><font id="schena2" size="3">Action</font></a> | <a id="Character" class="NoEdit"><font id="schena3" size="3">Character</font></a> | <a id="Dialog" class="NoEdit"><font id="schena4" size="3">Dialogue</font></a> | <a id="Pare" class="NoEdit"><font id="schena5" size="3">Parenthetical</font></a> |  <a id="Transition" class="NoEdit"><font id="schena6" size="3">Transition</font></a> | <a id="Shot" class="NoEdit"><font id="schena7" size="3">Shot</font></a> | <a id="Texto" class="NoEdit"><font id="schena8" size="3">Text</font></a> </p></font></td>
+		  <td width="100%" align="center" valign="center" class="div3"><font color="#FFF"><p><a id="Heading" class="NoEdit"><font id="schena1" size="2">Scene Heading</font></a> | <a id="Action" class="NoEdit"><font id="schena2" size="2">Action</font></a> | <a id="Character" class="NoEdit"><font id="schena3" size="2">Character</font></a> | <a id="Dialog" class="NoEdit"><font id="schena4" size="2">Dialogue</font></a> | <a id="Pare" class="NoEdit"><font id="schena5" size="2">Parenthetical</font></a> |  <a id="Transition" class="NoEdit"><font id="schena6" size="2">Transition</font></a> | <a id="Shot" class="NoEdit"><font id="schena7" size="2">Shot</font></a> | <a id="Texto" class="NoEdit"><font id="schena8" size="2">Text</font></a> </p></font></td>
 	  </tr>
   </table>
 
@@ -1306,7 +1306,7 @@ function mantieni(classificazione,num) {
 		setTimeout (function(){
 			
 			if(width > 500 && width < 640){
-				$('#edit').editable('option', 'height', 400);
+				$('#edit').editable('option', 'height', 420);
 			}
 			else{
 				$('#edit').editable('option', 'height', 700);
