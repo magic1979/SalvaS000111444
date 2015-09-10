@@ -539,9 +539,18 @@ function salva(id,prov,outo) {
 										'Outline',            // title
 										'OK'                  // buttonName
 										);*/
+										
+			var width = screen.width;
+			var height = screen.height;
+			var altezzaW =  window.innerHeight
 		   
 		   if(prov==0){
-		     window.location.href = "Script3.html?id="+ id +"";
+			 if(width > 500 && width < 640){
+				window.location.href = "Script7.html?id="+ IDPage +"";
+			 }
+			 else{
+		     	window.location.href = "Script3.html?id="+ id +"";
+			 }
 		   }
 		   else if(prov==9){
 			 window.location.href = "swip4.html?id="+ id +"&idPitch=0";
