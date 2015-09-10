@@ -40,13 +40,6 @@ var app = {
     // Update DOM on a Received Event
     receivedEvent: function(id) {
 		
-		if(PushbotsPlugin.isiOS()){
-			PushbotsPlugin.initializeiOS("55eef2521779597d478b456a");
-		}
-		if(PushbotsPlugin.isAndroid()){
-			PushbotsPlugin.initializeAndroid("55eef2521779597d478b456a", "1068247241830");
-		}
-		
 		var hoverDelay = $.mobile.buttonMarkup.hoverDelay = 0;
 	
 		$.support.cors = true;
