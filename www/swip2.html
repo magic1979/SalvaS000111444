@@ -343,12 +343,179 @@ left: 0;
 }
 </style>
 
+    <style type="text/css" media="all">
+	ul,li {
+		padding:0;
+		margin:0;
+		border:0;
+	}
+
+body {
+	font-size:12px;
+	-webkit-user-select:none;
+	-webkit-text-size-adjust:none;
+	font-family:helvetica;
+	padding:20px;
+	background-color: #ebd8dc;
+}
+
+#standard, #transition {
+	z-index:1;
+	display:block; float:left;
+	width:100%; height:100%;
+
+	overflow:auto;
+	border:1px solid #aaa;
+	
+	background-color: #ebd8dc;
+	
+	position: absolute;
+	top: 52px;
+	left: 80px;
+}
+
+#standard {
+	margin-right:20px;
+	
+	
+}
+
+.scroller {
+	position:absolute; z-index:1;
+	/*	-webkit-touch-callout:none;*/
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+	width:100%;
+	padding:0;
+}
+
+.scroller ul {
+	list-style:none;
+	padding:0;
+	margin:0;
+	width:100%;
+	text-align:left;
+}
+
+.scroller li {
+	padding:0 10px;
+	height:40px;
+	line-height:40px;
+	border-bottom:1px solid #ccc;
+	border-top:1px solid #fff;
+	background-color:#fafafa;
+	font-size:14px;
+}
+
+#myFrame {
+	position:absolute;
+	top:0; left:0;
+}
+
+html, body{
+	float:left;
+	margin:0;
+	padding:0;
+	width:100%;
+	height:100%;
+	background-image: url("StoryMatch_tablet_bg.jpg");
+	/* Note: This gradient may render differently in browsers that don't support the unprefixed gradient syntax */
+	
+	/* IE10 Consumer Preview
+	 background-image: -ms-linear-gradient(top left, #BD8699 0%, #A390A4 50%, #C6A886 100%);
+	 
+	 /* Mozilla Firefox
+	 background-image: -moz-linear-gradient(top left, #BD8699 0%, #A390A4 50%, #C6A886 100%);
+	 
+	 /* Opera
+	 background-image: -o-linear-gradient(top left, #BD8699 0%, #A390A4 50%, #C6A886 100%);
+	 
+	 /* Webkit (Safari/Chrome 10)
+	 background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #BD8699), color-stop(0.5, #A390A4), color-stop(1, #C6A886));
+	 
+	 /* Webkit (Chrome 11+)
+	 background-image: -webkit-linear-gradient(top left, #BD8699 0%, #A390A4 50%, #C6A886 100%);
+	 
+	 /* W3C Markup, IE10 Release Preview
+	 background-image: linear-gradient(to bottom right, #BD8699 0%, #A390A4 50%, #C6A886 100%);*/
+	
+	-webkit-background-size: cover !important;
+	-moz-background-size: cover !important;
+	-o-background-size: cover !important;
+	background-size: cover !important;
+	
+}
+        
+       .ui-page, .ui-page-active{
+			background:none !important;
+			-webkit-backface-visibility: hidden;
+		}
+      
+                        .ui-overlay-a{
+							background: #ebdae0;
+							background-repeat:no-repeat;
+							background-attachment:fixed;
+							/*background-position:center; */
+							background-position: right bottom; /*Positioning*/
+						}
+						.ui-overlay-b{
+							background: #ebdae0;
+							background-repeat:no-repeat;
+							background-attachment:fixed;
+							/*background-position:center; */
+							background-position: right bottom; /*Positioning*/
+						}
+						.ui-overlay-c{
+							background: #ebdae0;
+							background-repeat:no-repeat;
+							background-attachment:fixed;
+							/*background-position:center; */
+							background-position: right bottom; /*Positioning*/
+						}
+						.ui-overlay-d{
+							background: #ebdae0;
+							background-repeat:no-repeat;
+							background-attachment:fixed;
+							/*background-position:center; */
+							background-position: right bottom; /*Positioning*/
+						}
+						.ui-overlay-e{
+							background: #ebdae0;
+							background-repeat:no-repeat;
+							background-attachment:fixed;
+							/*background-position:center; */
+							background-position: right bottom; /*Positioning*/
+						}
+
+	</style>
+
+
 	<script type="text/javascript" src="js/swip2.js"></script>
 	
 	<script src="jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="jquery.dropdown.min.js"></script>
     
 	<script src="js/jquery.mobile-1.4.5.min.js"></script>
+
+    <script type="text/javascript" src="js/iscroll4.js"></script>
+	
+	<script type="text/javascript">
+		
+		var scroll1, scroll2;
+		var options = {click: true, scrollbars: true};
+		
+		function loaded() {
+			scroll1 = new iScroll('standard' , options);
+			//scroll2 = new iScroll('transition', { useTransition:true });
+			
+			setTimeout (function(){
+				scroll1.refresh();
+			}, 1000);
+		}
+	
+	//document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	document.addEventListener('DOMContentLoaded', loaded, false);
+	
+	</script>
 
 </head>
 
@@ -390,8 +557,11 @@ left: 0;
 			  </td></tr>
 	  </table>
   </div>
+
+      <div id="standard">
+	  <div class="scroller">
   
-  <table id="myTable" class="myTableStyle" border="0" >
+  <table id="myTable" width="100%" border="0" >
 	  <!--<tr>
 		  <td height="52px" align="center">
 			  <table width='95%' border='0' cellpadding='0' cellspacing='0'>
@@ -418,6 +588,9 @@ left: 0;
           </td>
 	  </tr>
   </table>
+
+    </div>
+  </div>
 
 <!--<div data-role="popup" id="popupDialog" data-overlay-theme="b" data-theme="c" data-dismissible="false" style="max-width:601px;">
 	<a href="#" data-rel="back" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>

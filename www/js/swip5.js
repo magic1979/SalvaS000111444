@@ -84,7 +84,7 @@ function buildout(id,prov) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://staging.storymatch.co/storymatch/search/stepsbyid",
+		   url:"https://dev.storymatch.co/storymatch/search/stepsbyid",
 		   data: {ID:id, token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -103,7 +103,7 @@ function buildout(id,prov) {
 				  
 				  document.getElementById("contaout").value=conto;
 				 
-				  out = out + "<table width='100%' border='0' cellpadding='0' cellspacing='0' style='background-color: #ebd8dc;'><tr><td class='trtabella2' colspan='5'><hr></td></tr><tr><td class='trtabella' width='95%'><table width='90%' border='0'><tr><td width='10%'></td><td width='90%' align='left'>"+ outi +"</td></tr><tr><td width='10%'></td><td width='90%' align='left' valign='middle'><input id='idLine"+ outi +"' value='"+ idOutline[i]["id"] +"' type='hidden'><textarea name='myTextarea"+ outi +"' id='myTextarea"+ outi +"' rows='3' cols='60' class='textarea1' placeholder='Write Outline' style='background-color: transparent;' maxlength='200' onkeyup='countChar(this)'>"+ idOutline[i]["outline"] +"</textarea></td></tr><tr><td width='10%'></td><td width='90%' align='left'><br></td></tr><tr><td width='10%'></td><td width='95%' align='left'><table width='100%' border='0'><tr><td width='15%'><a href='javascript:undor()' rel='external'><div width='38px' class='sinistra'></div></a></td><td width='15%' align='left'><a href='javascript:redor()' rel='external'><div width='38px' class='destra'></div></a></td><td width='70%' align='right'><span id='swippe"+ outi +"'><table width='50%' border='0'><tr><td align='right' valign='center'><a onclick='javascript:salva("+ id +",1,"+ outi +")' rel='external'><div width='30px' class='plus'></div></a></td><td align='center' valign='center'><a href='javascript:salva("+ id +",2,"+ outi +")' rel='external'><div width='30px' class='minus'></div></a></td></tr></table></span><span id='delete"+outi+"' style='display: none;'><table width='50%' height='38px' border='0' ><tr><td align='right' valign='center' colspan='2'><a onclick='javascript:cancella("+ id +","+ outi +")' rel='external' class='btn'><font color='#000000'>Cancel</font></a></td></tr></table></span></td><td width='10%' valign='middle'></td></tr></table></td></tr></table></td><td class='trtabella' width='15%' align='center' valign='middle'></td></tr></table>";
+				  out = out + "<table width='100%' border='0' cellpadding='0' cellspacing='0' style='background-color: #ebd8dc;'><tr><td class='trtabella2' colspan='5'><hr></td></tr><tr><td class='trtabella' width='95%'><table width='90%' border='0'><tr><td width='10%'></td><td width='90%' align='left'>"+ outi +"<input name='myTitle"+ outi +"' id='myTitle"+ outi +"' value='"+ idOutline[i]["title"] +"' class='textarea1'></td></tr><tr><td width='10%'></td><td width='90%' align='left' valign='middle'><input id='idLine"+ outi +"' value='"+ idOutline[i]["id"] +"' type='hidden'><textarea name='myTextarea"+ outi +"' id='myTextarea"+ outi +"' rows='3' cols='60' class='textarea1' placeholder='Write Outline' style='background-color: transparent;' maxlength='200' onkeyup='countChar(this)'>"+ idOutline[i]["outline"] +"</textarea></td></tr><tr><td width='10%'></td><td width='90%' align='left'><br></td></tr><tr><td width='10%'></td><td width='95%' align='left'><table width='100%' border='0'><tr><td width='15%'><a href='javascript:undor()' rel='external'><div width='38px' class='sinistra'></div></a></td><td width='15%' align='left'><a href='javascript:redor()' rel='external'><div width='38px' class='destra'></div></a></td><td width='70%' align='right'><span id='swippe"+ outi +"'><table width='50%' border='0'><tr><td align='right' valign='center'><a onclick='javascript:salva("+ id +",1,"+ outi +")' rel='external'><div width='30px' class='plus'></div></a></td><td align='center' valign='center'><a href='javascript:salva("+ id +",2,"+ outi +")' rel='external'><div width='30px' class='minus'></div></a></td></tr></table></span><span id='delete"+outi+"' style='display: none;'><table width='50%' height='38px' border='0' ><tr><td align='right' valign='center' colspan='2'><a onclick='javascript:cancella("+ id +","+ outi +")' rel='external' class='btn'><font color='#000000'>Cancel</font></a></td></tr></table></span></td><td width='10%' valign='middle'></td></tr></table></td></tr></table></td><td class='trtabella' width='15%' align='center' valign='middle'></td></tr></table>";
 				 
 				 //<table id='delete"outi"' width='50%' border='1' style='display: none;'><tr><td align='right' valign='center' colspan='2'><a href='javascript:cancella("+ id +","+ outi +")' rel='external'><div width='30px' class='plus'></div></a></td></tr></table>
 				 
@@ -197,7 +197,7 @@ function buildjson(id) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://staging.storymatch.co/storymatch/search/stepsbyid",
+		   url:"https://dev.storymatch.co/storymatch/search/stepsbyid",
 		   data: {ID:id, token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -251,7 +251,7 @@ function aggiungi(id,outo) {
 	
 	$(".spinner").show();
 	$.ajax({
-		   url: "https://staging.storymatch.co/storymatch/userstories/save/outline",
+		   url: "https://dev.storymatch.co/storymatch/userstories/save/outline",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
@@ -316,7 +316,7 @@ function rimuovi(id,outo) {
 	
 	$(".spinner").show();
 	$.ajax({
-		   url: "https://staging.storymatch.co/storymatch/userstories/save/outline",
+		   url: "https://dev.storymatch.co/storymatch/userstories/save/outline",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
@@ -366,7 +366,7 @@ function cancella(id,outo) {
 	
 	$(".spinner").show();
 	$.ajax({
-		   url: "https://staging.storymatch.co/storymatch/userstories/delete/outline",
+		   url: "https://dev.storymatch.co/storymatch/userstories/delete/outline",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
@@ -417,7 +417,7 @@ function editstory2(id) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://staging.storymatch.co/storymatch/search/stepsbyid",
+		   url:"https://dev.storymatch.co/storymatch/search/stepsbyid",
 		   data: {ID:id, token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -481,6 +481,7 @@ function salva(id,prov,outo) {
 	var stringa = "["
 	var iddOut;
 	var OutOutline;
+	var TitleOutline;
 	
 	var numout = document.getElementById("contaout").value;
 	
@@ -495,14 +496,15 @@ function salva(id,prov,outo) {
 			iddOut = document.getElementById("idLine"+ contasalva +"").value
 		}
 		
+		TitleOutline = document.getElementById("myTitle"+ contasalva +"").value;
 		OutOutline = document.getElementById("myTextarea"+ contasalva +"").value;
 		OutOutline.replace(' ','%20');
 		
 		if (contasalva==1){
-			stringa = stringa + "{\"id\":\""+ iddOut +"\",\"outline\":\""+ OutOutline +"\"}";
+			stringa = stringa + "{\"id\":\""+ iddOut +"\",\"title\":\""+ TitleOutline +"\",\"outline\":\""+ OutOutline +"\"}";
 		}
 		else{
-			stringa = stringa + ",{\"id\":\""+ iddOut +"\",\"outline\":\""+ OutOutline +"\"}";
+			stringa = stringa + ",{\"id\":\""+ iddOut +"\",\"title\":\""+ TitleOutline +"\",\"outline\":\""+ OutOutline +"\"}";
 		}
 		
 		contasalva = contasalva + 1;
@@ -516,14 +518,8 @@ function salva(id,prov,outo) {
 	
 	$(".spinner").show();
 	$.ajax({
-		   /*type:"GET",
-		   url:"https://staging.storymatch.co/storymatch/userstories/update/outlines?outline="+stringa+"",
-		   data: {token:localStorage.getItem("Token"),storyid:id},
-		   contentType: "application/json; charset=utf-8",
-		   json: 'callback',
-		   crossDomain: true,*/
 		   
-		   url: "https://staging.storymatch.co/storymatch/userstories/update/outlines",
+		   url: "https://dev.storymatch.co/storymatch/userstories/update/outlines",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
@@ -533,23 +529,14 @@ function salva(id,prov,outo) {
 		   success:function(result){
 		   
 		   if (result.ID==1024){
-		   /*navigator.notification.alert(
-										'Saved Outline',  // message
-										alertDismissed,         // callback
-										'Outline',            // title
-										'OK'                  // buttonName
-										);*/
-										
-			var width = screen.width;
-			var height = screen.height;
+
 		   
 		   if(prov==0){
-			 if(width > 500 && width < 640){
-				window.location.href = "Script7.html?id="+ id +"";
-			 }
-			 else{
-		     	window.location.href = "Script3.html?id="+ id +"";
-			 }
+		   
+			 window.location.href = "scrivo.html?id="+ id +"";
+		   
+		     //window.location.href = "Script3.html?id="+ id +"";
+		   
 		   }
 		   else if(prov==9){
 			 window.location.href = "swip4.html?id="+ id +"&idPitch=0";
@@ -685,7 +672,7 @@ function getParameterByName(name) {
 						  $(".spinner").show();
 						  $.ajax({
 								 type:"GET",
-								 url:"https://staging.storymatch.co/storymatch/authentication/validatetoken",
+								 url:"https://dev.storymatch.co/storymatch/authentication/validatetoken",
 								 data: {token:Token},
 								 contentType: "application/json; charset=utf-8",
 								 json: 'callback',

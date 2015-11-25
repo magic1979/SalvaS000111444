@@ -1,0 +1,180 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta content='True' name='HandheldFriendly' />
+	<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0' name='viewport' />
+	<meta name="viewport" content="width=device-width" />
+	
+
+	<link rel="stylesheet" href="css/froala.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
+	
+	<style>
+		
+		body {
+			text-align: left;
+			background-color: #ebd8dc;
+			height:100%;
+			overflow: hidden;
+			z-index:-1000;
+			
+		}
+	
+	section {
+		width: 100%;
+		height: 100%;
+		margin: auto;
+		text-align: left;
+		
+	}
+	
+	#scrollable {
+		float: left;
+		overflow: scroll;
+		background: lightblue;
+		height: 100px;
+		padding: 10px;
+		position: relative;
+		margin-top: 20px;
+		margin-left: 20px;
+		
+		overflow-y:auto;
+	}
+	.div3 {
+		
+		background-color: #000;
+		
+	}
+	.div4 {
+		
+		background-color: #ebd8dc;
+		
+	}
+	.giusu {
+		background-color: #000;
+		width:100%;
+		height: 52px;
+		
+		position:fixed;
+		bottom:264px;
+		left:0px;
+		z-index:1000;
+		font-family:Roboto, sans-serif;
+	}
+	.topo {
+		background-color: #000;
+		width:100%;
+		height: 52px;
+		vertical-align: middle;
+		
+		position:fixed;
+		top:0px;
+		left:0px;
+		z-index:1000;
+		font-family:Roboto, sans-serif;
+	}
+	.topo1 {
+		background-color: #000;
+		width:100%;
+		height: 52px;
+		vertical-align: middle;
+		
+		position:fixed;
+		left:0px;
+		z-index:1000;
+		font-family:Roboto, sans-serif;
+		font-size: 9.5px;
+	}
+	.froala-editor.f-basic {
+		display: none !important;
+		
+	}
+	
+	.NoEdit {
+		color: #FFF;
+		text-decoration: none;
+		text-transform: none;
+		font-size: 18px;
+		padding: 6px 8px 6px 8px;
+		
+	}
+	
+	.SelEdit {
+		color: #00FFFF;
+		text-decoration: none;
+		text-transform: none;
+		font-size: 18px;
+		padding: 6px 8px 6px 8px;
+		
+	}
+	
+	.collegamento {
+		text-decoration: none;
+	}
+	
+	
+	
+	#edit{
+		overflow-y:auto;
+	}
+	
+	.draffa {
+		font-family: Arial;
+		color: #fff;
+		font-size: 18px;
+		padding: 5px 5px 5px 5px;
+		border: solid #000 2px;
+		text-decoration: none;
+	}
+	
+	.draffa:active {
+		background: #585858;
+		color: #000;
+		background-image: -webkit-linear-gradient(top, #585858, #585858);
+		background-image: -moz-linear-gradient(top, #585858, #585858);
+		background-image: -ms-linear-gradient(top, #585858, #585858);
+		background-image: -o-linear-gradient(top, #585858, #585858);
+		background-image: linear-gradient(to bottom, #585858, #585858);
+		border: solid #FFF 1px;
+		text-decoration: none;
+	}
+	
+	.ciccio {
+		background-color: #ffffff;
+		z-index:5000;
+		
+	}
+	
+	
+		</style>
+</head>
+<body>
+	
+	<section id="editor">
+		
+		<div id="edit" class="froala-view"></div>
+		
+	</section>
+	
+	<div>
+		<ul id="btn-group">
+            <li id="heading">Scene Heading</li><span> |</span>
+            <li id="action">Action</li><span> |</span>
+            <li id="character">Character</li><span> |</span>
+            <li id="dialog">Dialog</li><span> |</span>
+            <li id="parenthetical">Parenthetical</li><span> |</span>
+            <li id="transition">Transition</li><span> |</span>
+            <li id="shot">Shot</li><span> |</span>
+            <li id="text">Text</li>
+        </ul>
+	</div>
+	
+	<script type="text/javascript" src="../cordova.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="../js/jquery.finger.js"></script>
+	<script src="js/froala_editor.min.js"></script>
+	<script src="js/plugins/block_styles.min.js"></script>
+	<script src="js/script.js"></script>
+</body>
+</html>
+
