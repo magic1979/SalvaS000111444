@@ -84,7 +84,7 @@ function listaStory() {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://staging.storymatch.co/storymatch/userstories/list",
+		   url:"https://dev.storymatch/storymatch/userstories/list",
 		   data: {token:Token},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -229,7 +229,7 @@ function listaShare(vuoto) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://staging.storymatch.co/storymatch/userstories/listshared",
+		   url:"https://dev.storymatch/storymatch/userstories/listshared",
 		   data: {token:Token},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -329,7 +329,7 @@ function cestino() {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://staging.storymatch.co/storymatch/userstories/listtrash",
+		   url:"https://dev.storymatch/storymatch/userstories/listtrash",
 		   //data: {token:Token},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -414,7 +414,7 @@ function verificatoken(id) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://staging.storymatch.co/storymatch/authentication/validatetoken",
+		   url:"https://dev.storymatch/storymatch/authentication/validatetoken",
 		   data: {token:Token},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -468,7 +468,7 @@ function deletestory(id) {
 	
 	$(".spinner").show();
 	$.ajax({
-		   url: "https://staging.storymatch.co/storymatch/userstories/delete",
+		   url: "https://dev.storymatch/storymatch/userstories/delete",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
@@ -522,7 +522,7 @@ function clonestory(id) {
 	
 	$(".spinner").show();
 	$.ajax({
-		   url: "https://staging.storymatch.co/storymatch/userstories/clone",
+		   url: "https://dev.storymatch/storymatch/userstories/clone",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
@@ -577,7 +577,7 @@ function notifiche() {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://staging.storymatch.co/storymatch/notify/check",
+		   url:"https://dev.storymatch/storymatch/notify/check",
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
 		   crossDomain: true,
@@ -632,7 +632,7 @@ function notifichelist() {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://staging.storymatch.co/storymatch/notify/list",
+		   url:"https://dev.storymatch/storymatch/notify/list",
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
 		   crossDomain: true,
@@ -782,7 +782,7 @@ function sharestory(results) {
 		
 		$(".spinner").show();
 		$.ajax({
-			   url: "https://staging.storymatch.co/storymatch/userstories/share",
+			   url: "https://dev.storymatch/storymatch/userstories/share",
 			   dataType: "json",
 			   type: "post",
 			   contentType: "application/json",
@@ -910,7 +910,7 @@ function creastoria(results) {
 		/*$(".spinner").show();
 		$.ajax({
 			   type:"GET",
-			   url:"https://staging.storymatch.co/storymatch/userstories/create",
+			   url:"https://dev.storymatch/storymatch/userstories/create",
 			   data: {token:localStorage.getItem("Token"),title:results.input1},
 			   contentType: "application/json; charset=utf-8",
 			   json: 'callback',
@@ -959,7 +959,7 @@ function creastoria(results) {
 		
 		$(".spinner").show();
 		$.ajax({
-			   url: "https://staging.storymatch.co/storymatch/userstories/create",
+			   url: "https://dev.storymatch/storymatch/userstories/create",
 			   dataType: "json",
 			   type: "post",
 			   contentType: "application/json",
@@ -1098,7 +1098,7 @@ function getParameterByName(name) {
 						  
 						  $(".spinner").show();
 						  $.ajax({
-								 url: "https://staging.storymatch.co/storymatch/notify/sendmessage",
+								 url: "https://dev.storymatch/storymatch/notify/sendmessage",
 								 dataType: "json",
 								 type: "post",
 								 contentType: "application/json",

@@ -141,7 +141,7 @@ function onPrompt(results) {
 		/*$(".spinner").show();
 		$.ajax({
 			   type:"GET",
-			   url:"https://staging.storymatch.co/storymatch/userstories/create",
+			   url:"https://dev.storymatch.co/storymatch/userstories/create",
 			   data: {token:localStorage.getItem("Token"),title:results.input1},
 			   contentType: "application/json; charset=utf-8",
 			   json: 'callback',
@@ -190,7 +190,7 @@ function onPrompt(results) {
 		
 		$(".spinner").show();
 		$.ajax({
-			   url: "https://staging.storymatch.co/storymatch/userstories/create",
+			   url: "https://dev.storymatch.co/storymatch/userstories/create",
 			   dataType: "json",
 			   type: "post",
 			   contentType: "application/json",
@@ -257,7 +257,7 @@ function verificatoken() {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://staging.storymatch.co/storymatch/authentication/validatetoken",
+		   url:"https://dev.storymatch.co/storymatch/authentication/validatetoken",
 		   data: {token:Token},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -377,7 +377,7 @@ function LogOut() {
 	
 	$(".spinner").show();
 	$.ajax({
-		   url: "https://staging.storymatch.co/storymatch/authentication/logout",
+		   url: "https://dev.storymatch.co/storymatch/authentication/logout",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
@@ -523,7 +523,7 @@ function notifiche() {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://staging.storymatch.co/storymatch/notify/check",
+		   url:"https://dev.storymatch.co/storymatch/notify/check",
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
 		   crossDomain: true,
@@ -586,7 +586,7 @@ function getParameterByName(name) {
 						  $(".spinner").show();
 						  $.ajax({
 								 type:"GET",
-								 url:"https://staging.storymatch.co/storymatch/userstories/list",
+								 url:"https://dev.storymatch.co/storymatch/userstories/list",
 								 data: {token:localStorage.getItem("Token")},
 								 contentType: "application/json; charset=utf-8",
 								 json: 'callback',

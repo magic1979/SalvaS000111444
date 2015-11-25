@@ -204,7 +204,7 @@ function vai(){
 	
 	$(".spinner").show();
 	$.ajax({
-		   url: "https://staging.storymatch.co/storymatch/authentication/signup",
+		   url: "https://dev.storymatch.co/storymatch/authentication/signup",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
@@ -318,7 +318,7 @@ function Login(){
 	/*$(".spinner").show();
 	$.ajax({
 		   type:"POST",
-		   url:"https://staging.storymatch.co/storymatch/authentication/login",
+		   url:"https://dev.storymatch.co/storymatch/authentication/login",
 		   data: {username:emailreg,password:pinreg},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -359,7 +359,7 @@ function Login(){
 	
 	$(".spinner").show();
 	$.ajax({
-		   url: "https://staging.storymatch.co/storymatch/authentication/login",
+		   url: "https://dev.storymatch.co/storymatch/authentication/login",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
@@ -455,7 +455,7 @@ function verificatoken() {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://staging.storymatch.co/storymatch/authentication/validatetoken",
+		   url:"https://dev.storymatch.co/storymatch/authentication/validatetoken",
 		   data: {token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -538,7 +538,7 @@ function onPrompt(results) {
 		
 		$(".spinner").show();
 		$.ajax({
-			   url: "https://staging.storymatch.co/storymatch/authentication/asktoreset",
+			   url: "https://dev.storymatch.co/storymatch/authentication/asktoreset",
 			   dataType: "json",
 			   type: "post",
 			   contentType: "application/json",

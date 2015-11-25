@@ -147,7 +147,7 @@ function listapitch(IDPage,page,genere) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://staging.storymatch.co/storymatch/search/genrelist",
+		   url:"https://dev.storymatch/storymatch/search/genrelist",
 		   data: {token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -186,7 +186,7 @@ function listapitch(IDPage,page,genere) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://staging.storymatch.co/storymatch/search/stepsbygenres",
+		   url:"https://dev.storymatch/storymatch/search/stepsbygenres",
 		   data: {token:localStorage.getItem("Token"),genre:genere,page:gopagina,pagesize:"5"},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -297,7 +297,7 @@ function listapitch(IDPage,page,genere) {
 																			 
 																			 $(".spinner").show();
 																			 $.ajax({
-																					url: "https://staging.storymatch.co/storymatch/search/rate",
+																					url: "https://dev.storymatch/storymatch/search/rate",
 																					dataType: "json",
 																					type: "post",
 																					contentType: "application/json",
@@ -426,7 +426,7 @@ function mandamessaggio(testo) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://staging.storymatch.co/storymatch/search/fts",
+		   url:"https://dev.storymatch/storymatch/search/fts",
 		   data: {q:testo},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -607,7 +607,7 @@ function AddPreferiti(IDPage,IdStoria,genere) {
 	
 	$(".spinner").show();
 	$.ajax({
-		   url: "https://staging.storymatch.co/storymatch/search/bookmark",
+		   url: "https://dev.storymatch/storymatch/search/bookmark",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
@@ -710,7 +710,7 @@ function clonestory() {
 	
 	$(".spinner").show();
 	$.ajax({
-		   url: "https://staging.storymatch.co/storymatch/userstories/clone",
+		   url: "https://dev.storymatch/storymatch/userstories/clone",
 		   dataType: "json",
 		   type: "post",
 		   contentType: "application/json",
@@ -794,7 +794,7 @@ function listarated(IDPage,page,genere) {
 		$(".spinner").show();
 		$.ajax({
 			   type:"GET",
-			   url:"https://staging.storymatch.co/storymatch/search/genrelist",
+			   url:"https://dev.storymatch/storymatch/search/genrelist",
 			   data: {token:localStorage.getItem("Token")},
 			   contentType: "application/json; charset=utf-8",
 			   json: 'callback',
@@ -833,7 +833,7 @@ function listarated(IDPage,page,genere) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://staging.storymatch.co/storymatch/search/stepshigrated",
+		   url:"https://dev.storymatch/storymatch/search/stepshigrated",
 		   data: {token:localStorage.getItem("Token"),genre:genere,page:gopagina,pagesize:"5"},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -916,7 +916,7 @@ function listarated(IDPage,page,genere) {
 																		   
 																		   $(".spinner").show();
 																		   $.ajax({
-																				  url: "https://staging.storymatch.co/storymatch/search/rate",
+																				  url: "https://dev.storymatch/storymatch/search/rate",
 																				  dataType: "json",
 																				  type: "post",
 																				  contentType: "application/json",
@@ -1068,7 +1068,7 @@ function preferiti(IDPage,page,genere) {
 		$(".spinner").show();
 		$.ajax({
 			   type:"GET",
-			   url:"https://staging.storymatch.co/storymatch/search/genrelist",
+			   url:"https://dev.storymatch/storymatch/search/genrelist",
 			   data: {token:localStorage.getItem("Token")},
 			   contentType: "application/json; charset=utf-8",
 			   json: 'callback',
@@ -1107,7 +1107,7 @@ function preferiti(IDPage,page,genere) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://staging.storymatch.co/storymatch/search/stepspreferred",
+		   url:"https://dev.storymatch/storymatch/search/stepspreferred",
 		   //data: {token:localStorage.getItem("Token"),genre:genere,page:gopagina,pagesize:"5"},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -1190,7 +1190,7 @@ function preferiti(IDPage,page,genere) {
 																		   
 																		   $(".spinner").show();
 																		   $.ajax({
-																				  url: "https://staging.storymatch.co/storymatch/search/rate",
+																				  url: "https://dev.storymatch/storymatch/search/rate",
 																				  dataType: "json",
 																				  type: "post",
 																				  contentType: "application/json",
@@ -1323,7 +1323,7 @@ function preferiti(IDPage,page,genere) {
 /*	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://staging.storymatch.co/storymatch/search/genrelist",
+		   url:"https://dev.storymatch/storymatch/search/genrelist",
 		   data: {token:localStorage.getItem("Token")},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -1358,7 +1358,7 @@ function preferiti(IDPage,page,genere) {
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://staging.storymatch.co/storymatch/search/stepspreferred",
+		   url:"https://dev.storymatch/storymatch/search/stepspreferred",
 		   //data: {token:localStorage.getItem("Token"),genre:genere,page:page,pagesize:"5"},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
@@ -1429,7 +1429,7 @@ function preferiti(IDPage,page,genere) {
 																		   
 																		   $(".spinner").show();
 																		   $.ajax({
-																				  url: "https://staging.storymatch.co/storymatch/search/rate",
+																				  url: "https://dev.storymatch/storymatch/search/rate",
 																				  dataType: "json",
 																				  type: "post",
 																				  contentType: "application/json",
@@ -1529,7 +1529,7 @@ function getParameterByName(name) {
 						  $(".spinner").show();
 						  $.ajax({
 								 type:"GET",
-								 url:"https://staging.storymatch.co/storymatch/authentication/validatetoken",
+								 url:"https://dev.storymatch/storymatch/authentication/validatetoken",
 								 data: {token:Token},
 								 contentType: "application/json; charset=utf-8",
 								 json: 'callback',
