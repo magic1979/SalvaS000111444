@@ -19,14 +19,14 @@ ul li {
 	color: #FFF;
 	text-decoration: none;
 	text-transform: none;
-	font-size: 18px;
+	font-size: 14px;
 }
 
 .sel-edit {
 	color: #00FFFF;
 	text-decoration: none;
 	text-transform: none;
-	font-size: 18px;
+	font-size: 14px;
     border-bottom: 1px solid black; 
 }
 
