@@ -108,7 +108,7 @@ Salvatore sas
 		<gap:plugin name="de.appplant.cordova.plugin.email-composer"  />
 		<gap:plugin name="com.ionic.keyboard" version="1.0.3" />
 		<gap:plugin name="com.mcm.plugins.androidinappbilling" version="3.0.6" />
-		<plugin name="net.yoik.cordova.plugins.screenorientation" spec="1.3.1" source="npm" />
+		<plugin name="net.yoik.cordova.plugins.screenorientation" spec="1.3.1" source="pgb" />
 		
 	<gap:config-file platform="android" parent="/manifest" mode="add" xmlns:android="http://schemas.android.com/apk/res/android">
 		android:windowSoftInputMode="stateVisible"
