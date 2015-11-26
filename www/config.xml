@@ -10,10 +10,10 @@
 Salvatore sas
 		</author>
 		<preference name="phonegap-version" value="3.7.0" />
-		<preference name="orientation" value="portrait" />
+		<preference name="orientation" value="default" />
 		<preference name="android-windowSoftInputMode" value="stateVisible|adjustResize" />
 		<preference name="fullscreen" value="false" />
-		<preference name="target-device" value="universal" />
+		<preference name="target-device" value="tablet" />
 		<preference name="webviewbounce" value="true" />
 		<preference name="prerendered-icon" value="true" />
 		<preference name="stay-in-webview" value="true" />
@@ -86,11 +86,12 @@ Salvatore sas
 		<gap:splash src="res/screen/ios/screen-iphone-portrait-568h-2x.png" gap:platform="ios" width="640" height="1136" />
 		<gap:splash src="res/screen/ios/screen-ipad-portrait.png" gap:platform="ios" width="768" height="1024 " />
 		<gap:splash src="res/screen/ios/screen-ipad-landscape.png" gap:platform="ios" width="1024" height="768" />
-		<gap:splash src="240x400.png" gap:platform="android" gap:density="ldpi" />
-		<gap:splash src="320x480.png" gap:platform="android" gap:density="mdpi" />
-		<gap:splash src="480x800.png" gap:platform="android" gap:density="hdpi" />
-		<gap:splash src="720x960.png" gap:platform="android" gap:density="xhdpi" />
-		<gap:splash src="1080x1920.png" gap:platform="android" gap:density="xxhdpi" />
+		<gap:splash src="LDPI.png" gap:platform="android" gap:density="ldpi" />
+		<gap:splash src="MDPI.png" gap:platform="android" gap:density="mdpi" />
+		<gap:splash src="HDPI.png" gap:platform="android" gap:density="hdpi" />
+		<gap:splash src="XHDPI.png" gap:platform="android" gap:density="xhdpi" />
+		<gap:splash src="XXHDPI.png" gap:platform="android" gap:density="xxhdpi" />
+		<gap:splash src="XXXHDPI.png" gap:platform="android" gap:density="xxxhdpi" />
 		<gap:splash src="res/screen/blackberry/screen-225.png" gap:platform="blackberry" />
 		<gap:splash src="res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone" />
 		<gap:splash src="splash.png" />
@@ -107,6 +108,7 @@ Salvatore sas
 		<gap:plugin name="de.appplant.cordova.plugin.email-composer"  />
 		<gap:plugin name="com.ionic.keyboard" version="1.0.3" />
 		<gap:plugin name="com.mcm.plugins.androidinappbilling" version="3.0.6" />
+		<plugin name="net.yoik.cordova.plugins.screenorientation" spec="1.3.1" source="npm" />
 		
 	<gap:config-file platform="android" parent="/manifest" mode="add" xmlns:android="http://schemas.android.com/apk/res/android">
 		android:windowSoftInputMode="stateVisible"

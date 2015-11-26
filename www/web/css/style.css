@@ -16,9 +16,17 @@
 ul li {
     display: inline-block;
     cursor: pointer;
+	color: #FFF;
+	text-decoration: none;
+	text-transform: none;
+	font-size: 18px;
 }
 
 .sel-edit {
+	color: #00FFFF;
+	text-decoration: none;
+	text-transform: none;
+	font-size: 18px;
     border-bottom: 1px solid black; 
 }
 

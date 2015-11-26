@@ -3,6 +3,7 @@ document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady() {
 	
 	//document.addEventListener("resume", onResume, false);
+	screen.lockOrientation('portrait');
 	
 	
 	$.fn.extend({
@@ -196,7 +197,7 @@ function listapitch(IDPage,page,genere) {
 		   var lista="";
 		   
 		  if (page==1){
-		     lista = lista + "<table width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella' width='70%'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='4'>Need some inspirations?<br>Trey with thrse ideas or start from scatch</font></td></tr></table></td><td class='trtabella' width='5%' align='center'></td><td class='trtabella' width='10%' align='left'><a href='javascript:showmessagge()' rel='external'><div width='52px' class='idea'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr><tr id='ricerca' style='display: none;'><td class='trtabella2' colspan='4' align='center'><table border='0'><tr><td><input type='text' id='example' size='70' placeholder='Write...'/></td></tr><tr><td><table width='100%' id='example-output' align='center'><tr><td></td><td></td></tr></table></td></tr></table></td></tr><tr><td class='trtabella3' colspan='4' align='center'><table width='100%' align='center'><tr><td align='center'> <select id='tutti' class='btn'>"+ primo +"</select></td><td align='center'><div id='select'><select id='mySelect' name='mySelect' class='btn'>"+ generi +"</select></div></td><td align='center'><a id='migliori' href='swip3.html?IDPage="+ IDPage +"&IDRated=1' rel='external' class='btn'><font color='#000000'>Best Rated</font></a></td></tr></table></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
+		     lista = lista + "<table width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella' width='70%'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='4'>Need some inspirations?<br>Trey with thrse ideas or start from scatch</font></td></tr></table></td><td class='trtabella' width='5%' align='center'></td><td class='trtabella' width='10%' align='left'><a href='javascript:showmessagge()' rel='external'><div width='52px' class='idea'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr><tr id='ricerca' style='display: none;'><td class='trtabella2' colspan='4' align='center'><table border='0'><tr><td><input type='text' id='example' placeholder='Write...'/></td></tr><tr><td><table width='100%' id='example-output' align='center'><tr><td></td><td></td></tr></table></td></tr></table></td></tr><tr><td class='trtabella3' colspan='4' align='center'><table width='100%' align='center'><tr><td align='center'> <select id='tutti' class='btn'>"+ primo +"</select></td><td align='center'><div id='select'><select id='mySelect' name='mySelect' class='btn'>"+ generi +"</select></div></td><td align='center'><a id='migliori' href='swip3.html?IDPage="+ IDPage +"&IDRated=1' rel='external' class='btn'><font color='#000000'>Best Rated</font></a></td></tr></table></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
 		   }
 		   else{
 		     lista = lista + "<table width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella2' colspan='4'></td></tr><tr><td class='trtabella2' colspan='4'><br></td></tr>"
@@ -435,7 +436,7 @@ function mandamessaggio(testo) {
 		   
 		   var risultato="";
 		   
-		   $.each(result, function(i,item){
+		   $.each(result.obj, function(i,item){
 
 				  risultato = risultato + "<tr><td width='70%' align='left'><b>"+ item.storyName +"</b> - "+ item.characterName +" ("+ item.storyYear +")<br>"+ item.genres +"</td><td width='10%' align='right'>Edit</td><td width='20%' align='left'> <a href='javascript:confirmLogout("+  localStorage.getItem("IDPage") +","+ item.storyId +")' rel='external'><div width='25px' class='edita'></div></a></td></tr><tr><td colspan='3'><hr></td></tr>";
 			});
@@ -581,7 +582,8 @@ function listapitch2(IDPage,page,genere) {
 
 
 function showmessagge() {
-	$("#ricerca").show();			 
+	$("#ricerca").show();
+    			 
 	var typingTimer;                
 	var doneTypingInterval = 500;
 	
@@ -843,7 +845,7 @@ function listarated(IDPage,page,genere) {
 		   var lista="";
 		   
 		   if (page==1){
-		   lista = lista + "<table width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella' width='70%'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='4'>Need some inspirations?<br>Trey with thrse ideas or start from scatch</font></td></tr></table></td><td class='trtabella' width='5%' align='center'></td><td class='trtabella' width='10%' align='left'><a href='javascript:showmessagge()' rel='external'><div width='52px' class='idea'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr><tr id='ricerca' style='display: none;'><td class='trtabella2' colspan='4' align='center'><table border='0'><tr><td><input type='text' id='example' size='70' placeholder='Write...'/></td></tr><tr><td><table width='100%' id='example-output' align='center'><tr><td></td><td></td></tr></table></td></tr></table></td></tr><tr><td class='trtabella3' colspan='4' align='center'><table width='100%' align='center'><tr><td align='center'> <select id='tutti' class='btn'>"+ primo +"</select></td><td align='center'><div id='select'><select id='mySelect' name='mySelect' class='btn'>"+ generi +"</select></div></td><td align='center'><a id='migliori' href='#' class='btn'><font color='#000000'>Best Rated</font></a></td></tr></table></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
+		   lista = lista + "<table width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella' width='70%'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='4'>Need some inspirations?<br>Trey with thrse ideas or start from scatch</font></td></tr></table></td><td class='trtabella' width='5%' align='center'></td><td class='trtabella' width='10%' align='left'><a href='javascript:showmessagge()' rel='external'><div width='52px' class='idea'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr><tr id='ricerca' style='display: none;'><td class='trtabella2' colspan='4' align='center'><table border='0'><tr><td><input type='text' id='example' placeholder='Write...'/></td></tr><tr><td><table width='100%' id='example-output' align='center'><tr><td></td><td></td></tr></table></td></tr></table></td></tr><tr><td class='trtabella3' colspan='4' align='center'><table width='100%' align='center'><tr><td align='center'> <select id='tutti' class='btn'>"+ primo +"</select></td><td align='center'><div id='select'><select id='mySelect' name='mySelect' class='btn'>"+ generi +"</select></div></td><td align='center'><a id='migliori' href='#' class='btn'><font color='#000000'>Best Rated</font></a></td></tr></table></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
 		   }
 		   else{
 		   lista = lista + "<table width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella2' colspan='4'></td></tr><tr><td class='trtabella2' colspan='4'><br></td></tr>"
@@ -1117,7 +1119,7 @@ function preferiti(IDPage,page,genere) {
 		   var lista="";
 		   
 		   if (page==1){
-		   lista = lista + "<table width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella' width='70%'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='4'>Need some inspirations?<br>Trey with thrse ideas or start from scatch</font></td></tr></table></td><td class='trtabella' width='5%' align='center'></td><td class='trtabella' width='10%' align='left'><a href='javascript:showmessagge()' rel='external'><div width='52px' class='idea'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr><tr id='ricerca' style='display: none;'><td class='trtabella2' colspan='4' align='center'><table border='0'><tr><td><input type='text' id='example' size='70' placeholder='Write...'/></td></tr><tr><td><table width='100%' id='example-output' align='center'><tr><td></td><td></td></tr></table></td></tr></table></td></tr><tr><td class='trtabella3' colspan='4' align='center'><table width='100%' align='center'><tr><td align='center'> <select id='tutti' class='btn'>"+ primo +"</select></td><td align='center'><div id='select'><select id='mySelect' name='mySelect' class='btn'>"+ generi +"</select></div></td><td align='center'><a id='migliori' href='swip3.html?IDPage="+ IDPage +"&IDRated=1' rel='external' class='btn'><font color='#000000'>Best Rated</font></a></td></tr></table></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
+		   lista = lista + "<table width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella' width='70%'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='4'>Need some inspirations?<br>Trey with thrse ideas or start from scatch</font></td></tr></table></td><td class='trtabella' width='5%' align='center'></td><td class='trtabella' width='10%' align='left'><a href='javascript:showmessagge()' rel='external'><div width='52px' class='idea'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr><tr id='ricerca' style='display: none;'><td class='trtabella2' colspan='4' align='center'><table border='0'><tr><td><input type='text' id='example' placeholder='Write...'/></td></tr><tr><td><table width='100%' id='example-output' align='center'><tr><td></td><td></td></tr></table></td></tr></table></td></tr><tr><td class='trtabella3' colspan='4' align='center'><table width='100%' align='center'><tr><td align='center'> <select id='tutti' class='btn'>"+ primo +"</select></td><td align='center'><div id='select'><select id='mySelect' name='mySelect' class='btn'>"+ generi +"</select></div></td><td align='center'><a id='migliori' href='swip3.html?IDPage="+ IDPage +"&IDRated=1' rel='external' class='btn'><font color='#000000'>Best Rated</font></a></td></tr></table></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
 		   }
 		   else{
 		   lista = lista + "<table width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella2' colspan='4'></td></tr><tr><td class='trtabella2' colspan='4'><br></td></tr>"

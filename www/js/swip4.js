@@ -3,6 +3,7 @@ document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady() {
 	//document.addEventListener("resume", onResume, false);
 	//window.addEventListener('native.keyboardhide', keyboardHideHandler);
+	screen.lockOrientation('portrait');
 	
 	$.mobile.defaultPageTransition = 'none';
 	$.mobile.defaultDialogTransition = 'none';
@@ -223,7 +224,7 @@ function editstory(id,IDPitch) {
 				  
 				  //alert(localStorage.getItem("myTextarea"+ conto +""))
 				  
-				  story = story + "<tr><td class='trtabella' width='90%'><table width='100%' border='0'><tr><td width='10%'></td><td width='90%' align='left'><b>"+ conto +"</b></td></tr><tr><td width='10%'></td><td width='90%' align='left'><input id='idLine"+ conto +"' value='"+ fruits[i]["id"] +"' type='hidden'><textarea name='myTextarea"+ conto +"' id='myTextarea"+ conto +"' rows='3' cols='60' class='textarea1' style='background-color: transparent;' placeholder='Write Step' maxlength='200' onkeyup='countChar(this)'>"+ steppo +"</textarea></td></tr><tr><td width='10%'></td><td width='90%' align='left'><br></td></tr><tr><td width='10%'></td><td width='90%' align='left'><table width='100%' border='0'><tr><td width='55px'><a id='sin"+ conto +"' href='#' rel='external'><div width='38px' class='sinistra'></div></a></td><td width='55px'><a id='des"+ conto +"' href='#' rel='external'><div width='38px' class='destra'></div></a></td><td width='55px'><a id='abilita"+ conto +"' href='javascript:abilita"+ conto +"()'><div id='edit"+ conto +"' width='38px' class='edita'></div></a></td><td width='55px'><a href='javascript:lucchetto("+ fruits[i]["id"] +","+ conto +","+ id +","+ IDPitch +")' rel='external'><div id='lock"+ conto +"' width='38px' class='lucchetto'></div></a></td><td width='55px'><a href='javascript:shuffle("+ fruits[i]["id"] +","+ conto +","+ id +","+ IDPitch +")' rel='external'><div width='38px' class='infinito'></div></a></td><td width='55px'></td></tr></table></td></tr></table></td></tr><tr><td class='trtabella2' colspan='4'><input type='hidden' id='locco"+ conto +"' name='locco"+ conto +"' value='0'><hr></td></tr>"
+				  story = story + "<tr><td class='trtabella' width='90%'><table width='100%' border='0'><tr><td width='10%'></td><td width='90%' align='left'><b>"+ conto +"</b></td></tr><tr><td width='10%'></td><td width='90%' align='left'><input id='idPos"+ conto +"' value='"+ fruits[i]["pos"] +"' type='hidden'><input id='idLine"+ conto +"' value='"+ fruits[i]["id"] +"' type='hidden'><textarea name='myTextarea"+ conto +"' id='myTextarea"+ conto +"' rows='3' cols='60' class='textarea1' style='background-color: transparent;' placeholder='Write Step' maxlength='200' onkeyup='countChar(this)'>"+ steppo +"</textarea></td></tr><tr><td width='10%'></td><td width='90%' align='left'><br></td></tr><tr><td width='10%'></td><td width='90%' align='left'><table width='100%' border='0'><tr><td width='55px'><a id='sin"+ conto +"' href='#' rel='external'><div width='38px' class='sinistra'></div></a></td><td width='55px'><a id='des"+ conto +"' href='#' rel='external'><div width='38px' class='destra'></div></a></td><td width='55px'><a id='abilita"+ conto +"' href='javascript:abilita"+ conto +"()'><div id='edit"+ conto +"' width='38px' class='edita'></div></a></td><td width='55px'><a href='javascript:lucchetto("+ fruits[i]["id"] +","+ conto +","+ id +","+ IDPitch +")' rel='external'><div id='lock"+ conto +"' width='38px' class='lucchetto'></div></a></td><td width='55px'><a href='javascript:shuffle("+ fruits[i]["id"] +","+ conto +","+ id +","+ IDPitch +")' rel='external'><div width='38px' class='infinito'></div></a></td><td width='55px'></td></tr></table></td></tr></table></td></tr><tr><td class='trtabella2' colspan='4'><input type='hidden' id='locco"+ conto +"' name='locco"+ conto +"' value='0'><hr></td></tr>"
 				  
 				  
 				  conto = conto+1;
@@ -708,6 +709,7 @@ function salvasteps(id,prov) {
 	var contasalva = 1;
 	var stringa = "["
 	var iddOut;
+    var iddPos;
 	var OutOutline;
 	
 	var numout = 12;
@@ -718,16 +720,17 @@ function salvasteps(id,prov) {
 	{
 
 		iddOut = document.getElementById("idLine"+ contasalva +"").value
-		
+		iddPos = document.getElementById("idPos"+ contasalva +"").value
+
 		OutOutline = document.getElementById("myTextarea"+ contasalva +"").value;
 		OutOutline.replace(' ','%20');
 		
 		
 		if (contasalva==1){
-			stringa = stringa + "{\"id\":\""+ iddOut +"\",\"step\":\""+ OutOutline +"\"}";
+			stringa = stringa + "{\"id\":\""+ iddOut +"\",\"step\":\""+ OutOutline +"\",\"pos\":\""+ iddPos +"\"}";
 		}
 		else{
-			stringa = stringa + ",{\"id\":\""+ iddOut +"\",\"step\":\""+ OutOutline +"\"}";
+			stringa = stringa + ",{\"id\":\""+ iddOut +"\",\"step\":\""+ OutOutline +"\",\"pos\":\""+ iddPos +"\"}";
 		}
 		
 		contasalva = contasalva + 1;

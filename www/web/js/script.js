@@ -101,6 +101,9 @@ $('#edit').on('editable.contentChanged', function(event, editor) {
 });
 
 $(document).ready(function() {
+
+    var IDPage = getParameterByName('id');
+
     installNewLineCallback();
     installKeyDownCallback();
     installMouseCallback();
@@ -109,7 +112,35 @@ $(document).ready(function() {
 
     var script = 0;
     // METTER IL CONTENUTO DELLO SCRIPT DENTRO LA VARIABILE
-    var script = "<br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br>"
+
+    	  $(".spinner").show();
+	  $.ajax({
+			 type:"GET",
+			 url:"https://dev.storymatch.co/storymatch/userstories/getscript",
+			 data: {storyid:IDPage},
+			 contentType: "application/json; charset=utf-8",
+			 json: 'callback',
+			 crossDomain: true,
+			 success:function(result){
+			 
+					script = result.script;
+
+			 $(".spinner").hide();
+
+			 
+			 },
+			 error: function(){
+			 $(".spinner").hide();
+			 
+			 //alert("Errore Caricamento leggi");
+			 
+			 },
+			 dataType:"json"});
+
+
+
+             //var script = "<br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br>"
+
 
     if (! script) {
         setCurrentClass(scriptActions.TEXT);
@@ -122,6 +153,7 @@ $(document).ready(function() {
     highlightCurrentClassButton();
     updatePages();
 });
+
 
 function installMouseCallback() {
 	//alert()
@@ -349,4 +381,11 @@ function oneFingerScroll() {
 				 });
 	return this;
 };
+
+function getParameterByName(name) {
+		name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+							  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+							  results = regex.exec(location.search);
+							  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+							  }
 

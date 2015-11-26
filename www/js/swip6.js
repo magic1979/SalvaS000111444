@@ -1,13 +1,8 @@
 document.addEventListener('deviceready', onDeviceReady, false);
 
 function onDeviceReady() {
-	document.addEventListener("resume", onResume, false);
 	
-    $(".spinner").hide();
-	
-	//alert(localStorage.getItem("email"))
-	
-	
+	screen.lockOrientation('landscape');
 
 }
 

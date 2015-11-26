@@ -39,6 +39,7 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
+		screen.lockOrientation('portrait');
 		
 		var hoverDelay = $.mobile.buttonMarkup.hoverDelay = 0;
 	

@@ -2,6 +2,7 @@ document.addEventListener('deviceready', onDeviceReady, false);
 
 function onDeviceReady() {
 	//document.addEventListener("resume", onResume, false);
+	screen.lockOrientation('portrait');
 	
 	$.support.cors = true;
 	$.mobile.allowCrossDomainPages = true;
