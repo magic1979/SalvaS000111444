@@ -2,7 +2,7 @@ document.addEventListener('deviceready', onDeviceReady, false);
 
 function onDeviceReady() {
 	
-	screen.lockOrientation('landscape');
+	screen.lockOrientation('portrait');
 
 }
 
