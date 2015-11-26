@@ -110,10 +110,10 @@ $(document).ready(function() {
 				  
 	 //cordova.plugins.Keyboard.disableScroll(true);
 
-    var script = 0;
+    var script;
     // METTER IL CONTENUTO DELLO SCRIPT DENTRO LA VARIABILE
 
-    	  $(".spinner").show();
+	/*$(".spinner").show();
 	  $.ajax({
 			 type:"GET",
 			 url:"https://dev.storymatch.co/storymatch/userstories/getscript",
@@ -135,11 +135,11 @@ $(document).ready(function() {
 			 //alert("Errore Caricamento leggi");
 			 
 			 },
-			 dataType:"json"});
+			 dataType:"json"});*/
 
 
 
-             //var script = "<br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br>"
+    var script = "<br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br>"
 
 
     if (! script) {
