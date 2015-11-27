@@ -108,7 +108,7 @@ $(document).ready(function() {
     var IDPage = getParameterByName('id');
 
     $("#shareS").attr("href", "javascript:share("+ IDPage +")");
-    //$("#indietro").attr("href", "javascript:indietrosalva("+ IDPage +")");
+    $("#indietro").attr("href", "javascript:indietrosalva("+ IDPage +")");
     //$("#insPDF").attr("href", "javascript:creapdf("+ IDPage +")");
 
     installNewLineCallback();
@@ -229,6 +229,56 @@ function installKeyDownCallback() {
             break;
         }
     });
+}
+
+function indietrosalva(IDPage){
+e.preventDefault();
+		
+		$('#edit').editable('focus');
+		var ciccio2 = $('#edit').editable('getHTML', false, true)
+					  
+				$(".spinner").show();
+				 $.ajax({
+				 url: "https://dev.storymatch.co/storymatch/userstories/update/script",
+				 dataType: "json",
+				 type: "post",
+				 contentType: "application/json",
+				 data: JSON.stringify( { "storyid": ""+ IDPage +"","script":""+ ciccio2 +""} ),
+				 processData: false,
+				 crossDomain: true,
+				 success:function(result){
+				 
+				 if (result.ID==1024){
+				 //OK
+
+				 window.location.href = "swip5.html?id="+ IDPage +"";
+				 
+				 }
+				 else{
+				 navigator.notification.alert(
+				 result.msg,  // message
+				 alertDismissed,         // callback
+				 'Save Script',            // title
+				 'OK'                  // buttonName
+				 );
+				 }
+				 
+				 $(".spinner").hide();
+				 
+				 },
+				 error: function(){
+				 $(".spinner").hide();
+				 
+						navigator.notification.alert(
+													 'possible network error',  // message
+													 alertDismissed,         // callback
+													 'error',            // title
+													 'OK'                  // buttonName
+													 );
+				 
+				 },
+				 dataType:"json"});
+
 }
 
 function tabbing(){
