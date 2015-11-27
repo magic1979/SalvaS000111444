@@ -109,7 +109,7 @@ $(document).ready(function() {
 
     $("#shareS").attr("href", "javascript:share("+ IDPage +")");
     $("#indietro").attr("href", "javascript:indietrosalva("+ IDPage +")");
-    $("#pdfsalva").attr("href", "javascript:creapdf("+ IDPage +")");
+    $("#getHTML").attr("href", "javascript:creapdf("+ IDPage +")");
 
     installNewLineCallback();
     installKeyDownCallback();
