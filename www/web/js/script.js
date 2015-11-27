@@ -108,6 +108,8 @@ $(document).ready(function() {
     var IDPage = getParameterByName('id');
 
     $("#shareS").attr("href", "javascript:share("+ IDPage +")");
+    $("#indietro").attr("href", "javascript:indietrosalva("+ IDPage +")");
+    $("#pdfsalva").attr("href", "javascript:creapdf("+ IDPage +")");
 
     installNewLineCallback();
     installKeyDownCallback();
@@ -419,7 +421,7 @@ function oneFingerScroll() {
 	return this;
 };
 
-$(document).on("touchstart", "#indietro", function(e){
+function indietrosalva(IDPage) {
 
 		e.preventDefault();
 		
