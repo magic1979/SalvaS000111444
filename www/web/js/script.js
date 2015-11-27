@@ -79,6 +79,9 @@ $('#btn-group > li').mousedown(function(e) {
         case 'text':
             setCurrentClass(scriptActions.TEXT);
         break;
+         case 'TAB':
+           tabbing();
+        break;
     }
     $('#edit').editable('focus');
 });
@@ -104,6 +107,8 @@ $(document).ready(function() {
 
     var IDPage = getParameterByName('id');
 
+    $("#shareS").attr("href", "javascript:share("+ IDPage +")");
+
     installNewLineCallback();
     installKeyDownCallback();
     installMouseCallback();
@@ -113,7 +118,7 @@ $(document).ready(function() {
     var script;
     // METTER IL CONTENUTO DELLO SCRIPT DENTRO LA VARIABILE
 
-	/*$(".spinner").show();
+	$(".spinner").show();
 	  $.ajax({
 			 type:"GET",
 			 url:"https://dev.storymatch.co/storymatch/userstories/getscript",
@@ -124,9 +129,21 @@ $(document).ready(function() {
 			 success:function(result){
 			 
 					script = result.script;
+                    localStorage.setItem("script", script);
 
 			 $(".spinner").hide();
 
+
+                if (! script) {
+                    setCurrentClass(scriptActions.TEXT);
+                } else {
+                    $("#edit").data('fa.editable').setHTML(script);
+                }
+
+                $("#edit").editable('focus');
+
+                highlightCurrentClassButton();
+                updatePages();
 			 
 			 },
 			 error: function(){
@@ -135,23 +152,14 @@ $(document).ready(function() {
 			 //alert("Errore Caricamento leggi");
 			 
 			 },
-			 dataType:"json"});*/
+			 dataType:"json"});
 
 
 
-    var script = "<br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br>"
+    //var script = "<br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br><br>jkljkj j kj<br>"
 
 
-    if (! script) {
-        setCurrentClass(scriptActions.TEXT);
-    } else {
-        $("#edit").data('fa.editable').setHTML(script);
-    }
 
-    $("#edit").editable('focus');
-
-    highlightCurrentClassButton();
-    updatePages();
 });
 
 
@@ -219,6 +227,35 @@ function installKeyDownCallback() {
             break;
         }
     });
+}
+
+function tabbing(){
+     e.preventDefault();
+
+                var currentElement = getCurrentElement();
+                var currentClassName = currentElement.className;
+                if (currentClassName === '') {
+                    currentClassName = 'text';
+                }
+                var currentClassId = scriptClasses.indexOf(currentClassName);
+                var nextClassId = -1;
+
+                if (shiftDown) {
+                    if (currentClassId === 0) {
+                        nextClassId = scriptClasses.length - 1;
+                    } else {
+                        nextClassId = currentClassId - 1;
+                    }
+                } else {
+                    if (currentClassId + 1 >= scriptClasses.length) {
+                        nextClassId = 0;
+                    } else {
+                        nextClassId = currentClassId + 1;
+                    }
+                }
+
+                setCurrentClass(nextClassId);
+
 }
 
 function markPos() {
@@ -381,6 +418,258 @@ function oneFingerScroll() {
 				 });
 	return this;
 };
+
+$(document).on("touchstart", "#indietro", function(e){
+
+		e.preventDefault();
+		
+		$('#edit').editable('focus');
+		var salvascript = $('#edit').editable('getHTML', false, true)
+					  
+				$(".spinner").show();
+				 $.ajax({
+				 url: "https://dev.storymatch.co/storymatch/userstories/update/script",
+				 dataType: "json",
+				 type: "post",
+				 contentType: "application/json",
+				 data: JSON.stringify( { "storyid": ""+ IDPage +"","script":""+ salvascript +""} ),
+				 processData: false,
+				 crossDomain: true,
+				 success:function(result){
+				 
+				 if (result.ID==1024){
+				 //OK
+
+				 window.location.href = "swip5.html?id="+ IDPage +"";
+				 
+				 }
+				 else{
+				     navigator.notification.alert(
+				     result.msg,  // message
+				     alertDismissed,         // callback
+				     'Save Script',            // title
+				     'OK'                  // buttonName
+				     );
+				 }
+				 
+				 $(".spinner").hide();
+				 
+				 },
+				 error: function(){
+				 $(".spinner").hide();
+				 
+						navigator.notification.alert(
+													 'possible network error',  // message
+													 alertDismissed,         // callback
+													 'error',            // title
+													 'OK'                  // buttonName
+													 );
+				 
+				 },
+				 dataType:"json"});
+				
+});
+
+  function share(id) {
+	  localStorage.setItem("sharestory", id);
+	  
+	  navigator.notification.prompt(
+									'Share your story',  // message
+									sharestory,                  // callback to invoke
+									'Share Story',            // title
+									['Invia','Annulla'],             // buttonLabels
+									''                 // defaultText
+									);
+  }
+
+    function sharestory(results) {
+	  if(results.buttonIndex==1){
+		  if (results.input1 == "") {
+			  navigator.notification.alert(
+										   'insert email',  // message
+										   alertDismissed,         // callback
+										   'Email',            // title
+										   'OK'                  // buttonName
+										   );
+										   return;
+		  }
+		  
+		  EmailAddr = results.input1;
+		  Filtro = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,})+\.)+([a-zA-Z0-9]{2,})+$/;
+		  if (Filtro.test(EmailAddr)) {
+			  
+		  }
+		  else {
+			  navigator.notification.alert(
+										   'Caratteri email non consentiti',  // message
+										   alertDismissed,         // callback
+										   'Email',            // title
+										   'OK'                  // buttonName
+										   );
+										   return;
+		  }
+		  
+		  
+		  $(".spinner").show();
+		  $.ajax({
+				 url: "https://dev.storymatch.co/storymatch/userstories/share",
+				 dataType: "json",
+				 type: "post",
+				 contentType: "application/json",
+				 data: JSON.stringify( { "storyid": ""+ localStorage.getItem("sharestory") +"", "usernametoshare":""+ results.input1 +""} ),
+				 processData: false,
+				 crossDomain: true,
+				 success:function(result){
+				 
+				 if (result.ID==1024){
+				 //OK
+				 navigator.notification.alert(
+											  result.msg,  // message
+											  alertDismissed,         // callback
+											  'Share Story',            // title
+											  'OK'                  // buttonName
+											  );
+				 
+				 //listaStory()
+				 }
+				 else{
+				 navigator.notification.alert(
+											  result.msg,  // message
+											  alertDismissed,         // callback
+											  'Share Story',            // title
+											  'OK'                  // buttonName
+											  );
+				 }
+				 
+				 $(".spinner").hide();
+				 
+				 },
+				 error: function(){
+				 $(".spinner").hide();
+				 
+				 navigator.notification.alert(
+											  'possible network error',  // message
+											  alertDismissed,         // callback
+											  'error',            // title
+											  'OK'                  // buttonName
+											  );
+				 
+				 },
+				 dataType:"json"});
+				 
+				 
+				 
+				 
+	  }
+	  
+  }
+
+    function creapdf(id) {
+	  
+	  $(".spinner").show();
+	  $.ajax({
+			 type:"GET",
+			 url:"https://dev.storymatch.co/storymatch/userstories/createpdfurl",
+			 data: {storyid:id},
+			 contentType: "application/json; charset=utf-8",
+			 json: 'callback',
+			 crossDomain: true,
+			 success:function(result){
+			 
+			 //alert(result.url)
+			 
+			 var ref = window.open('https://'+ result.url +'', '_system', 'location=yes');
+			 
+			 $(".spinner").hide();
+			 
+			 },
+			 error: function(){
+			 $(".spinner").hide();
+			 
+			 navigator.notification.alert(
+										  'Possibile errore di rete, riprova tra qualche minuto',  // message
+										  alertDismissed,         // callback
+										  'Errore',            // title
+										  'OK'                  // buttonName
+										  );
+			 
+			 },
+			 dataType:"json"});
+	 
+	 /*navigator.notification.alert(
+								  'Under Construction',  // message
+								  alertDismissed,         // callback
+								  'Stop',            // title
+								  'OK'                  // buttonName
+								  );*/
+	 
+	 //var ref = window.open('https://dev.storymatch.co/storymatch/userstories/readpdfurl/9b61d084-5a48-43a8-8711-29bcf2ae52a3/81', '_system', 'location=yes');
+
+	 
+
+	 //var ref = window.open('https://dev.storymatch.co/storymatch/userstories/createpdf?storyid='+ id +'', '_system', 'location=yes');
+
+  }
+
+
+  		$(document).on("touchstart", "#getHTML", function(e){
+
+		  e.preventDefault();
+		  $('#edit').editable('focus');
+		  var prendiscript = $('#edit').editable('getHTML', false, true)
+		  //alert(ciccio)
+					   if(prendiscript!=""){
+							$(".spinner").show();
+							$.ajax({
+								   url: "https://dev.storymatch.co/storymatch/userstories/update/script",
+								   dataType: "json",
+								   type: "post",
+								   contentType: "application/json",
+								   data: JSON.stringify( { "storyid": ""+ IDPage +"","script":""+ prendiscript +""} ),
+								   processData: false,
+								   crossDomain: true,
+								   success:function(result){
+								   
+								   if (result.ID==1024){
+								   //OK
+								   /*navigator.notification.alert(
+																'Saved Script',  // message
+																alertDismissed,         // callback
+																'Script',            // title
+																'OK'                  // buttonName
+																);*/
+								   
+								   creapdf(IDPage)
+								   
+								   }
+								   else{
+								   navigator.notification.alert(
+																result.msg,  // message
+																alertDismissed,         // callback
+																'Save Script',            // title
+																'OK'                  // buttonName
+																);
+								   }
+								   
+								   $(".spinner").hide();
+								   
+								   },
+								   error: function(){
+								   $(".spinner").hide();
+								   
+								   navigator.notification.alert(
+																'Possibile errore di rete, riprova tra qualche minuto',  // message
+																alertDismissed,         // callback
+																'Errore',            // title
+																'OK'                  // buttonName
+																);
+								   
+								   },
+								   dataType:"json"});
+					   }
+
+        })
+		
 
 function getParameterByName(name) {
 		name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
