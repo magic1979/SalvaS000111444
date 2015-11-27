@@ -8,6 +8,7 @@
 
 	<link rel="stylesheet" href="web/css/froala.css"/>
 	<link rel="stylesheet" href="web/css/style.css"/>
+	 <link rel="stylesheet" href="css/spinner.css" />
 	
 	<style>
 		
@@ -45,19 +46,28 @@
 	font-family:Roboto, sans-serif;
 	font-size: 9.5px;
 }
+	
+	.draffa {
+		font-family: Arial;
+		color: #fff;
+		font-size: 18px;
+		padding: 5px 5px 5px 5px;
+		border: solid #000 2px;
+		text-decoration: none;
+	}
 
 	</style>
 </head>
 <body>
     	<center>
-		<table id="header" width="100%" border="0" class="topo" >
+		<table id="header" width="100%" border="0" class="topo" height="52px">
 			<tr>
-				<td width="33%" align="left"><a id="indietro" rel="external" class="draffa"><font color="#FFF"><b>&nbsp;&nbsp;Back</b></font></a></td>
+				<td width="33%" align="left"><img src="img/arrowS.png" width="18"><a id="indietro" href="#" class="draffa"><font color="#FFF"><b>Back</b></font></a></td>
 				<td width="33%" align="center"><span id="titolo"><font color="#FFF"><div id="tito"></div></font></span></td>
 				<td width="33%" align="right"><a id="shareS" rel="external" class="draffa"><font color="#FFF"><b>Share</b>&nbsp;</font></a> | <a id="insPDF" class="draffa"><font color="#FFF">&nbsp;<b>PDF</b></font></a></td>
 			</tr>
 		</table>
-	</center>
+	</center><br><br>
 	
 	<section id="editor">
 		
@@ -71,7 +81,7 @@
             <li id="heading">Scene Heading</li><span> <font color="#ffffff" size="4">|</font></span>
             <li id="action">Action</li><span> <font color="#ffffff" size="4">|</font></span>
             <li id="character">Character</li><span> <font color="#ffffff" size="4">|</font></span>
-            <li id="dialog">Dialog</li><span> |</span>
+            <li id="dialog">Dialog</li><span> <font color="#ffffff" size="4">|</font></span>
             <li id="parenthetical">Parenthetical</li><span> <font color="#ffffff" size="4">|</font></span>
             <li id="transition">Transition</li><span> <font color="#ffffff" size="4">|</font></span>
             <li id="shot">Shot</li><span> <font color="#ffffff" size="4">|</font></span>
@@ -94,7 +104,7 @@
   function keyboardShowHandler(e){
 	  
 	  setTimeout (function(){
-				  $('#edit').editable('option', 'height', '500');
+				  $('#edit').editable('option', 'height', '560');
 				  
 				  $("#btn-group").show();
 				  
@@ -115,7 +125,7 @@
 	window.addEventListener('native.keyboardhide', keyboardHideHandler);
 	
 	function keyboardHideHandler(e){
-		$('#edit').editable('option', 'height', '900');
+		$('#edit').editable('option', 'height', '948');
 		
 		$("#btn-group").hide();
 		
