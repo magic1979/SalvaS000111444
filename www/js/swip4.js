@@ -3,7 +3,7 @@ document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady() {
 	//document.addEventListener("resume", onResume, false);
 	//window.addEventListener('native.keyboardhide', keyboardHideHandler);
-	screen.lockOrientation('portrait');
+
 	
 	$.mobile.defaultPageTransition = 'none';
 	$.mobile.defaultDialogTransition = 'none';
@@ -14,12 +14,12 @@ function onDeviceReady() {
 	$.mobile.pushStateEnabled = false;
 	
 	
-	$(document).on('focus', 'select, input, textarea', function () {
+	/*$(document).on('focus', 'select, input, textarea', function () {
 		$('#myfooter').css({'position': 'absolute', 'bottom': '0px' });
 	});
 	$(document).on('blur', 'select, input, textarea', function () {
 		$('#myfooter').css({ 'position': 'fixed' });
-	});
+	});*/
 	
 	var story;
     $(".spinner").hide();
@@ -151,7 +151,6 @@ function buildstory() {
 	$("#contenuto").html(story);
 	
 
-	
 }
 
 function editstory(id,IDPitch) {
@@ -173,7 +172,7 @@ function editstory(id,IDPitch) {
 		   crossDomain: true,
 		   success:function(result){
 		   
-		   story = "<table id='titolo1' width='100%' height='100%' border='0' cellpadding='0' cellspacing='0' style='display: none;'><tr><td class='trtabella2' colspan='4'><br><br></td></tr><tr><td class='trtabella' width='90%'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='4'><b><div id='titolo'>"+ result.title +"</div></b></font></td></tr>";
+		   story = "<table id='titolo1' width='100%' height='100%' border='0' cellpadding='0' cellspacing='0' style='display: none;'><tr><td class='trtabella2' colspan='4'><br><br></td></tr><tr><td class='trtabella' width='90%'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='4'><b><div id='titolo' class='fontegrande'>"+ result.title +"</div></b></font></td></tr>";
 		   
 		   //alert(result.title);
 		   //$("#titolo").html(result.title);
@@ -184,6 +183,20 @@ function editstory(id,IDPitch) {
 				  var crea=0;
 				  var steppo;
 				  var chiuso;
+				  var sex = item.sex
+				  var IsMale;
+				  
+				  if (sex==0){
+					IsMale = true
+				    localStorage.setItem("storysex", "Maschio");
+				  }
+				  else{
+					IsMale = false
+					localStorage.setItem("storysex", "Femmina");
+				  }
+				  
+				  localStorage.setItem("isMale", IsMale);
+				  //alert(IsMale)
 				  
 				  if(conto==1){
 				    pitcho = item.detail["pitch"].replace("'","");
@@ -196,7 +209,7 @@ function editstory(id,IDPitch) {
 				  }
 				  //$("#piccio").html(item.detail["pitch"].replace("'",""));
 				  
-				  //alert(fruits[0]["id"]);
+				  localStorage.setItem("NumSteps", fruits.length);
 				  
 				  for ( i=0; i < fruits.length; i++ )
 				  {
@@ -209,8 +222,23 @@ function editstory(id,IDPitch) {
 				  }
 				  
 				  if((conto==1)||(conto==2)||(conto==3)||(conto==6)||(conto==7)){
-				  //alert(conto);
-				  //alert(fruits[i]["step"].replace("'",""));
+					
+				  
+				  if(conto==1){
+					 localStorage.setItem("pitcho1", steppo);
+				  }
+				  else if (conto==2){
+					 localStorage.setItem("pitcho2", steppo);
+				  }
+				  else if (conto==3){
+					 localStorage.setItem("pitcho3", steppo);
+				  }
+				  else if (conto==6){
+					 localStorage.setItem("pitcho6", steppo);
+				  }
+				  else if (conto==7){
+					 localStorage.setItem("pitcho7", steppo);
+				  }
 				  
 				  if (crea==1){
 					   if(conto==7){
@@ -220,16 +248,17 @@ function editstory(id,IDPitch) {
 					    pitcho = pitcho + " " + steppo
 					    }
 					 }
+				  
 				  }
-				  
-				  //alert(localStorage.getItem("myTextarea"+ conto +""))
-				  
-				  story = story + "<tr><td class='trtabella' width='90%'><table width='100%' border='0'><tr><td width='10%'></td><td width='90%' align='left'><b>"+ conto +"</b></td></tr><tr><td width='10%'></td><td width='90%' align='left'><input id='idPos"+ conto +"' value='"+ fruits[i]["pos"] +"' type='hidden'><input id='idLine"+ conto +"' value='"+ fruits[i]["id"] +"' type='hidden'><textarea name='myTextarea"+ conto +"' id='myTextarea"+ conto +"' rows='3' cols='60' class='textarea1' style='background-color: transparent;' placeholder='Write Step' maxlength='200' onkeyup='countChar(this)'>"+ steppo +"</textarea></td></tr><tr><td width='10%'></td><td width='90%' align='left'><br></td></tr><tr><td width='10%'></td><td width='90%' align='left'><table width='100%' border='0'><tr><td width='55px'><a id='sin"+ conto +"' href='#' rel='external'><div width='38px' class='sinistra'></div></a></td><td width='55px'><a id='des"+ conto +"' href='#' rel='external'><div width='38px' class='destra'></div></a></td><td width='55px'><a id='abilita"+ conto +"' href='javascript:abilita"+ conto +"()'><div id='edit"+ conto +"' width='38px' class='edita'></div></a></td><td width='55px'><a href='javascript:lucchetto("+ fruits[i]["id"] +","+ conto +","+ id +","+ IDPitch +")' rel='external'><div id='lock"+ conto +"' width='38px' class='lucchetto'></div></a></td><td width='55px'><a href='javascript:shuffle("+ fruits[i]["id"] +","+ conto +","+ id +","+ IDPitch +")' rel='external'><div width='38px' class='infinito'></div></a></td><td width='55px'></td></tr></table></td></tr></table></td></tr><tr><td class='trtabella2' colspan='4'><input type='hidden' id='locco"+ conto +"' name='locco"+ conto +"' value='0'><hr></td></tr>"
-				  
+
+				  story = story + "<tr><td class='trtabella' width='90%'><table width='100%' border='0'><tr><td width='10%'></td><td width='90%' align='left'><b>"+ conto +"</b></td></tr><tr><td width='10%'></td><td width='90%' align='left'><input id='idPos"+ conto +"' value='"+ fruits[i]["pos"] +"' type='hidden'><input id='idLine"+ conto +"' value='"+ fruits[i]["id"] +"' type='hidden'><textarea name='myTextarea"+ conto +"' id='myTextarea"+ conto +"' rows='3' cols='60' class='textarea1' style='background-color: transparent;' placeholder='Write Step' maxlength='200' onkeyup='countChar(this)'>"+ steppo +"</textarea></td></tr><tr><td width='10%'></td><td width='90%' align='left'><br></td></tr><tr><td width='10%'></td><td width='90%' align='left'><table width='100%' border='0'><tr><td width='55px'><a id='sin"+ conto +"' href='#' rel='external'><img src='img/Lock.png' width='38px'></a></td><td width='55px'><a id='des"+ conto +"' href='#' rel='external'><div width='38px' class='destra'></div></a></td><td width='55px'><a id='abilita"+ conto +"' href='javascript:abilita"+ conto +"()'><div id='edit"+ conto +"' width='38px' class='edita'></div></a></td><td width='55px'><a href='javascript:lucchetto("+ fruits[i]["id"] +","+ conto +","+ id +","+ IDPitch +")' rel='external'><div id='lock"+ conto +"' width='38px' class='lucchetto'></div></a></td><td width='55px'><a href='javascript:shuffle("+ fruits[i]["id"] +","+ conto +","+ id +","+ IDPitch +")' rel='external'><div width='38px' class='infinito'></div></a></td><td width='55px'></td></tr></table></td></tr></table></td></tr><tr><td class='trtabella2' colspan='4'><input type='hidden' id='locco"+ conto +"' name='locco"+ conto +"' value='0'><hr></td></tr>"
 				  
 				  conto = conto+1;
 				  
 				  }
+				  
+				  //creo pitch
+				  pitcho = localStorage.getItem("pitcho1") + " " + localStorage.getItem("pitcho2") + " " + localStorage.getItem("pitcho3") + " " + localStorage.getItem("pitcho6") + " and " + localStorage.getItem("pitcho7")
 				  
 				  story = story + "</table>";
 				  $("#contenuto").html(story);
@@ -263,8 +292,7 @@ function editstory(id,IDPitch) {
 						shuffletotal2(id)
 					}, 1000);*/
 					
-					
-				  //changestep()
+
 				  }
 				  
 				  myScroll.refresh();
@@ -709,7 +737,7 @@ function salvasteps(id,prov) {
 	var contasalva = 1;
 	var stringa = "["
 	var iddOut;
-    var iddPos;
+	var iddPos;
 	var OutOutline;
 	
 	var numout = 12;
@@ -721,7 +749,7 @@ function salvasteps(id,prov) {
 
 		iddOut = document.getElementById("idLine"+ contasalva +"").value
 		iddPos = document.getElementById("idPos"+ contasalva +"").value
-
+		
 		OutOutline = document.getElementById("myTextarea"+ contasalva +"").value;
 		OutOutline.replace(' ','%20');
 		
@@ -806,6 +834,8 @@ function salvasteps(id,prov) {
 										'OK'                  // buttonName
 										);*/
 		   
+		   //alert(result.ID)
+		   
 		   if(prov==0){
 		     editstory(id,0)
 		   }
@@ -875,8 +905,6 @@ function salvasteps(id,prov) {
 if (localStorage.getItem("myTextarea"+ conto +"")!=0){
 	document.getElementById("myTextarea"+ conto +"").value = localStorage.getItem("myTextarea"+ conto +"")
 }*/
-
-
 
 
 
@@ -973,13 +1001,18 @@ function salva(id,conto,idstory,idpitch) {
 
 function shuffle(id,conto,idstory,idpitch) {
 var locco =  document.getElementById("locco"+ conto +"").value;
+
 var conto2 = conto-1;
+var maschio;
+var maschio2;
+	var storysex;
+	var actualsex;
 
 						  $(".spinner").show();
 						  $.ajax({
 								 type:"GET",
-								 url:"https://dev.storymatch.co/storymatch/search/steprnd",
-								 data: {token:localStorage.getItem("Token"),stepnum:conto2},
+								 url:"https://dev.storymatch.co/storymatch/search/steprnd?stepnum="+ conto2 +"&isMale="+ localStorage.getItem("isMale") +"",
+								 //data: {stepnum:conto2,isMale:true},
 								 contentType: "application/json; charset=utf-8",
 								 json: 'callback',
 								 crossDomain: true,
@@ -989,8 +1022,80 @@ var conto2 = conto-1;
 									if(locco==0){
 										document.getElementById("myTextarea"+ conto +"").value = result.step;
 										$("myTextarea"+ conto +"").keyup()
+										document.getElementById("myTextarea"+ conto +"").readOnly = true;
+										$("#edit"+ conto +"").removeClass('edita2').addClass('edita');
+										$("#sin"+ conto +"").html("<img src='img/Lock.png' width='38px'>")
+										$("#myTextarea"+ conto +"").blur()
 								 
-										salva(id,conto,idstory,idpitch)
+										localStorage.setItem("pitcho"+ conto +"", result.step)
+								 
+										//creo pitch
+										pitcho = localStorage.getItem("pitcho1") + " " + localStorage.getItem("pitcho2") + " " + localStorage.getItem("pitcho3") + " " + localStorage.getItem("pitcho6") + " and " + localStorage.getItem("pitcho7")
+								 
+										$("#pitcho").html(pitcho);
+								 
+								 
+										if(localStorage.getItem("isMale")==true){
+											maschio = "0"
+										}
+										else{
+											maschio = "1"
+										}
+								 
+										 var male = result.male;
+										 if(male==true){
+											maschio2 = "0"
+										  }
+										  else{
+											maschio2 = "1"
+										  }
+								 
+										  //alert("maschio= " + maschio + "maschio2= " + maschio2)
+								 
+								 
+							if(result.pos == 3){
+								 if (maschio == maschio2) {
+									//alert("Maschio" + maschio2)
+									actualsex = "Femmina"
+								 }
+								 else if (maschio != maschio2)
+								 {
+									//localStorage.setItem("isMale", male);
+									//alert("Femmina" + maschio2)
+									actualsex = "Maschio"
+								 }
+								 
+								 //alert(actualsex)
+								 
+								 if(localStorage.getItem("storysex")!=actualsex){
+									//alert("Cambio")
+									localStorage.setItem("storysex", actualsex);
+									var iddStep;
+								 
+									for ( i=0; i < localStorage.getItem("NumSteps"); i++ ){
+										if (i != 2) {
+											var currentStep = i+1;
+								
+											iddStep = document.getElementById("idLine"+ currentStep +"").value
+								 
+											alert("step ID. " + iddStep + " Sesso " + localStorage.getItem("storysex") + " Pos " + currentStep)
+								 
+											aggiornasesso(iddStep, localStorage.getItem("storysex"));
+								 
+										}
+									}
+								 
+								 }
+								 else
+								 {
+									
+								 }
+								 
+								 
+
+							}
+								 
+										//salva(id,conto,idstory,idpitch)
 									}
 								 }
 								 else{
@@ -1018,11 +1123,50 @@ var conto2 = conto-1;
 								 
 								 },
 								 dataType:"json"});
-
-						  
 						  
 	//alert(step1)
  }
+
+function aggiornasesso(id,sesso) {
+	var sex;
+	
+	if(sesso=="Femmina"){
+		sex=false
+	}
+	else{
+		sex=true
+	}
+
+
+	$(".spinner").show();
+	$.ajax({
+		   type:"GET",
+		   //url:"https://dev.storymatch.co/storymatch/search/fixedstep",
+		   url:"https://dev.storymatch.co/storymatch/search/fixedstep",
+		   data: {step:parseInt(id),isMale:sex},
+		   contentType: "application/json; charset=utf-8",
+		   json: 'callback',
+		   crossDomain: true,
+		   success:function(result){
+		   
+			 alert(sex)
+
+		   },
+		   error: function(){
+		   $(".spinner").hide();
+		   
+			navigator.notification.alert(
+										'possible network error',  // message
+										alertDismissed,         // callback
+										'error',            // title
+										'OK'                  // buttonName
+										);
+		   
+		   },
+		dataType:"json"});
+
+
+}
 
 function shuffletotal(id) {
 	//var locco1 =  document.getElementById("locco1").value;
@@ -1178,6 +1322,8 @@ function lucchetto(id,conto,idstory,idpitch) {
 						  });
 							  
 						   $("#myTextarea1").keyup()
+							  
+						  $("#sin1").html("<div width='38px' class='sinistra'></div>")
 
 						  
 						  $("#sin1").attr("href", "javascript:undor()");

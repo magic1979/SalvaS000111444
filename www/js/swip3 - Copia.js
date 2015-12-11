@@ -3,8 +3,8 @@ document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady() {
 	
 	//document.addEventListener("resume", onResume, false);
+	screen.lockOrientation('portrait');
 	
-	//alert()
 	
 	$.fn.extend({
 				donetyping: function(callback,timeout){
@@ -34,26 +34,6 @@ function onDeviceReady() {
 				}
     });
 	
-	//alert("1")
-	
-	last_click_time = new Date().getTime();
-	
-	document.addEventListener('click', function (e) {
-							  
-							  click_time = e['timeStamp'];
-							  
-							  if (click_time && (click_time - last_click_time) < 1000) { e.stopImmediatePropagation();
-							  
-							  e.preventDefault();
-							  
-							  return false;
-							  
-							  }
-							  
-							  last_click_time = click_time;
-							  
-							  }, true);
-
 	
     $(".spinner").hide();
 	
@@ -72,14 +52,14 @@ function onDeviceReady() {
 	verificatoken()
 	
 		if(IDRated==1) {
-			listarated(IDPage,1,1)
+			listarated(IDPage,1,"All")
 		}
 		else if(IDRated==2){
-			preferiti(IDPage,1,1)
+			preferiti(IDPage,1,"All")
 		}
 		else{
 			if (PrevGenere === null || typeof(PrevGenere) == 'undefined' || PrevGenere=="") {
-				listapitch(IDPage,1,1)
+				listapitch(IDPage,1,"All")
 			}
 			else{
 				listapitch(IDPage,1,PrevGenere)
@@ -120,6 +100,7 @@ function onDeviceReady() {
 
 function listapitch(IDPage,page,genere) {
 	
+	var generiLista="";
 	
 	if(parseInt(page)==1)
 	{
@@ -138,21 +119,30 @@ function listapitch(IDPage,page,genere) {
 	}
 	
 
-	if (parseInt(genere)==1){
-		genere=1
+	if (genere==1){
+		genere="All"
 	}
 	
-	
-	if (parseInt(genere)==1){
-		var generi = "<option value='1' selected=true>All Genres</option>";
-		var primo = "<option value='1' selected=true>All Pitches</option><option value='2'>Preferred</option>";
-	}
+	if (genere=="All"){
+	 var generi = "<option value='"+ genere +"' selected=true>All Genres</option>";
+		 var primo = "<option value='1' selected=true>All Pitches</option><option value='2'>Preferred</option>";
+    }
 	else{
-		var generi = "";
+		var generi = "<option value='"+ genere +"' selected=true>"+ genere +"</option>";
 		var primo = "<option value='0' selected=true>All Pitches</option><option value='1'>Back</option><option value='2'>Preferred</option>";
 	}
 	
+	/*navigator.notification.alert(
+								 IDPage+", Genere: "+genere,  // message
+								 alertDismissed,         // callback
+								 genere,            // title
+								 'OK'                  // buttonName
+								 );*/
 	
+	localStorage.setItem("Pagina", page);
+	localStorage.setItem("Genere", genere);
+	localStorage.setItem("Preferred", 0);
+
 	
 	if (page==1){
 	$(".spinner").show();
@@ -166,13 +156,8 @@ function listapitch(IDPage,page,genere) {
 		   success:function(result){
 		   
 		   $.each(result, function(i,item){
-				  
-				  if (parseInt(genere)==parseInt(item.id)){
-					generi = generi + "<option value='"+ item.id +"' selected=true>"+ item.name +"</option>"
-				  }
-				  else{
-					generi = generi + "<option value='"+ item.id +"'>"+ item.name +"</option>"
-				  }
+
+			generi = generi + "<option value='"+ item.name +"'>"+ item.name +"</option>"
 
 			});
 		   
@@ -195,21 +180,15 @@ function listapitch(IDPage,page,genere) {
 		   dataType:"json"});
 	}
 	
-	localStorage.setItem("Pagina", page);
-	localStorage.setItem("Genere", genere);
-	localStorage.setItem("Preferred", 0);
-	
 	
 	gopagina = parseInt(page)-1
-	
-	//alert(genere + " - " + page)
 	
 
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://dev.storymatch.co/storymatch/search/storiesbygenre",
-		   data: {genre:genere,page:page,pagesize:"5"},
+		   url:"https://dev.storymatch.co/storymatch/search/stepsbygenres",
+		   data: {token:localStorage.getItem("Token"),genre:genere,page:gopagina,pagesize:"5"},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
 		   crossDomain: true,
@@ -218,31 +197,63 @@ function listapitch(IDPage,page,genere) {
 		   var lista="";
 		   
 		  if (page==1){
-		     lista = lista + "<table width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella' width='70%'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='4'>Need some inspirations?<br>Trey with thrse ideas or start from scatch</font></td></tr></table></td><td class='trtabella' width='5%' align='center'></td><td class='trtabella' width='10%' align='left'><a href='javascript:showmessagge()' rel='external'><div width='52px' class='idea'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr><tr id='ricerca' style='display: none;'><td class='trtabella2' colspan='4' align='center'><table border='0'><tr><td><input type='text' id='example' size='70' placeholder='Write...'/></td></tr><tr><td><table width='100%' id='example-output' align='center'><tr><td></td><td></td></tr></table></td></tr></table></td></tr><tr><td class='trtabella3' colspan='4' align='center'><table width='100%' align='center'><tr><td align='center'> <select id='tutti' class='btn'>"+ primo +"</select></td><td align='center'><div id='select'><select id='mySelect' name='mySelect' class='btn'>"+ generi +"</select></div></td><td align='center'><a id='migliori' href='swip3.html?IDPage="+ IDPage +"&IDRated=1' rel='external' class='btn'><font color='#000000'>Best Rated</font></a></td></tr></table></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
+		     lista = lista + "<table width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella' width='70%'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='4'>Need some inspirations?<br>Trey with thrse ideas or start from scatch</font></td></tr></table></td><td class='trtabella' width='5%' align='center'></td><td class='trtabella' width='10%' align='left'><a href='javascript:showmessagge()' rel='external'><div width='52px' class='idea'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr><tr id='ricerca' style='display: none;'><td class='trtabella2' colspan='4' align='center'><table border='0'><tr><td><input type='text' id='example' placeholder='Write...'/></td></tr><tr><td><table width='100%' id='example-output' align='center'><tr><td></td><td></td></tr></table></td></tr></table></td></tr><tr><td class='trtabella3' colspan='4' align='center'><table width='100%' align='center'><tr><td align='center'> <select id='tutti' class='btn'>"+ primo +"</select></td><td align='center'><div id='select'><select id='mySelect' name='mySelect' class='btn'>"+ generi +"</select></div></td><td align='center'><a id='migliori' href='swip3.html?IDPage="+ IDPage +"&IDRated=1' rel='external' class='btn'><font color='#000000'>Best Rated</font></a></td></tr></table></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
 		   }
 		   else{
 		     lista = lista + "<table width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella2' colspan='4'></td></tr><tr><td class='trtabella2' colspan='4'><br></td></tr>"
 		   }
 		   
+		   //alert(result.ID);
+		   //$("#titolo").html(result.title);
 		   
 		   $.each(result.obj, function(i,item){
-				  var fruits = item.ratingArray
+				  var fruits = item.genres
 				  
-
-				  if(item.storyName==""){
+				  //alert(fruits.length)
+				  if(item.name==""){
 					return;
 				  }
 				  
-				  var ratio = "Ratio";
-				  
-				  if (item.bookmarked==true){
-					ratio = "Ratio1";
+				  for ( i=0; i < fruits.length; i++ )
+				  {
+				  if (i==0){
+					generiLista = generiLista + fruits[i]["name"] + ", "
+				  }
+				  else{
+					generiLista = generiLista + ", " + fruits[i]["name"]
+				  }
 				  }
 				  
-				  lista = lista + "<tr><td class='trtabella' colspan='4' align='left'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='3'><b>"+ item.storyName +" - "+ item.characterName +"</b>&nbsp;("+ item.storyYear +").</font></td></tr><tr><td width='10%'></td><td width='90%' align='left'><font size='3'><b><br>"+ item.genres +"</b></font></td></tr></table></td></tr><tr><td class='trtabella' width='70%'><table width='90%' border='0'><tr><td width='10%'></td><td align='center'><a href='javascript:AddPreferiti("+ IDPage +","+ item.storyId +",1)'><img id='book"+ item.storyId +"' src='img/"+ ratio +".png' width='16'></a></td><td width='170' align='left'><input id='numrati"+ conta +"' type='hidden' value='"+ item.storyId +"'><input id='r0tir0ti"+ item.storyId +"' type='hidden' value='"+ item.rating +"'><input id='ratirati"+ conta +"' type='hidden' value='"+ item.rating +"'><div id='rati"+ item.storyId +"'></div></td><td align='left'>("+ item.rating +")</td></tr></table></td><td class='trtabella' width='5%' align='right'>Edit &nbsp;</td><td class='trtabella' width='10%' align='left'><a href='javascript:confirmLogout("+ IDPage +","+ item.storyId +")' rel='external'><div width='52px' class='edita'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
+				  generiLista = generiLista.replace(", ,",", ")
+				  
+				  lista = lista + "<tr><td class='trtabella' colspan='4' align='left'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='3'><b>"+ item.title +" - "+ item.name +"</b>&nbsp;("+ item.year +")<br>"+ item.pitch.replace("'","") +".</font></td></tr><tr><td width='10%'></td><td width='90%' align='left'><font size='3'><b><br>"+ generiLista +"</b></font></td></tr></table></td></tr><tr><td class='trtabella' width='70%'><table width='90%' border='0'><tr><td width='10%'></td><td align='center'><a href='javascript:AddPreferiti("+ IDPage +","+ item.storyid +",1)'><img src='img/Ratio.png' width='16'></a></td><td width='170' align='left'><input id='numrati"+ conta +"' type='hidden' value='"+ item.storyid +"'><input id='ratirati"+ conta +"' type='hidden' value='"+ item.rating +"'><div id='rati"+ item.storyid +"'></div></td><td align='left'>("+ item.voters +")</td></tr></table></td><td class='trtabella' width='5%' align='right'>Edit &nbsp;</td><td class='trtabella' width='10%' align='left'><a href='javascript:confirmLogout("+ IDPage +","+ item.storyid +")' rel='external'><div width='52px' class='edita'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr>"
 				 
+
+				  /*if(conto==1){
+				  story = story + "<tr><td width='10%'></td><td width='90%' align='left'>"+ item.detail["pitch"].replace("'","") +"</td></tr></table></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr> <tr><td class='trtabella2' colspan='4'><br><br></td></tr>"
+				  }
+				  
+				  //$("#piccio").html(item.detail["pitch"].replace("'",""));
+				  
+				  //alert(fruits[0]["id"]);
+				  
+				  for ( i=0; i < fruits.length; i++ )
+				  {
+				  
+				  
+				  if((conto==1)||(conto==2)){
+				  
+				  story = story + "<tr><td class='trtabella' width='90%'><table width='100%' border='0'><tr><td width='10%'></td><td width='90%' align='left'><b>"+ conto +"</b></td></tr><tr><td width='10%'></td><td width='90%' align='left'><textarea name='myTextarea"+ conto +"' id='myTextarea"+ conto +"' rows='4' cols='60' class='textarea1' style='background-color: transparent;' >"+ fruits[i]["id"] +","+ fruits[i]["step"].replace("'","") +"</textarea></td></tr><tr><td width='10%'></td><td width='90%' align='left'><br></td></tr><tr><td width='10%'></td><td width='90%' align='left'><table width='100%'><tr><td width='55px'><a id='sin"+ conto +"' href='#' rel='external'><div width='52px' class='sinistra'></div></a></td><td width='55px'><a id='des"+ conto +"' href='#' rel='external'><div width='52px' class='destra'></div></a></td><td width='55px'><a href='javascript:abilita"+ conto +"()' rel='external'><div width='52px' class='edita'></div></a></td><td width='55px'><a href='#' rel='external'><div width='52px' class='lucchetto'></div></a></td><td width='55px'><a href='#' rel='external'><div width='52px' class='infinito'></div></a></td><td width='55px'><a href='javascript:salva("+ fruits[i]["id"] +","+ conto +")' rel='external'><div width='52px' class='salva'></div></a></td></tr></table></td></tr></table></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
+				  }
+				  
+				  conto = conto+1;
+				  
+				  }*/
+				  
+				  
+				  //$("#rati"+ item.storyid +"").html("<img src='img/CuoreVuoto.png' width='20'> <img src='img/CuoreVuoto.png' width='20'> <img src='img/CuoreVuoto.png' width='20'> <img src='img/CuoreVuoto.png' width='20'> <img src='img/CuoreVuoto.png' width='20'>");
 				
-				  pagine = parseInt(result.pageCount);
+				  pagine = parseInt(item.pagecount);
 				
 				  conta = conta +1;
 				  
@@ -273,8 +284,7 @@ function listapitch(IDPage,page,genere) {
 		   }*/
 		   
 		   $("#selector").html("&nbsp;&nbsp;"+stringa);
-		   var idriga;
-		   var vecchiarati;
+		   
 		   
 		   for ( k=1; k < conta; k++ )
 		   {
@@ -283,19 +293,8 @@ function listapitch(IDPage,page,genere) {
 
 			 $('#rati'+document.getElementById("numrati"+ k +"").value).raty({
 				score: document.getElementById("ratirati"+ k +"").value ,click: function(score, evt) {
-																			 
-				//$('#rati'+document.getElementById("numrati"+ k +"").value).raty({ score: 1 });
 
 				//alert(conta + ' ID: ' + this.id.slice(4) + "\nscore: " + score + "\nevent: " + evt);
-				
-																			 idriga = this.id.slice(4);
-																			 vecchiarati = document.getElementById("r0tir0ti"+ this.id.slice(4) +"").value;
-																			 
-																			 //alert(vecchiarati)
-				
-																			//setTimeout (function(){
-																				
-																			//}, 2000);
 																			 
 																			 $(".spinner").show();
 																			 $.ajax({
@@ -309,48 +308,28 @@ function listapitch(IDPage,page,genere) {
 																					success:function(result){
 																					
 																					if (result.ID==1024){
-																					
-																					//azzerarati(this.id.slice(4))
-																					//document.getElementById("r0tir0ti"+ this.id.slice(4) +"").value = score;
-																					//self.document.formia."r0tir0ti"+this.id.slice(4).value = score;
-																					
 																					navigator.notification.alert(
 																												 result.msg,  // message
 																												 alertDismissed,         // callback
 																												 'Prefiriti',            // title
 																												 'OK'                  // buttonName
 																												 );
-																					
 
 																					
 																					}
 																					else{
-																					
-																						setTimeout (function(){
-																							azzerarati(idriga,vecchiarati)
-																						}, 2000);
-
-
-																					
 																					navigator.notification.alert(
 																												 result.msg,  // message
 																												 alertDismissed,         // callback
 																												 'Prefiriti',            // title
 																												 'OK'                  // buttonName
 																												 );
-																					
-																					
 																					}
 																					
 																					$(".spinner").hide();
 																					
 																					},
 																					error: function(){
-																					
-																					setTimeout (function(){
-																						azzerarati(idriga,vecchiarati)
-																					}, 2000);
-																					
 																					$(".spinner").hide();
 																					
 																					navigator.notification.alert(
@@ -362,7 +341,6 @@ function listapitch(IDPage,page,genere) {
 																					
 																					},
 																					dataType:"json"});
-																			 
 
 				}
 			  });
@@ -414,7 +392,7 @@ function listapitch(IDPage,page,genere) {
 			}, 500);
 		   
 		   
-		   if (genere==1){
+		   if (genere=="All"){
 		   $("#tutti").removeClass("btn").addClass("btn2");
 		   $("#migliori").removeClass("btn2").addClass("btn");
 		   $("#mySelect").removeClass("btn2").addClass("btn");
@@ -443,12 +421,6 @@ function listapitch(IDPage,page,genere) {
 	
 }
 
-function azzerarati(id,voto){
-	
-	$('#rati'+id).raty({ score: voto });
-	//alert(id)
-}
-
 function mandamessaggio(testo) {
 	//$("#example-output").html("<tr><td>"+ testo +"</td></tr>");
 	
@@ -456,7 +428,7 @@ function mandamessaggio(testo) {
 	$.ajax({
 		   type:"GET",
 		   url:"https://dev.storymatch.co/storymatch/search/fts",
-		   data: {token:localStorage.getItem("Token"),q:testo},
+		   data: {q:testo},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
 		   crossDomain: true,
@@ -486,6 +458,8 @@ function mandamessaggio(testo) {
 		   },
 		   dataType:"json"});
 
+
+	
 }
 
 
@@ -605,18 +579,29 @@ function listapitch2(IDPage,page,genere) {
 }
 
 
+
+
 function showmessagge() {
 	$("#ricerca").show();
+    			 
+	var typingTimer;                
+	var doneTypingInterval = 500;
 	
-	$('#example').donetyping(function(){
-							 
-							 if (document.getElementById("example").value.length >= 3){
-								mandamessaggio(document.getElementById("example").value);
-								//$('#example-output').text();
-							 }
-							 
-							 
-							 });
+	$(document).on('keyup', '#example', function() {
+			clearTimeout(typingTimer);
+			if ($('#example').val) {
+				typingTimer = setTimeout(function(){
+					//do stuff here e.g ajax call etc....
+					
+					 var v = $("#example").val();
+					 mandamessaggio(v);
+					 
+					 //$("#example-output").html(v);
+				}, doneTypingInterval);
+			}
+
+	});
+
 	
 }
 
@@ -642,9 +627,7 @@ function AddPreferiti(IDPage,IdStoria,genere) {
 										);
 		   
 		   
-		   
-		   $("#book"+ IdStoria +"").attr("src", "img/Ratio1.png");
-		   //preferiti(IDPage,IdStoria,1)
+		   preferiti(IDPage,IdStoria,1)
 		   
 		   }
 		   else{
@@ -672,60 +655,6 @@ function AddPreferiti(IDPage,IdStoria,genere) {
 		   },
 		   dataType:"json"});
 
-}
-
-function RemovePreferiti(IDPage,IdStoria,genere) {
-	
-	$(".spinner").show();
-	$.ajax({
-		   url: "https://dev.storymatch.co/storymatch/search/removebookmark",
-		   dataType: "json",
-		   type: "post",
-		   contentType: "application/json",
-		   data: JSON.stringify( { "storyid": ""+ IdStoria +"" } ),
-		   processData: false,
-		   crossDomain: true,
-		   success:function(result){
-		   
-		   if (result.ID==1024){
-		   navigator.notification.alert(
-										result.msg,  // message
-										alertDismissed,         // callback
-										'Prefiriti',            // title
-										'OK'                  // buttonName
-										);
-		   
-		   
-		   
-		   $("#book"+ IdStoria +"").attr("src", "img/Ratio.png");
-		   //preferiti(IDPage,IdStoria,1)
-		   
-		   }
-		   else{
-		   navigator.notification.alert(
-										result.msg,  // message
-										alertDismissed,         // callback
-										'Prefiriti',            // title
-										'OK'                  // buttonName
-										);
-		   }
-		   
-		   $(".spinner").hide();
-		   
-		   },
-		   error: function(){
-		   $(".spinner").hide();
-		   
-		   navigator.notification.alert(
-										'possible network error',  // message
-										alertDismissed,         // callback
-										'error',            // title
-										'OK'                  // buttonName
-										);
-		   
-		   },
-		   dataType:"json"});
-	
 }
 
 
@@ -826,7 +755,7 @@ function clonestory() {
 
 function listarated(IDPage,page,genere) {
 	
-
+	var generiLista="";
 	
 	if(parseInt(page)==1)
 	{
@@ -845,14 +774,22 @@ function listarated(IDPage,page,genere) {
 	}
 	
 	
-	if (parseInt(genere)==1){
-		var generi = "<option value='1' selected=true>All Genres</option>";
-		var primo = "<option value='1'>All Pitches</option><option value='0' selected=true>Back</option><option value='2'>Preferred</option>";
+	if (genere==1){
+		genere="All"
+	}
+	
+	if (genere=="All"){
+	 var generi = "<option value='"+ genere +"' selected=true>All Genres</option>";
+		var primo = "<option value='0' selected=true>All Pitches</option><option value='1'>Back</option><option value='2'>Preferred</option>";
 	}
 	else{
-		var generi = "";
-		var primo = "<option value='1'>All Pitches</option><option value='0' selected=true>Back</option><option value='2'>Preferred</option>";
+		var generi = "<option value='"+ genere +"' selected=true>"+ genere +"</option>";
+		var primo = "<option value='0' selected=true>All Pitches</option><option value='1'>Back</option><option value='2'>Preferred</option>";
 	}
+	
+	localStorage.setItem("Pagina", page);
+	localStorage.setItem("Genere", genere);
+	localStorage.setItem("Preferred", 0);
 	
 	
 	if (page==1){
@@ -868,12 +805,7 @@ function listarated(IDPage,page,genere) {
 			   
 			   $.each(result, function(i,item){
 					  
-					  if (parseInt(genere)==parseInt(item.id)){
-					  generi = generi + "<option value='"+ item.id +"' selected=true>"+ item.name +"</option>"
-					  }
-					  else{
-					  generi = generi + "<option value='"+ item.id +"'>"+ item.name +"</option>"
-					  }
+					  generi = generi + "<option value='"+ item.name +"'>"+ item.name +"</option>"
 					  
 					  });
 			   
@@ -896,21 +828,15 @@ function listarated(IDPage,page,genere) {
 			   dataType:"json"});
 	}
 	
-	localStorage.setItem("Pagina", page);
-	localStorage.setItem("Genere", genere);
-	localStorage.setItem("Preferred", 0);
-	
 	
 	gopagina = parseInt(page)-1
-	
-	//alert(genere + " - " + page)
 	
 	
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"https://dev.storymatch.co/storymatch/search/storiesbyrating",
-		   data: {page:gopagina,pagesize:"5"},
+		   url:"https://dev.storymatch.co/storymatch/search/stepshigrated",
+		   data: {token:localStorage.getItem("Token"),genre:genere,page:gopagina,pagesize:"5"},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
 		   crossDomain: true,
@@ -919,7 +845,7 @@ function listarated(IDPage,page,genere) {
 		   var lista="";
 		   
 		   if (page==1){
-		   lista = lista + "<table width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella' width='70%'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='4'>Need some inspirations?<br>Trey with thrse ideas or start from scatch</font></td></tr></table></td><td class='trtabella' width='5%' align='center'></td><td class='trtabella' width='10%' align='left'><a href='javascript:showmessagge()' rel='external'><div width='52px' class='idea'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr><tr id='ricerca' style='display: none;'><td class='trtabella2' colspan='4' align='center'><table border='0'><tr><td><input type='text' id='example' size='70' placeholder='Write...'/></td></tr><tr><td><table width='100%' id='example-output' align='center'><tr><td></td><td></td></tr></table></td></tr></table></td></tr><tr><td class='trtabella3' colspan='4' align='center'><table width='100%' align='center'><tr><td align='center'> <select id='tutti' class='btn'>"+ primo +"</select></td><td align='center'><div id='select'><select id='mySelect' name='mySelect' class='btn'>"+ generi +"</select></div></td><td align='center'><a id='migliori' href='#' class='btn'><font color='#000000'>Best Rated</font></a></td></tr></table></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
+		   lista = lista + "<table width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella' width='70%'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='4'>Need some inspirations?<br>Trey with thrse ideas or start from scatch</font></td></tr></table></td><td class='trtabella' width='5%' align='center'></td><td class='trtabella' width='10%' align='left'><a href='javascript:showmessagge()' rel='external'><div width='52px' class='idea'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr><tr id='ricerca' style='display: none;'><td class='trtabella2' colspan='4' align='center'><table border='0'><tr><td><input type='text' id='example' placeholder='Write...'/></td></tr><tr><td><table width='100%' id='example-output' align='center'><tr><td></td><td></td></tr></table></td></tr></table></td></tr><tr><td class='trtabella3' colspan='4' align='center'><table width='100%' align='center'><tr><td align='center'> <select id='tutti' class='btn'>"+ primo +"</select></td><td align='center'><div id='select'><select id='mySelect' name='mySelect' class='btn'>"+ generi +"</select></div></td><td align='center'><a id='migliori' href='#' class='btn'><font color='#000000'>Best Rated</font></a></td></tr></table></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
 		   }
 		   else{
 		   lista = lista + "<table width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella2' colspan='4'></td></tr><tr><td class='trtabella2' colspan='4'><br></td></tr>"
@@ -927,26 +853,33 @@ function listarated(IDPage,page,genere) {
 		   
 		   
 		   $.each(result.obj, function(i,item){
-				  var fruits = item.ratingArray
+				  var fruits = item.genres
 				  
-				  if(item.storyName==""){
+				  if(item.name==""){
 				  return;
 				  }
 				  
-				  var ratio = "Ratio";
-				  
-				  if (item.bookmarked==true){
-				  ratio = "Ratio1";
+				  for ( i=0; i < fruits.length; i++ )
+				  {
+				  if (i==0){
+				  generiLista = generiLista + fruits[i]["name"] + ", "
+				  }
+				  else{
+				  generiLista = generiLista + ", " + fruits[i]["name"]
+				  }
 				  }
 				  
-				  lista = lista + "<tr><td class='trtabella' colspan='4' align='left'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='3'><b>"+ item.storyName +" - "+ item.characterName +"</b>&nbsp;("+ item.storyYear +").</font></td></tr><tr><td width='10%'></td><td width='90%' align='left'><font size='3'><b><br>"+ item.genres +"</b></font></td></tr></table></td></tr><tr><td class='trtabella' width='70%'><table width='90%' border='0'><tr><td width='10%'></td><td align='center'><a href='javascript:AddPreferiti("+ IDPage +","+ item.storyId +",1)'><img id='book"+ item.storyId +"' src='img/"+ ratio +".png' width='16'></a></td><td width='170' align='left'><input id='numrati"+ conta +"' type='hidden' value='"+ item.storyId +"'><input id='r0tir0ti"+ item.storyId +"' type='hidden' value='"+ item.rating +"'><input id='ratirati"+ conta +"' type='hidden' value='"+ item.rating +"'><div id='rati"+ item.storyId +"'></div></td><td align='left'>("+ item.rating +")</td></tr></table></td><td class='trtabella' width='5%' align='right'>Edit &nbsp;</td><td class='trtabella' width='10%' align='left'><a href='javascript:confirmLogout("+ IDPage +","+ item.storyId +")' rel='external'><div width='52px' class='edita'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
+				  generiLista = generiLista.replace(", ,",", ")
+				  
+				  lista = lista + "<tr><td class='trtabella' colspan='4' align='left'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='3'><b>"+ item.title +" - "+ item.name +"</b>&nbsp;("+ item.year +")<br>"+ item.pitch.replace("'","") +".</font></td></tr><tr><td width='10%'></td><td width='90%' align='left'><font size='3'><b><br>"+ generiLista +"</b></font></td></tr></table></td></tr><tr><td class='trtabella' width='70%'><table width='90%' border='0'><tr><td width='10%'></td><td align='center'><a href='javascript:AddPreferiti("+ IDPage +","+ item.storyid +",1)'><img src='img/Ratio.png' width='16'></a></td><td width='170' align='left'><input id='numrati"+ conta +"' type='hidden' value='"+ item.storyid +"'><input id='ratirati"+ conta +"' type='hidden' value='"+ item.rating +"'><div id='rati"+ item.storyid +"'></div></td><td align='left'>("+ item.voters +")</td></tr></table></td><td class='trtabella' width='5%' align='right'>Edit &nbsp;</td><td class='trtabella' width='10%' align='left'><a href='javascript:confirmLogout("+ IDPage +","+ item.storyid +")' rel='external'><div width='52px' class='edita'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr>"
 				  
 				  
-				  pagine = parseInt(result.pageCount);
+				  //alert(item.rating)
+				  
+				  pagine = parseInt(item.pagecount);
 				  
 				  conta = conta +1;
 				  
-
 				  
 				  });
 		   
@@ -964,11 +897,15 @@ function listarated(IDPage,page,genere) {
 
 		   var stringa = "<font size='4' color='#000'>Your current page: " + page + "/" + pagine + "</font>&nbsp;&nbsp;&nbsp;";
 		   
-
+		   /*for ( i=1; i < pagine; i++ )
+			{
+			
+			stringa = stringa + " | " + "<a href='javascript:listapitch("+ IDPage +","+ i +",1)'><font size='5' color='#000'>"+ i +"</font></a>"
+			
+			}*/
 		   
 		   $("#selector").html("&nbsp;&nbsp;"+stringa);
-		   var idriga;
-		   var vecchiarati;
+		   
 		   
 		   for ( k=1; k < conta; k++ )
 		   {
@@ -978,8 +915,6 @@ function listarated(IDPage,page,genere) {
 																		   score: document.getElementById("ratirati"+ k +"").value ,click: function(score, evt) {
 																		   
 																		   //alert(conta + ' ID: ' + this.id.slice(4) + "\nscore: " + score + "\nevent: " + evt);
-																		   idriga=this.id.slice(4);
-																		   vecchiarati = document.getElementById("r0tir0ti"+ this.id.slice(4) +"").value;
 																		   
 																		   $(".spinner").show();
 																		   $.ajax({
@@ -1003,11 +938,6 @@ function listarated(IDPage,page,genere) {
 																				  
 																				  }
 																				  else{
-
-																					setTimeout (function(){
-																						azzerarati(idriga,vecchiarati)
-																					}, 2000);
-
 																				  navigator.notification.alert(
 																											   result.msg,  // message
 																											   alertDismissed,         // callback
@@ -1020,9 +950,6 @@ function listarated(IDPage,page,genere) {
 																				  
 																				  },
 																				  error: function(){
-																				  setTimeout (function(){
-																					azzerarati(idriga,vecchiarati)
-																				  }, 2000);
 																				  $(".spinner").hide();
 																				  
 																				  navigator.notification.alert(
@@ -1098,6 +1025,7 @@ function listarated(IDPage,page,genere) {
 }
 
 
+
 function preferiti(IDPage,page,genere) {
 	//alert("ok")
 	
@@ -1120,15 +1048,22 @@ function preferiti(IDPage,page,genere) {
 	}
 	
 	
-	if (parseInt(genere)==1){
-		var generi = "<option value='1' selected=true>All Genres</option>";
-		var primo = "<option value='1'>All Pitches</option><option value='0' selected=true>Back</option><option value='2'>Preferred</option>";
-	}
-	else{
-		var generi = "";
-		var primo = "<option value='1'>All Pitches</option><option value='0' selected=true>Back</option><option value='2'>Preferred</option>";
+	if (genere==1){
+		genere="All"
 	}
 	
+	if (genere=="All"){
+	 var generi = "<option value='"+ genere +"' selected=true>All Genres</option>";
+		var primo = "<option value='0' selected=true>All Pitches</option><option value='1'>Back</option><option value='2'>Preferred</option>";
+	}
+	else{
+		var generi = "<option value='"+ genere +"' selected=true>"+ genere +"</option>";
+		var primo = "<option value='0' selected=true>All Pitches</option><option value='1'>Back</option><option value='2'>Preferred</option>";
+	}
+	
+	localStorage.setItem("Pagina", page);
+	localStorage.setItem("Genere", genere);
+	localStorage.setItem("Preferred", 0);
 	
 	
 	if (page==1){
@@ -1144,12 +1079,7 @@ function preferiti(IDPage,page,genere) {
 			   
 			   $.each(result, function(i,item){
 					  
-					  if (parseInt(genere)==parseInt(item.id)){
-					  generi = generi + "<option value='"+ item.id +"' selected=true>"+ item.name +"</option>"
-					  }
-					  else{
-					  generi = generi + "<option value='"+ item.id +"'>"+ item.name +"</option>"
-					  }
+					  generi = generi + "<option value='"+ item.name +"'>"+ item.name +"</option>"
 					  
 					  });
 			   
@@ -1172,21 +1102,15 @@ function preferiti(IDPage,page,genere) {
 			   dataType:"json"});
 	}
 	
-	localStorage.setItem("Pagina", page);
-	localStorage.setItem("Genere", genere);
-	localStorage.setItem("Preferred", 0);
-	
 	
 	gopagina = parseInt(page)-1
-	
-	//alert(genere + " - " + page)
 	
 	
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
 		   url:"https://dev.storymatch.co/storymatch/search/stepspreferred",
-		   data: {page:gopagina,pagesize:"5"},
+		   //data: {token:localStorage.getItem("Token"),genre:genere,page:gopagina,pagesize:"5"},
 		   contentType: "application/json; charset=utf-8",
 		   json: 'callback',
 		   crossDomain: true,
@@ -1195,7 +1119,7 @@ function preferiti(IDPage,page,genere) {
 		   var lista="";
 		   
 		   if (page==1){
-		   lista = lista + "<table width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella' width='70%'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='4'>Need some inspirations?<br>Trey with thrse ideas or start from scatch</font></td></tr></table></td><td class='trtabella' width='5%' align='center'></td><td class='trtabella' width='10%' align='left'><a href='javascript:showmessagge()' rel='external'><div width='52px' class='idea'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr><tr id='ricerca' style='display: none;'><td class='trtabella2' colspan='4' align='center'><table border='0'><tr><td><input type='text' id='example' size='70' placeholder='Write...'/></td></tr><tr><td><table width='100%' id='example-output' align='center'><tr><td></td><td></td></tr></table></td></tr></table></td></tr><tr><td class='trtabella3' colspan='4' align='center'><table width='100%' align='center'><tr><td align='center'> <select id='tutti' class='btn'>"+ primo +"</select></td><td align='center'><div id='select'><select id='mySelect' name='mySelect' class='btn'>"+ generi +"</select></div></td><td align='center'><a id='migliori' href='swip3.html?IDPage="+ IDPage +"&IDRated=1' rel='external' class='btn'><font color='#000000'>Best Rated</font></a></td></tr></table></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
+		   lista = lista + "<table width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella' width='70%'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='4'>Need some inspirations?<br>Trey with thrse ideas or start from scatch</font></td></tr></table></td><td class='trtabella' width='5%' align='center'></td><td class='trtabella' width='10%' align='left'><a href='javascript:showmessagge()' rel='external'><div width='52px' class='idea'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr><tr id='ricerca' style='display: none;'><td class='trtabella2' colspan='4' align='center'><table border='0'><tr><td><input type='text' id='example' placeholder='Write...'/></td></tr><tr><td><table width='100%' id='example-output' align='center'><tr><td></td><td></td></tr></table></td></tr></table></td></tr><tr><td class='trtabella3' colspan='4' align='center'><table width='100%' align='center'><tr><td align='center'> <select id='tutti' class='btn'>"+ primo +"</select></td><td align='center'><div id='select'><select id='mySelect' name='mySelect' class='btn'>"+ generi +"</select></div></td><td align='center'><a id='migliori' href='swip3.html?IDPage="+ IDPage +"&IDRated=1' rel='external' class='btn'><font color='#000000'>Best Rated</font></a></td></tr></table></td></tr><tr><td class='trtabella2' colspan='4'><hr></td></tr>"
 		   }
 		   else{
 		   lista = lista + "<table width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella2' colspan='4'></td></tr><tr><td class='trtabella2' colspan='4'><br></td></tr>"
@@ -1221,7 +1145,7 @@ function preferiti(IDPage,page,genere) {
 				  
 				  generiLista = generiLista.replace(", ,",", ")
 				  
-				  lista = lista + "<tr><td class='trtabella' colspan='4' align='left'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='3'><b>"+ item.title +" - "+ item.name +"</b>&nbsp;("+ item.year +")<br>"+ item.pitch.replace("'","") +".</font></td></tr><tr><td width='10%'></td><td width='90%' align='left'><font size='3'><b><br>"+ generiLista +"</b></font></td></tr></table></td></tr><tr><td class='trtabella' width='70%'><table width='90%' border='0'><tr><td width='10%'></td><td align='center'><a href='javascript:RemovePreferiti("+ IDPage +","+ item.storyid +",1)'><img id='book"+ item.storyid +"' src='img/Ratio1.png' width='16'></a></td><td width='170' align='left'><input id='numrati"+ conta +"' type='hidden' value='"+ item.storyid +"'><input id='r0tir0ti"+ item.storyid +"' type='hidden' value='"+ item.rating +"'><input id='ratirati"+ conta +"' type='hidden' value='"+ item.rating +"'><div id='rati"+ item.storyid +"'></div></td><td align='left'>("+ item.voters +")</td></tr></table></td><td class='trtabella' width='5%' align='right'>Edit &nbsp;</td><td class='trtabella' width='10%' align='left'><a href='javascript:confirmLogout("+ IDPage +","+ item.storyid +")' rel='external'><div width='52px' class='edita'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr>"
+				  lista = lista + "<tr><td class='trtabella' colspan='4' align='left'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><font size='3'><b>"+ item.title +" - "+ item.name +"</b>&nbsp;("+ item.year +")<br>"+ item.pitch.replace("'","") +".</font></td></tr><tr><td width='10%'></td><td width='90%' align='left'><font size='3'><b><br>"+ generiLista +"</b></font></td></tr></table></td></tr><tr><td class='trtabella' width='70%'><table width='90%' border='0'><tr><td width='10%'></td><td align='center'><a href='javascript:AddPreferiti("+ IDPage +","+ item.storyid +",1)'><img src='img/Ratio.png' width='16'></a></td><td width='170' align='left'><input id='numrati"+ conta +"' type='hidden' value='"+ item.storyid +"'><input id='ratirati"+ conta +"' type='hidden' value='"+ item.rating +"'><div id='rati"+ item.storyid +"'></div></td><td align='left'>("+ item.voters +")</td></tr></table></td><td class='trtabella' width='5%' align='right'>Edit &nbsp;</td><td class='trtabella' width='10%' align='left'><a href='javascript:confirmLogout("+ IDPage +","+ item.storyid +")' rel='external'><div width='52px' class='edita'></div></a></td><td class='trtabella' width='15%' align='center'></td></tr>"
 				  
 				  
 				  //alert(item.rating)
@@ -1247,10 +1171,15 @@ function preferiti(IDPage,page,genere) {
 		   
 		   var stringa = "<font size='4' color='#000'>Your current page: " + page + "/" + pagine + "</font>&nbsp;&nbsp;&nbsp;";
 		   
+		   /*for ( i=1; i < pagine; i++ )
+			{
+			
+			stringa = stringa + " | " + "<a href='javascript:listapitch("+ IDPage +","+ i +",1)'><font size='5' color='#000'>"+ i +"</font></a>"
+			
+			}*/
 		   
 		   $("#selector").html("&nbsp;&nbsp;"+stringa);
-		   var idriga;
-		   var vecchiarati;
+		   
 		   
 		   for ( k=1; k < conta; k++ )
 		   {
@@ -1260,9 +1189,6 @@ function preferiti(IDPage,page,genere) {
 																		   score: document.getElementById("ratirati"+ k +"").value ,click: function(score, evt) {
 																		   
 																		   //alert(conta + ' ID: ' + this.id.slice(4) + "\nscore: " + score + "\nevent: " + evt);
-																		   
-																		   idriga=this.id.slice(4);
-																		   vecchiarati = document.getElementById("r0tir0ti"+ this.id.slice(4) +"").value;
 																		   
 																		   $(".spinner").show();
 																		   $.ajax({
@@ -1286,10 +1212,6 @@ function preferiti(IDPage,page,genere) {
 																				  
 																				  }
 																				  else{
-																				  setTimeout (function(){
-																					azzerarati(idriga,vecchiarati)
-																				  }, 2000);
-																				  
 																				  navigator.notification.alert(
 																											   result.msg,  // message
 																											   alertDismissed,         // callback
@@ -1302,10 +1224,6 @@ function preferiti(IDPage,page,genere) {
 																				  
 																				  },
 																				  error: function(){
-																				  setTimeout (function(){
-																					azzerarati(idriga,vecchiarati)
-																				  }, 2000);
-																				  
 																				  $(".spinner").hide();
 																				  
 																				  navigator.notification.alert(
@@ -1351,10 +1269,10 @@ function preferiti(IDPage,page,genere) {
 		   
 		   localStorage.setItem("NPagine", pagine);
 		   
-		   setTimeout (function(){
+		   /*setTimeout (function(){
 				myScroll.refresh();
 				myScroll.on('scrollEnd', updatePref);
-			}, 500);
+			}, 500);*/
 		   
 		   
 		   $("#tutti").removeClass("btn").addClass("btn2");

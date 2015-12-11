@@ -32,7 +32,7 @@ function onDeviceReady() {
 			createmessaggio();
 		});
 		
-		notifiche()
+		//notifiche()
 		
 		setTimeout (function(){
 			$("#menu1").fadeIn()
@@ -79,7 +79,7 @@ function listaStory() {
 
 	
 	//QUI@
-	lista = " <table height='52px' width='60%' border='0' cellpadding='0' cellspacing='0'><tr><td width='90%' class='trtabella2' align='right'><font size='4' color='#a4a4a4'><div id='Titolotbl'>Drafts</div></font></td></tr></table><table id='storie' width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella2' colspan='3'><hr></td></tr>"
+	lista = " <table height='52px' width='60%' border='0' cellpadding='0' cellspacing='0'><tr><td width='90%' class='trtabella2' align='left'><font size='4' color='#a4a4a4'><div id='Titolotbl' align='left'>Drafts</div></font></td></tr></table><table id='storie' width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella2' colspan='3'><hr></td></tr>"
 	
 	
 	$(".spinner").show();
@@ -104,14 +104,14 @@ function listaStory() {
 		   if (result.id!=0){
 			   //alert(item.id)
 		   
-			  lista = lista + "<tr><td class='trtabella' width='20%'><a href='swip4.html?id="+ item.id +"&idPitch=0' rel='external'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><b><font color='#000' class='fontegrande'>"+ item.title +"</b><br></font><font size='1.5' color='#000' class='fontegrande'>"+ item.day +"."+ item.month +"."+ item.year +"</font></td></tr></table></a></td><td class='trtabella' width='5%' align='center'><a href='swip4.html?id="+ item.id +"&idPitch=0' rel='external'><img src='img/user.png' width='25'></a></td><td class='trtabella' width='65%' align='left'><span id='swippe"+ item.id +"' style='display: none;'><input id='swippo"+ item.id +"' value='"+ item.id +"' type='hidden'><table width='80%' height='80px' align='center' border='0'><tr><td width='30%' align='center'><a href='javascript:clonestory("+ item.id +")' class='btn'><font color='#000000'>Duplicate</font></a></td><td width='30%' align='center'><a href='javascript:share("+ item.id +")' class='btn'><font color='#000000'>Share</font></a></td><td width='30%' align='center'><a href='javascript:deletestory("+ item.id +")' class='btn'><font color='#000000'>Trash</font></a></td><td width='10%' align='left'></td></tr></table></span><span id='delete"+ item.id +"'><table width='80%' height='80px' align='center' border='0'><tr><td width='30%' align='center'></td><td width='30%' align='center'></td><td width='10%' align='center'></td><td width='30%' align='left'>|||</td></tr></table></span></td></tr><tr><td class='trtabella2' colspan='3'><hr></td></tr>"
+			  lista = lista + "<tr><td class='trtabella' width='20%'><a href='swip4.html?id="+ item.id +"&idPitch=0' rel='external'><table width='90%'><tr><td width='10%'></td><td width='90%' align='left'><b><font color='#000' class='fontegrande'>"+ item.title +"</b><br></font><font size='1.5' color='#000' class='fontegrande'>"+ item.day +"."+ item.month +"."+ item.year +"</font></td></tr></table></a></td><td class='trtabella' width='5%' align='center'><a href='swip4.html?id="+ item.id +"&idPitch=0' rel='external'><img src='img/user.png' width='25'></a></td><td class='trtabella' width='65%' align='left'><span id='swippe"+ item.id +"' style='display: none;'><input id='swippo"+ item.id +"' value='"+ item.id +"' type='hidden'><table width='80%' height='80px' align='center' border='0'><tr><td width='50%' align='right'><a href='javascript:clonestory("+ item.id +")' class='btn'><font color='#000000'>Duplicate</font></a></td><td width='50%' align='left'><a href='javascript:deletestory("+ item.id +")' class='btn'><font color='#000000'>Trash</font></a></td><td width='10%' align='left'></td></tr></table></span><span id='delete"+ item.id +"'><table width='80%' height='80px' align='center' border='0'><tr><td width='30%' align='center'></td><td width='30%' align='center'></td><td width='10%' align='center'></td><td width='30%' align='left'>|||</td></tr></table></span></td></tr><tr><td class='trtabella2' colspan='3'><hr></td></tr>"
 				  
 				  conta = conta + 1;
 		   
 		   }
 		   else{
 		   navigator.notification.alert(
-										result.msg,  // message
+										result.msg,  // message <td width='30%' align='center'><a href='javascript:share("+ item.id +")' class='btn'><font color='#000000'>Share</font></a></td>
 										exitapp,         // callback
 										'Logout',            // title
 										'OK'                  // buttonName @
@@ -129,7 +129,7 @@ function listaStory() {
 		   $("#contenuto").fadeIn();
 		   
 		   $(".spinner").hide();
-		   $("#Titolotbl").html("List Stories");
+		   $("#Titolotbl").html("&nbsp;&nbsp;&nbsp;&nbsp;List Stories");
 		   
 		   /*$("span").on("swipeleft",function(){
 				var numlist = this.id
@@ -324,7 +324,7 @@ function cestino() {
 	//window.onscroll=function(){window.scrollTo(52, 52);};
 	
 	//QUI@
-	lista = " <table height='52px' width='60%' border='0' cellpadding='0' cellspacing='0'><tr><td width='90%' class='trtabella2' align='right'><font size='4' color='#a4a4a4'><div id='Titolotbl'>Drafts</div></font></td></tr></table><table id='storie' width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella2' colspan='3'><hr></td></tr>"
+	lista = " <table height='52px' width='60%' border='0' cellpadding='0' cellspacing='0'><tr><td width='90%' class='trtabella2' align='left'><font size='4' color='#a4a4a4'><div id='Titolotbl' align='left'>Drafts</div></font></td></tr></table><table id='storie' width='100%' border='0' cellpadding='0' cellspacing='0'><tr><td class='trtabella2' colspan='3'><hr></td></tr>"
 	
 	
 	$(".spinner").show();
@@ -364,9 +364,9 @@ function cestino() {
 		   $("#contenuto").fadeIn();
 		   
 		   $(".spinner").hide();
-		   $("#Titolotbl").html("Story Eliminated");
+		   $("#Titolotbl").html("&nbsp;&nbsp;&nbsp;&nbsp;Story Eliminated");
 		   
-		   $("span").on("swipeleft",function(){
+		   /*$("span").on("swipeleft",function(){
 						var numlist = this.id
 						numlist = numlist.substring(6)
 						
@@ -384,7 +384,7 @@ function cestino() {
 						
 						$("#swippe"+ numlist +"").hide();
 						$("#delete"+ numlist +"").fadeIn();
-						});
+						});*/
 		   
 		   
 		   },

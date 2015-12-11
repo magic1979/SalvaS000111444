@@ -32,6 +32,18 @@ $(document).on("pagecreate","#article1",function(){
 		vertical-align: middle;
 	}
 
+.div11 {
+	background-color: #000;
+	height: 52px;
+	border: none;
+	
+	display: flex;
+	display: -webkit-flex;
+	
+	align-items: center;
+	-webkit-align-items: center;
+}
+
 .div5 {
 	background-color: #fff;
 }
@@ -654,9 +666,15 @@ body .ui-body-c, body .ui-overlay-c
 	text-decoration: none;
 }
 
+@font-face {
+	font-family: 'Roboto-Regular';
+	src: url('./Font/Roboto-Regular.eot');
+	src: local('Roboto-Regular'), url('./Font/Roboto-Regular.woff') format('woff'), url('./Font/Roboto-Regular.ttf') format('truetype');
+}
+
 .fontegrande {
-	text-decoration: none;
-	font-size: 20px;
+	font-size: 18px;
+	font-family: 'Roboto-Regular' !important;
 }
 
 
@@ -667,6 +685,8 @@ body .ui-body-c, body .ui-overlay-c
 	overflow: auto;
 	outline: none;
 	font-size: 18px;
+	
+	font-family: 'Roboto-Regular' !important;
 }
 
 .draffa {
@@ -688,6 +708,43 @@ body .ui-body-c, body .ui-overlay-c
 	background-image: linear-gradient(to bottom, #585858, #585858);
 	border: solid #FFF 1px;
 	text-decoration: none;
+}
+
+.ui-overlay-a{
+	background: #ebdae0;
+	/*background-image:url('img/Logo.png');*/
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	/*background-position:center; */
+	background-position: right bottom; /*Positioning*/
+}
+.ui-overlay-b{
+	background: #ebdae0
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	/*background-position:center; */
+	background-position: right bottom; /*Positioning*/
+}
+.ui-overlay-c{
+	background: #ebdae0
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	/*background-position:center; */
+	background-position: right bottom; /*Positioning*/
+}
+.ui-overlay-d{
+	background: #ebdae0
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	/*background-position:center; */
+	background-position: right bottom; /*Positioning*/
+}
+.ui-overlay-e{
+	background: #ebdae0
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	/*background-position:center; */
+	background-position: right bottom; /*Positioning*/
 }
 </style>
 
@@ -854,7 +911,7 @@ function countChar(val) {
   <center><div id="VerConnessione" align="center" style="display: none;"><br><br><a href="javascript:VerificaConnessione()" rel="external" class="btn"><font color="#FFF">Verify Connection</font></a></div></center>
 
   
-  <div data-role="footer" data-theme="c" data-position="fixed" data-tap-toggle="false">
+  <div data-role="footer" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div11">
 	  <center>
 		  <table width="100%" border="0">
 			  <tr>
