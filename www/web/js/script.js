@@ -132,9 +132,10 @@ $(document).ready(function() {
 			 
 					script = result.script;
                     localStorage.setItem("script", script);
+					
+					alert(script)
 
-			 $(".spinner").hide();
-
+					$(".spinner").hide();
 
                 if (! script) {
                     setCurrentClass(scriptActions.TEXT);
@@ -235,7 +236,7 @@ function indietrosalva(IDPage){
 
 	var ciccio2 = $('#edit').editable('getHTML', false, true)
 	
-	//alert(ciccio2)
+	alert(ciccio2)
 	
 					  
 				$(".spinner").show();
